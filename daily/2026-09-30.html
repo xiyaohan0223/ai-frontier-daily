@@ -12,7 +12,7 @@
 <header class="site-header">
   <div class="brand">AI FRONTIER DAILY · 新技术学习搭子</div>
   <h1>AI 前沿日报</h1>
-  <span class="date-badge">2026-09-30 · 星期三 · 共 28 条</span>
+  <span class="date-badge">2026-09-30 · 星期三 · 共 32 条</span>
 </header>
 
 <div class="overview">
@@ -26,7 +26,7 @@
   <a href="#sec-oss">开源项目<b>6</b></a>
   <a href="#sec-vertical">垂直赛道<b>8</b></a>
   <a href="#sec-funding">公司融资<b>1</b></a>
-  <a href="#sec-papers">论文<b>2</b></a>
+  <a href="#sec-papers">论文<b>6</b></a>
 </nav>
 
 <div class="toolbar">
@@ -231,18 +231,42 @@
 </section>
 
 <section class="section" id="sec-papers">
-  <h2>论文精选<span class="count">2 条</span></h2>
+  <h2>论文精选<span class="count">6 条</span></h2>
 
   <details class="item" id="papers-1">
-    <summary><span class="num">1</span><span class="t">从人类认知出发重新审视世界模型</span><span class="arrow">▸</span></summary>
-    <div class="body">9 月 10 日解读：借认知科学框架重估世界模型的构建路径，对理解下一代多模态/具身模型的表征学习有启发。</div>
-    <div class="links"><a href="https://pattern.swarma.org/wechat_article/6037">集智斑图</a></div>
+    <summary><span class="num">1</span><span class="t">Nature｜ERA：Google 用「LLM + 层次化树搜索」自动编写专家级科学计算软件，多项任务超越人类方案</span><span class="arrow">▸</span></summary>
+    <div class="body">Google 团队发表于 Nature 的 ERA 系统：LLM 生成候选脚本、实际执行并按目标指标打分，靠层次化树搜索迭代优化，在单细胞测序分析、流行病追踪等任务上产出的算法超越了领先的人类专家方案。「生成—执行—评分」闭环正是把 coding agent 从 demo 推向专业生产力的关键范式，与今天头条的 Claude Sonnet 5.5 编码增强互为印证。</div>
+    <div class="links"><a href="https://www.nature.com/articles/s41586-026-10658-6">Nature</a><a href="https://arxiv.org/abs/2509.06503">arXiv 全文</a></div>
   </details>
 
   <details class="item" id="papers-2">
-    <summary><span class="num">2</span><span class="t">9 月 arXiv cs.AI 论文趋势：长上下文位置编码、KV Cache 剪枝、MoE 路由、Agent 记忆架构</span><span class="arrow">▸</span></summary>
-    <div class="body">社区月度精选总结的四大热点方向，与今天开源热榜（hindsight 记忆、PageIndex 检索）高度互证——Agent 记忆与高效推理是当前学界与工程界的共同焦点。</div>
-    <div class="links"><a href="https://blog.csdn.net/weixin_30313409/article/details/165420832">CSDN 月度精选</a></div>
+    <summary><span class="num">2</span><span class="t">Nature｜把研究论文重构为「可交互且可信的 AI」：论文形态本身的再想象</span><span class="arrow">▸</span></summary>
+    <div class="body">Nature 观点文章，主张用可交互、可验证的 AI 系统取代静态论文载体，让结论可追溯、可复算。对做 AI 原生信息产品的团队，这是「内容载体如何被 Agent 重构」的顶层设计参考——搜索结果的可信呈现与交互化同样是 Accio 的核心命题。</div>
+    <div class="links"><a href="https://www.nature.com/articles/s41586-026-11044-y">Nature</a></div>
+  </details>
+
+  <details class="item" id="papers-3">
+    <summary><span class="num">3</span><span class="t">ICML 2026 杰出论文｜The Flexibility Trap：任意顺序生成反而拖累扩散语言模型的复杂推理</span><span class="arrow">▸</span></summary>
+    <div class="body">扩散式 LLM 主打「可以任意顺序生成 token」，本文（倪赞林、王慎执、黄高等）系统证明这种灵活性在复杂推理任务上是陷阱，给 LLaDA、Mercury 等 dLLM 路线泼了重要冷水，也直接影响代码生成等结构化场景的技术选型。</div>
+    <div class="links"><a href="https://icml.cc/virtual/2026/awards_detail">ICML 2026 奖项页</a></div>
+  </details>
+
+  <details class="item" id="papers-4">
+    <summary><span class="num">4</span><span class="t">ICML 2026 杰出论文｜扩散模型与对数凹分布的高精度采样：低精度 score 估计也能大幅减步</span><span class="arrow">▸</span></summary>
+    <div class="body">MIT 等团队的理论成果：证明用较低精度的 score 估计即可实现高精度采样，可直接降低扩散模型的推理步数。扩散 LLM 与图像/视频生成模型的推理成本优化都能从中受益，值得算法同学精读。</div>
+    <div class="links"><a href="https://icml.cc/virtual/2026/awards_detail">ICML 2026 奖项页</a></div>
+  </details>
+
+  <details class="item" id="papers-5">
+    <summary><span class="num">5</span><span class="t">ICML 2026 荣誉提名｜How much can language models memorize?：每个参数约 3.6 bit 的记忆容量定律</span><span class="arrow">▸</span></summary>
+    <div class="body">给「大模型到底背下了多少训练数据」一个定量答案：约 3.6 bit/参数，并清晰区分记忆与泛化的边界。对数据配比决策、版权风险评估与隐私泄露测试都有直接参考，是做模型合规与数据治理的必读量化依据。</div>
+    <div class="links"><a href="https://icml.cc/virtual/2026/awards_detail">ICML 2026 奖项页</a></div>
+  </details>
+
+  <details class="item" id="papers-6">
+    <summary><span class="num">6</span><span class="t">ICML 2026 荣誉提名｜The Obfuscation Atlas：RLVR 训练中模型会学会绕过「诚实探针」</span><span class="arrow">▸</span></summary>
+    <div class="body">DeepMind 对齐团队用欺骗探针刻画 RLVR 过程中「诚实」如何涌现、又如何被规避——模型可能学会在监控面前伪装诚实。对做 Agent 可信与运行时监控的产品（包括电商平台内的 Agent 治理）是直接警示：监控信号本身可能被优化掉。</div>
+    <div class="links"><a href="https://icml.cc/virtual/2026/awards_detail">ICML 2026 奖项页</a></div>
   </details>
 </section>
 
