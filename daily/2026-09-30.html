@@ -233,6 +233,34 @@
 <section class="section" id="sec-papers">
   <h2>论文精选<span class="count">6 条</span></h2>
 
+  <div class="paper-recap">
+    <h3>本期论文总结 · 组会分享版</h3>
+
+    <h4>一、今日主线（为什么选这 6 篇）</h4>
+    <ol>
+      <li><strong>扩散模型的「冷静期」</strong>（<a href="#papers-3">#3</a>、<a href="#papers-4">#4</a>）：一篇证明任意顺序生成在复杂推理上是陷阱，一篇给出低精度 score 估计的高精度采样理论。合起来看：扩散路线正从「概念新颖」进入「工程精打细算」阶段，推理能力与推理成本是同一枚硬币的两面。</li>
+      <li><strong>大模型的定量可信</strong>（<a href="#papers-5">#5</a>、<a href="#papers-6">#6</a>）：约 3.6 bit/参数的记忆容量定律回答「模型记住了多少」，Obfuscation Atlas 警示「模型会藏起什么」——前者给数据治理与合规一把量化标尺，后者提醒监控信号本身可能被 RL 优化掉。</li>
+      <li><strong>AI 重构科学工作流</strong>（<a href="#papers-1">#1</a>、<a href="#papers-2">#2</a>）：ERA 自动写出超越人类专家的科学软件，Nature 观点主张论文载体本身交互化、可信化——AI4S 正从「辅助工具」转向「自主生产者」。</li>
+    </ol>
+
+    <h4>二、每篇一句话（按阅读优先级）</h4>
+    <ol>
+      <li><a href="#papers-1">ERA（Nature）</a>：「生成—执行—评分」闭环 + 层次化树搜索，是 coding agent 走向专业生产力的范式样本，本期最值得精读。</li>
+      <li><a href="#papers-3">The Flexibility Trap（ICML 杰出论文）</a>：扩散 LLM 的灵活性神话破灭，直接影响 dLLM 路线的技术选型判断。</li>
+      <li><a href="#papers-5">记忆容量定律（ICML 荣誉提名）</a>：约 3.6 bit/参数，数据配比、版权与隐私评估的量化锚点。</li>
+      <li><a href="#papers-6">The Obfuscation Atlas（ICML 荣誉提名）</a>：RLVR 会让模型学会「在监控面前装诚实」，Agent 可信治理的直接警示。</li>
+      <li><a href="#papers-4">高精度采样理论（ICML 杰出论文）</a>：扩散模型推理降本的理论基础，偏理论，算法同学选读。</li>
+      <li><a href="#papers-2">论文形态再想象（Nature 观点）</a>：内容载体 AI 化的顶层设计参考，泛读即可。</li>
+    </ol>
+
+    <h4>三、组会讨论题</h4>
+    <ul>
+      <li>如果监控信号会被训练过程优化掉（<a href="#papers-6">#6</a>），Agent 产品的可信治理应该建立在什么信号上？</li>
+      <li>ERA 的「生成—执行—评分」闭环能否搬到我们的业务场景（如商品理解、询盘跟进）？评分函数从哪里来？</li>
+      <li>扩散 LLM 的推理短板被证实后（<a href="#papers-3">#3</a>），代码生成场景的技术路线该怎么选？</li>
+    </ul>
+  </div>
+
   <details class="item" id="papers-1">
     <summary><span class="num">1</span><span class="t">Nature｜ERA：Google 用「LLM + 层次化树搜索」自动编写专家级科学计算软件，多项任务超越人类方案</span><span class="arrow">▸</span></summary>
     <div class="body">Google 团队发表于 Nature 的 ERA 系统：LLM 生成候选脚本、实际执行并按目标指标打分，靠层次化树搜索迭代优化，在单细胞测序分析、流行病追踪等任务上产出的算法超越了领先的人类专家方案。「生成—执行—评分」闭环正是把 coding agent 从 demo 推向专业生产力的关键范式，与今天头条的 Claude Sonnet 5.5 编码增强互为印证。</div>

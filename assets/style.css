@@ -101,6 +101,18 @@ details.item .links a:hover { background: #dfe7ff; }
 .back { display: inline-block; margin-top: 26px; color: var(--accent); text-decoration: none; font-size: 14px; }
 .footer { margin-top: 36px; padding-top: 16px; border-top: 1px solid var(--line); color: var(--ink-3); font-size: 13px; }
 
+.paper-recap {
+  margin: 2px 0 14px; padding: 16px 18px;
+  background: var(--card); border: 1px solid var(--line); border-left: 4px solid var(--accent);
+  border-radius: 12px; font-size: 14.5px; color: var(--ink-2);
+}
+.paper-recap h3 { font-size: 15px; color: var(--ink); margin-bottom: 6px; }
+.paper-recap h4 { font-size: 14px; color: var(--ink); margin: 12px 0 4px; }
+.paper-recap ol, .paper-recap ul { padding-left: 20px; }
+.paper-recap li { margin: 4px 0; }
+.paper-recap a { color: var(--accent); text-decoration: none; }
+.paper-recap a:hover { text-decoration: underline; }
+
 .archive-list { list-style: none; margin-top: 14px; }
 .archive-list li {
   background: var(--card); border: 1px solid var(--line); border-radius: 12px;
