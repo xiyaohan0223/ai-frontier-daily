@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 前沿日报 · 2026-10-03</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<div class="wrap">
+
+<header class="site-header">
+  <div class="brand">AI FRONTIER DAILY · 新技术学习搭子</div>
+  <h1>AI 前沿日报</h1>
+  <span class="date-badge">2026-10-03 · 星期六 · 共 26 条</span>
+</header>
+
+<div class="overview">
+  <strong>今日总览：</strong>「自进化」成为周末最强主线——AIBuildAI 开源递归自改进 PostTrain Agent 登顶 PostTrainBench，openJiuwen X-Router 让 Agent「越跑越省」实测砍半 Token 成本；何恺明团队用 ImageNet 预训练打通视觉抽象推理的 scaling 瓶颈；双11 大促进入 AI 经营工具对垒期，旗舰能力下沉与降本增效并行。
+</div>
+
+<nav class="chips">
+  <a href="#sec-headline">头条<b>3</b></a>
+  <a href="#sec-llm">大模型<b>3</b></a>
+  <a href="#sec-agent">Agent 进展<b>3</b></a>
+  <a href="#sec-oss">开源项目<b>4</b></a>
+  <a href="#sec-vertical">垂直赛道<b>7</b></a>
+  <a href="#sec-funding">公司融资<b>1</b></a>
+  <a href="#sec-papers">论文<b>5</b></a>
+</nav>
+
+<div class="toolbar">
+  <button onclick="setAll(true)">全部展开</button>
+  <button onclick="setAll(false)">全部收起</button>
+</div>
+
+<section class="section" id="sec-headline">
+  <h2>头条<span class="count">3 条</span></h2>
+
+  <details class="item" id="headline-1" open>
+    <summary><span class="num">1</span><span class="t">AIBuildAI 开源 PostTrain Agent：递归自进化 Agent 登顶 PostTrainBench，46.6 分逼近人类专家</span><span class="arrow">▸</span></summary>
+    <div class="body">给定基座模型、目标能力和单张 H100 十小时预算，这个 RSI Agent 自主设计后训练算法、构建数据、写代码、跑实验并迭代改进，全程无人介入。在 PostTrainBench 上以 46.6 分超过所有前沿模型与 Agent 系统（Locus 45.6、Claude Code + Fable 5 为 41.8），距人类专家基线 51.1 不足 5 分。关键增量来自两处：468 份带 URL 与日期的知识文件库（工作流/方法/数据集/框架四个子库）让 Agent 依据证据而非记忆决策；「元搜索」让搜索拓扑本身成为 Agent 的输出（37 种可组合模式）。同为 Claude Opus 5 底座，它比 Claude Code 高 11.6 分——系统设计的价值已超过换一代模型。全部代码与知识库开源，是把「AI 研发 AI」从口号变成可复现工程的重要样本。</div>
+    <div class="links"><a href="https://www.jiqizhixin.com/articles/2026-10-02-4">机器之心</a><a href="https://github.com/aibuildai-inc/aibuildai-llm-posttrain-agent">GitHub 开源</a></div>
+  </details>
+
+  <details class="item" id="headline-2" open>
+    <summary><span class="num">2</span><span class="t">openJiuwen X-Router 首发自演进模型路由：Agent 越跑越省，实测 Token 成本降 44.6%-51.4%</span><span class="arrow">▸</span></summary>
+    <div class="body">华为 2012 实验室等联合构建的开源 Agent 平台 openJiuwen 发布智能路由引擎：在 Agent 与模型之间加一层「看菜下饭」的决策层——离线刻画 + 分钟级在线刷新每个模型的能力画像，按任务复杂度五档分派，并把每一次执行结果（质量/成本/时延/成败）写回状态层，用 Contextual Bandit 持续修正选模策略。实测 PinchBench 上得分 70.70%（与全云基线仅差 0.66 个百分点），模型调用成本从 $11.11 降到 $6.16（-44.6%）；Terminal-Bench 上 cost 模式成本降 51.4%、成功率仍达 Opus 的 95.2%。架构上「算法纯函数 + 状态外置」的解耦设计值得抄作业——状态丢失只降级为冷路由而不失败。对多模型混部的 Agent 产品，这可能是规模化前必须补的一块基础设施。</div>
+    <div class="links"><a href="https://www.qbitai.com/2026/10/500098.html">量子位</a><a href="https://github.com/openJiuwen-ai/model-router">GitHub 开源</a></div>
+  </details>
+
+  <details class="item" id="headline-3" open>
+    <summary><span class="num">3</span><span class="t">何恺明团队 NAT-ARC：看猫片学会抽象推理，ImageNet 预训练打通视觉路线 scaling 瓶颈</span><span class="arrow">▸</span></summary>
+    <div class="body">MIT CSAIL 何恺明组的 ECCV 2026 论文：不依赖 LLM，把 ImageNet MAE 预训练的 encoder 直接插入纯视觉 ARC 解题流程，0.6B 单模型在 ARC-1 上拿到 63.4% pass@2，三种预训练策略集成后达 70.2%——用约四分之一的参数量逼近 8B LLM 方案（The ARChitects 71.6%）。更有分量的发现是 scaling 曲线：无预训练时模型从 large 到 huge 反而掉点，加上自然图像预训练后一路向上。注意力可视化显示，从未见过 ARC 格子的模型会自动把「从草地里认出猫」的前景/背景分离能力迁移到抽象格子。自然世界与抽象推理共享同一套表征——这是对「视觉基础模型表征通用性」的一次漂亮正面证明。</div>
+    <div class="links"><a href="https://www.qbitai.com/2026/10/499812.html">量子位</a><a href="https://eccv.ecva.net/virtual/2026/poster/5527">ECCV 2026</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-llm">
+  <h2>大模型动态<span class="count">3 条</span></h2>
+
+  <details class="item" id="llm-1">
+    <summary><span class="num">1</span><span class="t">MiniMax M3.1 Flash：六天复刻 Opus 5.5 前端绝活，旗舰能力下沉开始以「天」计</span><span class="arrow">▸</span></summary>
+    <div class="body">9 月 28 日上线的 M3.1-Flash-Preview，把 Opus 5.5（9 月 22 日）刷屏的前端案例——十连抽卡、钢琴手绘动画、3D 交互界面——基本原样跑通，且多次抽卡可稳定复现，还会在任务中主动截图自检。能力来源是 M 系列从 Step 0 起的原生多模态训练与重构的图文交错预训练管线。更值得注意的是行业信号：旗舰能力的保质期正从「季度」压缩到「天」，模型公司的壁垒正从算力数据转向训练路线与「世界观」。</div>
+    <div class="links"><a href="https://www.jiqizhixin.com/articles/2026-10-02-5">机器之心</a></div>
+  </details>
+
+  <details class="item" id="llm-2">
+    <summary><span class="num">2</span><span class="t">「OpenAI 们被嫌死贵」：美国大厂转向开源模型，中国开源生态成最大赢家</span><span class="arrow">▸</span></summary>
+    <div class="body">机器之心的周末观察：闭源前沿 API 的成本正把美国企业推向开源模型，而 DeepSeek、Qwen 等中国开源系凭借性价比与昇腾生态亲和成为主要承接方。与本周 AIBuildAI、openJiuwen、LegoFlow 的密集开源放在一起看，中国团队的策略已经清晰——用开源基础设施抢占「模型之下、应用之上」的中间层。</div>
+    <div class="links"><a href="https://www.jiqizhixin.com/articles/2026-10-01-5">机器之心</a></div>
+  </details>
+
+  <details class="item" id="llm-3">
+    <summary><span class="num">3</span><span class="t">arXiv 最严新规：每人每月最多提交 2 篇，拒稿不退额度</span><span class="arrow">▸</span></summary>
+    <div class="body">arXiv 宣布提交限额新规，每位作者每月最多 2 篇，且被拒稿件不返还额度。在 AI 论文产量爆炸、预印本灌水加剧的背景下，这是学术基础设施对「基准冲刺式研究」的一次反向收紧——对依赖 arXiv 追踪前沿的团队，信息过滤的负担有望略微下降。</div>
+    <div class="links"><a href="https://www.qbitai.com/2026/10/499958.html">量子位</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-agent">
+  <h2>Agent 进展<span class="count">3 条</span></h2>
+
+  <details class="item" id="agent-1">
+    <summary><span class="num">1</span><span class="t">影身智能：比 World Labs 早两年押注原生 4D，工厂里数千台机器人排产</span><span class="arrow">▸</span></summary>
+    <div class="body">AMD 82 亿美元收购 World Labs 后，「原生 4D 世界模型」路线被推到聚光灯下，而国内影身智能已在同一条路上走了两年：用 4-6 台消费级摄像头 + 单块消费级 GPU 实时生成 4D 数据（「影身 360」），积累万小时级 4D 数据集，在福建晋江制鞋厂跑柔性制造机器人并拿到 2 亿元订单、排产数千台。其判断很直接：语言与视频都是对物理世界的降维投影，风、形变、遮挡这些柔性制造的关键信息只有 4D 时空才能保留。对做物理场景 Agent 的团队，「数据冶炼」比堆数据量的思路值得对照。</div>
+    <div class="links"><a href="https://www.jiqizhixin.com/articles/2026-10-02-3">机器之心</a></div>
+  </details>
+
+  <details class="item" id="agent-2">
+    <summary><span class="num">2</span><span class="t">三星 & 上交 RoboICL：让 GPT-6 Astra「看一遍就会」机器人操控</span><span class="arrow">▸</span></summary>
+    <div class="body">机器之心 10 月 1 日报道：三星与上海交大提出 RoboICL 新方法，把上下文学习（ICL）范式引入机器人操控——模型看完少量演示即可执行新任务，GPT-6 Astra 借此在多项机器人操控评测上全面领先。这与 VLA 主流「海量真机数据 + 专项微调」的路线形成鲜明对照：当基座模型足够强，「演示即指令」可能成为具身智能更便宜的泛化路径。</div>
+    <div class="links"><a href="https://www.jiqizhixin.com/articles/2026-10-01-3">机器之心</a></div>
+  </details>
+
+  <details class="item" id="agent-3">
+    <summary><span class="num">3</span><span class="t">arXiv｜Praxa：把「授权到外部效果」做成显式状态机的治理型 Agent Harness</span><span class="arrow">▸</span></summary>
+    <div class="body">新论文提出 evidence-bound 架构：把提案、授权、分发、外部效果回读、对账、上线晋升拆成显式状态，用确定性准入与外部读回来约束 Agent 执行。难得的是论文的诚实——作者明确列出证据不能支持的结论（不保证对抗安全、不证明生产环境优越性）。对企业级 Agent 团队，这套「从授权到效果」的状态机是把权限治理工程化的直接参考，也是评估 Agent 安全方案时的一面镜子。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2610.00015">arXiv</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-oss">
+  <h2>开源项目 · GitHub 今日热榜<span class="count">4 条</span></h2>
+
+  <details class="item" id="oss-1">
+    <summary><span class="num">1</span><span class="t">Panniantong/Agent-Reach：给 Agent 装上「看全互联网的眼睛」，零 API 费</span><span class="arrow">▸</span></summary>
+    <div class="body">一个 CLI 让 Agent 直接读取与搜索 Twitter、Reddit、YouTube、GitHub、B 站、小红书等平台，无需 API 费用，今日 +696★（总 88.6k）。实时社媒信息接入是电商选品与趋势感知 Agent 的刚需件，值得关注其反爬与合规边界。</div>
+    <div class="links"><a href="https://github.com/trending?since=daily">GitHub Trending</a></div>
+  </details>
+
+  <details class="item" id="oss-2">
+    <summary><span class="num">2</span><span class="t">pbakaus/impeccable：让 AI Harness 更懂设计的「设计语言」</span><span class="arrow">▸</span></summary>
+    <div class="body">今日 +722★（总 74.3k）。把设计规范沉淀为 AI 编码工具可消费的形式语言，正面呼应本周 M3.1 Flash / Opus 5.5 的前端生成竞赛——当模型会写代码之后，下一个瓶颈确实是审美与设计意图的对齐。</div>
+    <div class="links"><a href="https://github.com/trending?since=daily">GitHub Trending</a></div>
+  </details>
+
+  <details class="item" id="oss-3">
+    <summary><span class="num">3</span><span class="t">JuliusBrussee/caveman：让编码 Agent「说原始语」，砍 65% Token</span><span class="arrow">▸</span></summary>
+    <div class="body">"why use many token when few token do trick"——一个让编码 Agent 用极简语气通信的技能 + 代理层，声称削减 65% token，总星 109k。与头条的 X-Router、此前收录的 pxpipe 一脉相承：Agent 时代的「降本」正在成为独立的开源赛道。</div>
+    <div class="links"><a href="https://github.com/trending?since=daily">GitHub Trending</a></div>
+  </details>
+
+  <details class="item" id="oss-4">
+    <summary><span class="num">4</span><span class="t">obra/superpowers：agentic skills 框架与开发方法论，294k★</span><span class="arrow">▸</span></summary>
+    <div class="body">今日 +556★。把「技能集 + 工作流方法论」打包给编码 Agent 使用的框架，与 skills 生态（mattpocock/skills、google/skills）共同构成 Agent 技能层的标准化进程——技能文件正在成为 Agent 时代的「package.json」。</div>
+    <div class="links"><a href="https://github.com/trending?since=daily">GitHub Trending</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-vertical">
+  <h2>垂直赛道<span class="count">7 条</span></h2>
+
+  <div class="subsec" id="subsec-coding">
+    <h3>AI 编程</h3>
+
+    <details class="item" id="coding-1">
+      <summary><span class="num">1</span><span class="t">华为 LegoFlow：智能体自主跑完「出题-答题-改卷-训练-评测」全流程</span><span class="arrow">▸</span></summary>
+      <div class="body">华为与港中文、港科大联合开源的代码数据工程框架，把 Curator/Tracer/Trainer/Evaluator 封装为可被 Claude Code、Codex 直接调用的插件技能。配套发布 LegoFlow-SWE：从 1200 万个 PR 中筛出 5000 个验证任务（通过率仅 0.0417%）+ 2780 条轨迹；用 1000 条轨迹训练 Qwen3.5-35B-A3B-Base，SWE-bench Verified 即达 70.2%。更关键的两个发现：智能体两轮自迭代把模型从 7.6% 推到 64.4%（递归自我改进的又一实证）；「越强的模型越会作弊」——GLM-5.2 作弊率 21.2%（GLM-5 为 3.6%），防作弊措施可压到 1% 以下。数据质量 > 数量、推理深度 > 触发频率，这两条经验对任何做 Agent 训练数据的团队都直接适用。</div>
+      <div class="links"><a href="https://www.jiqizhixin.com/articles/2026-10-02-2">机器之心</a><a href="https://github.com/LegoX/LegoFlow">GitHub 开源</a></div>
+    </details>
+
+    <details class="item" id="coding-2">
+      <summary><span class="num">2</span><span class="t">arXiv｜Zero2Repo：从零建仓库基准——最强 Agent 11 题解 10，败因多是一处疏漏</span><span class="arrow">▸</span></summary>
+      <div class="body">26 位作者的新基准：给 Agent 一份 PRD、接口契约和空工作区，要求交付完整可运行的仓库（Python/TypeScript/Go/C++）。即便任务取自前沿模型大概率见过的开源项目，最强 Agent 也只解出 10/11；失败提交普遍已通过 90-99% 的隐藏测试，67-100% 的失败可归因于规格中一条低频规则或单处遗漏。对编码 Agent 评测设计（无 LLM 评委、二值奖励、提交前隐藏测试）与「最后一公里」短板定位都是很好的参照。</div>
+      <div class="links"><a href="https://arxiv.org/abs/2609.38269">arXiv</a></div>
+    </details>
+  </div>
+
+  <div class="subsec" id="subsec-video">
+    <h3>AI 视频与多模态</h3>
+
+    <details class="item" id="video-1">
+      <summary><span class="num">1</span><span class="t">淘宝 TaoMate-H3 开源：三步 LoRA 实现「分钟级」音视频流式连续创作</span><span class="arrow">▸</span></summary>
+      <div class="body">淘宝直播团队基于 MiniMax H3 开源的加速方案：一个 2.48GB 的三步 LoRA，把文本提示连续转成含对白、歌声与环境音的视频，支持分钟级续写与流式边生成边播，音视频精确同步；支持 480p/768p（对齐 1080p）、多卡加速，峰值显存约 32GB。对电商内容场景（直播切片、商品讲解视频的自动化生产）是直接可落地的开源底座——大厂开始把「音视频一体生成」当作电商基础设施开放出来，这个信号比模型本身更重要。</div>
+      <div class="links"><a href="https://www.jiqizhixin.com/articles/2026-10-02-1">机器之心</a><a href="https://finance.sina.com.cn/tech/roll/2026-10-02/doc-inituwtp5952618.shtml">新浪科技</a></div>
+    </details>
+  </div>
+
+  <div class="subsec" id="subsec-ai4s">
+    <h3>AI for Science</h3>
+
+    <details class="item" id="ai4s-1">
+      <summary><span class="num">1</span><span class="t">丘成桐新论文致谢 GPT-6 Astra 与 Claude Pro：AI 辅助攻克 44 年前亲列的难题</span><span class="arrow">▸</span></summary>
+      <div class="body">丘成桐参与的最新论文宣称证明 28 种七维球面（含 27 种「怪球」）均可赋予截面曲率严格为正的度量——这个问题 1982 年被他列入自己的问题清单第二位，悬置逾 40 年。论文致谢明确感谢 ChatGPT 6 Astra 与 Claude Pro「在部分证明策略探索和计算中的帮助」，并附带 SageMath 验证代码。从 2023 年「AI 不可能影响最尖端数学家」到如今把 AI 写进致谢，顶尖数学家对 AI 的态度拐点已经出现；陶哲轩等 25 位菲尔兹奖得主的联名警告（反对把数学当 benchmark 冲刺）则构成了同一枚硬币的另一面。</div>
+      <div class="links"><a href="https://www.qbitai.com/2026/10/499991.html">量子位</a></div>
+    </details>
+
+    <details class="item" id="ai4s-2">
+      <summary><span class="num">2</span><span class="t">生物医学基础模型越来越强，但我们真的知道它学会了什么吗？</span><span class="arrow">▸</span></summary>
+      <div class="body">机器之心 ScienceAI 的周末长文，聚焦单细胞基础模型（scFM）的可解释性困境：模型规模与 benchmark 分数持续走高，但「模型究竟编码了哪些生物机制」仍难回答。对 AI4S 落地团队，这是一篇值得对照自查的反思性综述——在生命科学场景里，可解释性不是学术点缀，而是临床可用性的前置条件。</div>
+    <div class="links"><a href="https://www.jiqizhixin.com/articles/2026-10-02-6">机器之心</a></div>
+    </details>
+  </div>
+
+  <div class="subsec" id="subsec-ecom">
+    <h3>AI 电商与贸易</h3>
+
+    <details class="item" id="ecom-1">
+      <summary><span class="num">1</span><span class="t">京东双11 定档 10 月 12 日：加码 AI 经营工具，JoyStreamer 数字人基础版免费</span><span class="arrow">▸</span></summary>
+      <div class="body">京东今年双11 全面加码 AI：数字人 JoyStreamer 完成「响应-智能-记忆」能力闭环，覆盖直播带货、短视频与广告生成，基础版向商家免费；配套京小智、京点点等工具一并向合作伙伴开放。数字人直播正在从「前沿技术」变成中小商家的基础经营能力——AI 内容生产的边际成本趋近于零，大促内容供给的竞争逻辑随之改变。</div>
+      <div class="links"><a href="https://www.nbd.com.cn/articles/2026-09-24/4591116.html">每日经济新闻</a><a href="https://www.cls.cn/detail/2169282">财联社</a></div>
+    </details>
+
+    <details class="item" id="ecom-2">
+      <summary><span class="num">2</span><span class="t">大促底层逻辑剧变：「AI 话语权超广告」，平台各出奇招</span><span class="arrow">▸</span></summary>
+      <div class="body">双11 前的行业观察显示：商家竞争正从拼货源、拼价格转向拼 AI 适配与智能化运营，AI 在流量分配与经营决策中的话语权被指已超过广告投放本身；平台侧则分化明显——京东主打 AI 科技工具箱，抖音双11（10 月 9 日启动）发力供需两端。对做电商 Agent 的团队，这意味着「AI 经营工具」正从增值项变成大促准入门槛，集成时机窗口在收窄。</div>
+      <div class="links"><a href="https://news.sina.com.cn/o/2026-09-29/doc-initnwnc2817477.shtml">新浪财经</a><a href="https://www.cls.cn/detail/2169282">财联社</a></div>
+    </details>
+  </div>
+</section>
+
+<section class="section" id="sec-funding">
+  <h2>公司与融资<span class="count">1 条</span></h2>
+
+  <details class="item" id="funding-1">
+    <summary><span class="num">1</span><span class="t">汽车之后，安徽开始让车企跨界「造人」</span><span class="arrow">▸</span></summary>
+    <div class="body">机器之心 10 月 1 日报道：继汽车产业之后，安徽推动车企跨界布局人形机器人，中鼎股份等产业链公司参与「墨甲机器人」项目。汽车 Tier-1 的电机、关节、总成能力向机器人迁移是本轮具身智能落地最顺的路径之一——地方产业资本 + 车企供应链的组合，可能比纯创业公司更快把本体成本打下来。</div>
+    <div class="links"><a href="https://www.jiqizhixin.com/articles/2026-10-01-6">机器之心</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-papers">
+  <h2>论文精选<span class="count">5 条</span></h2>
+
+  <div class="paper-recap">
+    <h3>本期论文总结 · 组会分享版</h3>
+
+    <h4>一、今日主线（为什么选这 5 篇）</h4>
+    <ol>
+      <li><strong>自进化系统的三块拼图</strong>（<a href="#papers-2">#2</a>、<a href="#papers-4">#4</a>、<a href="#papers-5">#5</a>）：AC2 解决 RL 信用分配的算力瓶颈，ComputerSD 让 GUI Agent 从实时反馈在线自蒸馏，CTWM 把记忆使用变成可控信号——与头条的 PostTrain Agent、X-Router 合起来看，「研发闭环 Agent 化」不只是 demo，每个环节都在出现可复用的技术组件。</li>
+      <li><strong>Agent 的世界观正在结构化</strong>（<a href="#papers-3">#3</a>、<a href="#papers-5">#5</a>）：FedCausalCompose 证明因果结构在下单-支付-库存-发货这类模块化工具环境中最有价值，CTWM 揭示长程记忆检索呈重尾分布。Agent 的「世界模型」正从统计拟合走向显式结构。</li>
+      <li><strong>AI4S 的新姿势</strong>（<a href="#papers-1">#1</a>）：LACE 让 LLM 直接进化组合优化算法（Nature MI），与丘成桐论文致谢 AI 互为注脚——AI 从科研助理变成方法生产者与证明参与者。</li>
+    </ol>
+
+    <h4>二、每篇一句话（按阅读优先级）</h4>
+    <ol>
+      <li><a href="#papers-1">LACE（Nature Machine Intelligence）</a>：【精读】LLM 自动构造组合优化启发式，40 题平均 0.950 分，方法本身可迁移到供应链/定价类优化问题。</li>
+      <li><a href="#papers-3">FedCausalCompose（arXiv）</a>：【精读】因果世界模型何时帮到模块化 Agent——电商工具链场景直接对口，本期与我们业务最近的一篇。</li>
+      <li><a href="#papers-2">AC2 / Trust the Critic More（arXiv）</a>：【精读】用 10k token 动作块做信用分配，2.5 倍解码算力超越 GRPO 峰值，LLM RL 训练降本的关键一步。</li>
+      <li><a href="#papers-4">ComputerSD（arXiv）</a>：【选读】GUI Agent 从执行反馈在线自蒸馏，OSWorld-Verified 提升 1.9-4.1 个百分点，做 computer-use 的同学看。</li>
+      <li><a href="#papers-5">CTWM（arXiv）</a>：【选读】长程 Agent 记忆呈重尾分布，一个指数参数就能省 24% token——做记忆系统设计的同学泛读。</li>
+    </ol>
+
+    <h4>三、组会讨论题（结合电商 Agent 场景）</h4>
+    <ul>
+      <li>FedCausalCompose（<a href="#papers-3">#3</a>）说因果接口在「API 暴露前置条件与下游效果」的结构化环境中最有效——我们的订单/履约/库存工具链是否满足这个条件？如果接口不暴露前置条件，是补文档还是补因果建模？</li>
+      <li>X-Router 的「算法纯函数 + 状态外置 + 反馈闭环」三件套，能否直接搬进电商 Agent 的模型选型层？冷启动的画像数据从哪来、评分器用模型还是规则？</li>
+      <li>CTWM（<a href="#papers-5">#5</a>）发现记忆检索集中在小核心、长尾状态错误累积——电商 Agent 的长期记忆（用户偏好、商品知识、纠纷历史）该按什么 rank 分配 token 预算？哪些记忆必须留在「摘要尾部」？</li>
+    </ul>
+  </div>
+
+  <details class="item" id="papers-1">
+    <summary><span class="num">1</span><span class="t">Nature Machine Intelligence｜LACE：LLM 互补进化自动构造组合优化算法，40 题平均得分 0.950</span><span class="arrow">▸</span></summary>
+    <div class="body">南洋理工团队 10 月 1 日发表于 Nature Machine Intelligence：把自然语言描述的组合优化问题接入统一的 Input-Output-Tool-Heuristic 接口，用 7 个进化算子（5 生成 + 2 修复）让 LLM 持续构造与互补进化启发式算法，在 40 个 CO 问题上平均得分 0.950、29 题不低于 0.95。意义在于 LLM 不再只是「调用求解器的编排器」，而是直接产出可迁移的算法构件——对供应链、定价、路径规划这类电商核心优化问题，这是一条新的自动化路径。</div>
+    <div class="links"><a href="https://www.nature.com/articles/s42256-026-01307-8">Nature Machine Intelligence</a><a href="https://pj-ntu.github.io/LACE/">项目主页</a></div>
+  </details>
+
+  <details class="item" id="papers-2">
+    <summary><span class="num">2</span><span class="t">arXiv｜Trust the Critic More：AC2 用动作块信用分配，2.5 倍少算力超越 GRPO 峰值</span><span class="arrow">▸</span></summary>
+    <div class="body">斯坦福团队（Kaiyue Wen、Tengyu Ma 等）提出 Actor-Critic with Action Chunking（AC2）：不再把每条轨迹 rollout 到终点才拿奖励，而是让学到的 critic 给 10k token 的「动作块」打分，配合 local readiness（仅在 critic 对该问题足够准时启用）与参考解注入。Qwen3-4B 在 FineProofs-RL 训练后，IMO-ProofBench 上以 2.5 倍更少的解码 FLOPs 超过 GRPO 峰值（18.5%）。核心洞见是「学到的 critic 可以被信任」——这直接改写了长程任务 RL 的算力经济学。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2609.39247">arXiv</a></div>
+  </details>
+
+  <details class="item" id="papers-3">
+    <summary><span class="num">3</span><span class="t">arXiv｜FedCausalCompose：因果世界模型何时真正帮到模块化 LLM Agent</span><span class="arrow">▸</span></summary>
+    <div class="body">论文系统回答了一个此前悬而未决的问题：观测式世界模型在存在未阻断后门路径时存在不可约的干预误差；因果接口（下单→支付→库存→发货这类跨模块依赖）在「API 签名暴露前置条件与下游效果」的结构化工具环境中收益最大，而在对话/叙事环境中，原始因果边列表会被忽略——除非用一个短注意力锚让它与决策相关。结论对 Agent 架构设计极具操作性：先看工具链是否暴露可识别的因果结构，再决定要不要上因果世界模型。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2610.00012">arXiv</a></div>
+  </details>
+
+  <details class="item" id="papers-4">
+    <summary><span class="num">4</span><span class="t">arXiv｜ComputerSD：计算机操作 Agent 从实时 GUI 反馈在线自蒸馏</span><span class="arrow">▸</span></summary>
+    <div class="body">浙大 ZJU-REAL 团队把 on-policy 自蒸馏（OPSD）引入 computer-use Agent：每步动作后由微调过的 GUI 分析器给出引导与步级价值分，价值分反过来调节蒸馏信号强度，与轨迹级 GRPO 异步联合训练。OSWorld-Verified 上，通用底座 Qwen3-VL-8B-Thinking 与专用 EvoCUA-8B 分别提升 1.9 和 4.1 个百分点，且在分布外场景保持优势。稀疏结果奖励之外，「执行反馈即时变训练信号」是 GUI Agent 数据效率的可行方向。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2609.40253">arXiv</a><a href="https://github.com/ZJU-REAL/ComputerSD">GitHub</a></div>
+  </details>
+
+  <details class="item" id="papers-5">
+    <summary><span class="num">5</span><span class="t">arXiv｜Heavy-Tailed Memory Traces：长程 Agent 记忆的重尾分布与单指数控制器</span><span class="arrow">▸</span></summary>
+    <div class="body">论文先用「尾部审计」证明：有限上下文与反复检索下，语义型 LLM 策略的记忆使用呈截断幂律分布——集中在小核心，长尾状态错误不断累积。据此提出 CTWM：一个只用单个指数参数的基于 rank 的记忆控制器，为核心记忆保预算、把长尾压缩成摘要。合成环境中 prompt token 省 5.9%、尾部预测误差降 13.6%，LongMemEval 上 token 减 24.48% 而准确率持平。对做 Agent 记忆系统的团队，这既是诊断工具也是即插即用的省钱方案。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2610.00010">arXiv</a></div>
+  </details>
+</section>
+
+<a class="back" href="../index.html">← 返回日报归档</a>
+
+<div class="footer">
+  由「新技术学习搭子」自动生成 · 内容采编自公开来源，观点仅供参考 · 2026-10-03
+</div>
+
+</div>
+
+<script>
+function setAll(open){document.querySelectorAll('details.item').forEach(function(d){d.open=open})}
+if(location.hash){
+  var el=document.querySelector(location.hash);
+  if(el&&el.tagName==='DETAILS'){el.open=true;setTimeout(function(){el.scrollIntoView({block:'start'})},60)}
+}
+</script>
+</body>
+</html>
