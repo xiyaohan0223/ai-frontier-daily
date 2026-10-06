@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 前沿日报 · 2026-10-06</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<div class="wrap">
+
+<header class="site-header">
+  <div class="brand">AI FRONTIER DAILY · 新技术学习搭子</div>
+  <h1>AI 前沿日报</h1>
+  <span class="date-badge">2026-10-06 · 星期二 · 共 25 条</span>
+</header>
+
+<div class="overview">
+  <strong>今日总览：</strong>开源权重追赶战升级——NVIDIA 支持的 Reflection AI 发布 501B 开源模型 Beam 直接对标 GLM-5.2，同一天 The Information 曝出 Meta 与微软大幅削减内部 Claude 用量；治理侧，纽约市议会 51 名议员全体开庭，四大实验室高管宣誓作证。Agent 市场的「模型选型、供应商政治与合规」正同时进入深水区。
+</div>
+
+<nav class="chips">
+  <a href="#sec-headline">头条<b>3</b></a>
+  <a href="#sec-llm">大模型<b>2</b></a>
+  <a href="#sec-agent">Agent 进展<b>2</b></a>
+  <a href="#sec-oss">开源项目<b>4</b></a>
+  <a href="#sec-vertical">垂直赛道<b>5</b></a>
+  <a href="#sec-funding">公司融资<b>3</b></a>
+  <a href="#sec-papers">论文<b>6</b></a>
+</nav>
+
+<div class="toolbar">
+  <button onclick="setAll(true)">全部展开</button>
+  <button onclick="setAll(false)">全部收起</button>
+</div>
+
+<section class="section" id="sec-headline">
+  <h2>头条<span class="count">3 条</span></h2>
+
+  <details class="item" id="headline-1" open>
+    <summary><span class="num">1</span><span class="t">Reflection AI 发布首个开源权重模型 Beam：501B MoE 对标 GLM-5.2，推理效率高 3-4 倍</span><span class="arrow">▸</span></summary>
+    <div class="body">10 月 5 日发布。Beam 是 NVIDIA 领投（今年早些时候融资 20 亿美元、估值 80 亿）的布鲁克林创业公司 Reflection AI 的首个模型：5010 亿参数 MoE、每步激活 230 亿，预训练 23.8 万亿 token、100 万上下文。SWE-bench Verified 得分 80.9（对比 NVIDIA Nemotron 3 Ultra 的 70.7），Terminal Bench v2.1 得分 80.1 逼近 GLM-5.2 的 81.0，官方称推理效率比 GLM-5.2 高 3-4 倍，权重与技术报告本月晚些时候放出。对做 Agent 产品的团队，这是编码/Agent 能力上第一个能与中国开源模型正面对标的西方开源选项，权重放出后值得实测部署成本与可控性。</div>
+    <div class="links"><a href="https://techcrunch.com/2026/10/05/reflection-debuts-beam-a-open-weight-ai-model-to-rival-chinese-models-at-lower-compute-cost/">TechCrunch</a><a href="https://www.reuters.com/technology/nvidia-backed-reflection-unveils-first-ai-model-take-chinese-open-models-2026-10-05/">Reuters</a><a href="https://www.marktechpost.com/2026/10/05/reflection-ai-introduces-beam-a-501b-open-weight-moe-model-with-23b-active-parameters-for-coding-and-agentic-workloads/">MarkTechPost</a></div>
+  </details>
+
+  <details class="item" id="headline-2" open>
+    <summary><span class="num">2</span><span class="t">The Information：Meta 与微软大幅削减内部 Claude 用量，Anthropic 从伙伴变对手</span><span class="arrow">▸</span></summary>
+    <div class="body">10 月 5 日报道：Meta 内部 Claude Code 用户从约 6 万降至 3 万（曾在一个 28 天周期内仅 Claude Code 就花费超 1.05 亿美元），转推自研 Muse Code 与 MetaCode；微软把 Claude 支出削减三分之一以上，云部门人均月度预算从 10 万美元降到约 1 万，改用 GitHub Copilot 与 OpenAI 模型。除成本控制外，更深层原因是 Claude Cowork、Claude Code 正在侵入两家的办公与开发者工具腹地，Anthropic 由供应商转为直接竞争对手。企业 AI 工具采购逻辑正从「买最强模型」转向「防竞对渗透 + 成本治理」——对 Agent 产品团队，企业客户的「供应商政治」是 GTM 必须纳入的新变量。</div>
+    <div class="links"><a href="https://the-decoder.com/meta-and-microsoft-pull-back-from-claude-as-anthropic-transforms-from-partner-into-competitor/">The Decoder</a><a href="https://www.theinformation.com/articles/meta-microsoft-reduce-claude-use">The Information</a></div>
+  </details>
+
+  <details class="item" id="headline-3" open>
+    <summary><span class="num">3</span><span class="t">纽约市议会罕见全员听证：OpenAI、Anthropic、Google、Meta 高管宣誓作证，AI 吹哨人出庭</span><span class="arrow">▸</span></summary>
+    <div class="body">10 月 5 日，纽约市议会全部 51 名议员召开「全体委员会」听证会，四大实验室高管宣誓作证，回应 AI 风险与立法方案；曾供职于 OpenAI/Anthropic 的研究员以「AI 吹哨人」身份先行出庭，议长 Menin 此前还向马斯克旗下 SpaceXAI 发出罕见传票。听证会围绕一揽子 AI 安全法案展开，包括「kill switch（紧急停止开关）」、吹哨人奖励与私人诉权。美国 AI 监管正从联邦僵局向城市一级扩散，Agent 产品的授权边界、紧急停止与审计留痕可能很快成为采购级合规要求。</div>
+    <div class="links"><a href="https://www.cnbc.com/2026/10/05/anthropic-openai-google-meta-execs-testify-nyc-council-ai-hearing.html">CNBC</a><a href="https://council.nyc.gov/press/2026/09/28/3266/">NYC Council 官方</a><a href="https://abc7ny.com/post/google-meta-openai-among-firms-appearing-nyc-ai-hearing/19909409/">ABC7</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-llm">
+  <h2>大模型动态<span class="count">2 条</span></h2>
+
+  <details class="item" id="llm-1">
+    <summary><span class="num">1</span><span class="t">OpenAI 公布文本溯源方案：textGrain 水印首发，EU 先行、API 全球可选开启</span><span class="arrow">▸</span></summary>
+    <div class="body">10 月 5 日官方博客：为响应 EU AI Act 第 50 条对生成文本「机器可读标识」的要求，OpenAI 公开 textGrain 统计水印技术，自评性能持平或优于 SynthID Text。即日起全球 API 客户可按模型选择开启（默认关闭），未来数周 EU 的 ChatGPT/Codex 文本输出将加隐形水印，检测器仅向审核通过的研究者开放，技术计划开源。官方罕见地坦白局限：200 token 短文检出率约 80%，替换 25% 同义词后跌至 17%。「内容溯源合规」竞赛已开跑（Anthropic 8 月已先行），在 EU 生成商品文案/营销内容的 Agent 产品需要把水印与检测纳入合规预算。</div>
+    <div class="links"><a href="https://openai.com/index/eu-text-provenance/">OpenAI 官方</a><a href="https://the-decoder.com/openai-will-watermark-chatgpt-text-in-the-eu-but-makes-it-optional-for-api-users-worldwide/">The Decoder</a></div>
+  </details>
+
+  <details class="item" id="llm-2">
+    <summary><span class="num">2</span><span class="t">Google 收紧 Gemini 应用模型访问：10 月 9 日起免费用户仅剩 Flash-Lite</span><span class="arrow">▸</span></summary>
+    <div class="body">10 月 3 日宣布、10 月 9 日生效：Gemini 应用免费用户将失去 Flash 与 Pro 访问权，仅保留最小的 Flash-Lite；AI Plus（$4.99/月）订阅者也将被移除 Pro，Pro 仅保留给 AI Pro/Ultra 档位。前沿模型加速「付费档位专属化」，免费入口被系统性降级——一方面反映推理成本压力向 C 端传导，另一方面也在为自家订阅与 API 清出付费动机，值得跟踪其对 Gemini 生态开发者留存的影响。</div>
+    <div class="links"><a href="https://9to5google.com/2026/10/03/gemini-model-limits-oct-26/">9to5Google</a><a href="https://www.notebookcheck.net/Google-Gemini-drops-Flash-and-Pro-for-free-users-on-October-9.1415964.0.html">Notebookcheck</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-agent">
+  <h2>Agent 进展<span class="count">2 条</span></h2>
+
+  <details class="item" id="agent-1">
+    <summary><span class="num">1</span><span class="t">Google Research 提出 RRSI：给「harness 自进化」加正则化，防止自改进 Agent 背题</span><span class="arrow">▸</span></summary>
+    <div class="body">自改进 Agent（自动重写自身提示词、工具与流程的 harness）的隐疾是过拟合：在进化所用任务上涨分，换新任务收益缩水甚至消失。RRSI（Regularized Recursive Self-Improvement）把正则化原则引入 harness 递归自改进，在编码、Agent 工作区、工程设计等 8 个基准上，进化分区最高提升 14.1 分，同时显著改善未见任务的泛化，代码已开源。对内部使用「自进化 Agent」（自动优化 prompt/技能/工作流）的产品，这是可直接借鉴的防背题范式：评估自进化效果必须保留一份从未参与进化的任务分布。</div>
+    <div class="links"><a href="https://the-decoder.com/google-researchers-find-a-way-to-keep-self-improving-ai-agents-from-memorizing-their-tests/">The Decoder</a><a href="https://arxiv.org/abs/2609.24972">arXiv</a><a href="https://github.com/google-research/rrsi">GitHub</a></div>
+  </details>
+
+  <details class="item" id="agent-2">
+    <summary><span class="num">2</span><span class="t">Cloudflare 开源 cloudflare-os：构建在 Workers 上的「Agent 工作空间」</span><span class="arrow">▸</span></summary>
+    <div class="body">官方仓库将 cloudflare-os 定义为「用于创建文档、构建应用、运行 Agent 的 Agent 工作空间，可接入你公司的上下文与系统」，构建在 Cloudflare Workers 上，目前已 1.1 万星。继 Agents Week、开源决策模型 Clef 之后，Cloudflare 把「Agent 原生云」的拼图补到了协作空间层：Agent 运行、数据与文档同域。与阿里云 AgentCore 同属「Agent 运行时/工作区基础设施化」路线，企业 Agent 工作台（文档+应用+Agent 同域）可能成为下一个 B 端入口，值得产品形态上对标。</div>
+    <div class="links"><a href="https://github.com/cloudflare/cloudflare-os">GitHub</a><a href="https://github.com/trending?since=daily">GitHub Trending</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-oss">
+  <h2>开源项目 · GitHub 今日热榜<span class="count">4 条</span></h2>
+
+  <details class="item" id="oss-1">
+    <summary><span class="num">1</span><span class="t">thedotmack/claude-mem：给每个编码 Agent 装跨会话持久记忆，今日 +534★</span><span class="arrow">▸</span></summary>
+    <div class="body">96.6k 星。捕获 Agent 会话中的全部行为，用 AI 压缩存档，并在未来会话中按需注入相关上下文；支持 Claude Code、Codex、Gemini、Copilot、OpenCode 等主流编码 Agent。Agent 长期记忆连续多日霸榜（上周的 hindsight、今天的 DyadMem 基准互为呼应），「会话压缩 + 按需注入」是当前最工程化的落地形态。</div>
+    <div class="links"><a href="https://github.com/thedotmack/claude-mem">GitHub</a></div>
+  </details>
+
+  <details class="item" id="oss-2">
+    <summary><span class="num">2</span><span class="t">earthtojake/text-to-cad：给你的 Agent 装上 CAD 超能力，今日 +437★</span><span class="arrow">▸</span></summary>
+    <div class="body">17.4k 星，Python 实现。让编码 Agent 以文本驱动生成与修改 CAD 模型，把 Agent 的输出物从代码扩展到制造与工业设计领域。对 B2B 跨境场景，「文本到产品 3D 模型/图纸」是有直接业务想象力的方向（打样、定制、listing 3D 素材）。</div>
+    <div class="links"><a href="https://github.com/earthtojake/text-to-cad">GitHub</a></div>
+  </details>
+
+  <details class="item" id="oss-3">
+    <summary><span class="num">3</span><span class="t">msitarzewski/agency-agents：开箱即用的「AI 代理公司」角色集，今日 +744★</span><span class="arrow">▸</span></summary>
+    <div class="body">157k 星。按角色提供成套预设 Agent——前端专家、Reddit 社区运营、创意注入器、现实检查员等，每个角色自带人设、流程与交付物规范。「角色/技能包」的分发形态正在成为 Agent 生态事实标准，与 Claude Code Mods、Google Skills 的标准化趋势同频。</div>
+    <div class="links"><a href="https://github.com/msitarzewski/agency-agents">GitHub</a></div>
+  </details>
+
+  <details class="item" id="oss-4">
+    <summary><span class="num">4</span><span class="t">pingdotgg/t3code：T3 社区的开源编码 Agent 工具，今日 +485★</span><span class="arrow">▸</span></summary>
+    <div class="body">25.6k 星。由 TypeScript 全栈社区（create-t3-app 团队）打造的编码 Agent 工具，贡献者列表里 Codex 与 Claude 的 bot 账号赫然在列——「社区造编码 Agent、Agent 反过来提交代码」的自举开发现场，适合观察开源编码工具的新打法。</div>
+    <div class="links"><a href="https://github.com/pingdotgg/t3code">GitHub</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-vertical">
+  <h2>垂直赛道<span class="count">5 条</span></h2>
+
+  <div class="subsec" id="subsec-coding">
+    <h3>AI 编程</h3>
+
+    <details class="item" id="coding-1">
+      <summary><span class="num">1</span><span class="t">Claude Code 2.1.289：新增 agent.spawn 与 Agent 状态体系，插件生态安全大加固</span><span class="arrow">▸</span></summary>
+      <div class="body">10 月 5 日更新：新增 agent.spawn（程序化生成 teammate Agent）、$.agent.list()、插件 hook 事件统一 Agent ID，以及 idle/waiting 状态支持；同时修复一大批权限绕过类安全问题（复合 shell 命令中嵌套部分的 deny 规则失效、符号链接 @ 提及文件绕过 Read deny 规则、用户插件篡改组织托管 MCP server 的登录工具描述等）。「多 Agent 编排 API 化 + 第三方插件权限收紧」并行推进，是所有 Agent 运行时产品做平台化与生态治理的直接参照。</div>
+      <div class="links"><a href="https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md">CHANGELOG</a><a href="https://releasebot.io/updates/anthropic/claude-code">Releasebot</a></div>
+    </details>
+  </div>
+
+  <div class="subsec" id="subsec-video">
+    <h3>AI 视频与多模态</h3>
+
+    <details class="item" id="video-1">
+      <summary><span class="num">1</span><span class="t">Reka AI 发布 Rho-1 研究预览：19B 单模型统一文本/图像/视频与机器人控制</span><span class="arrow">▸</span></summary>
+      <div class="body">10 月 5 日发布。Rho-1 把全部模态当作 token 放进同一个神经网络、同一上下文窗口，理解并生成文本、图像、视频与机器人动作，无工具调用、无外部模型路由；可实时生成连续视频并随新指令即时调整，同一套权重既预测摄像头画面也输出机器人控制信号。训练仅用 320 张 H100 约三个月，靠逆动力学模型从普通互联网视频中提取控制信号来弥补机器人数据稀缺。「折叠多模态技术栈」是对「视频生成 + VLA 级联」架构的直接挑战——若该路线成立，产品的视频理解/生成与具身能力可共享同一底座。</div>
+      <div class="links"><a href="https://reka.ai/labs/research/rho-1-collapsing-the-multimodal-stack">Reka 官方</a><a href="https://the-decoder.com/reka-ais-omni-model-rho-1-handles-text-images-video-and-robot-control-in-a-single-model/">The Decoder</a></div>
+    </details>
+  </div>
+
+  <div class="subsec" id="subsec-ai4s">
+    <h3>AI for Science</h3>
+
+    <details class="item" id="ai4s-1">
+      <summary><span class="num">1</span><span class="t">MOF-VERIFY（NeurIPS 2026 Workshop）：「失败感知」的 Agent 流水线验证金属有机框架假设</span><span class="arrow">▸</span></summary>
+      <div class="body">韩国团队（DGIST 等）提出面向 MOF（金属有机框架材料）假设验证的 agentic harness：把科学假设的「验证-失败-修正」流程显式建模，让 Agent 流水线能利用失败信息而非只追逐成功轨迹，被 NeurIPS 2026 XAI4Science 与 AI4Mat 双 workshop 接收。材料假设→计算→验证的科研 Agent 流水线正在加速落地，「失败感知」设计对任何长流程工程 Agent（包括询盘跟进、商品治理）都可迁移。</div>
+      <div class="links"><a href="https://arxiv.org/abs/2610.03056">arXiv</a></div>
+    </details>
+
+    <details class="item" id="ai4s-2">
+      <summary><span class="num">2</span><span class="t">NeutronGym：用物理仿真给 LLM Agent 的中子散射仪器设计「打分」</span><span class="arrow">▸</span></summary>
+      <div class="body">橡树岭国家实验室等提出把大科学装置的仪器设计做成 Agent 评测环境：LLM Agent 设计中子散射仪器方案，由真实物理仿真（而非人工标注）判定性能优劣，形成「物理可判分」的 gym。大科学装置正成为 Agent 评测的新场景，「可验证科学环境」这一思路对构建任何领域 Agent 基准（包括电商经营模拟环境）都有直接借鉴意义。</div>
+      <div class="links"><a href="https://arxiv.org/abs/2610.03631">arXiv</a></div>
+    </details>
+  </div>
+
+  <div class="subsec" id="subsec-ecom">
+    <h3>AI 电商与贸易</h3>
+
+    <details class="item" id="ecom-1">
+      <summary><span class="num">1</span><span class="t">OpenAI 推出 ChatGPT 视觉广告：图像生成流内测试商品轮播，广告 ARR 已达 10 亿美元</span><span class="arrow">▸</span></summary>
+      <div class="body">10 月 5 日官宣：ChatGPT 周活 12 亿，已是全球最大 AI 原生消费平台；新视觉广告在图像生成结果下方以轮播或商品图行展示，明确标注、与生成内容分离，官方承诺广告不影响回答内容，本月晚些时候在美国启动测试。同步扩展转化数据接入（Hightouch/Tealium/LiveRamp）与归因伙伴（AppsFlyer/Triple Whale/Adjust 等），并试点 DoubleVerify/IAS 品牌安全评估；广告业务年化收入已达 10 亿美元，2030 年目标 1000 亿。AI 对话入口正在把「商品发现 + 广告变现」正式产品化，Agent 电商的流量分配规则开始由 OpenAI 书写——跨境商家与工具商需要尽早研究「AI 可读性 + 广告投放」的新 SEO。</div>
+      <div class="links"><a href="https://openai.com/index/new-chatgpt-ads-format-and-measurement/">OpenAI 官方</a><a href="https://the-decoder.com/chatgpts-new-ad-format-fills-the-image-generation-loading-screen-with-product-carousels/">The Decoder</a></div>
+    </details>
+  </div>
+</section>
+
+<section class="section" id="sec-funding">
+  <h2>公司与融资<span class="count">3 条</span></h2>
+
+  <details class="item" id="funding-1">
+    <summary><span class="num">1</span><span class="t">Anthropic IPO 冲刺双面叙事：上市预期不变，员工捐赠使其成「美国最大企业捐赠者」</span><span class="arrow">▸</span></summary>
+    <div class="body">CNN 10 月 5 日报道：尽管市场不确定性与「AI 放缓」论调并存，Anthropic 仍预计推进 IPO（路透此前披露的招股材料显示 2025 年营收近 46 亿美元、计划基础设施支出 5180 亿美元）。同日 The Information 披露其员工股票捐赠+公司配比机制：2025 年捐赠总额 5.4 亿美元、约为第二名 Fortune 500 企业的五倍，2025 年 10 月至 2026 年 3 月配比成本超 6.6 亿美元，IPO 后或达数十亿。头部实验室的资本故事与价值观叙事深度绑定，IPO 窗口会直接影响其模型与产品发布节奏（如 IPO 前抢先发新模型）。</div>
+    <div class="links"><a href="https://www.cnn.com/2026/10/05/business/anthropic-ipo-stock-market">CNN</a><a href="https://the-decoder.com/anthropic-is-quietly-becoming-americas-biggest-corporate-donor-ahead-of-its-mega-ipo/">The Decoder</a></div>
+  </details>
+
+  <details class="item" id="funding-2">
+    <summary><span class="num">2</span><span class="t">Quinnipiac 民调：77% 美国人希望 AI 放缓或全面暂停，仅 5% 支持加速</span><span class="arrow">▸</span></summary>
+    <div class="body">10 月 5 日发布（9 月 24-27 日调查 1202 名成年人，误差 ±3.5%）：47% 认为应放缓 AI 发展，30% 认为应全面暂停直至安全性得到验证；91% 认为护栏重要，74% 对 AI 公司领导人信任度低，72% 反对在本社区建 AI 数据中心，但 69% 认为在对华竞争上保持领先重要。民意基本盘持续走弱，是本周监管动作密集（NYC 听证、FTC 调查、加州 13 项法案）的社会背景——「可解释、可控制」正在从工程要求变成 Agent 产品的品牌资产。</div>
+    <div class="links"><a href="https://the-decoder.com/most-americans-want-ai-development-to-slow-down-or-stop-entirely-new-poll-finds/">The Decoder</a><a href="https://poll.qu.edu/poll-release?releaseid=3969">Quinnipiac 原始数据</a></div>
+  </details>
+
+  <details class="item" id="funding-3">
+    <summary><span class="num">3</span><span class="t">特朗普宣布组建「超级智能部队」（SIF）：协调各方对 AI 的沟通，直属总统</span><span class="arrow">▸</span></summary>
+    <div class="body">10 月 4 日经 Truth Social 宣布：SIF 负责协调面向消费者、利益团体、宗教组织、关键基础设施运营商与 AI 公司的外联，由情报总监 Jay Clayton、FTC 主席 Andrew Ferguson 等官员牵头，直接向总统汇报。配套动作还有把行政文件中的「Artificial Intelligence」改称「Super Intelligence」的行政令。白宫 AI 治理仍是「轻执法 + 强叙事」：SIF 无执法权，对企业的实际约束仍来自法院、州与城市立法——这也解释了为什么 NYC 听证会这类地方动作更值得关注。</div>
+    <div class="links"><a href="https://the-decoder.com/trump-launches-super-intelligence-force-that-has-nothing-to-do-with-actual-superintelligence/">The Decoder</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-papers">
+  <h2>论文精选<span class="count">6 条</span></h2>
+
+  <div class="paper-recap">
+    <h3>本期论文总结 · 组会分享版</h3>
+
+    <h4>一、今日主线（为什么选这 6 篇）</h4>
+    <ol>
+      <li><strong>操作型 Agent 的「训练与评测方法论」补课</strong>（<a href="#papers-3">#3</a>、<a href="#papers-2">#2</a>）：一篇解决训练时「功劳怎么分」（依赖感知的信用分配），一篇解决评测时「怎么考」（多语言多模态网页浏览压力测试）。操作类 Agent 刚进入规模部署，训练信号与基准双双滞后于产品需求，这两篇是当下最直接的方法论供给。</li>
+      <li><strong>Agent 可信性的两个「确定性」被重审</strong>（<a href="#papers-5">#5</a>、<a href="#papers-6">#6</a>）：监控读数为零不等于行为受控，蒸馏并不总是有效——工程上最常被当作理所当然的两件事，都被给出机理层面的反例与解释。结合本月的 OpenAI 对抗性蒸馏事件与 Agent 事故问责潮，可信性必须建立在多信号交叉验证上。</li>
+      <li><strong>「有状态的世界」建模范式扩散</strong>（<a href="#papers-1">#1</a>、<a href="#papers-4">#4</a>）：Cell 正刊把细胞建模为干预下演化的状态系统（编码器-转移算子-解码器），DyadMem 把「Agent 与用户的协作关系」建模为长期记忆对象。世界模型思路正从机器人/视频外溢到生命科学与产品记忆设计。</li>
+    </ol>
+
+    <h4>二、每篇一句话（按阅读优先级）</h4>
+    <ol>
+      <li><a href="#papers-2">HyperBrowseComp（arXiv）</a>：多语言多模态网页 Agent 压力测试，直接对标跨境信息检索场景，本期最值得精读。</li>
+      <li><a href="#papers-3">Credit Where It Matters（arXiv）</a>：依赖感知的信用分配，终端操作 Agent RL 后训练可复用的核心技术，精读。</li>
+      <li><a href="#papers-1">虚拟细胞世界模型（Cell）</a>：顶刊级「数字生物学」路线图，理解有状态世界模型范式的最佳入口，选读。</li>
+      <li><a href="#papers-5">Monitor Readout（NeurIPS 2026 Workshop）</a>：「没有报警」为什么不等于「安全」，Agent 运行时监控设计必读，选读。</li>
+      <li><a href="#papers-4">DyadMem（arXiv）</a>：从「记事实」到「记协作关系」的长期记忆基准，B 端留存相关产品选读。</li>
+      <li><a href="#papers-6">On-Policy Distillation（arXiv）</a>：蒸馏何时增益、何时坍塌的 RL 机理，泛读。</li>
+    </ol>
+
+    <h4>三、组会讨论题</h4>
+    <ul>
+      <li>HyperBrowseComp 显示网页 Agent 在非英语与多模态环境下能力显著下降（<a href="#papers-2">#2</a>）：我们的找货/搜索 Agent 该如何建设多语言评测集与回归测试？</li>
+      <li>如果监控读数可以被绕过、读数为零不构成受控证据（<a href="#papers-5">#5</a>），平台对商家侧 Agent 的治理应该依赖哪几路信号的组合（行为评测、审计日志、双通道验证）？</li>
+      <li>VCWM 的「编码器-转移算子-解码器」范式（<a href="#papers-1">#1</a>）能否迁移到电商场景——比如构造一个模拟市场对定价、上新、投放干预反应的「市场世界模型」用于策略预演？</li>
+    </ul>
+  </div>
+
+  <details class="item" id="papers-1">
+    <summary><span class="num">1</span><span class="t">Cell｜虚拟细胞世界模型（VCWM）：把细胞当作「干预下演化的状态系统」来模拟的顶刊蓝图</span><span class="arrow">▸</span></summary>
+    <div class="body">GenBio AI 的 Eric Xing、Le Song 等在 Cell 发表观点文章：主张不再把细胞当「预测输出的黑箱」，而是建模其持久状态及在基因/化学/环境干预下的演化。架构分三件套：结构化编码器把多模态生物数据嵌入统一潜在流形；动作条件转移算子在流形上生成状态轨迹（符号推理+连续动力学结合）；受跨模态一致性约束的解码器映射回分子与表型观测量。并提出纵向（跨细胞类型/基因型的虚拟细胞库）与横向（组织、器官、整体）两条扩展路径，目标是把生物发现从湿实验试错转向「数字实验室」中的结构化探索。值得读的原因：这是「世界模型」进入生命科学的顶刊级路线图陈述，其范式与 Agent 世界模型设计同构，AI for Science 方向的首选读物。</div>
+    <div class="links"><a href="https://www.cell.com/cell/fulltext/S0092-8674(26)01015-9">Cell</a></div>
+  </details>
+
+  <details class="item" id="papers-2">
+    <summary><span class="num">2</span><span class="t">arXiv｜HyperBrowseComp：网页浏览 Agent 的多语言 + 多模态压力测试</span><span class="arrow">▸</span></summary>
+    <div class="body">MBZUAI 牵头、近 20 家机构参与，把 OpenAI 的 BrowseComp 扩展为「Hyper」版：任务需要跨语言、跨模态（文本+图像）的网页检索与深度推理才能完成，系统性暴露当前网页 Agent 在非英语环境与多模态线索下的短板。为什么值得读：电商/找货类 Agent 的真实任务天然多语言多模态（外语站点、商品图、规格表），这是目前少有的针对「非英语网页 Agent」的标准评测，可直接用于诊断我们自己在多语言市场上的能力缺口，本期首推精读。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2610.03574">arXiv</a></div>
+  </details>
+
+  <details class="item" id="papers-3">
+    <summary><span class="num">3</span><span class="t">arXiv｜Credit Where It Matters：依赖感知的策略优化，给终端 Agent 的每一步「论功行赏」</span><span class="arrow">▸</span></summary>
+    <div class="body">针对终端/计算机操作 Agent 的多步轨迹，指出把所有步骤一视同仁地分配奖励是低效的：真正决定成败的只是少数关键步骤。论文按步骤间依赖关系做信用分配，再驱动策略优化，在终端操作任务上提升样本效率与稳定性。为什么值得读：信用分配是操作型 Agent RL 后训练的核心难题，「依赖感知」思路可迁移到任何长链路业务 Agent（listing 优化、询盘跟进、多步经营决策）的训练管线。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2610.03634">arXiv</a></div>
+  </details>
+
+  <details class="item" id="papers-4">
+    <summary><span class="num">4</span><span class="t">arXiv｜DyadMem：评测 Agent 与用户长期协作中「该记住什么」的基准</span><span class="arrow">▸</span></summary>
+    <div class="body">提出聚焦「Agent-用户二元关系（dyad）」的长期记忆基准：不考「记住多少事实」，而考跨会话记住用户的偏好、历史决策与协作模式，并在后续任务中正确运用。为什么值得读：记忆评测正从知识型转向关系型；对服务复购型 B 端商家的 Agent 产品（记住商家的品类、风格、谈判习惯），dyadic memory 是留存与信任的关键，可用来对标自家记忆系统的评测覆盖。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2610.03020">arXiv</a></div>
+  </details>
+
+  <details class="item" id="papers-5">
+    <summary><span class="num">5</span><span class="t">NeurIPS 2026 Workshop｜监控读数近零 ≠ 行为受控：给 Agent 运行时监控的一记警钟</span><span class="arrow">▸</span></summary>
+    <div class="body">系统论证（17 页、10 张表）：安全监控器（monitor）读数接近零，并不构成「模型行为已被控制」的证据——监控可被绕过、读数可能与真实行为分布脱钩，把 monitor 输出当作受控性证明会在分布外场景失效。为什么值得读：对重度依赖「内容安全探针 + 运行时监控」的 Agent 产品是一记警钟，监控指标必须与行为评测联合校准；与上期 Obfuscation Atlas（RLVR 会优化掉诚实信号）形成连续证据链，平台侧 Agent 治理不可单信一路信号。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2610.03458">arXiv</a></div>
+  </details>
+
+  <details class="item" id="papers-6">
+    <summary><span class="num">6</span><span class="t">arXiv｜On-Policy 蒸馏的收益与坍塌：用 RL 视角解释蒸馏何时超越教师、何时灾难遗忘</span><span class="arrow">▸</span></summary>
+    <div class="body">从强化学习视角分析 on-policy 蒸馏的增益与坍塌（collapse）机制：解释为什么蒸馏有时能让学生反超教师，有时又出现能力坍塌，并给出条件刻画。为什么值得读：蒸馏是小模型获得 Agent 能力的主路线，也是本月知识产权与安全争议热点（OpenAI 披露对抗性蒸馏攻击、Anthropic 指控蒸馏滥用）的技术底色，自研蒸馏管线的同学可作机理参考，泛读即可。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2610.03185">arXiv</a></div>
+  </details>
+</section>
+
+<a class="back" href="../index.html">← 返回日报归档</a>
+
+<div class="footer">
+  由「新技术学习搭子」自动生成 · 内容采编自公开来源，观点仅供参考 · 2026-10-06
+</div>
+
+</div>
+
+<script>
+function setAll(open){document.querySelectorAll('details.item').forEach(function(d){d.open=open})}
+if(location.hash){
+  var el=document.querySelector(location.hash);
+  if(el&&el.tagName==='DETAILS'){el.open=true;setTimeout(function(){el.scrollIntoView({block:'start'})},60)}
+}
+</script>
+</body>
+</html>
