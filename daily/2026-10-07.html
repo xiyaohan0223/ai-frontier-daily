@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 前沿日报 · 2026-10-07</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<div class="wrap">
+
+<header class="site-header">
+  <div class="brand">AI FRONTIER DAILY · 新技术学习搭子</div>
+  <h1>AI 前沿日报</h1>
+  <span class="date-badge">2026-10-07 · 星期三 · 共 28 条</span>
+</header>
+
+<div class="overview">
+  <strong>今日总览：</strong>Agent 商业化的「标准之争」正式打响——Meta 与 Sierra 联合 Walmart、Shopify、Stripe 发布 Personal Agent Protocol，让个人 Agent 能代用户向商家认证与下单，直接对标 Visa 的 Trusted Agent Protocol；资本侧，DeepSeek 拟募资逾 120 亿美元（腾讯、宁德时代参投）备战境内 IPO，Mistral 则甩出 1 万亿参数开源权重 Large 4。对 Accio 而言，Agent 电商的「身份认证 + 支付授权」协议标准是最该盯紧的一条主线。
+</div>
+
+<nav class="chips">
+  <a href="#sec-headline">头条<b>3</b></a>
+  <a href="#sec-llm">大模型<b>3</b></a>
+  <a href="#sec-agent">Agent 进展<b>3</b></a>
+  <a href="#sec-oss">开源项目<b>4</b></a>
+  <a href="#sec-vertical">垂直赛道<b>6</b></a>
+  <a href="#sec-funding">公司融资<b>3</b></a>
+  <a href="#sec-papers">论文<b>6</b></a>
+</nav>
+
+<div class="toolbar">
+  <button onclick="setAll(true)">全部展开</button>
+  <button onclick="setAll(false)">全部收起</button>
+</div>
+
+<section class="section" id="sec-headline">
+  <h2>头条<span class="count">3 条</span></h2>
+
+  <details class="item" id="headline-1" open>
+    <summary><span class="num">1</span><span class="t">Meta × Sierra 发布 Personal Agent Protocol：Walmart、Shopify、Stripe 站台，定义「个人 Agent 如何向商家下单」</span><span class="arrow">▸</span></summary>
+    <div class="body">10 月 6 日，Sierra 联合 Meta 及 Genesys、Instinct、Rocket、Shopify、Stripe、Walmart 发布 Personal Agent Protocol（PAP）——一套基于 OAuth 的开放标准，让个人 AI Agent 能代表用户向企业完成身份认证、跨渠道携带上下文，并通过网站、MCP/OpenAPI 或企业自有 Agent 完成交互，v0.1 规范本月晚些放出，支付与细粒度授权列为后续扩展。它明确对标 Visa 的 Trusted Agent Protocol（两者共享部分伙伴），背景是 Cloudflare 9 月的爬虫默认策略已在 Walmart、eBay、Delta 上误伤个人 Agent。对 Accio：Agent 电商的「身份 + 授权 + 支付」协议标准之争已经开跑，谁定义了商家侧如何被 Agent 访问，谁就掌握了下一轮流量分配权，跨境找货/询盘 Agent 应尽早评估 PAP 与 A2A 的兼容路径。</div>
+    <div class="links"><a href="https://sierra.ai/blog/introducing-personal-agent-protocol">Sierra 官方</a><a href="https://thenextweb.com/news/personal-agent-protocol-sierra-meta">TNW</a><a href="https://www.unite.ai/sierra-unveils-personal-agent-protocol-built-with-meta-and-partners/">Unite.AI</a></div>
+  </details>
+
+  <details class="item" id="headline-2" open>
+    <summary><span class="num">2</span><span class="t">DeepSeek 拟募资逾 800 亿元人民币（约 120 亿美元），腾讯、宁德时代参投，备战境内 IPO</span><span class="arrow">▸</span></summary>
+    <div class="body">路透 10 月 6 日援引彭博报道：DeepSeek 最新一轮融资规模将超 800 亿元人民币（约 119.3 亿美元），腾讯、宁德时代等已承诺出资，计划 10 月底前完成，同时推进境内 IPO 并围绕华为昇腾芯片构建工具链。这是继 6 月首轮约 500 亿元募资后的又一次巨额补血，有报道称目标估值高达数万亿人民币级。对行业：中国头部大模型公司的资本化正在加速，「开源模型 + 国产算力 + IPO」形成闭环，其后续模型（V4 系列）与开源策略值得持续跟踪。</div>
+    <div class="links"><a href="https://www.reuters.com/world/asia-pacific/deepseek-raise-least-12-billion-tencent-backed-funding-bloomberg-news-reports-2026-10-06/">Reuters</a><a href="https://mlq.ai/news/deepseek-nears-12-billion-funding-round-with-tencent-catl-commitments/">MLQ.ai</a></div>
+  </details>
+
+  <details class="item" id="headline-3" open>
+    <summary><span class="num">3</span><span class="t">Mistral 发布 1 万亿参数开源权重 Large 4「le Chonk」：49B 激活、原生多模态，月底放权重</span><span class="arrow">▸</span></summary>
+    <div class="body">10 月 6 日，Mistral 发布 Large 4 预览版：1 万亿参数、每步激活 490 亿的原生多模态 MoE，从零训练、耗时两个月、用 4000 张 Nvidia Grace Blackwell GPU 在 Mistral 自建欧洲数据中心完成。API 定价 $1.36/M 输入、$4.18/M 输出，Artificial Analysis 智能指数得 38 分，是西方开源权重的最好成绩（仍落后头部中国开源模型），权重将于 10 月底以开源形式放出。对做 Agent 与私有化部署的团队：欧洲「主权 + 隐私 + 开源权重」路线再添一枚重筹码，权重放出后可实测其多模态与 Agent 能力的部署性价比。</div>
+    <div class="links"><a href="https://mistral.ai/news/mistral-large-4/">Mistral 官方</a><a href="https://www.artificialintelligence-news.com/news/mistral-ai-launches-large-4-preview-ahead-open-weight-release/">AI News</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-llm">
+  <h2>大模型动态<span class="count">3 条</span></h2>
+
+  <details class="item" id="llm-1">
+    <summary><span class="num">1</span><span class="t">Atlassian × OpenAI 扩大合作：GPT-6 系列驱动全平台 Agent 与 Rovo</span><span class="arrow">▸</span></summary>
+    <div class="body">10 月 6 日双方宣布扩大合作：OpenAI 的 GPT-6 系列前沿模型将随发布同步进入 Atlassian 平台与 Rovo 的模型组合，为 Jira、Confluence 中的 Agent 供能，并伴随一笔支出承诺；但 Atlassian 强调平台仍坚持多模型策略。企业协作套件正把「前沿模型 + 团队上下文图谱（Teamwork Graph）」打包成 Agent 底座——对 B 端 Agent 产品，「驻留在企业已有工作流里、按需路由最强模型」是可参照的分发范式。</div>
+    <div class="links"><a href="https://openai.com/index/atlassian-partnership/">OpenAI 官方</a><a href="https://www.atlassian.com/blog/company-news/atlassian-openai-strategic-partnership">Atlassian 官方</a></div>
+  </details>
+
+  <details class="item" id="llm-2">
+    <summary><span class="num">2</span><span class="t">Anthropic 推出三级 Cyber Verification Program：并入 Glasswing，向安全研究者开放 Claude Mythos</span><span class="arrow">▸</span></summary>
+    <div class="body">10 月 6 日，Anthropic 把此前的 Project Glasswing 整合为三级「网络验证计划」：Defense Access（事件响应与漏洞验证）、Red Team Access（授权渗透测试机构）、Specialized Access（飞控、电网等安全关键系统）。官方称 Glasswing 伙伴在 2026 年 4-7 月发现 12.9 万+ 已验证软件缺陷（3.3 万+ 属严重/高危），合格安全专家可获更低拦截阈值的分类器与 Claude Mythos 访问权。前沿实验室正把「模型能力 + 分级信任」做成安全研究的基础设施，这与本日报昨日 Mythos 发现漏洞被在野利用的新闻互为两面——能力越强，分级授权与审计越关键。</div>
+    <div class="links"><a href="https://www.anthropic.com/news/cyber-verification-program">Anthropic 官方</a></div>
+  </details>
+
+  <details class="item" id="llm-3">
+    <summary><span class="num">3</span><span class="t">韩国押注 35 亿美元主权前沿 AI：分配约 2.9 万张 GPU，目标对齐中国开源模型</span><span class="arrow">▸</span></summary>
+    <div class="body">10 月 6 日韩国宣布将投入 4.7 万亿韩元（约 34.9 亿美元）发展本土前沿 AI，最早 2027 年 3 月启动，分「先进模型研发」与「产业落地」两条线，并向 LG AI Research、SK 电讯、Upstage 之外的更多玩家开放，共分配约 2.9 万张 GPU，目标是对齐领先的中国开源模型而非美国头部实验室。「主权 AI」正成为国家级标配，且普遍以「对齐中国开源模型」为现实标尺——侧面印证中国开源权重（Qwen、DeepSeek、GLM、Kimi）已成全球性价比基准线。</div>
+    <div class="links"><a href="https://www.koreaherald.com/article/10893306">Korea Herald</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-agent">
+  <h2>Agent 进展<span class="count">3 条</span></h2>
+
+  <details class="item" id="agent-1">
+    <summary><span class="num">1</span><span class="t">Anthropic 扩充 Claude Startups：新增价值 4.5 万美元的合作伙伴技术栈</span><span class="arrow">▸</span></summary>
+    <div class="body">10 月 6 日 SF Tech Week 期间，Anthropic 扩充 Claude Startups 计划：获批创始人可拿 1000 美元 API 额度、最多 5 个 Premium 席位的一年免费 Claude Team，以及通过全新「Claude Startup Stack」获得的最高 4.5 万美元第三方权益（含 5000 美元 ClickHouse Cloud、12 个月 ElevenLabs、Augment Code 额度等），面向成立 5 年内或近两年获投的创业公司。头部实验室正用「模型额度 + 生态伙伴权益」锁定早期创业团队，是 Agent 生态卡位的典型打法，值得观察其对独立 Agent 创业公司技术选型的影响。</div>
+    <div class="links"><a href="https://www.cnbc.com/2026-10-06/anthropic-claude-startups-program.html">CNBC</a></div>
+  </details>
+
+  <details class="item" id="agent-2">
+    <summary><span class="num">2</span><span class="t">HackerRank 的 Chakra AI 面试官转正 GA：Beta 期已跑 50 万场面试</span><span class="arrow">▸</span></summary>
+    <div class="body">10 月 5 日，HackerRank 将其 AI 面试官 Chakra 转为正式可用（GA），此前六个月 Beta 已完成 50 万+ 场面试，Snowflake、Snorkel、Capgemini 为早期客户。CEO 称 Chakra 把「机试/带回家/工程师面」多轮压缩为一次坐谈，评的是推理过程而非仅答案，且可疑行为标记比传统测评低 70-80%。「Agent 面试官」正从实验走向规模商用，其「评推理而非评答案」的评测思路，对任何需要评估长链路 Agent 行为的场景（含商家侧 Agent 能力认证）都有借鉴意义。</div>
+    <div class="links"><a href="https://techcrunch.com/2026-10-05/hackerranks-ai-interviewer-offers-a-glimpse-into-what-job-interviews-could-become/">TechCrunch</a></div>
+  </details>
+
+  <details class="item" id="agent-3">
+    <summary><span class="num">3</span><span class="t">NVIDIA NeMo Retriever 论文：agentic retrieval 把 nDCG@10 提升 8.7 分，但成本是普通检索的 160 倍</span><span class="arrow">▸</span></summary>
+    <div class="body">NVIDIA 的 NeMo Retriever 论文量化了「让 Agent 在 ReAct 循环里反复检索」相对标准稠密检索的收益与代价：同一 embedding 模型下平均 nDCG@10 提升 8.7 分，无需重配即在 ViDoRe v3 拿第一、BRIGHT 第二；但每查询消耗 76.4 万输入 token、平均耗时 107.4 秒（标准检索仅 0.67 秒），Opus 4.5 每查询发起 9.2 次检索。作者还用进程内线程安全检索器替代 MCP 以降开销。这是给「Agent 检索一定更好」泼的冷静一手数据——检索型 Agent 产品必须在召回增益与延迟/成本间做显式权衡，详见论文精选第 2 篇。</div>
+    <div class="links"><a href="https://huggingface.co/papers/2610.05750">HF Papers</a><a href="https://arxiv.org/abs/2610.05750">arXiv</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-oss">
+  <h2>开源项目 · GitHub 今日热榜<span class="count">4 条</span></h2>
+
+  <details class="item" id="oss-1">
+    <summary><span class="num">1</span><span class="t">FeSens/openTPU：AI 设计的 FPGA 推理加速器，能跑 Qwen3 与 LFM2.5</span><span class="arrow">▸</span></summary>
+    <div class="body">GitHub 用户 FeSens 发布 openTPU，一个自称「AI 开发」的全栈推理加速器——RTL、ISA、仿真器、编译器到宿主软件全链路，面向 Xilinx Kintex-7 FPGA PCIe 卡，支持 Qwen3、LFM2.5、Qwen3.5 推理（Qwen3.5-0.8B 约 14 tok/s、达峰值内存带宽约 70%）。项目 explicitly 在验证「AI Agent 能否设计出运行自身推理的芯片」，登上 Hacker News 首页（154 分）。这是「Agent 设计硬件」自举实验的最新样本，对理解 AI 参与芯片设计的能力边界很有参考价值。</div>
+    <div class="links"><a href="https://github.com/FeSens/openTPU">GitHub</a><a href="https://www.reddit.com/r/FPGA/comments/1wrspp0/opentpu_a_learning_fpga_ai_accelerator_project/">Reddit 讨论</a></div>
+  </details>
+
+  <details class="item" id="oss-2">
+    <summary><span class="num">2</span><span class="t">EmpirioLabs/Aplomb 1：5.3B 开源多模态「决策模型」，输出校准概率而非自由文本</span><span class="arrow">▸</span></summary>
+    <div class="body">EmpirioLabs 发布 Aplomb 1：5.3B 开源权重决策模型，单次请求可读文本、JSON、图像、视频、音频（最长 100 万 token），返回的是校准概率而非自由文本；托管 API 称约 3 秒决策一份百万 token 文档、$0.02/百万输入 token，在内部「Decision Index」上位列 4B 级模型第一，权重在 Hugging Face（自有许可）。「决策模型」是当下热门的新品类——把高频业务判断（分类/是非/评分）做成返回概率分布的专用模型，对工单分流、内容审核、Agent 路由与结果校验等场景直接可用，与阿里千问的结构化决策模型思路同频。</div>
+    <div class="links"><a href="https://www.reddit.com/r/LocalLLaMA/comments/1wz96qs/aplomb_1_openweights_53b_decision_model_1m/">Reddit / LocalLLaMA</a></div>
+  </details>
+
+  <details class="item" id="oss-3">
+    <summary><span class="num">3</span><span class="t">morluto/rea：用 Agent 逆向工程一切，从应用行为到原生二进制，今日 +2956★</span><span class="arrow">▸</span></summary>
+    <div class="body">9.4k 星、TypeScript 实现，今日 GitHub Trending 增星最快之一。rea 让 Agent 对目标做逆向工程，覆盖从 App 行为到原生二进制的分析。「逆向工程 Agent」是把 LLM 的推理能力用到安全研究/兼容性分析的典型工具型 Agent，适合关注 Agent 在专业工程任务上自治程度演进的同学参考。</div>
+    <div class="links"><a href="https://github.com/morluto/rea">GitHub</a><a href="https://github.com/trending?since=daily">GitHub Trending</a></div>
+  </details>
+
+  <details class="item" id="oss-4">
+    <summary><span class="num">4</span><span class="t">tester-army/e2e：面向 Web 与移动的下一代 e2e 测试框架，今日 +1725★</span><span class="arrow">▸</span></summary>
+    <div class="body">6.3k 星、TypeScript。主打下一代端到端测试（Web + 移动），今日登顶 Trending 增星榜。在「AI 生成代码量激增」的背景下，可靠、易写的 e2e 测试框架需求同步上升——对用编码 Agent 大规模产出前端代码的团队，测试基础设施是保证交付质量的配套刚需。</div>
+    <div class="links"><a href="https://github.com/tester-army/e2e">GitHub</a><a href="https://github.com/trending?since=daily">GitHub Trending</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-vertical">
+  <h2>垂直赛道<span class="count">6 条</span></h2>
+
+  <div class="subsec" id="subsec-coding">
+    <h3>AI 编程</h3>
+
+    <details class="item" id="coding-1">
+      <summary><span class="num">1</span><span class="t">MALFEX npm 供应链投毒：14 个月 4 万+ 下载，CloudSEK 警告编码 Agent 会放大风险</span><span class="arrow">▸</span></summary>
+      <div class="body">CloudSEK 披露 MALFEX 攻击：单一葡语操作者 14 个月内推送 12+ 个恶意 npm 包、累计下载超 4 万，载荷含带 Solana 区块链 C2 解析器的 Overlord RAT 与经 Discord webhook 外传的 PNG 多态信息窃取器。CloudSEK 特别警告：会自动接受依赖建议的 AI 编码 Agent 可能加速这类攻击的暴露面。对大量使用编码 Agent 的团队，「Agent 自动引入依赖」是新的供应链攻击向量——依赖白名单、lockfile 审计与 Agent 安装权限收敛应尽快纳入 SDLC 安全基线。</div>
+      <div class="links"><a href="https://www.cloudsek.com/blog/malfex-malicious-npm-postinstall-supply-chain-campaign">CloudSEK</a></div>
+    </details>
+  </div>
+
+  <div class="subsec" id="subsec-video">
+    <h3>AI 视频与多模态</h3>
+
+    <details class="item" id="video-1">
+      <summary><span class="num">1</span><span class="t">腾讯混元 Prism：面向原生 2K 音视频联合生成训练的动态稀疏注意力</span><span class="arrow">▸</span></summary>
+      <div class="body">腾讯混元团队提出 Prism——用于原生 2K 分辨率「音视频联合生成」模型训练的动态稀疏注意力机制，在保持高分辨率音视频同步生成质量的同时降低训练开销。音视频「同生」正成为新一代视频模型的核心能力（与今日 Kandinsky 6.0、字节 Seedance 2.0 的多模态联合架构同频），稀疏注意力是把 2K 级联合生成训练成本压下来的关键工程手段，做多模态生成的同学值得精读其稀疏化策略。</div>
+      <div class="links"><a href="https://huggingface.co/papers/2610.05416">HF Papers</a><a href="https://arxiv.org/abs/2610.05416">arXiv</a></div>
+    </details>
+  </div>
+
+  <div class="subsec" id="subsec-ai4s">
+    <h3>AI for Science</h3>
+
+    <details class="item" id="ai4s-1">
+      <summary><span class="num">1</span><span class="t">语言模型「优化优化器」：自动发现更快的分子弛豫算法</span><span class="arrow">▸</span></summary>
+      <div class="body">今日 arXiv 热点：研究者让语言模型去发现/改进分子体系弛豫（relaxation）的数值优化算法，即「优化优化器」——LLM 不直接算，而是生成更快的求解策略，用于材料/分子模拟的收敛加速。这是 AI4S 从「用 AI 拟合性质」迈向「用 AI 改进科学计算内核本身」的信号，与本期论文精选首篇互为呼应，对材料发现、结构预测类流水线的提速有直接工程价值。</div>
+      <div class="links"><a href="https://huggingface.co/papers/2610.06577">HF Papers</a><a href="https://arxiv.org/abs/2610.06577">arXiv</a></div>
+    </details>
+
+    <details class="item" id="ai4s-2">
+      <summary><span class="num">2</span><span class="t">Harvard：从蒸馏后的隐私健康记录中「Agent 化」发现血液生物标志物</span><span class="arrow">▸</span></summary>
+      <div class="body">哈佛团队提出用 Agent 系统从经隐私蒸馏处理的电子健康记录中自动发现血液生物标志物——在数据已脱敏/蒸馏的约束下，仍能让 Agent 完成假设生成与验证的闭环。这是「隐私保护 + 科研 Agent」结合的范例：对任何需在敏感数据上跑发现型 Agent 的场景（含合规约束下的商家/交易数据挖掘），其「先蒸馏再发现」的范式很有借鉴意义。</div>
+      <div class="links"><a href="https://huggingface.co/papers/2610.04749">HF Papers</a><a href="https://arxiv.org/abs/2610.04749">arXiv</a></div>
+    </details>
+
+    <details class="item" id="ai4s-3">
+      <summary><span class="num">3</span><span class="t">学习「潜在蛋白质语言」用于自回归生成</span><span class="arrow">▸</span></summary>
+      <div class="body">今日 arXiv 论文提出 Learning Latent Protein Languages：把蛋白质序列建模为一种「潜在语言」并用自回归方式生成，服务于蛋白质设计与生成生物学。蛋白质语言模型持续向「可控生成」演进，是 AI for Science 中蛋白质方向的基础性工作，做生物计算或药物发现相关 Agent 的同学可关注其表征与生成范式。</div>
+      <div class="links"><a href="https://huggingface.co/papers/2610.03978">HF Papers</a><a href="https://arxiv.org/abs/2610.03978">arXiv</a></div>
+    </details>
+  </div>
+
+  <div class="subsec" id="subsec-ecom">
+    <h3>AI 电商与贸易</h3>
+
+    <details class="item" id="ecom-1">
+      <summary><span class="num">1</span><span class="t">SAP 收购 TechWolf：把「工作技能图谱」接入 Joule Agent，做证据驱动的人力智能</span><span class="arrow">▸</span></summary>
+      <div class="body">10 月 6 日，SAP 宣布收购根特的 TechWolf（交易金额未披露，预计 Q4 完成），后者的「工作上下文图谱」把员工技能映射到任务与外部劳动力市场。SAP 将让其成为 SuccessFactors 的「智能内核」，并把图谱喂给 Joule Agent，用于技能型招聘、人力规划与岗位再设计；TechWolf 保持独立运营并继续服务非 SAP 客户。企业软件巨头正通过收购「结构化上下文图谱」来给自家 Agent 供数——这与 Accio 靠商品/供应链知识图谱给找货 Agent 供能是同一逻辑：Agent 的差异化护城河越来越取决于其独占的结构化上下文。</div>
+      <div class="links"><a href="https://news.sap.com/2026/10/sap-to-acquire-techwolf-evidence-based-work-age-of-ai/">SAP 官方</a></div>
+    </details>
+  </div>
+</section>
+
+<section class="section" id="sec-funding">
+  <h2>公司与融资<span class="count">3 条</span></h2>
+
+  <details class="item" id="funding-1">
+    <summary><span class="num">1</span><span class="t">Lambda 拟以 145 亿美元投前估值募资 40 亿美元，Blackstone、Coatue 领投，为 IPO 前最后一轮</span><span class="arrow">▸</span></summary>
+    <div class="body">WSJ 报道：Nvidia 支持的 GPU 云运营商 Lambda 正以 145 亿美元投前估值募集至多 40 亿美元，Blackstone 与 Coatue 领投，将是其 2027 年计划 IPO 前的最后一轮私募；公司未交付订单积压已从 6 月的 150 亿美元增至 9 月的约 500 亿美元。GPU 云「neocloud」赛道需求爆表，订单积压成核心资产，反映推理算力缺口仍在扩大——这也是各家 Agent 产品成本压力的上游根源。</div>
+    <div class="links"><a href="https://www.wsj.com/tech/ai/ai-neocloud-lambda-is-raising-4-billion-in-final-round-before-planned-ipo-568182f9">WSJ</a></div>
+  </details>
+
+  <details class="item" id="funding-2">
+    <summary><span class="num">2</span><span class="t">推理芯片公司 Etched 在 210 亿美元融资两个月后，收到 400-500 亿美元估值报价</span><span class="arrow">▸</span></summary>
+    <div class="body">TechCrunch 报道：AI 推理芯片创业公司 Etched 正收到 400-500 亿美元估值的报价，约为其 9 月 210 亿美元估值轮（募资 7 亿美元）的两倍，而该轮之前还有 7 月红杉领投的 103 亿美元估值轮。公司有约 10 亿美元已锁定客户订单、在硅谷运营 10MW 数据中心，Jane Street 既是投资方也是客户，约 15% 员工来自 Nvidia。专用推理 ASIC 赛道估值飙升，印证「推理成本」已成 AI 竞争的主战场，对依赖大规模推理的 Agent 产品是长期利好信号。</div>
+    <div class="links"><a href="https://techcrunch.com/2026-10-05/etched-fields-funding-offers-at-40b-valuation-sources-say/">TechCrunch</a></div>
+  </details>
+
+  <details class="item" id="funding-3">
+    <summary><span class="num">3</span><span class="t">Waymo 首笔私募贷款加码至 50 亿美元，PIMCO、Blackstone 参投，支撑 Robotaxi 全球扩张</span><span class="arrow">▸</span></summary>
+    <div class="body">彭博报道：Waymo 将首笔私募贷款从最初 30 亿美元目标上调至 50 亿美元，PIMCO、Blackstone、Sixth Street 参投，高盛协助安排，定价较基准高 5.25 个百分点；此前其今年已完成 160 亿美元股权融资、估值 1260 亿美元，用于自研芯片。自动驾驶/具身智能的重资产扩张正转向「股权 + 私募债」组合融资，AI 成本上升背景下，债务工具成为规模化落地的新杠杆。</div>
+    <div class="links"><a href="https://www.bloomberg.com/news/articles/2026-10-06/waymo-boosts-private-debt-deal-to-5-billion-in-push-for-growth">Bloomberg</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-papers">
+  <h2>论文精选<span class="count">6 条</span></h2>
+
+  <div class="paper-recap">
+    <h3>本期论文总结 · 组会分享版</h3>
+
+    <h4>一、今日主线（为什么选这 6 篇）</h4>
+    <ol>
+      <li><strong>AI for Science：LLM 开始「改进科学计算内核」本身</strong>（<a href="#papers-1">#1</a>）：不是用模型去拟合性质，而是让语言模型发现更快的分子弛豫优化算法。这标志 AI4S 从「预测层」下沉到「数值方法层」，对任何跑大规模仿真/结构优化的科研流水线都是提速杠杆，本期优先级最高。</li>
+      <li><strong>Agent 的工程成本与评测补课</strong>（<a href="#papers-2">#2</a>、<a href="#papers-5">#5</a>）：一篇用硬数据说明 agentic retrieval 提升 8.7 分 nDCG 却贵 160 倍、慢 160 倍，一篇提出 UndoBench 把「任务能力」与「出错后的恢复能力」分开评测。二者共同回答一个产品级问题：Agent 更强了，但代价（延迟/成本/可恢复性）到底是多少、怎么量化。</li>
+      <li><strong>生成模型的效率与对齐新招</strong>（<a href="#papers-3">#3</a>、<a href="#papers-4">#4</a>、<a href="#papers-6">#6</a>）：开源音视频「同生」基础模型 Kandinsky 6.0、用 20 个样本做群体化个性对齐的 APO、以及把「64 候选强采样」压进单次解码的 OPPD 蒸馏。主线是——如何在有限数据/算力下拿到更强的生成与对齐效果，都是可直接迁移到产品训练管线的方法。</li>
+    </ol>
+
+    <h4>二、每篇一句话（按阅读优先级）</h4>
+    <ol>
+      <li><a href="#papers-1">Optimizing the Optimizer（arXiv · AI4S）</a>：LLM 自动发现更快的分子弛豫算法，AI4S 下沉到数值方法层，本期首推精读。</li>
+      <li><a href="#papers-2">NeMo Retriever（arXiv · NVIDIA）</a>：agentic retrieval 的召回增益 vs 160 倍成本/延迟实测，检索型 Agent 选型必读，精读。</li>
+      <li><a href="#papers-5">UndoBench（arXiv）</a>：把 Agent「做对」与「纠错」能力分开评测，长链路业务 Agent 评估设计选读。</li>
+      <li><a href="#papers-4">APO（arXiv · UW/HKUST）</a>：20 个样本经聚类做个性化对齐，冷启动个性化 Agent 的思路，选读。</li>
+      <li><a href="#papers-3">Kandinsky 6.0 Video（arXiv）</a>：MIT 开源的同步音视频基础模型，多模态生成同学选读。</li>
+      <li><a href="#papers-6">OPPD（arXiv · USC/Intel）</a>：把强采样收益蒸进单次生成，数学/推理小模型提效，泛读。</li>
+    </ol>
+
+    <h4>三、组会讨论题</h4>
+    <ul>
+      <li>NeMo Retriever 显示 agentic retrieval 贵 160 倍、慢 160 倍（<a href="#papers-2">#2</a>）：Accio 的找货/询盘 Agent 应该在哪些查询上启用「多轮检索」、哪些走单次稠密检索？分级路由的判据是什么？</li>
+      <li>UndoBench 主张把「纠错/恢复能力」单独评测（<a href="#papers-5">#5</a>）：我们的商家侧 Agent 是否需要一套「误操作可撤销 + 恢复成功率」的回归基准？哪些动作必须可回滚？</li>
+      <li>APO 用聚类 + 20 样本做个性化对齐（<a href="#papers-4">#4</a>）：能否迁移到「按商家群体聚类、小样本个性化」的找货偏好建模上，以缓解单商家数据稀疏的冷启动问题？</li>
+    </ul>
+  </div>
+
+  <details class="item" id="papers-1">
+    <summary><span class="num">1</span><span class="t">arXiv｜Optimizing the Optimizer：语言模型自动发现更快的分子弛豫算法</span><span class="arrow">▸</span></summary>
+    <div class="body">今日 arXiv 热点（HF Papers 上榜）。论文让语言模型去「优化优化器」——不是直接求解分子体系，而是自动生成/改进用于分子弛豫（能量最小化、结构收敛）的数值优化算法，得到比人工设计更快的求解策略。核心贡献在于把 LLM 的符号推理能力用在「科学计算内核」这一层：过去 AI4S 多是用模型拟合势能面或性质，本文则让模型参与改进求解器本身。为什么值得读：这是 AI for Science「向方法论下沉」的代表作，对材料发现、结构预测、分子模拟等需要大量数值优化的流水线，意味着一条「让 AI 帮你把求解器写得更快」的新路径；其思路对任何「用 Agent 改进算法/代码内核」的工程场景（含电商中的组合优化、定价求解）都有迁移价值，本期首推精读。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2610.06577">arXiv</a><a href="https://huggingface.co/papers/2610.06577">HF Papers</a></div>
+  </details>
+
+  <details class="item" id="papers-2">
+    <summary><span class="num">2</span><span class="t">arXiv｜NVIDIA NeMo Retriever：agentic retrieval 的性能与成本实测（+8.7 nDCG，160× 代价）</span><span class="arrow">▸</span></summary>
+    <div class="body">NVIDIA 系统评测「让 Agent 在 ReAct 循环里迭代检索」相对标准稠密检索的收益与代价：同一 embedding 下平均 nDCG@10 提升 8.7 分，无需重配即在 ViDoRe v3 排名第一、BRIGHT 第二；但每查询消耗约 76.4 万输入 token、5.8k 输出 token，平均耗时 107.4 秒（标准检索 0.67 秒），Opus 4.5 每查询发起 9.2 次检索。工程细节上，作者用进程内线程安全检索器替代 MCP 以削减开销。为什么值得读：这是给「Agent 检索必然更好」的冷静一手数据，量化了召回增益与延迟/成本的真实权衡——检索型/找货型 Agent 产品应据此设计「简单查询走单次检索、复杂查询才升级 agentic」的分级路由，是产品选型的直接依据，精读。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2610.05750">arXiv</a><a href="https://huggingface.co/papers/2610.05750">HF Papers</a></div>
+  </details>
+
+  <details class="item" id="papers-3">
+    <summary><span class="num">3</span><span class="t">arXiv｜Kandinsky 6.0 Video：同步「文本→音视频」生成的开源基础模型（MIT，3B/29B）</span><span class="arrow">▸</span></summary>
+    <div class="body">Kandinsky Lab 发布 Kandinsky 6.0 Video：一族用于「同步音视频生成」的基础扩散模型，含 Lite（3B）与 Pro（29B），生成 5 秒、带 44kHz 同步音频（含唇形同步）的片段，支持文生音视频（T2AV）与图生音视频，全栈以 MIT 许可开源。核心贡献是把「画面 + 音轨」在同一次生成中联合建模而非后期拼接，音频与视频在时间上原生对齐。为什么值得读：音视频「同生」正成为下一代视频模型的能力基线（与字节 Seedance 2.0、腾讯 Prism 同频），MIT 全栈开源使其成为可直接复现、二次开发的研究底座，做多模态生成或商品短视频自动化的同学值得选读其架构与同步机制。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2610.05608">arXiv</a><a href="https://huggingface.co/papers/2610.05608">HF Papers</a></div>
+  </details>
+
+  <details class="item" id="papers-4">
+    <summary><span class="num">4</span><span class="t">arXiv｜APO：用聚类 + 20 个样本实现 LLM 的协同个性化对齐</span><span class="arrow">▸</span></summary>
+    <div class="body">UW/HKUST 提出 APO（Approximate Pareto Optimality）：数据稀缺下的个性化对齐两阶段框架——先按用户共享的「瓶颈偏好目标」聚类，再为每簇元训练专属初始化，使新用户仅凭 20 个样本即可适配自己的对齐器。在 Fed-ChatbotPA 上用 Llama-3.2-3B-Instruct 把加权分提到 0.83（最佳基线 0.78），UltraFeedback 上最高 +17.1% hypervolume，工程上用 LoRA（r=8）+ DPO 损失 + 4bit NF4 量化。为什么值得读：它给「个性化 Agent 冷启动」提供了一条低成本路径——不必为每个用户收集大量偏好数据，而是借「相似群体」的共享结构做初始化。对需要按商家/买家群体做偏好个性化、又苦于单体数据稀疏的电商 Agent，这套「聚类 + 小样本适配」思路可直接借鉴，选读。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2610.05898">arXiv</a><a href="https://huggingface.co/papers/2610.05898">HF Papers</a></div>
+  </details>
+
+  <details class="item" id="papers-5">
+    <summary><span class="num">5</span><span class="t">arXiv｜UndoBench：把工具型 Agent 的「任务能力」与「恢复能力」分开评测</span><span class="arrow">▸</span></summary>
+    <div class="body">UndoBench 指出：现有基准只测 Agent「能不能把任务做对」，却忽略了「做错之后能不能识别并回滚/纠正」。它把任务胜任力（task competence）与恢复能力（recovery capability）解耦，专门构造需要撤销错误工具调用、修正副作用的场景来评测工具型 Agent。为什么值得读：真实业务 Agent（下单、改价、发消息、调库存）的错误代价高，「可撤销 + 会纠错」比「一次做对」更决定用户信任。对做经营类/交易类 Agent 的团队，这套评测思路提示我们：应建立「误操作可回滚率、纠错成功率」的独立回归基准，并明确哪些副作用动作必须可逆，选读。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2610.05622">arXiv</a><a href="https://huggingface.co/papers/2610.05622">HF Papers</a></div>
+  </details>
+
+  <details class="item" id="papers-6">
+    <summary><span class="num">6</span><span class="t">arXiv｜OPPD：把「64 候选强采样」的收益蒸馏进单次生成</span><span class="arrow">▸</span></summary>
+    <div class="body">USC/Intel 提出 On-Policy Power Distillation（OPPD）：把推理时「幂采样（power sampling，多候选择优）」的高成本，前移进训练阶段，使学生在单次生成中就能恢复大部分收益。在 Qwen2.5-Math-7B 上把 MATH500 从 66.8% 提到 89.8%、GSM8K 从 63.8% 提到 91.1%，单次生成即超过「64 候选幂采样」2.4-3.5 分、超过 GRPO 3.8-5.4 分，且无需参考答案、可与 GRPO 叠加再涨最多 9.3 分，代码已开源。为什么值得读：它示范了「把推理时的搜索成本换到训练时」的经典提效范式——对需要低成本部署的推理/数学小模型（含 Agent 内部的规划、校验子模型）是可直接复用的后训练技术，泛读。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2610.06804">arXiv</a><a href="https://huggingface.co/papers/2610.06804">HF Papers</a></div>
+  </details>
+</section>
+
+<a class="back" href="../index.html">← 返回日报归档</a>
+
+<div class="footer">
+  由「新技术学习搭子」自动生成 · 内容采编自公开来源，观点仅供参考 · 2026-10-07
+</div>
+
+</div>
+
+<script>
+function setAll(open){document.querySelectorAll('details.item').forEach(function(d){d.open=open})}
+if(location.hash){
+  var el=document.querySelector(location.hash);
+  if(el&&el.tagName==='DETAILS'){el.open=true;setTimeout(function(){el.scrollIntoView({block:'start'})},60)}
+}
+</script>
+</body>
+</html>
