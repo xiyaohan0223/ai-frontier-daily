@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 前沿日报 · 2026-10-12</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<div class="wrap">
+
+<header class="site-header">
+  <div class="brand">AI FRONTIER DAILY · 新技术学习搭子</div>
+  <h1>AI 前沿日报</h1>
+  <span class="date-badge">2026-10-12 · 星期一 · 共 29 条</span>
+</header>
+
+<div class="overview">
+  <strong>今日总览：</strong>周末三大主线把「AI 造 AI」推到台前——《State of AI Report 2026》给出 Claude 主导 26% 模型研发、Codex 用户半年约 15 倍的硬数据，陶哲轩发布「数学 2.0」长文宣告「证明不再稀缺」的范式切换；工程侧，Odyssey-3 把世界模型推上物理预测之巅，微软 Decision-1 与一批新论文则共同提示：「决策层」与「运行时护栏」正在成为 Agent 架构的标配组件，而它们必须按安全组件标准来部署和测试。
+</div>
+
+<nav class="chips">
+  <a href="#sec-headline">头条<b>3</b></a>
+  <a href="#sec-llm">大模型<b>3</b></a>
+  <a href="#sec-agent">Agent 进展<b>3</b></a>
+  <a href="#sec-oss">开源项目<b>3</b></a>
+  <a href="#sec-vertical">垂直赛道<b>7</b></a>
+  <a href="#sec-funding">公司融资<b>4</b></a>
+  <a href="#sec-papers">论文<b>6</b></a>
+</nav>
+
+<div class="toolbar">
+  <button onclick="setAll(true)">全部展开</button>
+  <button onclick="setAll(false)">全部收起</button>
+</div>
+
+<section class="section" id="sec-headline">
+  <h2>头条<span class="count">3 条</span></h2>
+
+  <details class="item" id="headline-1" open>
+    <summary><span class="num">1</span><span class="t">State of AI Report 2026：Claude 主导 26% 模型研发工作，Codex 用户半年从 160 万到 2500 万，「AI 造 AI」首次有账可查</span><span class="arrow">▸</span></summary>
+    <div class="body">10 月 8 日发布的《State of AI Report 2026》给出一组已被多方转引的硬数据：Anthropic 内部指数显示 Claude 在 8 月主导了 26% 的模型研发工作（一年前不足 1%），公司内部运行约 3 万个 Agent；OpenAI 侧，18% 的算力用于 32-64 小时的长任务（一年前几乎为零），Codex 用户从 1 月的约 160 万增至 2500 万；行业层面，头部实验室收入从约 300 亿美元增至约 1050 亿美元、推理成本约每季度下降 47%，报告还记录了「换 harness 不换模型」的收益——GLM-5.1 在同一基准上从 52.5% 提升到 65.5%。这份年度报告的价值不在单个数字，而在于揭示了一个结构性事实：模型能力增益正在从「训练侧」溢流向「系统侧」，harness、评测与 Agent 编排是当下性价比最高的工程杠杆。对 Accio 团队：把「换 harness 提升 13pp」写进技术选型文档，比追新模型发布更贴近实际收益。</div>
+    <div class="links"><a href="https://www.stateof.ai/">State of AI Report 2026</a><a href="https://www.linkedin.com/posts/nathanbenaich_the-state-of-ai-report-2026-is-now-live-activity-7513866741484138496-tc1_">作者 Benaich</a></div>
+  </details>
+
+  <details class="item" id="headline-2" open>
+    <summary><span class="num">2</span><span class="t">陶哲轩发布「Math 2.0」长文与 52 页讲义：AI 让「证明」不再稀缺，数学界需要新的评价范式</span><span class="arrow">▸</span></summary>
+    <div class="body">10 月 11 日前后，陶哲轩在自己的博客与 Caltech 公开讲座（52 页讲义）中系统阐述「Math 2.0」：AI 把数学生产链拆成「生成→验证→解释→接受→融入」五个阶段，其中「证明稀缺性」曾是 Math 1.0 的运行基础——证明难写所以值得发表；而大规模 AI 辅助证明出现后，验证与解释成为新瓶颈，接受与融入（社区消化）才是真正稀缺的环节。他提出 SAIR（可扩展 AI 辅助研究）需要开放数学模型与失败案例的透明记录，并用「AI 辅助设计癌症疗法」的思想实验说明：当候选方案爆炸式增长，人类判断力要花在「选什么验证」上。对做 Agent 产品的团队：这是「生成变便宜之后，系统价值如何上移」的最清晰论述——Agent 的差异化会从产出能力转向验证、解释与吸收的编排能力。</div>
+    <div class="links"><a href="https://teorth.github.io/tao-web/ai-views.html">陶哲轩博客合集</a><a href="https://mathstodon.xyz/@tao/117395269325940185">Mastodon 长帖</a><a href="https://the-decoder.com/some-mathematicians-call-for-openai-boycott-after-ai-generated-proofs-flood-their-field/">背景：数学界呼吁抵制</a></div>
+  </details>
+
+  <details class="item" id="headline-3" open>
+    <summary><span class="num">3</span><span class="t">Odyssey-3 世界模型登顶 Physics-IQ Verified（66.1）：自回归扩散 Transformer 实时模拟物理，已上人形机器人与汽车</span><span class="arrow">▸</span></summary>
+    <div class="body">Odyssey 发布第三代世界模型 Odyssey-3 及 Pro 版：以自回归扩散 Transformer 架构实时生成可交互的物理世界视频，在 Physics-IQ Verified 视频到视频评测上 Pro 版得分 66.1、排名第一（标准版 9.99pp / Pro 版 11.15pp 的优势领先次席），并在 WorldMark 四个分项中的三项居首；官方演示中该模型已被适配控制机械臂与人形机器人（合作方 Flexion）、驾驶汽车与生成游戏环境。世界模型的意义在于给具身与自动驾驶提供「可推演的物理常识」——对 Agent 行业，这是「模型不止会说、还会预见动作后果」的基础设施。对电商场景：商品视频与虚拟试穿的质量天花板，长期看由这类物理保真的生成模型决定，值得跟踪其成本曲线而非单点演示效果。</div>
+    <div class="links"><a href="https://physics-iq-verified.anates.ai/">Physics-IQ Verified 榜单</a><a href="https://explainx.ai/blog/odyssey-3-physics-iq-verified-state-of-the-art-world-model-benchmarks-2026">解读</a><a href="https://www.producthunt.com/products/odyssey-3">官方页</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-llm">
+  <h2>大模型动态<span class="count">3 条</span></h2>
+
+  <details class="item" id="llm-1">
+    <summary><span class="num">1</span><span class="t">微软发布决策模型 Decision-1：Qwen3.5-9B 蒸馏底座，输入 $0.042/M、中位延迟 85ms，同步上线 Foundry 与 OpenRouter</span><span class="arrow">▸</span></summary>
+    <div class="body">10 月 9-10 日微软发布 Microsoft-Decision-1：面向「快速决策评分」的小型专用模型，基于 Qwen3.5-9B 蒸馏，输入 $0.042/百万 token、中位延迟约 85ms，上架 Microsoft Foundry 并即将登陆 OpenRouter，官方称在决策场景上比 GPT-6 Sol 快约 35 倍。纳德拉同期（10 月 10 日）发表「紧急制动」评论文章：把前沿模型视为企业内部的「内部人风险」，提出模型准入、最小权限、独立评估等七条原则。两条消息连读的信号很明确——「决策层小模型 + 强模型兜底 + 确定性护栏」正在成为大厂内部的参考架构。对 Accio：商品类目路由、意图分类、风控初筛这类高频判断应评估下沉到 $0.04/M 级别的决策模型，把强模型预算集中到生成与谈判环节。</div>
+    <div class="links"><a href="https://commandline.microsoft.com/microsoft-decision-1-model-foundry/">微软官方博客</a><a href="https://www.linkedin.com/posts/satyanadella_introducing-microsoft-decision-1-our-new-activity-7514393874887270401-thi6">纳德拉发布帖</a></div>
+  </details>
+
+  <details class="item" id="llm-2">
+    <summary><span class="num">2</span><span class="t">OpenAI 未发布模型 gpt-rosalind-discovery 悄然现身定价页：生命科学线再添一子，$5/$25 每百万 token</span><span class="arrow">▸</span></summary>
+    <div class="body">10 月 10 日 TestingCatalog 发现，OpenAI API 定价页新增未公布模型 gpt-rosalind-discovery（缓存输入 $0.50、输出 $25.00 每百万 token），与已有的 gpt-rosalind-research 同价，归属「生命科学模型」类目；OpenAI 尚未正式公告。Rosalind 是 OpenAI 面向制药与生命科学的专用模型线（名字取自 DNA 晶体学家罗莎琳德·富兰克林），「discovery」后缀暗示能力从「文献研究」向「发现（假设生成/分子设计）」延伸。行业含义：前沿实验室的变现重点正在从通用聊天转向行业专用工作流，垂直数据与领域评测将再次成为竞争壁垒。对电商与贸易：类比逻辑成立——「trade 专用模型 + 领域评测集」的组合（如 Commerce Agent Bench）是国内平台最现实的差异化路径。</div>
+    <div class="links"><a href="https://developers.openai.com/api/docs/pricing">OpenAI 定价页</a><a href="https://phemex.com/news/article/openai-pricing-page-reveals-unannounced-gptrosalind-discovery-model-99394">TestingCatalog 转述</a></div>
+  </details>
+
+  <details class="item" id="llm-3">
+    <summary><span class="num">3</span><span class="t">Karpathy 画出「能力漏斗」：60 亿人几乎未接触、2000 万 Agent 用户、仅约 5000 人触达前沿内部系统</span><span class="arrow">▸</span></summary>
+    <div class="body">10 月 11 日 Karpathy 在 X 上给出一张四层「能力漏斗」：约 60 亿人几乎没有接触大模型、10-20 亿人 casual 使用、约 2000 万人深度用于数学与编程（付费 $200/月 也未必摸到真实能力上限）、而真正拥有前沿内部系统访问权的约 5000 人（占比约 0.00006%）；他指出大量能力「尖峰式」集中在高技术领域，导致公众认知与真实能力差距持续拉大。这条观察对产品团队的直接用途是「用户教育定位」：大多数商家处在第一、二层，Agent 产品不仅要会做事，还要主动展示「AI 能做什么、做对了吗」——可解释的回放与验收界面本身是获客工具。</div>
+    <div class="links"><a href="https://x.com/karpathy/status/2042334451611693415">Karpathy 原帖</a><a href="https://fourweekmba.com/ai-karpathy-puts-internal-frontier-ai-access-at-about-5000/">分析</a><a href="https://cellcog.ai/blog/karpathy-llm-understanding-funnel/">解读二</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-agent">
+  <h2>Agent 进展<span class="count">3 条</span></h2>
+
+  <details class="item" id="agent-1">
+    <summary><span class="num">1</span><span class="t">Sakana AI 发布 MLR 同行评审系统：核心主张错误检出 73.43%（人类 14.81%），但对真实撤稿论文仅 16.11%</span><span class="arrow">▸</span></summary>
+    <div class="body">Sakana AI 公开其多智能体同行评审系统 MLR（arXiv 2610.11087）：通过多个 Agent 分工完成「找问题→论辩→裁决」，在自建评测上对论文核心主张错误的检出率达 73.43%，远高于人类评审的 14.81%；在 257 篇论文中定位出 1164 处错误。但论文自曝两个软肋：面对真实世界里被撤稿的论文，检出率骤降至 16.11%；且对抗性扰动下性能明显下滑。对 Agent 产品的启示有两层：其一，「多智能体互审」在验证类任务上的增益是真实的，适合移植到合同审查、合规检查、listing 质检；其二，评测集上的高分与开放环境表现之间存在巨大缺口——验证型 Agent 上线前必须补「真实失败样本回测」这一环，否则 73% 只是幻觉式的安全感。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2610.11087">arXiv 论文</a><a href="https://pub.sakana.ai/">Sakana 出版物页</a><a href="https://moyanai.app/ai-news/sakana-ais-llm-peer-review-system-catches-73-of-core-claim-errors-50u3i">媒体报道</a></div>
+  </details>
+
+  <details class="item" id="agent-2">
+    <summary><span class="num">2</span><span class="t">ElevenLabs 在 ElevenAgents 上线合成语音检测：让企业「开口前」就知道电话对面是人还是 AI</span><span class="arrow">▸</span></summary>
+    <div class="body">10 月 9 日 ElevenLabs 发布两项面向 Agent 通话的更新：其一是 ElevenAgents 的合成语音检测——在通话最初几秒判定对方是真人还是 AI 语音（不依赖自家水印，可识别他厂合成语音），企业可据此选择转人工、改验证流程或直接挂断；其二是联合发起 Personal Agent Protocol（PAP）倡议，设计伙伴包括银行与电信公司，目标是让「个人 Agent 代表主人」与企业服务系统安全对接。这是语音 Agent 生态里少见的「攻防同厂」产品化：生成语音的公司同时卖检测能力。对客服与呼叫中心类产品：来电者身份判断（人/机器/哪个 Agent）将成为会话编排的第一层路由条件，接入这类检测 API 的成本值得提前测算。</div>
+    <div class="links"><a href="https://elevenlabs.io/blog/synthetic-voice-detection-and-personal-agent-protocol">ElevenLabs 官方博客</a><a href="https://releasebot.io/updates/eleven-labs">发布记录</a></div>
+  </details>
+
+  <details class="item" id="agent-3">
+    <summary><span class="num">3</span><span class="t">微软 Work IQ 十月全面铺开：把 Dynamics 365 与 Power Platform 实时业务数据接进 Copilot 与 Agent</span><span class="arrow">▸</span></summary>
+    <div class="body">微软 9 月 25 日官宣、10 月持续推进的 Work IQ 是 Copilot 与 Agent 的「业务上下文层」：把 Outlook 邮件、SharePoint 文档、Teams 会议与最新的 Dynamics 365 / Power Platform 业务数据（客户、订单、库存等实时记录）统一接入，让 Copilot 与自建 Agent 在业务流程中直接基于实时经营数据推理与执行；Sales、Customer Service 与 Power Platform 自 9 月 30 日起预览，Finance 等模块在 10 月底跟进，托管层面向企业管理员开放配置与管理界面（GA 时间未定）。这是「Agent 的数据地基」之战：谁掌握业务数据的实时接入层，谁的 Agent 就更难被替换。对 Accio 的对照：商家经营数据的接入深度（店铺、订单、物流、广告）就是国际化版本 Work IQ 式的护城河，抽象层要做好权限隔离与可审计。</div>
+    <div class="links"><a href="https://www.microsoft.com/en-us/dynamics-365/blog/it-professional/2026/09/25/work-iq-business-and-workplace-intelligence-in-the-flow-of-work/">微软 Dynamics 官方博客</a><a href="https://erp.today/microsoft-opens-work-iq-preview-for-dynamics-365-and-power-platform-data/">ERP Today</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-oss">
+  <h2>开源项目 · GitHub 今日热榜<span class="count">3 条</span></h2>
+
+  <details class="item" id="oss-1">
+    <summary><span class="num">1</span><span class="t">bilawalsidhu/gods-eye-view：浏览器里的「上帝视角」间谍卫星模拟器，今日 +886★</span><span class="arrow">▸</span></summary>
+    <div class="body">登上 GitHub Trending 的 gods-eye-view（累计约 5.2 万星，今日 +886★）：基于 Cesium 三维地球的间谍卫星模拟器——真实卫星轨道数据驱动的「过顶侦察」体验，可调取公开影像与地图数据在 3D 地球上复现目标区域视察。它代表的是一类正在变便宜的交互形态：把多源地理空间数据 + 公开影像 + 三维渲染拼成「一人可用的情报工具」，而不用建 GIS 团队。对电商与贸易的现实映射：跨境物流可视化（多承运商航线、港口拥堵、时效预估）本质上需要同款「数据融合 + 空间渲染」能力——商家侧若能把履约链路做成「上帝视角」的可交互时间轴，信任与转化都会上一个台阶。</div>
+    <div class="links"><a href="https://github.com/bilawalsidhu/gods-eye-view">GitHub</a></div>
+  </details>
+
+  <details class="item" id="oss-2">
+    <summary><span class="num">2</span><span class="t">strands-labs/strands-decider：给 Agentic 工作流配一个「校准置信度」的小决策模型（581★）</span><span class="arrow">▸</span></summary>
+    <div class="body">AWS Strands 生态新项目 strands-decider（581★）：提供专门用于 Agent 工作流「决策点」的小型决策模型——不是让大模型在每一步都做「继续/放弃/升级」判断，而是用带校准置信度的小模型在毫秒级给出决策打分，把「是否值得继续这条路」「是否应该转交人类」变成廉价、可监控的组件。它与微软 Decision-1 形成奇妙互文：大厂同日押注「决策层下沉为专用小模型」。对 Agent 产品：把「是否转人工」「是否继续烧 token」的决策标准化、可调阈值化，是控制长任务成本与风险的最直接手段——值得作为内部组件而不是 prompt 技巧来实现。</div>
+    <div class="links"><a href="https://github.com/strands-labs/strands-decider">GitHub</a></div>
+  </details>
+
+  <details class="item" id="oss-3">
+    <summary><span class="num">3</span><span class="t">strands-agents/box：用 Rust 给 Agent 造「操作系统级」隔离沙箱，默认拒绝策略（332★）</span><span class="arrow">▸</span></summary>
+    <div class="body">10 月 2 日发布的 strands-agents/box（332★）用 Rust 实现 Agent 的操作系统级隔离：基于 macOS 的 VM 级隔离（先支持 macOS，Linux 在路上），默认拒绝（default-deny）的 Dogwood 策略语言控制文件、网络与系统调用访问，支持凭证注入而不暴露密钥本体，让执行任意代码的 Agent 跑在「出不去也带不走」的环境里。Agent 执行安全正在从「prompt 层说别做坏事」进化为「OS 层物理性做不了坏事」。对任何要跑代码执行或第三方工具的 Agent 平台：默认拒绝 + 凭证代持 + 可审计，应成为沙箱组件的验收清单，尤其在平台侧暴露给商家的场景。</div>
+    <div class="links"><a href="https://github.com/strands-agents/box">GitHub</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-vertical">
+  <h2>垂直赛道<span class="count">7 条</span></h2>
+
+  <div class="subsec" id="subsec-coding">
+    <h3>AI 编程</h3>
+
+    <details class="item" id="coding-1">
+      <summary><span class="num">1</span><span class="t">阿里 Qoder 上线 Fast 模式：首响约 3 秒（原 8 秒）、消耗降到 0.8 倍积分，桌面版 0.4.4+ 国内与国际版同步</span><span class="arrow">▸</span></summary>
+      <div class="body">10 月 10 日阿里 Qoder 发布 Fast 模式：通过推理链路优化把首响应时间从约 8 秒压缩到约 3 秒，单次消耗降至 0.8 倍积分（即更快且更便宜），桌面端 0.4.4 及以上版本、国内与国际版已同步开放。编码 Agent 的竞争焦点正从「正确率」转向「交互节奏」——首响 3 秒意味着「边写边聊」的轮替体验成立，速度本身成为留存与订阅转化变量。对 Accio 的启发：经营类 Agent 的「首响预算」同样应设定硬指标（建议 3 秒内给出可读进展），把慢步骤放进后台任务并在 UI 上呈现进度，而不是让用户盯着转圈等待。</div>
+      <div class="links"><a href="https://qoder.com/changelog">Qoder 更新日志</a></div>
+    </details>
+
+    <details class="item" id="coding-2">
+      <summary><span class="num">2</span><span class="t">REA 发布 MCP Server：Claude Code、Cursor、Codex 等 CLI 直连 Ghidra/IDA Pro/Hopper，3205 个测试验证</span><span class="arrow">▸</span></summary>
+      <div class="body">10 月 11 日，逆向工程工具 REA 发布 MCP Server：把主流反编译与逆向工具（Ghidra、IDA Pro、Hopper）封装成标准 MCP 接口，Claude Code、Cursor、Codex、Gemini CLI、Grok Build 等编码 Agent 可直连调用——Agent 从此能在真实逆向工程任务里自动执行反编译、符号恢复与交叉引用分析；官方披露该服务经由 3205 个自动化测试验证。这是「MCP 成为专业工具接入标准」的又一实证：任何有 CLI/API 的专业软件都在被快速 MCP 化。对 Agent 平台的启示：MCP 服务器的「测试覆盖」正在成为可信度标签，自建或采购 MCP 工具时应要求可复现的验证记录，而不是只看演示视频。</div>
+      <div class="links"><a href="https://github.com/airbus-cyber/rea-mcp-server">GitHub</a></div>
+    </details>
+  </div>
+
+  <div class="subsec" id="subsec-video">
+    <h3>AI 视频与多模态</h3>
+
+    <details class="item" id="video-1">
+      <summary><span class="num">1</span><span class="t">Midjourney 官方 MCP 开启限量测试：图像/视频生成能力以标准协议接入 Claude 等 Agent</span><span class="arrow">▸</span></summary>
+      <div class="body">10 月 10 日 Midjourney 开启官方 MCP 服务器的限量测试（仅对社区成员开放名额，明确排除 SaaS 场景使用），让 Claude 等支持 MCP 的 Agent 客户端可直接调用其图像与视频生成能力。以「封闭、无 API」著称的头部生成模型公司首次以标准协议开放能力入口，说明 MCP 正在成为内容生成侧的默认接入面——Agent 编排层不必再为每家模型写适配器。对电商内容生产管线：商品图、场景图、短视频素材的「模型池」接入成本将显著下降，工作流可迁移性上升；同时要留意此类限量测试的服务条款边界（SaaS 排除条款直接影响商业化用法）。</div>
+      <div class="links"><a href="https://www.midjourney.com/updates">Midjourney 更新页</a></div>
+    </details>
+  </div>
+
+  <div class="subsec" id="subsec-ai4s">
+    <h3>AI for Science</h3>
+
+    <details class="item" id="ai4s-1">
+      <summary><span class="num">1</span><span class="t">Nature 新闻特稿「AI 会抢先发表你的科学吗？」：科研竞速从同行变成同行 + 模型</span><span class="arrow">▸</span></summary>
+      <div class="body">Nature 10 月 8 日刊发新闻特稿（d41586-026-03128-6），讨论 AI 系统（含自动实验与论文生成管线）正在改变科研优先权格局：研究者在投稿周期里开始担心「想法被 AI 抢发」——不是被同行，而是被同样读文献、同样能跑模拟的模型流水线；文中多位研究者建议以「开放预印 + 过程公开」作为防御策略，并讨论期刊与资助机构应如何界定 AI 贡献与优先权。对 AI for Science 基础设施的判断：科研数据的「过程性公开」（实验日志、失败记录、中间产物）会成为新型学术资产，先建「过程留痕」能力的团队将在优先权叙事中占据主动。</div>
+      <div class="links"><a href="https://www.nature.com/articles/d41586-026-03128-6">Nature</a></div>
+    </details>
+
+    <details class="item" id="ai4s-2">
+      <summary><span class="num">2</span><span class="t">CompMat-Bench（arXiv 2610.00636）：94 个预复现计算材料学任务，衡量 Agent 到底能不能替代「跑第一性原理计算」</span><span class="arrow">▸</span></summary>
+    <div class="body">面向计算材料科学的 Agent 基准 CompMat-Bench：94 个真实任务（结构优化、能带计算、缺陷能级等）全部配有预复现的模拟结果，采用基于规则的自动判分——答案对不对可直接与参考计算比对；在给予完整流程指引的最优条件下，Agent 通过率为 66.0%-90.4%，暴露跨任务泛化与自主纠错仍是短板。它的方法论价值大于分数本身：「预复现参考 + 规则判分」解决了科学 Agent 评测的验真难题，值得其他领域照抄。对电商场景的映射：Agent 评测的黄金标准同样是「有唯一可核算参考答案的真实任务」（如落地成本计算、税费核算），CompMat-Bench 的判分框架可直接借鉴到贸易合规类评测集的建设。</div>
+      <div class="links"><a href="https://arxiv.org/abs/2610.00636">arXiv</a></div>
+    </details>
+  </div>
+
+  <div class="subsec" id="subsec-ecom">
+    <h3>AI 电商与贸易</h3>
+
+    <details class="item" id="ecom-1">
+      <summary><span class="num">1</span><span class="t">京东双 11 今晚 8 点开启：数字人主播 JoyStreamer 与 AI 经营工具成主打，官方定调「AI 验证期」</span><span class="arrow">▸</span></summary>
+      <div class="body">京东 10 月 12 日晚 8 点开启双 11 大促（较往年提前），主推项之一是数字人主播 JoyStreamer 与面向商家的 AI 经营工具矩阵；官方把这一届定性为「AI 验证期」——不再只展示技术能力，而是用大促的真实成交数据检验 AI 工具对 GMV、转化与客服成本的净效应。国内电商平台在最有压力的流量峰值场景下做 AI 全链路压力测试，其暴露的成功与失败案例将是行业最好的公开教材。对 Accio 团队：值得逐日跟踪京东披露的 AI 工具数据（数字人时长、转化率、退差率），对齐自身工具在大促场景下的指标设计——「按大促口径验收」比任何演示都更接近商家真实关切。</div>
+      <div class="links"><a href="https://www.jd.com/news/">京东官方</a></div>
+    </details>
+
+    <details class="item" id="ecom-2">
+      <summary><span class="num">2</span><span class="t">Agent 电商标准落地延迟：PAP 0.1 未定稿、A2A Registry 未上线，私域 Agent API 先行填坑</span><span class="arrow">▸</span></summary>
+    <div class="body">行业追踪显示，代理电商（agentic commerce）的关键标准进展慢于预期：Personal Agent Protocol（PAP）仍停留在 0.1 草案讨论、A2A 的公开 Agent Registry 截至 10 月 10 日仍未上线、Google 侧的代理采购 GA 时间未明，而商家侧正用「私有 Agent API」（品牌自有小程序/API 直连）先行填补互操作缺口。标准缺位期通常是两种公司的机会窗：提供私有接入方案的服务商，与因「标准悬而未决」而观望的采购方拉不开身位。对做 Agent 商务的团队：当下务实的策略是「双轨」——用私域 API 先拿下可交付的集成收入，同时把接口设计成标准兼容（MCP/A2A 数据模型），降低未来标准落定后的迁移成本。</div>
+    <div class="links"><a href="https://www.pymnts.com/news/artificial-intelligence/">PYMNTS 行业追踪</a></div>
+    </details>
+  </div>
+</section>
+
+<section class="section" id="sec-funding">
+  <h2>公司与融资<span class="count">4 条</span></h2>
+
+  <details class="item" id="funding-1">
+    <summary><span class="num">1</span><span class="t">亚马逊洽购 Decart 约 70 亿美元：芯片可移植性软件成标的，AI 玩家 5 月估值仅 40 亿</span><span class="arrow">▸</span></summary>
+    <div class="body">WSJ 10 月 11 日报道：亚马逊正洽谈以约 70 亿美元收购 AI 创业公司 Decart——其软件让开发者更容易在不同 AI 芯片间迁移工作负载（芯片可移植性），Decart 今年 5 月估值还接近 40 亿美元；报道称谈判「可能很快达成，也可能告吹」，另有消息称 Anthropic 曾以 60 亿美元估值洽谈未果。两大信号：其一，云巨头的收购重点已从「模型公司」转向「让算力效率提升的中间层」；其二，芯片便携性（避免 CUDA 锁定）成为改变 AI 成本结构的战略资产。对 Agent 团队的启示：推理成本优化的下一波红利可能来自「跨芯片可迁移」的工程栈，选型时对多芯片运行时（如 Triton 系生态）保持开放。</div>
+    <div class="links"><a href="https://www.wsj.com/business/deals/amazon-in-talks-to-buy-ai-startup-decart-for-around-7-billion-9433abad">WSJ</a><a href="https://finance.yahoo.com/technology/ai/articles/amazon-talks-acquire-ai-startup-235502420.html">Yahoo Finance</a><a href="https://www.barrons.com/articles/amazon-talks-buy-software-start-up-decart-ai-wsj-60ada4b7">Barron's</a></div>
+  </details>
+
+  <details class="item" id="funding-2">
+    <summary><span class="num">2</span><span class="t">Anthropic 再签 IREN 云大单：数据中心租约总额约 5300 亿美元，折算月付近 13 亿美元</span><span class="arrow">▸</span></summary>
+    <div class="body">监管披露文件显示，Anthropic 与 IREN 签署新的云计算租约（约 245MW 产能，估算月费近 13 亿美元），使其数据中心承诺总额攀升到约 5300 亿美元量级。此前 IPO 材料已显示公司 2025 年营收 46 亿美元、净亏损 420 亿美元、未来算力采购承诺超 5000 亿美元——算力合同的规模已经远超当期收入，且几乎全部是多年期承诺。对风险判断的两面：一方面锁定了训练与推理供给；另一方面，一旦模型收入增速不及预期或市场转向，这类承诺将迅速转化为行业级杠杆风险。供应商策略应默认「前沿模型价格继续下行 + 部分实验室格局可能剧变」双情景。</div>
+    <div class="links"><a href="https://www.datacenterdynamics.com/en/news/anthropic-signs-iren-cloud-deal/">DataCenterDynamics</a></div>
+  </details>
+
+  <details class="item" id="funding-3">
+    <summary><span class="num">3</span><span class="t">俄罗斯第三个数据中心被毁：Yandex 莫斯科州设施遭袭，80+ 云服务含 YandexGPT API 中断</span><span class="arrow">▸</span></summary>
+    <div class="body">10 月 11 日多方消息：Yandex 位于弗拉基米尔（莫斯科州）的数据中心遭无人机袭击——这是近期被摧毁的第三个俄罗斯数据中心，导致 YoCloud 的 80 多个云服务中断，YandexGPT API、Yandex Cloud 与搜索基础设施大面积不可用，被外界解读为针对俄 AI 基础设施的报复性打击（此前俄方攻击过乌克兰相关数据中心）。这是 AI 基础设施首次成为现代战争中反复被瞄准的「战略耗材」。对任何依赖云端 AI 服务的业务：多注册域（multi-AZ）之外，「跨司法辖区 + 跨供应商」的 AI 服务灾备正在从合规模板升级为业务连续性刚需——尤其是 API 型模型服务，切换预案值得演练到分钟级。</div>
+    <div class="links"><a href="https://www.theregister.com/">The Register</a><a href="https://cybernews.com/">CyberNews</a></div>
+  </details>
+
+  <details class="item" id="funding-4">
+    <summary><span class="num">4</span><span class="t">苹果「反向收编」Huxe：原 NotebookLM 创始团队的音频 AI 被收购并授权技术</span><span class="arrow">▸</span></summary>
+    <div class="body">10 月 10 日披露：苹果收购了 Huxe——由前 Google NotebookLM 创始成员创立的音频 AI 公司（做对话式音频内容生成），交易形态接近「反向收编」：团队加入苹果、技术音频栈授权给苹果使用。继 AppleCare 客服 AI 替换评估（见 10-11 日报）之后，苹果补齐「音频内容生成」能力的意图愈发清晰——播客式内容、个性化音频摘要与 Siri 的媒体体验是明显落点。对内容与营销工具团队：音频形态正在被平台级整合，独立音频 Agent 产品的窗口期需要以「跨平台分发 + 工作流深度」求生存。</div>
+    <div class="links"><a href="https://techcrunch.com/">TechCrunch</a><a href="https://www.bloomberg.com/">Bloomberg</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-papers">
+  <h2>论文精选<span class="count">6 条</span></h2>
+
+  <div class="paper-recap">
+    <h3>本期论文总结 · 组会分享版</h3>
+
+    <h4>一、今日主线（为什么选这 6 篇）</h4>
+    <ol>
+      <li><strong>多主体与长周期协作的失败模式首次被量化</strong>（<a href="#papers-1">#1</a>、<a href="#papers-3">#3</a>）：「Worse Together」用 77 个场景证明多 Agent 协作常常不如单体，「ReLiveGym」把评测拉到「数周回放现实」——两篇合读，正好回答「多主体什么时候值得、长任务什么时候该动手」。</li>
+      <li><strong>记忆评测方法论的补课</strong>（<a href="#papers-2">#2</a>）：把「留存」与「检索」拆开度量，证明旧指标制造了 53 个百分点的能力幻觉——做记忆产品的团队应先用这篇的方法论校准自家指标。</li>
+      <li><strong>运行时防线三件套</strong>（<a href="#papers-4">#4</a>、<a href="#papers-5">#5</a>、<a href="#papers-6">#6</a>）：决策模型护栏的对抗脆弱性、harness 信号丢失下的因果恢复、结构化输出的「答案先行税」——共同回答「护栏组件自身的可靠性如何验证」。</li>
+    </ol>
+
+    <h4>二、每篇一句话（按阅读优先级）</h4>
+    <ol>
+      <li><a href="#papers-1">Worse Together（arXiv）</a>：5 模型 × 4 环境 × 77 场景证明「团队常不如协调者」，含 MAMUBench 基准，必读。</li>
+      <li><a href="#papers-2">What Should an Agent Remember（arXiv）</a>：留存与检索分离度量，旧指标制造 15.5pp vs 68.7pp 幻觉，精读。</li>
+      <li><a href="#papers-3">ReLiveGym（arXiv）</a>：用「数周回放现实」建何时动手的测试床，长周期 Agent 训练参考，精读。</li>
+      <li><a href="#papers-4">One Word Opens the Gate（arXiv）</a>：六行日志让决策模型护栏 fail-open 从 0% 冲到 63%，安全组件必须对抗测试，选读。</li>
+      <li><a href="#papers-5">When Harnesses Lose the Signal（arXiv）</a>：harness 丢失反馈信号时的因果恢复，ALFWorld 上 70.33%→73.33%，选读。</li>
+      <li><a href="#papers-6">Structure Tax（arXiv）</a>：推理先行可持平自由格式、答案先行税重，结构化输出设计参考，泛读。</li>
+    </ol>
+
+    <h4>三、组会讨论题</h4>
+    <ul>
+      <li>如果「多 Agent 常常 Worse Together」（papers-1），那 Accio 在询盘、选品、合规等多主体场景里该如何设计「协调者」角色与共享资源视图，避免相互等待与重复动作？判断标准用什么任务集来定？</li>
+      <li>ReLiveGym 提示「何时动手」本身是能力轴——我们能不能把商家的历史经营数据重放成「战争演习室」，提前训练 Agent 判断何时该主动发起动作（报价、催款、补货），而不是被动响应？</li>
+      <li>papers-4 证明决策模型护栏可以通过提示词/日志被攻破——如果 Accio 要把「决策层」下沉为小模型，红线动作（资金、承诺、对外触达）要不要完全不经过模型、由确定性规则硬拦截？攻破演练由谁来做？</li>
+    </ul>
+  </div>
+
+  <details class="item" id="papers-1">
+    <summary><span class="num">1</span><span class="t">arXiv cs.AI｜Worse Together：多智能体协作常不如「一个协调者」，77 场景 × 5 模型 × 4 环境给出失败地图</span><span class="arrow">▸</span></summary>
+    <div class="body">论文系统检验「多智能体一定更强」的假设：在 77 个协作场景、5 个前沿模型、4 类环境中，多 Agent 团队的成任务率在多数场景低于「单体 + 协调者」的对照组；失败集中在三处——责任分散导致的关键步骤遗漏、共享资源上的相互干扰、以及对彼此能力的高估引发的错误委派。论文同时发布 MAMUBench 作为多主体协作的标准化基准。为什么值得读：多 Agent 架构正在被当作默认答案推广，这篇提供了第一份系统的负面证据与失败图谱——建多主体系统前，先用它的场景清单自查「我的任务真的需要多主体吗」，精读。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2610.00583">arXiv</a></div>
+  </details>
+
+  <details class="item" id="papers-2">
+    <summary><span class="num">2</span><span class="t">arXiv cs.AI｜What Should an Agent Remember：把「留存」与「检索」拆开度量，揭示 53 个百分点的记忆能力幻觉</span><span class="arrow">▸</span></summary>
+    <div class="body">论文指出当前记忆评测的根本缺陷：大多数基准混合了「信息是否被存下来（retention）」与「存下来的信息能否被找回来（retrieval）」两类能力，导致分数被高估——论文设计分离式度量后，发现同一系统在两轴上的表现差距可达 15.5pp 对 68.7pp（即「检索」掩盖了「留存」的大面积失败）；进一步审计发现 319 类被驱逐（eviction）失败隐藏在旧指标下不可见。为什么值得读：做 Agent 记忆产品的团队几乎都会撞上「演示记得住、长期用记不住」的问题——这篇给出了定位问题在留存还是检索的方法论，并说明驱逐策略（写满之后淘汰谁）是被严重低估的设计点，精读。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2610.00366">arXiv</a></div>
+  </details>
+
+  <details class="item" id="papers-3">
+    <summary><span class="num">3</span><span class="t">arXiv cs.AI｜ReLiveGym：用「数周回放现实」建起「何时该动手」的强化学习测试床，8 个基座模型验证</span><span class="arrow">▸</span></summary>
+    <div class="body">论文提出 ReLiveGym：把真实世界数周尺度的过程数据（事件流、用户行为、环境变迁）重放为可交互的 RL 训练与评测环境，让 Agent 在「时间被压缩但因果真实」的沙盒里学习长周期策略；核心新增能力轴是「何时该动手」（timing of intervention）——绝大多数 Agent 基准只评测「给定任务怎么完成」，而真实经营场景里「该不该现在做」与「做完等多久」同样决定成败；在 8 个基座模型上验证了该测试床可区分模型的时机判断能力。为什么值得读：长周期任务（跟进、催款、库存）是商家场景的主体，这篇把「时机」从玄学变成可训练、可评测的维度，精读。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2610.00710">arXiv</a></div>
+  </details>
+
+  <details class="item" id="papers-4">
+    <summary><span class="num">4</span><span class="t">arXiv cs.AI｜One Word Opens the Gate：六行日志让决策模型护栏 fail-open 率从 0% 飙到 63%，7 个开放模型普遍脆弱</span><span class="arrow">▸</span></summary>
+    <div class="body">论文研究「决策模型作为运行时护栏」的对抗脆弱性：在工具调用前的安全裁决环节部署小决策模型做「放行/拒绝」判断，论文发现只需在上下文中注入六行看似无害的日志记录（如正常的系统输出），就能把多个模型的 fail-open（本应拒绝却放行违禁动作）率从 0% 拉到最高 63%；在 7 个开放权重模型上，正确裁决真实违禁动作的准确率仅 36-72%。论文区分两类错误：fail-open（放行违禁动作，安全漏洞）与 fail-closed（误拒正常动作，体验损伤），并强调二者需要不同的缓解策略。为什么值得读：把安全判断交给小模型是当下最流行的降本架构，这篇证明它会成为新的单点故障——护栏组件必须按安全组件标准（对抗测试 + 确定性兜底）来建设，选读。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2610.12292">arXiv</a></div>
+  </details>
+
+  <details class="item" id="papers-5">
+    <summary><span class="num">5</span><span class="t">arXiv cs.AI｜When Harnesses Lose the Signal：harness 反馈信号丢失时的因果恢复，ALFWorld 上 Qwen3-14B 70.33%→73.33%</span><span class="arrow">▸</span></summary>
+    <div class="body">论文针对 Agent harness（外部编排框架）的可靠性问题：当 harness 因工具报错、观测截断或信息过载而「丢失信号」时，Agent 会把噪声当作反馈、误判任务状态；论文提出 CIR（因果信息恢复）方法——从动作-结果的历史因果关系中重建缺失信号，而非简单重试；在 ALFWorld 上把 Qwen3-14B 的成功率从 70.33% 提升到 73.33%，且在信号被系统性污染的设置下优势更大。为什么值得读：工程团队多数优化模型与提示词，却很少把 harness 本身当作会出故障的组件来加固——这篇把「信号回路」变成了可优化的对象，选读。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2610.00372">arXiv</a></div>
+  </details>
+
+  <details class="item" id="papers-6">
+    <summary><span class="num">6</span><span class="t">arXiv cs.AI｜Structure Tax：结构化输出的「答案先行税」——推理先行与自由格式持平，答案先行则断崖下跌</span><span class="arrow">▸</span></summary>
+    <div class="body">论文量化「结构化输出对模型推理的隐性税负」：当强制模型先填 JSON 的答案字段再给推理（答案先行），正确率断崖式下跌；而把推理放在字段序列之前（推理先行）时，表现与自由格式基本持平甚至略优；即结构化约束本身不是问题，「顺序」才是税源。论文进一步给出字段排序设计指引（推理字段在前的拓扑排序优先）。为什么值得读：Agent 系统的每个工具调用都是结构化输出，字段顺序是被忽视的正确率变量——工具 schema 设计应把「思考字段」排在任何决策字段之前，泛读（工程直接可用）。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2610.12056">arXiv</a></div>
+  </details>
+</section>
+
+<a class="back" href="../index.html">← 返回日报归档</a>
+
+<div class="footer">
+  由「新技术学习搭子」自动生成 · 内容采编自公开来源，观点仅供参考 · 2026-10-12
+</div>
+
+</div>
+
+<script>
+function setAll(open){document.querySelectorAll('details.item').forEach(function(d){d.open=open})}
+if(location.hash){
+  var el=document.querySelector(location.hash);
+  if(el&&el.tagName==='DETAILS'){el.open=true;setTimeout(function(){el.scrollIntoView({block:'start'})},60)}
+}
+</script>
+</body>
+</html>
