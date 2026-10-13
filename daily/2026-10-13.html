@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 前沿日报 · 2026-10-13</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<div class="wrap">
+
+<header class="site-header">
+  <div class="brand">AI FRONTIER DAILY · 新技术学习搭子</div>
+  <h1>AI 前沿日报</h1>
+  <span class="date-badge">2026-10-13 · 星期二 · 共 30 条</span>
+</header>
+
+<div class="overview">
+  <strong>今日总览：</strong>Meta 用 Muse Wonder 宣告重返模型前沿——把 Active Memory（跨会话记忆）与 Active Focus（目标不漂移）写进旗舰模型本体，Agent 的「记忆与专注」首次成为大模型公司的正面战场；同日 GitHub 上线提交归属防伪、阿里 QwenGyre 发布弹性 RL 训练框架、OpenClaw 连发技能库发现与 MCP Apps——「身份、训练、技能」三层 Agent 基础件集体升级。中国侧，OpenRouter 周报显示中国模型调用量环比 +50.96%、连续 24 周居首，阶跃 Step 5 Preview 携独家限免与开源预告进场；电商侧 Grok「拍卡下单」争议与 TikTok 东南亚数据同框，提示 Agent 商业化的信任基建仍是一场长跑。
+</div>
+
+<nav class="chips">
+  <a href="#sec-headline">头条<b>3</b></a>
+  <a href="#sec-llm">大模型<b>4</b></a>
+  <a href="#sec-agent">Agent 进展<b>3</b></a>
+  <a href="#sec-oss">开源项目<b>2</b></a>
+  <a href="#sec-vertical">垂直赛道<b>8</b></a>
+  <a href="#sec-funding">公司融资<b>5</b></a>
+  <a href="#sec-papers">论文<b>5</b></a>
+</nav>
+
+<div class="toolbar">
+  <button onclick="setAll(true)">全部展开</button>
+  <button onclick="setAll(false)">全部收起</button>
+</div>
+
+<section class="section" id="sec-headline">
+  <h2>头条<span class="count">3 条</span></h2>
+
+  <details class="item" id="headline-1" open>
+    <summary><span class="num">1</span><span class="t">Meta 发布 Muse Wonder / Wonder Full：Active Memory + Active Focus 写进模型本体，「个人超级智能」首次有了公开榜单</span><span class="arrow">▸</span></summary>
+    <div class="body">10 月 12 日 Meta 超级智能实验室（MSL）发布 Muse Wonder 与 Muse Wonder Full：前者经 Meta Model API 开放（$4/$20 每百万 token、1M 上下文），后者分数更高但仅随 Muse Code 订阅提供。两项核心能力首次成为旗舰模型标配——Active Memory 支持跨会话沉淀与主动检索用户相关记忆，Active Focus 让模型在长任务中「遇阻改道、目标不漂移、重大动作前请示」；官方配套发布 Personal Superintelligence Index、SWE-Marathon（57.5，大幅领先 Opus 5.5 的 46.3）、MemoryBench、FocusBench 等一组新基准，AA 智能指数 56 分与 Sonnet 5.5 并列。对 Accio：如果 Meta 的判断成立，「记忆 + 专注」就是下一代模型竞争的主维度——商家经营 Agent 的跨会话记忆（店铺、偏好、历史决策）与「何时请示」的边界设计，应从工程补丁升级为选型评估项。</div>
+    <div class="links"><a href="https://research.meta.ai/blog/muse-wonder">Meta 官方博客</a><a href="https://www.reuters.com/business/meta-releases-muse-wonder-ai-models-challenge-anthropic-openai-2026-10-12/">Reuters</a><a href="https://venturebeat.com/technology/metas-new-muse-wonder-and-muse-wonder-full-models-achieve-frontier-performance-but-only-the-weaker-one-is-available-via-api">VentureBeat</a></div>
+  </details>
+
+  <details class="item" id="headline-2" open>
+    <summary><span class="num">2</span><span class="t">阿里 QwenGyre 公开弹性 RL 框架：超长程 Agent 训练提速 1.85 倍，旗舰模型 48 步提点 6pp</span><span class="arrow">▸</span></summary>
+    <div class="body">阿里通义团队公开 QwenGyre（arXiv 2609.33848）：面向超长程（xlong-horizon）Agent 的端到端在线强化学习框架——在不停机的前提下于 rollout 与训练之间弹性重分配 GPU，并用轨迹处理器重建分支历史、为部分进展打分、去除冗余路径，专治长任务 RL 最贵的两个坑：执行方差导致的 GPU 空转与非线性分支带来的轨迹冗余。规模化到 Qwen 3.8 2.4T 旗舰（单条 rollout 约 70 万 token）时，NL2RepoBench 48 步内从 52.5% 提升到 58.5%，对比 Colocate / Async 方案最高提速 1.85x / 1.78x。意义：Agent 长任务的「训练基础设施」正在成为模型能力的第二增长曲线。对 Accio：选品→询盘→履约→复盘这类周期数周的经营任务若要走强化训练，算力账要先按这套弹性架构来估。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2609.33848">arXiv</a></div>
+  </details>
+
+  <details class="item" id="headline-3" open>
+    <summary><span class="num">3</span><span class="t">GitHub 上线「推送归属」公测：Committer 必须与推送者匹配，封堵 AI Agent 伪造提交身份的攻击面</span><span class="arrow">▸</span></summary>
+    <div class="body">10 月 12 日 GitHub 推出推送归属（Push Attribution）公开预览：为每次推送记录经过认证的推送者身份，并新增分支保护条件「Committer 必须与推送者匹配」——commit 的 committer 元数据邮箱必须属于推送者已验证邮箱之一，否则拒绝推送；目前面向 GitHub Enterprise 限量预览。背景是编码 Agent 大规模代为提交代码后，commit 作者字段可被任意伪造，导致审计、许可证追溯与供应链信任全部失真。这不是普通功能更新：当 Agent 成为主要「提交人」，「谁真的按下了快门」正在变成新的信任基础设施。对用 Agent 写代码的团队：CI 审计与合规检查会越来越多依赖「已认证提交者」断言，内部流水线设计应提前对齐。</div>
+    <div class="links"><a href="https://github.blog/changelog/2026-10-12-push-attribution-public-preview/">GitHub Changelog</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-llm">
+  <h2>大模型动态<span class="count">4 条</span></h2>
+
+  <details class="item" id="llm-1">
+    <summary><span class="num">1</span><span class="t">HCLTech × Anthropic 签全球超级伙伴：专属事业部 + 把 Claude Code 嵌进 BigFix/AppScan，主打「受治理的 Agentic AI」</span><span class="arrow">▸</span></summary>
+    <div class="body">10 月 12 日 HCLTech 与 Anthropic 宣布全球超级合作伙伴（Global Premier Partnership）：成立专属 Anthropic 业务单元与卓越中心，把 Claude / Claude Code / Claude Cowork 嵌入 HCLSoftware 的 BigFix（终端安全）与 AppScan（应用安全）产品，并以其 AI Force 平台交付三大 agentic 工作流——IT 支持、代码修复、数字员工服务。交付叙事的关键词是「受治理」：策略护栏、异常处理、人类监督与 FDE 安全沙箱一并打包。信号意义：Anthropic 的企业渗透从「卖模型 API」走向「驻场共建」，把编码与安全 Agent 塞进企业存量软件的刷新周期。对 Accio：存量系统 + Agent 外挂（而非从零重建）是更快的落地路径，其「护栏 + 人工兜底」的打包方式值得研究。</div>
+    <div class="links"><a href="https://www.prnewswire.com/news-releases/hcltech-and-anthropic-sign-global-premier-partnership-to-scale-governed-agentic-ai-across-global-enterprises-302905626.html">PR Newswire</a><a href="https://www.rediff.com/business/report/hcltech-partners-with-anthropic-for-agentic-ai-solutions/20261012.htm">Rediff</a></div>
+  </details>
+
+  <details class="item" id="llm-2">
+    <summary><span class="num">2</span><span class="t">Anthropic IPO 进入关键窗口：10-14 旧金山投资人日，公开版 S-1 最迟约 10-25 前递交</span><span class="arrow">▸</span></summary>
+    <div class="body">据 10 月 12 日报道，Anthropic 将于 10 月 14 日在旧金山总部举办 IPO 前投资人日，路演目标锁定 11 月 9 日当周、力争感恩节（11 月 26 日）前挂牌；其保密 S-1 自 6 月 1 日提交后至今未公开，按 SEC 15 天规则倒推，公开版最迟须在 10 月 25 日前递交。市场讨论中的估值区间最高达 1.8-3 万亿美元（5 月 Series H 投后为 965 亿），泄露材料显示 2025 年营收约 46 亿美元、经营亏损约 80.6 亿美元。对依赖前沿模型的团队：未来两周是 Anthropic 风险叙事的定价窗口——模型定价、开源/闭源节奏与企业承诺都可能受上市进程牵引，此前已报过「IPO 推迟至 11 月」，本次为投资人日与递交时限的更新，采购谈判可预留条款弹性。</div>
+    <div class="links"><a href="https://financefeeds.com/anthropics-14-october-investor-day-nears-but-its-s-1-still-isnt-public-the-ipo-timeline-explained/">FinanceFeeds</a><a href="https://finance.yahoo.com/technology/article/anthropic-reportedly-looking-to-ipo-as-early-as-mid-november-180315768.html">Yahoo Finance</a></div>
+  </details>
+
+  <details class="item" id="llm-3">
+    <summary><span class="num">3</span><span class="t">阶跃 Step 5 Preview 接入腾讯 WorkBuddy 独家限免两周，10-15 释放模型权重</span><span class="arrow">▸</span></summary>
+    <div class="body">10 月 12 日阶跃星辰宣布旗舰模型 Step 5 Preview 上线腾讯 WorkBuddy，10 月 12 日至 25 日独家限时免费；官方确认模型权重将于 10 月 15 日开放，另预告 10 月 14 日起 API 价格调整（缓存命中输入 0.35→0.7 元/百万 token）。Step 5 Preview 为 600B 总参 / 27B 激活稀疏 MoE、1M 上下文、文本 + 视觉输入，AA 智能指数 44 分、跻身全球开源前三，此前已在 OpenRouter trending 冲上全球第 2。「办公场景先跑量 → 权重开源 → 顺手涨价」的三段式节奏，是国产旗舰抢占生态位的新打法。对 Accio：办公与经营类 Agent 的国产基座又多一个高性价比候选，下周权重开放后值得排一轮内部评测。</div>
+    <div class="links"><a href="https://www.ithome.com/1/011/852.htm">IT之家</a><a href="https://finance.sina.cn/stock/jdts/2026-10-12/detail-iniuxwip8483528.d.html">新浪财经</a><a href="https://www.stepfun.com/step-5-preview">StepFun</a></div>
+  </details>
+
+  <details class="item" id="llm-4">
+    <summary><span class="num">4</span><span class="t">OpenRouter 周报：中国模型调用量环比 +50.96%、连续 24 周居首，前五名全为中国模型</span><span class="arrow">▸</span></summary>
+    <div class="body">10 月 12 日 OpenRouter 数据显示：10 月 5-11 日当周全站总调用量 172 万亿 token（环比 +3.61%），其中中国模型 86.74 万亿、环比 +50.96%，连续 24 周居全球第一；同期美国模型 18.97 万亿（环比 +17.1%），榜单前五名全部为中国模型。Token 消耗结构比任何评测榜都更接近「真实使用份额」——中国模型在编程与 Agent 负载上的成本优势，正在被全球开发者用调用量兑现。对 Accio：多模型路由中「性价比档」应保持国产模型的高权重，并按周复核调用成本与失败率，把这份周报作为选型例会的固定输入。</div>
+    <div class="links"><a href="https://www.caiwennews.com/article/1645405.shtml">财闻网</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-agent">
+  <h2>Agent 进展<span class="count">3 条</span></h2>
+
+  <details class="item" id="agent-1">
+    <summary><span class="num">1</span><span class="t">OpenClaw 连发 v2026.10.1/10.2：技能库「按需发现」不再塞满提示词，MCP Apps 上线</span><span class="arrow">▸</span></summary>
+    <div class="body">OpenClaw 于 10 月 11-12 日连发两个版本：v2026.10.1 引入「已安装技能发现」——Agent 在任务需要时搜索技能库、只读取命中技能的完整指令，不再把整个技能清单塞进提示词（此前提示词超限会导致部分技能「消失」）；同版上线 MCP Apps（应用与对话并排、可读写工作区文件与富表单）与外部存储备份。v2026.10.2 则以稳定性修复为主（升级恢复、回复丢失、长会话续接）。方向明确：Agent 的「技能规模化」正在从提示词工程转为检索工程——技能库可以无限大，只要发现机制足够准。对 Accio 的技能包体系：技能数量增长后，「技能检索（名称/描述匹配 + 权限感知）」应尽早做成一等公民，而不是继续把清单硬编码进系统提示词。</div>
+    <div class="links"><a href="https://docs.openclaw.ai/releases/2026.10.1">OpenClaw v2026.10.1</a><a href="https://docs.openclaw.ai/releases/2026.10.2">OpenClaw v2026.10.2</a></div>
+  </details>
+
+  <details class="item" id="agent-2">
+    <summary><span class="num">2</span><span class="t">GitHub Agentic Workflows 周更 v0.91.9：模型路由贯通 Claude/Codex/Copilot/Pi，Claude Code 可用 Copilot 推理</span><span class="arrow">▸</span></summary>
+    <div class="body">GitHub Next 与微软研究院的 Agentic Workflows（gh-aw）项目发布 v0.91.9（10 月 12 日）：系列更新支持 Claude Code 走 GitHub Copilot 推理、跨 Claude/Codex/Pi/Copilot 的模型路由与有序回退（含 auto 档）、统一会话记录技能安装与调用方上下文、失败报告加入隐私保护的完成证据、日志存储上限 1GB。这套体系把「在 CI 里跑 Agent 工作流」变成平台原语：模型可替换、预算有护栏（每日 AI Credits）、动作经 safe-outputs 网关。对 Accio：若内部工程流程要上「Agent 自动化」（自动修 CI、巡检、周报），gh-aw 的「安全输出网关 + 模型路由」是两个最值得照搬的抽象。</div>
+    <div class="links"><a href="https://github.com/github/gh-aw/releases">Release Notes</a><a href="https://github.github.com/gh-aw/">项目主页</a></div>
+  </details>
+
+  <details class="item" id="agent-3">
+    <summary><span class="num">3</span><span class="t">阶跃 STEPX Neo 定档今晚 19:00 发布：首款「模型原生」智能体手机，由 Step AOS 与 Amoo 智能体驱动</span><span class="arrow">▸</span></summary>
+    <div class="body">阶跃终端宣布旗下首款大模型原生智能体手机 STEPX Neo 将于今晚 19:00 在上海发布（曾在 WAIC 2026 亮相）：搭载智能体原生操作系统 Step AOS 与个人智能体「阶跃 Amoo」，采用透明双拼机身 + 可交互副屏，已通过首批《人工智能终端智能化分级》测试。手机厂商的 Agent 化路径首次从「装个 AI 助手」升级为「OS 级智能体」——系统权限、跨应用操作与个人数据边界都按 Agent 优先重构。对 Accio 的观察价值：Agent-native 终端一旦起量，「对话即入口」的电商流量分配将被重估；今晚发布会的权限模型与开发者接口值得细看。</div>
+    <div class="links"><a href="https://finance.sina.com.cn/tech/roll/2026-10-08/doc-iniunrri4377487.shtml">新浪科技</a><a href="https://www.antutu.com/doc/137932">安兔兔</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-oss">
+  <h2>开源项目 · GitHub 今日热榜<span class="count">2 条</span></h2>
+
+  <details class="item" id="oss-1">
+    <summary><span class="num">1</span><span class="t">lyogavin/airllm：单张 4GB 显卡推理 2.8T 参数 MoE，今日 +879★</span><span class="arrow">▸</span></summary>
+    <div class="body">登上 GitHub Trending 的 AirLLM（37.6k★，今日 +879）：通过按专家流式加载，让单张 4GB 显存 GPU 运行 2.8T 参数的 MoE 大模型，README 同时给出 Qwen3.8-Flash-Next 125B（约 5.95GB）、DeepSeek-V3 671B 等低显存方案。「大模型必须配大显存」的默认假设正被层流式/专家流式不断瓦解——推理的硬件门槛更多由内存带宽与调度工程决定，而非参数量。对需要私有化部署的跨境商家场景（本地化数据处理、离线商品理解与翻译），这类项目的性价比窗口值得实测评估。</div>
+    <div class="links"><a href="https://github.com/lyogavin/airllm">GitHub</a></div>
+  </details>
+
+  <details class="item" id="oss-2">
+    <summary><span class="num">2</span><span class="t">free-claude-code 冲到 5.9 万★：一个入口聚合 11 种编码 harness 的 1.3B+ 免费 token</span><span class="arrow">▸</span></summary>
+    <div class="body">Alishahryar1/free-claude-code（59.2k★，今日 +626）聚合了 Claude Code、Codex、VSCode、Pi、OpenCode 等 11 种编码 harness 的免费额度（官方称累计 1.3B+ free tokens），新增浏览器原生会话与语音支持，README 强调「多 harness + 多模型」并面向 ToS 合规。它火爆本身就是信号：编码 Agent 的「多 harness 自由」已成为刚需——用户不愿被单一运行时绑死，免费额度则是最狠的获客入口。对 Accio：经营类 Agent 迟早面对同样的期待（同一技能跑在不同基座/运行时上），兼容层应作为架构默认项，而不是一个一个做适配项目。</div>
+    <div class="links"><a href="https://github.com/Alishahryar1/free-claude-code">GitHub</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-vertical">
+  <h2>垂直赛道<span class="count">8 条</span></h2>
+
+  <div class="subsec" id="subsec-coding">
+    <h3>AI 编程</h3>
+
+    <details class="item" id="coding-1">
+      <summary><span class="num">1</span><span class="t">Epic 迪士尼合作游戏被曝全面转向「AI 优先」：内部指令「不再手写代码」，美术全部走 AI 工作流</span><span class="arrow">▸</span></summary>
+      <div class="body">彭博社 10 月 12-13 日报道：Epic 为迪士尼打造的一款待发布撤离射击游戏推迟上线（原定 11 月，发售日已先延至 3 月），一名总监向团队通报改用「AI 优先」制作方案——内部通知写明「不再手写代码」，全部美术资源须通过完整 AI 工作流生成；Epic 公关总监回应称「正在拥抱 AI 加速开发，由 Epic 开发者主导创意」。游戏业对生成式 AI 的分裂在加剧：GDC 年度调查显示 52% 开发者认为该技术对行业不利（2025 年为 30%）。对 AI 编程赛道：这是「大厂全面押注 AI 生产管线」最激进的一次公开案例——最终以作品质量为裁判；对 Accio：内容工厂（listing 图、素材视频）的 AI 化改造同样应先定义质量门槛与人工审核边界，而不是先替换人。</div>
+      <div class="links"><a href="https://www.163.com/dy/article/L93RT24A0511B8LM.html">IT之家</a></div>
+    </details>
+  </div>
+
+  <div class="subsec" id="subsec-video">
+    <h3>AI 视频与多模态</h3>
+
+    <details class="item" id="video-1">
+      <summary><span class="num">1</span><span class="t">据报道 OpenAI 拟「复活」Sora：换道 AI 影视工具，与 Katzenberg 参与的新公司洽谈</span><span class="arrow">▸</span></summary>
+      <div class="body">The Information 10 月 12 日报道：OpenAI 正与一家隐身初创公司洽谈移交 Sora 技术——该公司由好莱坞制片人杰弗里·卡岑伯格、Sora 前研究负责人 Bill Peebles 与 Dropbox 前 CFO Sujay Jaswa 创立，计划把 Sora 改造为面向影视制作方的专业工具（是否获得模型权重未定）。Sora 消费端应用与 API 已于今年先后关停，OpenAI 将资源转向企业 AI 与编程工具，并终止了与迪士尼约 10 亿美元的合作。值得注意的不是「Sora 回归」本身，而是路线切换：AI 视频从 To C 社交爆款转向 To B 专业管线——与字节 PineDrama 等内容工厂路线殊途同归。对电商视频生产：供给侧将长期是「通用模型 + 专业工作流」的组合竞争，选型不要赌单一模型。（注：单一媒体爆料，细节以官方为准）</div>
+      <div class="links"><a href="https://www.163.com/dy/article/L9444P020511B8LM.html">IT之家</a><a href="https://es.tradingview.com/news/panews:5eff3d35facdf:0/">PANews</a></div>
+    </details>
+
+    <details class="item" id="video-2">
+      <summary><span class="num">2</span><span class="t">字节 PineDrama 海外下载破 1 亿、DAU 约 700 万：AI 短剧成本降到 400 元/分钟、周期压缩至 30 天内</span><span class="arrow">▸</span></summary>
+      <div class="body">科创板日报 10 月 12 日援引 Sensor Tower：字节海外 AI 短剧产品 PineDrama 上线约 9 个月累计下载破 1 亿、DAU 约 700 万，9 月单月新增下载超 1200 万，主战巴西、美国、印尼，采用免费 + 广告模式。报道给出的产业侧数字更能说明趋势：AI 短剧制作周期从 50-60 天压缩到 30 天以内、成本从约 1000 元/分钟降至约 400 元（人力 800→200、工具约 200），6 人团队月产量从 1 部提升到 5 部。AI 内容工厂的「单位经济学」正在成型——短剧的今天，很可能是商品视频营销的明天。对 Accio：商家短视频素材的成本曲线应按季度重估，内容工作流值得提前再造一轮。</div>
+      <div class="links"><a href="https://www.chinastarmarket.cn/detail/2501885">科创板日报</a></div>
+    </details>
+  </div>
+
+  <div class="subsec" id="subsec-ai4s">
+    <h3>AI for Science</h3>
+
+    <details class="item" id="ai4s-1">
+      <summary><span class="num">1</span><span class="t">Nature Communications｜可解释 AI 引导发现「可降解可电离脂质」，mRNA 递送材料设计再提速</span><span class="arrow">▸</span></summary>
+      <div class="body">Nature Communications 10 月 12 日刊发研究：团队以可解释 AI（模型给出结构-性能归因）引导设计可降解可电离脂质——该类脂质是 mRNA 递送系统（LNP）的核心组件，既要高递送效率又要可降解以降低毒性；可解释性在这里的价值是把「黑箱筛选」变成「机理指引的迭代设计」，缩短合成-测试循环。AI for Science 走向成熟的标志之一，是从「预测分数」进化为「解释为什么」——化学与材料设计闭环最先受益。对关注 AI4S 落地的团队：在实验成本高的领域，可解释性不只是合规叙事，它直接等同于搜索效率。</div>
+      <div class="links"><a href="https://www.nature.com/articles/s41467-026-78635-1">Nature Communications</a></div>
+    </details>
+
+    <details class="item" id="ai4s-2">
+      <summary><span class="num">2</span><span class="t">Nature News｜Nikon Small World in Motion 获奖作品因 AI 生成被取消资格，科学影像进入「真实性」审查期</span><span class="arrow">▸</span></summary>
+      <div class="body">Nature 新闻 10 月 12 日报道：尼康显微摄影动态影像大赛（Small World in Motion）一件获奖作品因被认定使用 AI 生成而被取消资格。科学影像竞赛一直以「记录真实」为信条，生成式 AI 的渗透让评审必须新增真实性核验——与论文图片审查、竞赛查重同属「AI 时代科研诚信」的新基础设施。对内容平台与电商素材：同款「真假判定」问题正在全面到来（商品实拍图 vs AI 生成图），真实性核验能力迟早会成为素材管线的标准组件，相关平台规则的动作节奏值得跟踪。</div>
+      <div class="links"><a href="https://www.nature.com/articles/d41586-026-03240-7">Nature</a></div>
+    </details>
+  </div>
+
+  <div class="subsec" id="subsec-ecom">
+    <h3>AI 电商与贸易</h3>
+
+    <details class="item" id="ecom-1">
+      <summary><span class="num">1</span><span class="t">马斯克演示「拍信用卡照片即可下单」引争议：Grok 购物踩进支付与隐私红线区</span><span class="arrow">▸</span></summary>
+      <div class="body">10 月 10-12 日争议持续发酵：马斯克演示「拍一张信用卡照片发给 Grok 即可全网比价并下单」，OpenAI 的 Tibo Sottiaux 随即用「AI 假卡图」回击其中的安全隐患；媒体同步梳理出 xAI 隐私条款的三处矛盾（第三方商户可读取卡号等）。有意思的是 Grok Bot 其实已内置 Allow/Deny 审批与 Stripe Link 一次性卡号，10 月 7 日刚改用安全结账表单，亚马逊此前仍以「凭据托管」为由封锁。这场争论的本质：Agent 购物把「谁持有支付凭据、谁批准付款」推上台面。对 Accio：支付凭据的最小暴露（一次性卡号/令牌化）与付款动作的显式批准，应写进产品红线而非事后补救。</div>
+      <div class="links"><a href="https://www.tmtpost.com/8164715.html">钛媒体</a><a href="https://www.ithome.com/1/011/616.htm">IT之家</a></div>
+    </details>
+
+    <details class="item" id="ecom-2">
+      <summary><span class="num">2</span><span class="t">TikTok Shop 东南亚访问量达 Shopee 的 97.5%：AI 导购 + UCP 一键结账的化学反应进行时</span><span class="arrow">▸</span></summary>
+      <div class="body">10 月 11-12 日电商数据：TikTok Shop 东南亚 9 月访问量 4.62 亿（Shopee 4.74 亿，约 97.5%），并在印尼、越南、马来西亚、菲律宾四市场领先；其 AI 购物助手与 Buy Direct（基于 UCP 协议的一键结账，10 月 5 日上线）正把「内容种草 → 站内成交」压缩进一次对话。Shopify 报告给出用户侧温度差：65% 消费者愿意使用 AI 辅助购物，但仅 29% 信任 AI 代理完成付款。对 Accio：跨境商家要同时准备两张入场券——结构化商品数据（让 Agent 导购读得懂）与支付信任资产（评价、售后、平台背书），后者的建设周期更长，宜尽早启动。</div>
+      <div class="links"><a href="https://www.ebrun.com/20261011/714080.shtml">亿邦动力（数据）</a><a href="https://www.ebrun.com/20261012/714102.shtml">亿邦动力（UCP）</a></div>
+    </details>
+
+    <details class="item" id="ecom-3">
+      <summary><span class="num">3</span><span class="t">双 11 罕见撞档：天猫京东发布会同定 10-15；七部门「五优」行动纠治「自动跟价」</span><span class="arrow">▸</span></summary>
+      <div class="body">10 月 12 日确认：天猫与京东双 11 发布会罕见同定 10 月 15 日（京东全品类现货 10 月 12 日晚 8 点已开卖，淘宝预售 10 月 15 日晚 8 点启动，均持续至 11 月 11 日 24 点）；监管侧，七部门「五优」行动 15 条措施点名纠治「自动跟价」「全网最低价」等行为。两件事同读：平台在「AI 经营工具对垒」上继续加码，但监管正在给「算法定价」划边——大促场景中的 AI 工具（含 Agent 改价、自动营销）必须在合规轨道内运行。对 Accio：涉及自动定价/自动促销的 Agent 功能，应把合规边界作为需求输入前置，而不是上线后整改。</div>
+      <div class="links"><a href="https://finance.sina.com.cn/tech/2026-10-12/doc-iniuxwim7233533.shtml">新浪科技</a><a href="https://www.bjnews.com.cn/detail/1791599258129644.html">新京报</a></div>
+    </details>
+  </div>
+</section>
+
+<section class="section" id="sec-funding">
+  <h2>公司与融资<span class="count">5 条</span></h2>
+
+  <details class="item" id="funding-1">
+    <summary><span class="num">1</span><span class="t">微软 Maia 300 官宣：2027 年起多吉瓦部署，单机柜吞吐最高达 Maia 200 的 7 倍</span><span class="arrow">▸</span></summary>
+    <div class="body">微软 10 月 12 日在 OCP 全球峰会发布第三代自研 AI 芯片 Maia 300：多芯粒设计、TSMC 2nm 工艺、HBM4 内存，单机柜 96 颗（Maia 200 的两倍），单机柜 token 吞吐最高达 Maia 200 的 7 倍，官方称相对「领先 GPU 系统」每兆瓦可多产出约 40% token；2027 年起开始多吉瓦级部署，定位主流 AI 推理系统。云巨头自研芯片从「试验田」进入「主力机」阶段——推理成本的下移会直接传导到模型 API 价格。对 Accio：模型采购的成本模型可以把「推理单价持续下探」设为基线假设，避免锁定长期固定单价合同。</div>
+    <div class="links"><a href="https://blogs.microsoft.com/blog/2026/10/12/microsoft-to-expand-azure-maia-system-to-multi-gigawatt-deployments/">微软官方博客</a><a href="https://www.reuters.com/business/microsoft-plans-huge-deployment-its-own-ai-chips-with-an-eye-saving-costs-2026-10-12/">Reuters</a></div>
+  </details>
+
+  <details class="item" id="funding-2">
+    <summary><span class="num">2</span><span class="t">无问芯穹完成 23 亿元 C 轮：累计融资 43 亿元创中国 AI Infra 纪录，押注「Agentic Infra」</span><span class="arrow">▸</span></summary>
+    <div class="body">10 月 12 日披露：清华系 AI 原生基础设施公司无问芯穹完成 23 亿元 C 轮融资（成立以来累计 43 亿元），单轮与累计金额均创中国 AI 原生基础设施赛道最高纪录；公司提出「前店后厂一中心」战略并发力 Agentic Infra，算力平台触达 3.7 万 P。头部 AI Infra 的单笔规模继续上探，说明资本市场认为「Agent 浪潮的算力中间层」比模型公司更接近稳定现金流。对跨境与电商侧：Agent 平台的推理成本会持续被这类基础设施公司卷低，自建算力 vs 采购服务的分界线值得每年重算一次。</div>
+    <div class="links"><a href="https://www.stcn.com/article/detail/4212949.html">证券时报</a><a href="https://www.ithome.com/1/011/849.htm">IT之家</a></div>
+  </details>
+
+  <details class="item" id="funding-3">
+    <summary><span class="num">3</span><span class="t">模思智能超 10 亿元 Pre-A：复旦 MOSS 之父邱锡鹏创办，押注全模态实时交互与 AI for AI</span><span class="arrow">▸</span></summary>
+    <div class="body">10 月 12 日官宣：多模态大模型公司模思智能完成超 10 亿元 Pre-A 轮融资，由华控基金领投，国开科创、上海科创基金等参与；资金将投向全模态实时交互智能的研发与全球商业化。创始人邱锡鹏为复旦大学教授、MOSS 大模型开创者，公司两条主线是「全模态实时交互」与「AI for AI（用 AI 做 AI 研究）」——前者瞄准下一代交互形态，后者瞄准研发效率的复利。对 Accio：语音/视频等实时交互通道的接入优先级可以提级评估，询盘场景是最接近「实时商务对话」的形态。</div>
+    <div class="links"><a href="https://www.nbd.com.cn/articles/2026-10-12/4601361.html">每日经济新闻</a><a href="https://www.thepaper.cn/newsDetail_forward_34234526">澎湃新闻</a></div>
+  </details>
+
+  <details class="item" id="funding-4">
+    <summary><span class="num">4</span><span class="t">DeepSeek 领投 Winverse AI 种子轮：Swin Transformer 作者胡瀚创业，投后估值约 4 亿美元</span><span class="arrow">▸</span></summary>
+    <div class="body">10 月 12 日彭博报道：DeepSeek 计划领投机器人基础模型公司 Winverse AI 的数千万美元种子轮融资（美团龙珠等跟投），投后估值约 4 亿美元；创始人胡瀚为前腾讯 AI 科学家、Swin Transformer 作者。继投资宇树科技之后，DeepSeek 的具身智能布局再落一子——大模型公司开始用资本绑定「下一物理载体」。对行业：具身智能的基础模型竞赛与语言模型竞赛正在合流，「顶级架构作者 × 机器人」的人才定价被重新抬高。</div>
+    <div class="links"><a href="https://wallstreetcn.com/articles/3783467">华尔街见闻</a><a href="https://www.bloomberg.com/news/articles/2026-10-12/deepseek-backs-ex-tencent-ai-scientist-s-400-million-robot-lab">Bloomberg</a></div>
+  </details>
+
+  <details class="item" id="funding-5">
+    <summary><span class="num">5</span><span class="t">星尘智能完成 10 亿元新一轮融资、投后估值 150 亿元：绳驱机器人独角兽再进一步</span><span class="arrow">▸</span></summary>
+    <div class="body">10 月 13 日界面新闻与科创板日报：绳驱 AI 机器人公司星尘智能完成 10 亿元规模新一轮融资，投后估值达 150 亿元，由投控东海（深投控）领投，洪泰基金、光华阳光等跟投；公司是「全球首个且唯一实现绳驱 AI 机器人量产」的企业，今年 7 月全球制造与供应链中心投产、正筹备股改。国资领投 + 半年内估值从「破百亿」到 150 亿，具身智能的「量产叙事」正在替代「演示叙事」。对电商物流的远期映射：仓储分拣与末端配送的机器人渗透率，将是跨境电商履约成本曲线的关键变量，值得纳入年度成本模型。</div>
+    <div class="links"><a href="https://m.163.com/dy/article/L942BQ0F0550B1DU.html">科创板日报</a><a href="https://m.sohu.com/a/1087013222_313745">界面新闻</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-papers">
+  <h2>论文精选<span class="count">5 条</span></h2>
+
+  <div class="paper-recap">
+    <h3>本期论文总结 · 组会分享版</h3>
+
+    <h4>一、今日主线（为什么选这 5 篇）</h4>
+    <ol>
+      <li><strong>超长程 Agent 的「训练 + 抢救」闭环</strong>（<a href="#papers-1">#1</a>、<a href="#papers-2">#2</a>、<a href="#papers-5">#5</a>）：HMA 用会话接力拆解超长任务并量化「harness 老化」，RTI 在 rollout 期把失败轨迹改成教材，ReTRAIL 讲清「回滚重来」的知识代价——三篇合读，恰好覆盖长任务 Agent 的采集、训练与恢复三个环节。</li>
+      <li><strong>能力从哪里来：示范与自我改进的两条路</strong>（<a href="#papers-3">#3</a>、<a href="#papers-4">#4</a>）：RSI-Anything 让世界模型给「递归自我改进」把关，Work2Skill 把「人演示一遍」变成可复用的 OS 技能——前者是 AI 自己长能力，后者是人带 AI 长能力，对照读信息量很大。</li>
+      <li><strong>共同的暗线：淘汰与验收机制</strong>（跨全部 5 篇）：MLE-bench 的奖牌线、rubric 证据过滤、组件级检查、WorkDemo-350 评测集、状态锚定——「什么算学会了、什么该丢弃」的判定器设计，是这 5 篇最可迁移的方法论。</li>
+    </ol>
+
+    <h4>二、每篇一句话（按阅读优先级）</h4>
+    <ol>
+      <li><a href="#papers-1">Humanize MLE Agents（arXiv）</a>：双 Agent 会话接力 + 共享工作区，any-medal 78.2%、预算 1/4，还证明 harness 老化是长任务头号杀手，精读。</li>
+      <li><a href="#papers-2">Rollout-Time Intervention（arXiv）</a>：rollout 期用 rubric 证据改写失败轨迹，五基准全面超 RL 基线，失败数据变主粮，精读。</li>
+      <li><a href="#papers-3">RSI-Anything（arXiv）</a>：世界模型把关的递归自我改进，代码修复 26.3%→31.2%、化学产率 96.15%，选读。</li>
+      <li><a href="#papers-4">Work2Skill（arXiv）</a>：录屏 → 键鼠事件/无障碍树 → 技能合成，OSWorld-Verified 最高 +10.5 分，选读。</li>
+      <li><a href="#papers-5">ReTRAIL（arXiv）</a>：状态锚定回滚单独用有害、须与经验复用耦合，长任务恢复设计参考，泛读。</li>
+    </ol>
+
+    <h4>三、组会讨论题</h4>
+    <ul>
+      <li>HMA 证明「双 Agent 会话接力 + 共享工作区」在 1/4 预算下超过单 Agent——Accio 的长周期经营任务（选品 → 询盘 → 履约）是否适合「轮班制」子代理？会话切换时的上下文移交流程，用什么任务集来验证「不丢信息」？</li>
+      <li>RTI 提示「在 rollout 期用 rubric 证据改写失败轨迹」比经典 RL 更高效——我们的经营数据里哪些「失败轨迹」（流失的询盘、失败的谈判）配有可核对的 rubric（成交/流失的明确归因）？能否先做一个数据闭环小实验？</li>
+      <li>Work2Skill 把「录屏教学 → 技能」标准化——如果让商家在 Accio 里演示一遍操作就能生成技能，验收标准（类似 OSWorld-Verified 的可复现评测）与安全边界（哪些操作不允许转成技能、错一步学一步如何防）应该怎么定？</li>
+    </ul>
+  </div>
+
+  <details class="item" id="papers-1">
+    <summary><span class="num">1</span><span class="t">arXiv cs.AI｜Humanize MLE Agents：双 Agent 会话接力，MLE-bench 奖牌率 78.2%、反超开源基线 8 分且预算仅 1/4</span><span class="arrow">▸</span></summary>
+    <div class="body">论文（arXiv 2610.13494，MIT 等）提出 HMA：让两个 Agent 在共享工作区上「轮班」——把超长机器学习工程任务拆成受控长度的会话交替接力（以 CR-SMDP 建模），并系统研究「harness 老化」（长会话中工具与框架版本漂移导致的行为退化）这一被忽视的失败模式；在 MLE-bench 75 个任务的 any-medal 指标上达到 78.2%，比开源基线高约 8 个点，且仅用约 1/4 时间预算。为什么值得读：它修正了「多 Agent 靠并行分工」的直觉——更有效的是会话接力；同时首次把 harness staleness 列为长任务失败根因，做长周期 Agent 的团队可直接对照自查，精读。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2610.13494">arXiv</a></div>
+  </details>
+
+  <details class="item" id="papers-2">
+    <summary><span class="num">2</span><span class="t">arXiv cs.AI｜Rollout-Time Intervention：用 rubric 证据在 rollout 期改写失败轨迹，五基准全面超过经典 RL</span><span class="arrow">▸</span></summary>
+    <div class="body">阿里 Qwen/NLP 团队论文（arXiv 2610.13438）提出运行时干预（RTI）：不推翻重训，而是在 rollout 阶段识别失败轨迹后，用 rubric 证据将其重写为成功轨迹再入训练池，并用过滤机制抑制分布偏移；在五个基准上全面超过 RL 基线。为什么值得读：它把「失败数据」从废料变成主粮——对训练数据天然稀缺的长程 Agent 场景（真实经营任务几乎没有公开标注）尤其关键；但 rubric 质量的工程化（谁来写、如何防止污染重写）是落地前必须想清楚的问题，精读。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2610.13438">arXiv</a></div>
+  </details>
+
+  <details class="item" id="papers-3">
+    <summary><span class="num">3</span><span class="t">arXiv cs.CL｜RSI-Anything：世界模型把关的「递归自我改进」，代码修复 26.3%→31.2%、化学产率 96.15%</span><span class="arrow">▸</span></summary>
+    <div class="body">上海 AI Lab 论文（arXiv 2610.13912）提出世界模型引导的递归自我改进（RSI）框架：模型在「提出改进 → 世界模型预测效果 → 组件级检查决定是否保留更新」的闭环中迭代，防止越改越差；在代码修复基准上从 26.3% 提升到 31.2%，化学产率任务达 96.15%（贝叶斯优化基线 82.16%）。为什么值得读：递归自我改进（「AI 造 AI」）的可行路线正在从「端到端信任模型」转向「外部验证器把关」——在你的系统里，「谁来当那个有权拒绝修改的检查员」才是设计核心，选读。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2610.13912">arXiv</a></div>
+  </details>
+
+  <details class="item" id="papers-4">
+    <summary><span class="num">4</span><span class="t">arXiv cs.AI｜Work2Skill：录一场屏就能长出 OS 技能，OSWorld-Verified 最高 +10.5 分</span><span class="arrow">▸</span></summary>
+    <div class="body">微软团队论文（arXiv 2610.12984）：WorkRecorder 把用户演示时的录屏对齐到键鼠事件与无障碍树，自动产出可复用的操作系统级技能；配套 WorkDemo-350 评测集与技能合成管线，在 OSWorld-Verified 上比基线提升 3.1-10.5 分。为什么值得读：「人类示范一次 → Agent 会一辈子」是商家端最愿意接受的教学方式（比写文档自然得多），这条管线让「演示式技能生成」从 demo 走向可评测。对 Accio 的技能工厂：录屏教学入口的业务价值与技术风险（错一步学一步）都应在 PoC 里先验证，选读。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2610.12984">arXiv</a></div>
+  </details>
+
+  <details class="item" id="papers-5">
+    <summary><span class="num">5</span><span class="t">arXiv cs.CL｜ReTRAIL：给 Agent 配「状态锚定回滚」，但单独回滚反而有害——需与经验复用耦合</span><span class="arrow">▸</span></summary>
+    <div class="body">中科大团队论文（arXiv 2610.13058）研究 Agent 的「回滚原语」：与其在长任务中放任错误累积，不如回到已知正确状态重试（状态锚定 GRPO）；关键发现是单纯的「回滚」机制会损害知识保留——模型反复丢弃错误经验后学习信号被削弱，必须与经验复用机制耦合设计。为什么值得读：长程 Agent 的「撤销与重来」正在成为标准动作（checkpoint 回放、GitHub 式工作流），这篇给出第一份系统性的代价分析：回滚要配套「从失败中提炼」的组件，否则越回滚越不会学，泛读。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2610.13058">arXiv</a></div>
+  </details>
+</section>
+
+<a class="back" href="../index.html">← 返回日报归档</a>
+
+<div class="footer">
+  由「新技术学习搭子」自动生成 · 内容采编自公开来源，观点仅供参考 · 2026-10-13
+</div>
+
+</div>
+
+<script>
+function setAll(open){document.querySelectorAll('details.item').forEach(function(d){d.open=open})}
+if(location.hash){
+  var el=document.querySelector(location.hash);
+  if(el&&el.tagName==='DETAILS'){el.open=true;setTimeout(function(){el.scrollIntoView({block:'start'})},60)}
+}
+</script>
+</body>
+</html>
