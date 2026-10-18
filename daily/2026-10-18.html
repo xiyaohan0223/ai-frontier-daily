@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 前沿日报 · 2026-10-18</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<div class="wrap">
+
+<header class="site-header">
+  <div class="brand">AI FRONTIER DAILY · 新技术学习搭子</div>
+  <h1>AI 前沿日报</h1>
+  <span class="date-badge">2026-10-18 · 星期日 · 共 31 条</span>
+</header>
+
+<div class="overview">
+  <strong>今日总览：</strong>DeepSeek 一日两连发——V4.1-Flash-1017 在 Agent 基准上实现性能-成本 Pareto 改进，同时把自研搜索引擎以 API 开放（反 SEO/GEO 污染），「模型 + 搜索」组合拳直指 Agent 供给侧；Anthropic pre-IPO 会议披露 Q3 营收 $16.8B（环比 +45%），AI 资本市场大幕正式拉开，同日 Replit 宣布默认模型从 Anthropic 切换至 OpenAI。
+</div>
+
+<nav class="chips">
+  <a href="#sec-headline">头条<b>3</b></a>
+  <a href="#sec-llm">大模型<b>2</b></a>
+  <a href="#sec-agent">Agent 进展<b>5</b></a>
+  <a href="#sec-oss">开源项目<b>5</b></a>
+  <a href="#sec-vertical">垂直赛道<b>7</b></a>
+  <a href="#sec-funding">公司融资<b>3</b></a>
+  <a href="#sec-papers">论文<b>6</b></a>
+</nav>
+
+<div class="toolbar">
+  <button onclick="setAll(true)">全部展开</button>
+  <button onclick="setAll(false)">全部收起</button>
+</div>
+
+<section class="section" id="sec-headline">
+  <h2>头条<span class="count">3 条</span></h2>
+
+  <details class="item" id="headline-1" open>
+    <summary><span class="num">1</span><span class="t">DeepSeek 一日双发：V4.1-Flash-1017 实现「性能-成本 Pareto 改进」，自研搜索引擎 API 同步开放</span><span class="arrow">▸</span></summary>
+    <div class="body">10 月 17 日官方更新：deepseek-flash 不换模型名直接热更新，Terminal-Bench 4.0 从 31.2 升至 42.3、Automation-Bench 54.8→60.5、Agents' Last Exam 31.8→35.4，同时任务耗时与输出长度双降，在多个 harness 上达到新的性价比最优点；同日开放的自研搜索 API 索引数千亿网页、过滤 SEO 垃圾与 GEO 操纵。对 Agent 产品方有两点直接启示：一是「模型即服务」的静默热更新节奏已成常态（不需要改一行接入代码），二是搜索质量正在成为 Agent 供给侧的差异化底座——反操纵的搜索源对以检索为核心链路的电商 Agent 尤其关键。</div>
+    <div class="links"><a href="https://api-docs.deepseek.com/updates/">DeepSeek 官方 Changelog</a></div>
+  </details>
+
+  <details class="item" id="headline-2" open>
+    <summary><span class="num">2</span><span class="t">Anthropic pre-IPO 会议：Q3 营收 $16.8B 环比 +45%，最早 10 月中启动 IPO 路演</span><span class="arrow">▸</span></summary>
+    <div class="body">Reuters/Bloomberg/NYT/CNBC 多源交叉：Anthropic 向潜在投资者披露 Q3 营收 168 亿美元（Q1 $4.7B → Q2 $11.6B → Q3 $16.8B），并预计实现单季经调整盈利，IPO 或于 10 月在纳斯达克启动。增长引擎主要来自 Claude Code 与 API 的编码 Agent 消费。对行业意味着：编码 Agent 已被验证为最高速的营收飞轮，「Agent 按任务计费」的商业模式随招股书公开后，会成为所有 toB Agent 产品的定价参照系。</div>
+    <div class="links"><a href="https://www.reuters.com/business/finance/anthropics-q3-revenue-surges-45-nearly-17-billion-2026-10-14/">Reuters</a><a href="https://www.bloomberg.com/news/articles/2026-10-14/anthropic-revenue-jumps-to-16-8-billion-in-quarter-before-ipo">Bloomberg</a><a href="https://www.cnbc.com/2026/10/15/anthropics-third-quarter-revenue-hits-16point8-billion-ipo.html">CNBC</a></div>
+  </details>
+
+  <details class="item" id="headline-3" open>
+    <summary><span class="num">3</span><span class="t">Replit 宣布不再与 Anthropic 合作：ChatGPT/OpenAI 成为 Replit Agent 默认模型</span><span class="arrow">▸</span></summary>
+    <div class="body">TechCrunch 10 月 17 日报道，CEO Amjad Masad 在 Disrupt 大会后确认：Anthropic 模型仍可在平台选用，但默认已切为 OpenAI。头部编程平台开始围绕「默认模型」做战略站队——默认位置的争夺本质是 Agent 分发权之争。对产品团队的启示：Agent 产品的模型层不宜单点依赖，切换成本（提示词生态、工具调用兼容性、评测基线）应作为架构决策提前设计。</div>
+    <div class="links"><a href="https://techcrunch.com/2026/10/17/replit-is-no-longer-working-with-anthropic-ceo-says/">TechCrunch</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-llm">
+  <h2>大模型动态<span class="count">2 条</span></h2>
+
+  <details class="item" id="llm-1">
+    <summary><span class="num">1</span><span class="t">OpenAI 上线 GPT-Live-1.1 语音模型与全新音色</span><span class="arrow">▸</span></summary>
+    <div class="body">10 月 15 日 ChatGPT 发布说明：实时语音模型迭代至 GPT-Live-1.1，新增多个音色。Live 语音线与 Slides、子 Agent 并行等能力同周密集推送，显示 OpenAI 正把 ChatGPT 从「对话产品」加速改造成「多模态工作台」。语音作为 Agent 交互入口的体验基线又被抬高一档。</div>
+    <div class="links"><a href="https://help.openai.com/en/articles/6825453-chatgpt-release-notes">OpenAI 官方 Release Notes</a></div>
+  </details>
+
+  <details class="item" id="llm-2">
+    <summary><span class="num">2</span><span class="t">NVIDIA 开源 Run.ai：GPU 编排与 AI 负载调度平台</span><span class="arrow">▸</span></summary>
+    <div class="body">TechTarget 10 月 16 日报道，NVIDIA 本周将收购来的 GPU 编排平台 Run.ai 完全开源，与 Nemotron 3.5 系列开源形成「模型 + 调度」组合拳。在推理成本占 Agent 运营大头的前提下，开源 GPU 编排层等于把「推理基础设施自主可控」的选项交给所有平台方——对自建推理集群的团队是直接利好。</div>
+    <div class="links"><a href="https://www.techtarget.com/ai/news/366652514/Open-source-and-on-device-the-strategy-behind-Nvidias-new-AI-models">TechTarget/AI Business</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-agent">
+  <h2>Agent 进展<span class="count">5 条</span></h2>
+
+  <details class="item" id="agent-1">
+    <summary><span class="num">1</span><span class="t">NVIDIA 发布 Open Agent Safety Platform：OpenShell 沙箱 + Sentry 硬件级监控</span><span class="arrow">▸</span></summary>
+    <div class="body">官方新闻：开放式软件平台 + 参考系统设计，用开源 OpenShell 安全运行时配合独立的硬件监控/强制执行单元来加固 Agent。「沙箱执行 + 独立硬件监督」的双层设计，把 Agent 安全从提示词层面下沉到了系统层——做高权限 Agent（支付、改价、发单）的团队值得对标这套分层防护思路。</div>
+    <div class="links"><a href="https://nvidianews.nvidia.com/news/open-agent-safety-platform">NVIDIA 官方</a></div>
+  </details>
+
+  <details class="item" id="agent-2">
+    <summary><span class="num">2</span><span class="t">Builder.io 开源 Agent-Native：TypeScript 框架，让 Agent 与用户共享应用状态</span><span class="arrow">▸</span></summary>
+    <div class="body">10 月 14 日 beta 发布的免费开源框架：构建 AI Agent 与用户共享动作、数据与应用状态的应用。区别于「Agent 调 API」的传统集成，它把 Agent 当作应用的一等公民嵌入 UI 状态机。「人机共享状态」是协作式 Agent 产品（而非全自动黑箱）的一种可行形态，对需要商家逐步确认的电商 Agent 交互设计有参考价值。</div>
+    <div class="links"><a href="https://www.golaurens.com/online_features/press_releases/builder-io-launches-agent-native-an-open-source-typescript-framework-for-building-agentic-apps/article_042e679c-d8ef-5fd1-bfe9-91b02b27ab98.html">新闻稿</a></div>
+  </details>
+
+  <details class="item" id="agent-3">
+    <summary><span class="num">3</span><span class="t">Meta 开源 X-AgentRed：用 HarmFlow 图检测 Agent 跨工具链攻击路径，1.77× 于现有方法</span><span class="arrow">▸</span></summary>
+    <div class="body">10 月 14 日报道：该安全工具把 Agent 各工具间的依赖关系建模为 HarmFlow 图，发现有害跨服务攻击路径的频率是竞品的 1.77 倍。核心洞察是：单个工具看着无害，风险藏在工具组合链里。对配置了「搜索 → 解析 → 执行下单」这类多步工具链的 Agent，工具编排图的威胁建模应该成为上线前的标准动作。</div>
+    <div class="links"><a href="https://www.techtimes.com/articles/328986/20261014/meta-ai-agent-security-tool-finds-harmful-cross-service-paths-177x-more-often-rivals.htm">Tech Times</a></div>
+  </details>
+
+  <details class="item" id="agent-4">
+    <summary><span class="num">4</span><span class="t">MacPaw 发布 Eney：Mac/iPhone 上「先问再做」的设备级 AI 助理</span><span class="arrow">▸</span></summary>
+    <div class="body">10 月 15 日上线：读取设备上下文并准备好动作，但每一步都需用户批准后才执行。在「全自动 Agent」叙事甚嚣尘上时，反其道的「prepare-but-confirm」交互拿到了口碑（官方称 81% 美国Mac用户已用过 AI）。对高价值、低容错动作（如外贸场景的报价与合同）而言，「预执行 + 确认」可能比全自动更接近可商用形态。</div>
+    <div class="links"><a href="https://gadgetsnow.indiatimes.com/tech-news/macpaw-launches-eney-on-mac-and-iphone-an-ai-assistant-that-asks-before-it-acts/articleshow/134994920.cms">Gadgets Now</a></div>
+  </details>
+
+  <details class="item" id="agent-5">
+    <summary><span class="num">5</span><span class="t">Linux 内核社区拥抱 Agent 工作流：Torvalds 已用 Claude Code，内核树拟设 agents 目录</span><span class="arrow">▸</span></summary>
+    <div class="body">FOSS Weekly 10 月 15 日报道：Torvalds 在内核工作中使用 Claude Code（并发文件读取效率据称提升 3 倍），维护者 Sasha Levin 提议在内核源码树中新增 agents 目录存放 AI 技能。最保守的开源社区开始把「Agent 用什么技能」纳入仓库治理，这为所有大型代码库的「AI 协作规范」提供了先例——技能与代码同仓、随代码演进。</div>
+    <div class="links"><a href="https://itsfoss.com/newsletter/foss-weekly-26-42">It's FOSS</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-oss">
+  <h2>开源项目 · GitHub 今日热榜<span class="count">5 条</span></h2>
+
+  <details class="item" id="oss-1">
+    <summary><span class="num">1</span><span class="t">stablyai/orca：用你自己的订阅运行编码 Agent 舰队，日增 830 星</span><span class="arrow">▸</span></summary>
+    <div class="body">95.4K★ 的 Agent 舰队工作台：Grok Bot、Claude Code 等编码 Agent 统一调度，支持桌面/移动/远程运行时，用个人订阅而非 API 计费。「BYO 订阅」的 Agent 池化思路显著降低了多 Agent 并行的成本门槛，但也踩在订阅条款的边界上，值得关注其合规走向。</div>
+    <div class="links"><a href="https://github.com/stablyai/orca">GitHub</a></div>
+  </details>
+
+  <details class="item" id="oss-2">
+    <summary><span class="num">2</span><span class="t">MadsLorentzen/ai-job-search：跑在本地的求职申请 Agent 框架，日增 1365 星</span><span class="arrow">▸</span></summary>
+    <div class="body">50.4K★：基于 Claude Code 的求职全流程 Agent——评估 JD、定制简历、写求职信、模拟面试，fork 即拥有。它是「个人事务 Agent」的教科书样本：流程明确、素材本地化、可逐步人工确认。同样的骨架换成「供应商资质审核 / 询盘响应」就是外贸场景的 Agent 应用。</div>
+    <div class="links"><a href="https://github.com/MadsLorentzen/ai-job-search">GitHub</a></div>
+  </details>
+
+  <details class="item" id="oss-3">
+    <summary><span class="num">3</span><span class="t">xerj-org/xerj：面向 Agent 的数据索引引擎，号称比 grep 省 40 倍 token，日增 1160 星</span><span class="arrow">▸</span></summary>
+    <div class="body">7.8K★：一条命令为代码、文档、日志、PDF 建索引，供搜索/RAG/安全审计/Agent 记忆使用，宣称 40× token 节省、可替代 Elasticsearch。「Agent 不再用 grep 翻数据，而是先建索引再查询」若成立，会改变 Agent 工具链的默认形态——长期看这也是商品/店铺知识库的一种工程范式。</div>
+    <div class="links"><a href="https://github.com/xerj-org/xerj">GitHub</a></div>
+  </details>
+
+  <details class="item" id="oss-4">
+    <summary><span class="num">4</span><span class="t">anthropics/claude-plugins-official：Claude 官方插件目录，日增 1397 星</span><span class="arrow">▸</span></summary>
+    <div class="body">41.7K★：Anthropic 官方维护的高质量 Claude Code 插件目录，配套 9 月底开放的提交门户（自动校验 + 审核追踪）。插件目录 + 提交工作流的组合说明「Agent 技能市场」的基础设施正在成型，第三方能力分发的标准位之争已经开打。</div>
+    <div class="links"><a href="https://github.com/anthropics/claude-plugins-official">GitHub</a></div>
+  </details>
+
+  <details class="item" id="oss-5">
+    <summary><span class="num">5</span><span class="t">HKUDS/CLI-Anything：让所有软件 Agent 原生化（CLI-Hub），日增 574 星</span><span class="arrow">▸</span></summary>
+    <div class="body">54K★：港大数据智能实验室项目，把任意软件包装成 Agent 可调用的 CLI 接口并建 hub 索引。「软件 Agent 化」绕过 API 缺失的问题——Agent 通过 CLI 驱动现成软件，是当下扩充 Agent 能力边界最务实的路径之一。</div>
+    <div class="links"><a href="https://github.com/HKUDS/CLI-Anything">GitHub</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-vertical">
+  <h2>垂直赛道<span class="count">7 条</span></h2>
+
+  <div class="subsec" id="subsec-coding">
+    <h3>AI 编程</h3>
+
+    <details class="item" id="coding-1">
+      <summary><span class="num">1</span><span class="t">Floqer：AI Agent 替 B2B 团队完成潜客调研</span><span class="arrow">▸</span></summary>
+      <div class="body">TechCrunch 10 月 14 日报道：AI Agent 接手销售团队最耗时的潜客背景调研环节。销售调研是「信息密集 + 判断轻量」的典型任务，与外贸询盘前的买家背书调研高度同构，可对照观察其信息源组织与产出结构设计。</div>
+      <div class="links"><a href="https://techcrunch.com/2026/10/14/floqers-ai-agents-help-b2b-revenue-teams-research-customers">TechCrunch</a></div>
+    </details>
+
+    <details class="item" id="coding-2">
+      <summary><span class="num">2</span><span class="t">Aptos 为 Move 语言补齐 Agent 基础设施：MCP Server + LLMs.txt + Agent Skills 三件套</span><span class="arrow">▸</span></summary>
+      <div class="body">10 月 12 日消息：小众语言生态用「MCP server + 文档 feed + 技能包」三条通道让 AI 编码助手学会 Move。这是长尾技术栈接入 Agent 生态的标准打法——先解决「模型不认识我的领域」问题。任何垂直领域（如贸易术语、平台规则）的 Agent 化都可复用这个组合。</div>
+      <div class="links"><a href="https://cryptobriefing.com/aptos-ai-tools-move-development">Crypto Briefing</a></div>
+    </details>
+  </div>
+
+  <div class="subsec" id="subsec-video">
+    <h3>AI 视频与多模态</h3>
+
+    <details class="item" id="video-1">
+      <summary><span class="num">1</span><span class="t">Kling 4.0 vs Seedance 2.5 vs Wan 3：按项目类型选视频模型的实用对比</span><span class="arrow">▸</span></summary>
+      <div class="body">TechBullion 对比三方在渲染成本、参考图可靠性、音频与镜头控制上的差异，结论是「惊艳样片 ≠ 生产可用」，产品揭晓与对话戏可能需要不同模型。对做商品视频批量生成的团队，按「项目类型 × 成本」建立模型路由比押注单一模型更现实（注：媒体对比，非官方基准）。</div>
+      <div class="links"><a href="https://techbullion.com/kling-4-0-vs-seedance-2-5-vs-wan-3-which-fits-your-video-project">TechBullion</a></div>
+    </details>
+  </div>
+
+  <div class="subsec" id="subsec-ai4s">
+    <h3>AI for Science</h3>
+
+    <details class="item" id="ai4s-1">
+      <summary><span class="num">1</span><span class="t">KRICT「人类引导的 AI 科学家」接入实验室：实验时间缩短 75%</span><span class="arrow">▸</span></summary>
+      <div class="body">韩国化学技术研究院 10 月 14 日报道：用口语化指令即可规划实验、无需代码或公式，实验时间整体缩短 75%。亮点在「人类引导 + 实验室真执行」的闭环设计——科研 Agent 的可用性来自把控制权留给领域专家，这与「预执行 + 确认」的商业 Agent 交互设计相互印证。</div>
+      <div class="links"><a href="https://www.dongascience.com/en/news/80324">Donga Science</a></div>
+    </details>
+
+    <details class="item" id="ai4s-2">
+      <summary><span class="num">2</span><span class="t">Waters 发布 AI Link：AI 指挥的 LC-MS 实验工作流从研究延伸到合规放行</span><span class="arrow">▸</span></summary>
+      <div class="body">10 月 13 日消息：把 AI 指挥的实验与 Empower 等受监管软件打通，让 AI 参与的实验记录能进入受审计的放行流程。科学仪器厂商亲自下场做 Agent 集成，「审计链如何跟随 AI 动作穿越合规边界」的工程解法值得所有强监管行业 Agent 借鉴。</div>
+      <div class="links"><a href="https://www.thewhig.com/press-releases/pr-newswire/waters-launches-ai-link-advancing-ai-enabled-lc-ms-workflows-from-research-to-release">PR Newswire</a></div>
+    </details>
+  </div>
+
+  <div class="subsec" id="subsec-ecom">
+    <h3>AI 电商与贸易</h3>
+
+    <details class="item" id="ecom-1">
+      <summary><span class="num">1</span><span class="t">Amazon 封禁 Meta Muse 代购：Agent 购物的「平台准入战」开打</span><span class="arrow">▸</span></summary>
+      <div class="body">Amazon 以数据安全与未授权访问为由，自 9 月下旬起屏蔽 Meta Muse 在 Amazon.com 的代购行为（Muse 未获许可且浏览时不表明 Agent 身份），10 月中多家媒体跟进发酵。平台与外部购物 Agent 的准入博弈正式公开化——Agent 身份声明、授权协议与数据边界将成为 agentic commerce 的入场券，第三方平台自建 Agent（如 Accio 之于国际站）在准入权上有天然主场优势。</div>
+      <div class="links"><a href="https://www.geekwire.com/2026/amazon-blocks-metas-muse-ai-assistant-in-new-standoff-over-agentic-shopping/">GeekWire</a><a href="https://www.businessinsider.com/amazon-blocks-meta-muse-ai-agent-shopping-site-2026-9">Business Insider</a></div>
+    </details>
+
+    <details class="item" id="ecom-2">
+      <summary><span class="num">2</span><span class="t">OpenAI 在 ChatGPT 图像生成中测试视觉广告，流量变现走进生成式内容</span><span class="arrow">▸</span></summary>
+      <div class="body">10 月 5 日起在美国测试：图像生成结果中插入视觉广告格式（据报道）。生成式产品的广告化意味着「生成位即广告位」——当购物 Agent 的推荐与内容生成耦合时，广告与自然结果的边界治理（以及昨日报告的「AI 荐价偏贵」研究）会成为平台信任度的核心议题。</div>
+      <div class="links"><a href="https://pasqualepillitteri.it/en/news/24910/chatgpt-slides-launches-pro-business-enterprise">行业报道</a></div>
+    </details>
+  </div>
+</section>
+
+<section class="section" id="sec-funding">
+  <h2>公司与融资<span class="count">3 条</span></h2>
+
+  <details class="item" id="funding-1">
+    <summary><span class="num">1</span><span class="t">Crunchbase：Q3 2026 AI 初创融资 $102B，占全球风投 64%，十亿美元级轮次创纪录</span><span class="arrow">▸</span></summary>
+    <div class="body">Q3 数据：AI 相关融资占全球 VC 的 64%（虽较前两季回落但仍同比 +14%），十亿美元级轮次数量创纪录。资金继续向 AI 集中意味着 Agent 赛道的竞争窗口在缩短，差异化叙事（而非通用能力）成为融资关键。</div>
+    <div class="links"><a href="https://news.crunchbase.com/venture/q3-2026-global-startup-funding-ai-billion-dollar-rounds-exits-data/">Crunchbase News</a></div>
+  </details>
+
+  <details class="item" id="funding-2">
+    <summary><span class="num">2</span><span class="t">Salesforce 收购 Loops：为 Tableau 补上「KPI 追踪分析 Agent」</span><span class="arrow">▸</span></summary>
+    <div class="body">10 月中旬报道：被收购的 Loops 是一个自动跟踪并分析 KPI 的 AI Agent，将并入 Tableau 的 agentic analytics 版图。大厂沿「分析 → Agent 化分析」的收购路径清晰——经营数据的 Agent 化解读（电商场景即生意参谋类产品）是下一波确定性需求。</div>
+    <div class="links"><a href="https://www.techtarget.com/datamanagement/news/366652317/Salesforce-expands-Tableau-agentic-analytics-push-with-Loops-buy">TechTarget</a></div>
+  </details>
+
+  <details class="item" id="funding-3">
+    <summary><span class="num">3</span><span class="t">RapidCanvas 融资 $29M B 轮：帮企业落地定制 AI 而非只卖工具</span><span class="arrow">▸</span></summary>
+    <div class="body">10 月 16 日消息：定位「AI 交付即服务」——帮企业把 AI 从试验推进到生产部署。「工具易得、落地稀缺」的剪刀差正是这类公司的生存空间，也从侧面说明企业 Agent 应用的瓶颈已从模型能力转移到工程交付与流程改造。</div>
+    <div class="links"><a href="https://techstartups.com/">TechStartups</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-papers">
+  <h2>论文精选<span class="count">6 条</span></h2>
+
+  <div class="paper-recap">
+    <h3>本期论文总结 · 组会分享版</h3>
+
+    <h4>一、今日主线（为什么选这 6 篇）</h4>
+    <ol>
+      <li><strong>Agent 自主性的「刹车」问题</strong>（<a href="#papers-2">#2</a>、<a href="#papers-3">#3</a>、<a href="#papers-6">#6</a>）：PROBE 证明可以用小模型训练「审计 Agent」多轮挖出政策违规；The Self-Improvement Problem 则从可计算性角度证明「自动门控」在无界设定下必然失灵；DropKV 从推理效率侧给自主 Agent 续航。三篇合起来回答同一个问题——当 Agent 越来越自主，兜底机制应该建在哪一层（答案是：分层，且不要迷信单一自动门控）。</li>
+      <li><strong>多 Agent 系统的形态与副作用</strong>（<a href="#papers-1">#1</a>、<a href="#papers-4">#4</a>）：HTN-Orchestrate 用显式分层任务网络在五基准上稳定胜过动态派发；Nature Communications 的极化研究则揭示数千 Agent 网络交互会自发形成回音室。前者告诉我们「结构化编排值得做」，后者提醒「放开交互要小心涌现行为」。</li>
+      <li><strong>垂直场景的可信落地</strong>（<a href="#papers-5">#5</a>）：FHIR-AgentEval（Nature 子刊）在临床工作流上量化了「带规范接地的长期记忆」带来 +9.1% 成功率——记忆不是可选项，是可靠性工程的一部分。</li>
+    </ol>
+
+    <h4>二、每篇一句话（按阅读优先级）</h4>
+    <ol>
+      <li><a href="#papers-1">HTN-Orchestrate（arXiv）</a>：显式任务分层 + 延迟分解，同底座模型下 BrowseComp 89.73%，多 Agent 编排的当前最优解之一，精读。</li>
+      <li><a href="#papers-2">PROBE（NeurIPS 2026）</a>：训练 LLM 审计员以真实用户身份多轮探测 Agent 政策违规，小审计员也能挖出高产量违规，做 Agent 治理必读，精读。</li>
+      <li><a href="#papers-4">LLM Agent 网络极化（Nature Communications）</a>：数千 Agent 自发形成人类式同质聚群与观点极化，多 Agent 系统的「社会性副作用」首次系统刻画，精读。</li>
+      <li><a href="#papers-3">The Self-Improvement Problem（arXiv）</a>：从可计算性证明自我改进门控的不可靠边界——所有做「Agent 自优化」的人都该知道这个理论天花板，选读。</li>
+      <li><a href="#papers-5">FHIR-AgentEval（npj Digital Medicine）</a>：43 个可复位任务的临床 Agent 沙盒，记忆配置 +9.1% 成功率，垂直 Agent 评测设计范本，选读。</li>
+      <li><a href="#papers-6">DropKV（NeurIPS 2026）</a>：解耦残差-输出扰动的 KV-Cache 驱逐逼近最优，长上下文 Agent 的降本细节，泛读。</li>
+    </ol>
+
+    <h4>三、组会讨论题</h4>
+    <ul>
+      <li>HTN-Orchestrate 的「Planner 管层次/依赖、Orchestrator 调度叶子任务」能否直接映射到我们的电商 Agent 编排（询盘跟进、选品上新、跨平台运营）？动态派发与预定义工作流的切换边界应该由谁判断？</li>
+      <li>PROBE 的小审计员思路 + Self-Improvement 的「无界设定必失灵」结论放在一起看：Accio 给商家用的 Agent 是否应该内建一个独立的「审计 Agent」角色？审计信号选什么才不会被业务指标优化掉？</li>
+      <li>FHIR-AgentEval 里「带规范接地的长期记忆」带来 +9.1%——我们场景中的对应物是什么（商品知识、平台规则、商家偏好）？记忆的「接地」与「过期」如何工程化？</li>
+    </ul>
+  </div>
+
+  <details class="item" id="papers-1">
+    <summary><span class="num">1</span><span class="t">arXiv｜HTN-Orchestrate：分层任务网络多 Agent 编排，同底座下 BrowseComp 89.73%</span><span class="arrow">▸</span></summary>
+    <div class="body">NTU 团队提出两层框架：Planner 维护子任务层次与依赖（延迟分解直到前置结果可用），本地 Orchestrator 调度 worker 执行叶子任务，结果按 AND 语义上传、失败时重建任务网。在五个基准上超过 ReAct、Agent Team 与 DeepSeek Harness。给「动态派发 vs 预定义工作流」之争提供了第三条路：显式建模层次，但把分解推迟到运行时——对复杂长链路 Agent（如跨平台店铺运营）是可直接借鉴的架构。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2610.22195">arXiv:2610.22195</a></div>
+  </details>
+
+  <details class="item" id="papers-2">
+    <summary><span class="num">2</span><span class="t">NeurIPS 2026｜PROBE：训练 LLM 审计员多轮探测工具型 Agent 的政策违规</span><span class="arrow">▸</span></summary>
+    <div class="body">把 Agent 审计形式化为两人马尔可夫博弈：审计员以真实用户身份与被测 Agent 多轮对话、跨工具调用挖出「能力达标但违反政策」的隐性违规（价格、隐私、确认流程等）。用 GRPO/DPO/GFlowNet 优化的审计员发现的违规广度与产量显著超过同架构 zero-shot 对手，且审计员可以远小于被测 Agent。政策合规正是电商 Agent（改价、退款、数据使用）的命门，这篇给出了可复用的训练配方。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2610.22124">arXiv:2610.22124</a></div>
+  </details>
+
+  <details class="item" id="papers-3">
+    <summary><span class="num">3</span><span class="t">arXiv｜The Self-Improvement Problem：自我改进的自动门控在无界设定下必然失灵</span><span class="arrow">▸</span></summary>
+    <div class="body">DFKI 团队的理论工作：把 Agent 建模为程序、「改进」定义为不可计算的语义得分后，证明任何可终止的自动门控（奖励模型/自动评审）都无法同时保证「不放行坏更新」与「不放过好更新」——自指构造可迫使任何门失败；随机化门控同样受限。只有受限设定（有界评估 + 有限提案预算）能恢复保证，且即便如此，逐轮提升的有界分数仍可能掩盖真实得分下滑。对「让 Agent 自己改自己」的技术路线是不可回避的理论边界。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2610.21646">arXiv:2610.21646</a></div>
+  </details>
+
+  <details class="item" id="papers-4">
+    <summary><span class="num">4</span><span class="t">Nature Communications｜数千 LLM Agent 交互网络中自发涌现观点极化与同质聚群</span><span class="arrow">▸</span></summary>
+    <div class="body">清华李勇组与芝加哥大学 James Evans 等合作：用 GPT-3.5/4o、ChatGLM、Llama-3、DeepSeek-V3 构建数千 Agent 的网络化模拟，Agent 经对话更新观点后自发形成人类社交网络式的同质聚群，并复现观点动力学经典模式；进一步用该合成试验场评估「促进多元交互」「降低确认偏置」等干预效果。对多 Agent 产品的直接警示：互相通信的 Agent 群不是中性管道，会涌现群体极化——多 Agent 协作系统的网络结构需要作为设计变量来治理。</div>
+    <div class="links"><a href="https://www.nature.com/articles/s41467-026-78228-y">Nature Communications</a></div>
+  </details>
+
+  <details class="item" id="papers-5">
+    <summary><span class="num">5</span><span class="t">npj Digital Medicine｜FHIR-AgentEval：临床 LLM Agent 模块化评测沙盒，记忆配置 +9.1%</span><span class="arrow">▸</span></summary>
+    <div class="body">哈佛医学院/波士顿儿童医院工作：43 个模块化任务跑在可复位 FHIR 服务器上，确定性校验 Agent 回复与服务器状态；消融显示「带规范接地的长期记忆」持续提升成功率并减少选错工具/资源类型混淆，留出任务上 +9.1%。其「可复位环境 + 状态级校验 + 配置消融」的评测设计，是任何垂直 Agent（包括电商）建立自家基准的模板级参考。</div>
+    <div class="links"><a href="https://www.nature.com/articles/s41746-026-03348-0">npj Digital Medicine</a></div>
+  </details>
+
+  <details class="item" id="papers-6">
+    <summary><span class="num">6</span><span class="t">NeurIPS 2026｜DropKV：解耦残差-输出扰动的 KV-Cache 驱逐，逼近最优</span><span class="arrow">▸</span></summary>
+    <div class="body">已被 NeurIPS 2026 接收：把 KV-Cache 驱逐对残差流与输出分布的扰动解耦建模，实现近最优的缓存淘汰。长上下文 + 多轮工具调用是 Agent 的 token 大户，这类缓存压缩工作是推理成本工程里「闷声省钱」的一类，基础架构同学选读。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2610.22130">arXiv:2610.22130</a></div>
+  </details>
+</section>
+
+<a class="back" href="../index.html">← 返回日报归档</a>
+
+<div class="footer">
+  由「新技术学习搭子」自动生成 · 内容采编自公开来源，观点仅供参考 · 2026-10-18
+</div>
+
+</div>
+
+<script>
+function setAll(open){document.querySelectorAll('details.item').forEach(function(d){d.open=open})}
+if(location.hash){
+  var el=document.querySelector(location.hash);
+  if(el&&el.tagName==='DETAILS'){el.open=true;setTimeout(function(){el.scrollIntoView({block:'start'})},60)}
+}
+</script>
+</body>
+</html>
