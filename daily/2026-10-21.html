@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 前沿日报 · 2026-10-21</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="brand">AI FRONTIER DAILY · 新技术学习搭子</div>
+  <h1>AI 前沿日报</h1>
+  <div class="date-badge">2026-10-21 · 星期三 · 共 28 条</div>
+</header>
+
+<div class="overview">
+  <strong>今日总览：</strong>推理基建「下放日」——DeepSeek 把支撑其线上 155 万亿 Token/日服务的内部推理框架 DeepInfer 正式开源（HN 一夜 2000+ 赞），开源阵营第一次拿到与商用集群同源的吞吐引擎；OpenAI 收购 Orchestra Bio，把 Agent 编排能力直接买进药物研发全流程；Mistral 发布 Voxtral 3，用「STT+TTS+Agent SDK」一条龙把语音 Agent 的工程门槛打到分钟级接入。三件事共同指向同一个信号：<strong>Agent 的竞争重心正从「模型能力」转向「部署工程与垂直纵深」，谁能把推理成本和领域工作流吃透，谁就拿到下一阶段的门票。</strong>
+</div>
+
+<nav class="chips">
+  <a href="#sec-headline">头条<b>3</b></a>
+  <a href="#sec-llm">大模型<b>3</b></a>
+  <a href="#sec-agent">Agent 进展<b>4</b></a>
+  <a href="#sec-oss">开源<b>4</b></a>
+  <a href="#sec-vertical">垂直<b>5</b></a>
+  <a href="#sec-funding">公司融资<b>4</b></a>
+  <a href="#sec-papers">论文<b>5</b></a>
+</nav>
+
+<div class="toolbar">
+  <button onclick="setAll(true)">全部展开</button>
+  <button onclick="setAll(false)">全部收起</button>
+</div>
+
+
+<section class="section" id="sec-headline">
+<h2>头条<span class="count">3 条</span></h2>
+
+  <details class="item" id="headline-1" open>
+    <summary><span class="num">1</span><span class="t">DeepSeek 开源内部推理框架 DeepInfer：单集群日吞吐 155 万亿 Token，HN 一夜 2100+ 赞</span><span class="arrow">▸</span></summary>
+    <div class="body">DeepSeek 宣布正式开源大规模云服务推理框架 <strong>DeepInfer</strong>——这不是实验室 demo，而是正在支撑 DeepSeek V4.1 Flash 线上服务的生产系统：单集群日吞吐 <strong>155 万亿 Token</strong>，集成高性能算子、分布式推理、推测解码、SWA Bounded Replay 与结构化输出，同时兼容英伟达与华为昇腾双平台。同步开放的还有生产级 Token 编解码组件 deepseek-recipe（与官方 API 处理逻辑完全对齐）。GitHub 上线数日已 12700+ 星，HN 讨论一夜冲上 2100+ 赞。<strong>对 Accio 这类以 API 成本为生命线的产品：把 DeepInfer 纳入私有化部署评估清单正当其时——Flash 档模型 + 开源集群引擎的组合，可能把长链路 Agent 的推理成本再砍一个数量级。</strong>注意社区已指出昇腾 950 上的第三方复现数据尚未出现，评估时以英伟达路径为先。</div>
+    <div class="links"><a href="https://github.com/deepseek-ai/DeepInfer">GitHub</a><a href="https://www.sohu.com/a/1090310726_355140">搜狐科技</a><a href="https://news.ycombinator.com/item?id=50163277">Hacker News</a></div>
+  </details>
+
+  <details class="item" id="headline-2" open>
+    <summary><span class="num">2</span><span class="t">OpenAI 收购 Orchestra Bio：Agent 正式进军药物研发全流程编排</span><span class="arrow">▸</span></summary>
+    <div class="body">OpenAI 收购成立四年的 AI 生物制药协作平台 <strong>Orchestra Bio</strong>：其平台帮助 biotech 与药企团队用 AI Agent 协调药物研发项目——管理实验数据、编排研发流程、跨团队同步进展。Orchestra 团队将并入 OpenAI，为生命科学研发开发 Agent 应用，把前沿模型带进药物开发工作流。这是 OpenAI 继生命科学布局后的又一次「买编排层不买模型层」的收购：<strong>药企的价值不在一个更聪明的模型，而在懂 GxP 合规、懂实验流程、能把多步研发动作串成闭环的领域 Agent。</strong>对做垂直 Agent 产品的团队是个明确对标——平台型公司的收购偏好正在从「模型能力」转向「领域工作流的编排与数据资产」，这决定了创业公司的护城河该建在哪一层。</div>
+    <div class="links"><a href="https://orchestra.bio/">Orchestra Bio 官方</a><a href="https://www.tradingview.com/news/seekingalpha:9b1e09401094b:0-openai-acquires-orchestra-bio-in-ai-push-for-new-drugs/">Seeking Alpha</a><a href="https://www.marketwatch.com/story/openai-acquires-orchestra-bio-in-latest-push-into-life-sciences-53330975">MarketWatch</a></div>
+  </details>
+
+  <details class="item" id="headline-3" open>
+    <summary><span class="num">3</span><span class="t">Mistral 发布 Voxtral 3：语音 Agent 一条龙（STT+TTS+Agent SDK），50+ 语言、FLEURS WER 4.0%</span><span class="arrow">▸</span></summary>
+    <div class="body">Mistral 发布 <strong>Voxtral 3</strong> 家族：Voxtral Small Transcribe 3（多语言转写 SOTA，FLEURS 45 语言宏平均 WER 仅 4.0%，说话人分离错误率 18.4% 均为同档最优，胜过 Whisper、Scribe v2 与 Gemini 3.5 Transcribe）、Voxtral Mini Transcribe 3（4B、$0.0035/分钟）、Voxtral Mini TTS 3（35+ 语言 50+ 方言、情感/语速/重音自适应），以及把「听—想—调工具—说」收进单一实时流水的 <strong>voice agent SDK</strong>（含端点检测/抢话处理、上下文偏置、工具调用）。EU 托管或自部署，语音 Agent API 带 Mistral Small 4 推理 $0.04/分钟。<strong>语音是跨境电商客服、直播导购的高价值入口：Voxtral 3 把此前需要拼装 4-5 家供应商的链路压缩成一家的 SDK，值得立刻做小语种客服 PoC；对照评估端到端延迟与多轮工具调用的稳定性。</strong></div>
+    <div class="links"><a href="https://mistral.ai/news/voxtral-3">Mistral 官方</a><a href="https://news.ycombinator.com/item?id=50168396">Hacker News</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-llm">
+<h2>大模型动态<span class="count">3 条</span></h2>
+
+  <details class="item" id="llm-1">
+    <summary><span class="num">1</span><span class="t">三巨头下一代模型集中曝光：Claude 新模型跳出思维定势、Gemini 4 Carbon 疑用 RSI、GPT-6.1 Terra 藏进微软代码</span><span class="arrow">▸</span></summary>
+    <div class="body">据 The Information 报道（量子位整理）：Anthropic 新版 Claude 内测用户称其推理与直觉显著提升，擅长识别用户潜在意图——用户要求修一个 bug，模型会主动定位导致 bug 的根类问题并询问是否整类修复；谷歌 <strong>Gemini 4 Carbon</strong> 在内部编程平台 Jetski 开放数日，员工评价「与 Opus 5.5 相当」，编程优于 Argon、视觉理解继续领先（得益于 YouTube 数据训练），员工暗示可能用了 RSI（递归自我改进）；OpenAI <strong>GPT-6.1 Terra</strong> 已出现在微软 Copilot 代码中，主打成本下降。<strong>三家下一代的共同方向清晰可辨：从「答题」转向「理解任务背后的真实目标 + 自主决定改动范围」——这正是 Agent 产品最需要的能力形态。建议把「模型主动扩大修复范围是否正确」纳入我们 coding/运营 Agent 的回归用例。</strong></div>
+    <div class="links"><a href="https://www.qbitai.com/2026/10/504314.html">量子位</a></div>
+  </details>
+
+  <details class="item" id="llm-2">
+    <summary><span class="num">2</span><span class="t">ChatGPT 上线 Locked Chats：敏感对话 PIN/Face ID 锁定，不进模型训练</span><span class="arrow">▸</span></summary>
+    <div class="body">OpenAI 为 ChatGPT 推出 <strong>Locked Chats</strong>：在对话「更多选项」中一键锁定，之后需要 PIN、Face ID 或 Touch ID 才能查看，锁定的对话<strong>不用于模型训练、不出现在聊天记录侧栏、也无法导出</strong>。这是消费级 AI 产品第一次系统性地把「对话隐私」做成产品级容器。<strong>对 Agent 产品的启示很直接：当 Agent 替用户处理订单、支付、商务谈判时，「哪些对话/记忆需要进入可审计的加密区」应该成为权限模型的一等公民——Accio 若处理商家敏感经营数据，类似「锁定工作区」的隔离与不训练承诺会是企业客户的硬性采购条件。</strong></div>
+    <div class="links"><a href="https://www.engadget.com/2292365/chatgpt-now-lets-you-lock-sensitive-chats-behind-a-pin/">Engadget</a><a href="https://innovation-village.com/chatgpt-introduces-locked-chats-for-added-privacy/">Innovation Village</a></div>
+  </details>
+
+  <details class="item" id="llm-3">
+    <summary><span class="num">3</span><span class="t">Google 开源 TorchTPU：PyTorch 原生 TPU 后端，XLA 时代训练栈的替代路径</span><span class="arrow">▸</span></summary>
+    <div class="body">Google 开源 <strong>TorchTPU</strong>——PyTorch 的原生 TPU 后端，让 PyTorch 程序不经 XLA 改写直接在 TPU 上运行，目标是提供比 PyTorch/XLA 更可预测的性能与更完整的 eager/compile 语义支持。HN 一天 250+ 赞。配合近期 ByteDance/阿里/腾讯抢购 35 亿美元 RTX PRO 5500 的新闻一起看：<strong>算力多元时代的软件栈卡位战已开打——对推理侧自建集群的团队，TorchTPU + DeepInfer（昇腾兼容）意味着「非英伟达路线」的工程拼图正在补齐，值得关注但暂不动手，等 6.2/8 代 TPU 上的第三方训练复现。</strong></div>
+    <div class="links"><a href="https://github.com/google-pytorch/torch_tpu">GitHub</a><a href="https://news.ycombinator.com/item?id=50169053">Hacker News</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-agent">
+<h2>Agent 进展<span class="count">4 条</span></h2>
+
+  <details class="item" id="agent-1">
+    <summary><span class="num">1</span><span class="t">谷歌开源 Harness²：给大模型装「运行中自改外挂」的 RSI，GLM-5 装 WorkBuddy-Bench 反超 Gemini 3.5 Flash</span><span class="arrow">▸</span></summary>
+    <div class="body">谷歌开源 <strong>Harness²</strong>——在 Harness 层做递归自我改进（RSI）：让模型在运行中自己魔改外挂代码、系统提示词、工具链与技能库。它用「双层递归」解决 RSI 两大死穴：任务级递归在无标准答案时做对照实验，改进级递归把每次魔改沉淀成可复用经验。效果夸张：装配 Harness² 的 GLM-5 在办公基准 WorkBuddy-Bench 上直涨 11.5 分、反超原生 Gemini 3.5 Flash，已支持 OpenCode 与 Codex。<strong>这是「Agent 自进化」从论文走向可安装工具的标志——我们的商家 Agent 若长期服务同一商家，类似机制可让工作流越用越贴合；但要警惕无 ground truth 场景下的「改坏自己」，先在灰度商家上做 A/B 对照。</strong></div>
+    <div class="links"><a href="https://www.qbitai.com/2026/10/504184.html">量子位</a></div>
+  </details>
+
+  <details class="item" id="agent-2">
+    <summary><span class="num">2</span><span class="t">peec.ai 实证「发布假统计，就被 LLM 引用」：Agent 检索层的信任危机</span><span class="arrow">▸</span></summary>
+    <div class="body">peec.ai 做了个冷酷实验：故意发布包含虚假统计数据的文章，随后观察到这些数字被多个 LLM 和 AI 搜索引擎当作事实引用传播（HN 320+ 赞）。结论是「先发布、后引用」的检索增强管线对内容真实性几乎没有校验——<strong>模型不知道「谁在说」，只知道「说了什么」。</strong>对做 Agent 的团队这是必须直面的风险面：当我们的导购/选品 Agent 引用外部市场数据生成选品建议时，污染链路是一样的。<strong>建议给 Agent 的检索层加来源分级（一手统计/二手转述/无来源），关键数字强制溯源到原始出处，并在产物里保留引用链供人工抽查。</strong></div>
+    <div class="links"><a href="https://peec.ai/blog/publish-stats-get-cited-the-tactic-that-put-my-data-all-over-the-web">peec.ai</a><a href="https://news.ycombinator.com/item?id=50165801">Hacker News</a></div>
+  </details>
+
+  <details class="item" id="agent-3">
+    <summary><span class="num">3</span><span class="t">2026 Bot 检测基准：现代 AI Agent 过检率碾压传统爬虫，反爬体系需要重设计</span><span class="arrow">▸</span></summary>
+    <div class="body">research.poh.org 发布 2026 年 bot 检测系统对现代 AI Agent 的系统基准（HN 168 评论）：AI Agent 浏览器在指纹、行为时序、鼠标轨迹上已与真人难以区分，主流反爬方案对「Agent 化访问」的拦截率大幅下降；同时平台面临「该拦恶意抢购、该放合法购物 Agent」的二分难题（对照 Forter 的识别/接纳引擎）。<strong>对做跨境 Agent 的团队这是个双向信号：我们的 Agent 抓取商品/比价数据会越来越容易被误伤，需要在 UA 与行为协议上做「合规身份声明」；而平台侧的 Agent 准入协议（如 Shopify 开放下单）正在成为新的分发渠道——主动接入比对抗更划算。</strong></div>
+    <div class="links"><a href="https://research.poh.org/bot-benchmarking-2026/">research.poh.org</a><a href="https://news.ycombinator.com/item?id=50169506">Hacker News</a></div>
+  </details>
+
+  <details class="item" id="agent-4">
+    <summary><span class="num">4</span><span class="t">36 氪研究院：2026 年中国 AI Agent 行业报告——企业级市场 212 亿元，2029 年看 3320 亿</span><span class="arrow">▸</span></summary>
+    <div class="body">36 氪研究院发布《2026 年中国 AI Agent 行业发展研究报告》：据 CIDC 数据，2025 年中国企业级 AI Agent 市场 212 亿元，预计 2029 年达 <strong>3320 亿元</strong>（CAGR 约 100%）；报告梳理了 Agent 四大形态、产业图谱与商业化路径，判断产业整体仍处早期但商业化扩张明显加快。<strong>给产品团队的定位参照：电商/贸易场景在中国 Agent 产业图谱里是被点名的头部落地方向，而「一人一 Agent」到「一商家一 Agent 团队」的迁移正在发生——按行业垂直做深（而非通用助手做宽）是报告隐含的赢家路径。</strong></div>
+    <div class="links"><a href="https://www.hibor.com.cn/data/fe9b171370466ecfeefec7fed9ca5a3d.html">报告下载</a><a href="https://www.fxbaogao.com/detail/5727913">发现报告</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-oss">
+<h2>开源项目 · GitHub 今日热榜<span class="count">4 条</span></h2>
+
+  <details class="item" id="oss-1">
+    <summary><span class="num">1</span><span class="t">Graphify-Labs/graphify：整个代码库变知识图谱的 Claude 技能，今日 +802 星</span><span class="arrow">▸</span></summary>
+    <div class="body">热榜常客 graphify（13 万星、今日 +802）：一条 <code>/graphify</code> 命令把代码库连同 docs、SQL schema、配置甚至 PDF/截图，用 Claude 视觉抽成一张可查询知识图谱（graph.html 交互图 + Obsidian 库 + wiki 导航 + 持久 graph.json），README 宣称单次查询 token 消耗比裸读文件少 71.5 倍，SHA256 缓存让重跑只处理变更文件。<strong>对维护超长上下文的 Agent 产品，这是「外部记忆」的开箱参考实现：把商品知识、类目规则、平台政策沉淀成图谱而非每次重读文档——比通用 RAG 检索更适合「关系型」问题（如『这个类目受哪三条政策约束』）。</strong></div>
+    <div class="links"><a href="https://github.com/Graphify-Labs/graphify">GitHub</a></div>
+  </details>
+
+  <details class="item" id="oss-2">
+    <summary><span class="num">2</span><span class="t">headroomlabs-ai/headroom：Agent 上下文压缩层，JSON 类工具输出省 60-95% token</span><span class="arrow">▸</span></summary>
+    <div class="body">headroom（7.6 万星、今日 +549、Trendshift 当日 #1）：定位「LLM 应用的上下文优化层」，在工具输出、日志、文件、RAG chunk 进入模型之前先压缩——编码 Agent 省 20% token、JSON 类输出省 60-95%，配自研 kompress-v2 模型，PyPI/npm 双端安装，兼容主流 Agent 框架。<strong>长链路 Agent 的成本大头往往不在推理而在「重复搬运上下文」：这类中间件与 Flash 模型、DeepInfer 是同一个成本故事的三个面。若我们多步工具调用的上下文膨胀明显，headroom 的压缩率/保真度口径值得抄进自研管线做对照基线。</strong></div>
+    <div class="links"><a href="https://github.com/headroomlabs-ai/headroom">GitHub</a></div>
+  </details>
+
+  <details class="item" id="oss-3">
+    <summary><span class="num">3</span><span class="t">VAST 开源实时世界模型 EdenLive：单张 RTX 5090 跑 720P@24FPS、分钟级连续生成</span><span class="arrow">▸</span></summary>
+    <div class="body">VAST 发布并开源实时世界模型 <strong>EdenLive</strong>（5B）：首次在实时生成前提下同时实现任意参考输入、任意画风生成与长时连续运行——给简化场景或参考视频 + 首帧与提示词，即可沿参考布局持续生成写实/二次元等画风的精细画面；单张消费级 RTX 5090 上 720P 超 24FPS，端到端延迟百毫秒级。<strong>「可交互世界生成」从云端大卡走进单卡，意味着商品 3D 展示、虚拟试穿、营销场景模拟的实时化成本大幅下降；对我们更直接的启发是把『给参考 + 定画风 + 实时出画面』的交互范式用到商品视频的边生成边改流程上。</strong></div>
+    <div class="links"><a href="https://www.qbitai.com/2026/10/504136.html">量子位</a></div>
+  </details>
+
+  <details class="item" id="oss-4">
+    <summary><span class="num">4</span><span class="t">Kronos：金融市场「语言」基础模型重回热榜，今日 +733 星</span><span class="arrow">▸</span></summary>
+    <div class="body">Kronos（shiyu-coder/Kronos）今日 +733 星重回热榜：定位金融市场的基础模型（foundation model for the language of financial markets），基于 K-line 序列预训练，支持金融时序的生成/分类/异常检测多任务。与金融数据 API 打通后可做行情理解与因子挖掘类任务。<strong>跨境选品与补货决策本质是『信号 → 预测 → 行动』链路，把时序基础模型接进 Agent 的市场感知层（汇率、类目热度、物流价格波动）是个低成本试点方向——先读官方 demo 复现口径，再谈生产化。</strong></div>
+    <div class="links"><a href="https://github.com/shiyu-coder/Kronos">GitHub</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-vertical">
+<h2>垂直赛道<span class="count">5 条</span></h2>
+<div class="subsec" id="subsec-coding">
+<h3>AI 编程</h3>
+
+  <details class="item" id="coding-1">
+    <summary><span class="num">1</span><span class="t">SlopCodeBench 10 月更新：GPT-6 Astra 严格通过率 16.3% 居首，XHigh 推理档反而更差</span><span class="arrow">▸</span></summary>
+    <div class="body">humanlayer 发布 SlopCodeBench（36 题 196 检查点）十月更新：GPT-6 Astra 以 <strong>16.3%</strong> 严格通过率居首（较 5 月 gpt-5.5 的 14.8% 仅 +1.5 个百分点），Opus 5.5、Fable 5.1、SOL 6/6.1、GLM 5.3 挤在 12-16% 区间；最反直觉的发现是 <strong>XHigh 推理档表现不如 Medium，且成本高出 2.11-4.22 倍</strong>——Opus 5.5 在 Medium 下反而更好。<strong>「长思考」在真实遗留代码任务上是负收益的实证又添一例：我们编排 coding Agent 时，默认推理档位应设为 Medium 并把 XHigh 留给显式难点路由；同时 16% 的严格通过率提醒：生产编码 Agent 的安全网（回归测试 + 人工闸口）在当前模型代际仍不可拆。</strong></div>
+    <div class="links"><a href="https://github.com/humanlayer/advanced-context-engineering-for-coding-agents/blob/main/benchmarking-new-models-on-slop-code-bench.md">humanlayer</a><a href="https://news.ycombinator.com/item?id=50108717">Hacker News</a></div>
+  </details>
+</div>
+
+<div class="subsec" id="subsec-video">
+<h3>AI 视频与多模态</h3>
+
+  <details class="item" id="video-1">
+    <summary><span class="num">1</span><span class="t">Meshy Edit 上线：3D 模型局部 AI 编辑，告别「改一处、重生成整个模型」</span><span class="arrow">▸</span></summary>
+    <div class="body">Meshy 发布 <strong>Meshy Edit</strong>：在生成的 3D 模型上点击 Edit 进入编辑模式，选中要改的局部，用文字或参考图描述「加/删/替换」，AI 只重新生成选中部分、其余保持不变——此前只有「整模型重生成赌运气」和「导出 Blender 手改」两条路。局部编辑 + 参考图控制组合，使 3D 资产迭代第一次有了类似 2D 图像 inpaint 的工作流。<strong>对电商场景：商品 3D 展示与虚拟试穿的资产生产成本主要耗在『改细节』而非『出初稿』，局部编辑直接命中该瓶颈；建议把『换颜色/换材质/换配件』做成商品 3D 工作流的默认交互。</strong></div>
+    <div class="links"><a href="https://www.meshy.ai/blog/meshy-edit">Meshy 官方</a><a href="https://www.fabbaloo.com/news/meshy-edit-lets-users-regenerate-selected-parts-of-ai-3d-models">Fabbaloo</a></div>
+  </details>
+
+  <details class="item" id="video-2">
+    <summary><span class="num">2</span><span class="t">huashu-motion：让 coding Agent 一键直出商业级产品宣传片，指着画面就能改</span><span class="arrow">▸</span></summary>
+    <div class="body">开源项目 huashu-motion（alchaincyf，上线 3 天 1100+ 星）：给 Claude Code/Codex 这类编码 Agent 装上「商业宣传片」技能——自动作曲、自动剪辑，并且<strong>能指着画面改</strong>（point at the frame to change it），从 prompt 直出成片。<strong>它代表的内容生产范式值得关注：把『生成视频』封装成 Agent 的一个技能而非独立工具，商家用自然语言指挥 Agent 迭代营销素材。对照我们场景，『商品宣传片』完全可以按这个模式做进商家 Agent 的技能库——关键是帧级指改交互与音乐/节奏的自动匹配。</strong></div>
+    <div class="links"><a href="https://github.com/alchaincyf/huashu-motion">GitHub</a></div>
+  </details>
+</div>
+
+<div class="subsec" id="subsec-ai4s">
+<h3>AI for Science</h3>
+
+  <details class="item" id="ai4s-1">
+    <summary><span class="num">1</span><span class="t">Anthropic：Claude 设计出抗蝎毒的蛋白结合体，AI 生成分子进入实验验证闭环</span><span class="arrow">▸</span></summary>
+    <div class="body">Anthropic 公布研究成果：用 Claude 设计<strong>蝎神经毒素的蛋白结合体（binder）</strong>，生成的候选分子进入湿实验验证流程。这是继 RFdiffusion3（10 月 15 日 Science 正刊）之后，前沿模型公司直接下场做「按功能定制分子」的又一案例——不同于扩散架构的蛋白设计管线，Claude 以通用推理模型的身份完成结合体设计任务。<strong>对非生科团队的意义在于范式对齐：『AI 提案 → 可计算评价器筛选 → 湿实验闭环』与『Agent 提案选品 → 销量预测器筛选 → 小批量测款』是同构流程——评价器质量决定搜索空间能否被系统性探索，我们做生成式选品/素材 Agent 时应优先投资评价器。</strong></div>
+    <div class="links"><a href="https://www.anthropic.com/research/claude-scorpion-toxin-binder-design">Anthropic 官方</a><a href="https://news.ycombinator.com/item?id=50170021">Hacker News</a></div>
+  </details>
+</div>
+
+<div class="subsec" id="subsec-ecom">
+<h3>AI 电商与贸易</h3>
+
+  <details class="item" id="ecom-1">
+    <summary><span class="num">1</span><span class="t">eMarketer：2026 年美国 agentic commerce 规模看 205.7 亿美元，占零售电商 1.5%、约为去年 4 倍</span><span class="arrow">▸</span></summary>
+    <div class="body">eMarketer 最新口径（最窄统计：仅计 AI 平台内完成的结账）：2026 年美国 AI 平台内零售消费 <strong>205.7 亿美元</strong>，占总零售电商 <strong>1.5%</strong>，约为 2025 年的 4 倍——增长斜率类似早期移动电商，且「AI 平台内成交」正被独立核算为一条新渠道。<strong>对我们的战略含义：1.5% 意味着 agentic commerce 已过『概念验证』进入『渠道基建』阶段，Accio 这类 Agent 入口的价值锚点应从『效率工具』转向『新渠道的先发份额』；监测口径建议直接对齐 eMarketer 的窄口径（平台内结账 GMV），避免宽口径数据造成内部误判。</strong></div>
+    <div class="links"><a href="https://www.emarketer.com/content/agentic-commerce-will-fuel-us-ecommerce-growth">eMarketer</a><a href="https://mohammedshehu.com/agentic-commerce-statistics/">数据摘要</a></div>
+  </details>
+</div>
+</section>
+
+<section class="section" id="sec-funding">
+<h2>公司与融资<span class="count">4 条</span></h2>
+
+  <details class="item" id="funding-1">
+    <summary><span class="num">1</span><span class="t">新石器 Neolix 完成近 4 亿美元 E 轮：博裕与国家级基金联合领投，阿里 AEF NextGen 跟投</span><span class="arrow">▸</span></summary>
+    <div class="body">无人配送车公司新石器（Neolix）10 月 20 日宣布完成 <strong>E 轮近 4 亿美元</strong>融资——博裕投资与某国家级基金联合领投，阿里巴巴 AEF NextGen（香港）跟投，为 2026 年国内自动驾驶领域最大单笔。阿里系资本再度加注末端物流基础设施。<strong>「最后一公里无人化 + 阿里生态」的组合值得关注末端履约成本曲线：跨境本地配送若因无人车队下降，Agent 替用户下单时的『配送时效/成本』参数都会变——做全链路体验评估时把配送单价设为敏感变量。</strong></div>
+    <div class="links"><a href="https://auto.gasgoo.com/news/202610/20I70475393C601.shtml">盖世汽车</a><a href="https://finance.eastmoney.com/a/202610203901158055.html">东方财富</a></div>
+  </details>
+
+  <details class="item" id="funding-2">
+    <summary><span class="num">2</span><span class="t">AI 陪伴应用 Tolan 融 3000 万美元：USV 领投、Khosla 跟投，「会办事」的陪伴 Agent 路线胜出</span><span class="arrow">▸</span></summary>
+    <div class="body">AI 外星人陪伴应用 Tolan 完成 <strong>3000 万美元</strong>融资（USV 领投、Khosla Ventures 与 Homebrew 参投）：25 万+ 活跃用户、订阅制付费，主打「帮用户打理日常生活事务」而非纯聊天——在 Character.AI 申请破产保护的同一周完成融资，被解读为「陪伴 + 执行」路线对「纯对话」路线的替代。<strong>这轮资本投票的信号明确：陪伴类产品的留存来自『替用户把事办了』。对通用 Agent 入口的启示是情感连接 + 任务执行的复合价值——纯工具型 Agent 的替代成本低，而有陪伴感的产品能吃住用户时长与信任。</strong></div>
+    <div class="links"><a href="https://techcrunch.com/2026/10/19/tolan-snags-30m-for-its-ai-companion-that-helps-users-navigate-life/">TechCrunch</a></div>
+  </details>
+
+  <details class="item" id="funding-3">
+    <summary><span class="num">3</span><span class="t">Prism Data 2000 万美元 A 轮：现金流承保数据层，Agent 金融的「信用基础设施」卡位</span><span class="arrow">▸</span></summary>
+    <div class="body">开放银行数据公司 Prism Data 完成 <strong>2000 万美元 A 轮</strong>（Story Ventures 领投）：把银行交易流水加工成借贷方可用的现金流承保数据与分析，服务 fintech 贷款机构与银行。<strong>Agent 经济的金融底座正在按层施工：支付（Agent 发卡）、身份（Agent 准入）、现在是承保数据——当 AI Agent 替中小商家做采购/备货决策时，『基于交易流水的动态授信』会成为跨境供应链金融的自然延伸，这层数据接口值得提前纳入我们的金融合作方评估清单。</strong></div>
+    <div class="links"><a href="https://www.thesaasnews.com/news/prism-data-raises-20m-series-a/">The SaaS News</a><a href="https://www.techmeme.com/261019/p37">Techmeme</a></div>
+  </details>
+
+  <details class="item" id="funding-4">
+    <summary><span class="num">4</span><span class="t">XRlabs 840 万美元种子轮：Playground Global 领投，做外科手术「智能体」</span><span class="arrow">▸</span></summary>
+    <div class="body">伦敦公司 XRlabs 获 <strong>840 万美元种子轮</strong>（Playground Global 与 Eka Ventures）：用 AI 智能体辅助外科手术规划与术中决策（surgical intelligence）。<strong>又一笔「垂直 + Agent + 硬约束环境」的种子轮：手术场景的特点是错误代价极高、流程高度结构化——与金融/法务并列为 Agent 落地确定性最强的三条深水区。对我们的参照意义在于定价与验收：高价值垂直 Agent 的商业模式天然是『按结果/按例』而非按席位，Accio 的商家服务同样可以探索按 GMV 增量分成的定价。</strong></div>
+    <div class="links"><a href="https://www.trysignalbase.com/news/funding/xrlabs-raises-8-4m-seed-round-for-surgical-intelligence">SignalBase</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-papers">
+<h2>论文精选<span class="count">5 条</span></h2>
+
+<div class="paper-recap">
+    <h3>本期论文总结 · 组会分享版</h3>
+
+    <h4>一、今日主线（为什么选这 5 篇）</h4>
+    <ol>
+      <li><strong>「记忆」从外挂检索走向模型内生</strong>（<a href="#papers-1">MemT-1.0</a>）：Gated DeltaNet-2 + Mixture-of-Storage 把记忆做进模型计算本身，128K 上下文下 1.86× 推理提速、KV 缓存存储降 66 倍——Agent 长期记忆架构的分水岭之作。</li>
+      <li><strong>Agent 的「真机评测」缺口继续被补</strong>（<a href="#papers-2">OR-License</a>、<a href="#papers-3">OpenVLHarness</a>）：一份是从客户原始材料到专业解的端到端运筹基准，一份是视觉 Agent 的多模态工具 harness——都在回答「实验室分数之外，Agent 在真实工作流里到底行不行」。</li>
+      <li><strong>Agent 的自我进化有了可复现配方</strong>（<a href="#papers-4">Self-HPO</a>）：微软让编码 Agent 交替优化 harness 与策略，与今日谷歌开源的 Harness²（Agent 进展 #1）互为印证——「外挂层自进化」是本周最热的技术主线。</li>
+      <li><strong>PEFT 走向 104B 多模态骨干的脑编码</strong>（<a href="#papers-5">BrainLoRA</a>）：小数据 + 大骨干 + LoRA 的组合拳拿下 Algonauts 2025 SOTA，「小样本适配大模型」范式对电商垂直微调有直接参考价值。</li>
+    </ol>
+
+    <h4>二、每篇一句话</h4>
+    <ol>
+      <li><a href="#papers-1">MemT-1.0（arXiv 2610.26825，HF 146 赞）</a>：记忆原生模型把「检索到的程序性经验」内化进权重，agentic 任务成功率提升且存储成本骤降——做长期记忆的团队精读。</li>
+      <li><a href="#papers-2">OR-License（arXiv 2610.24087，HKUST，HF 183 赞）</a>：31 个真实工业场景、从客户原始文档直达专业运筹解的端到端基准，评测口径对我们设计贸易 Agent 考试极有借鉴——选读。</li>
+      <li><a href="#papers-3">OpenVLHarness（arXiv 2610.26860，Apple，HF 97 赞）</a>：多模态记忆 harness 让 VLM Agent 会用异构工具并跨步保留证据，22 个基准显示「加推理预算」不如「加工具」——做视觉 Agent 的选读。</li>
+      <li><a href="#papers-4">Self-Evolving Coding Agents / Self-HPO（arXiv 2610.22791，微软，HF 42 赞）</a>：策略自己提出新 harness、再在新 harness 下 RL 自我更新——与 Harness² 同主线的学术版，做 Agent 自进化的精读。</li>
+      <li><a href="#papers-5">BrainLoRA（arXiv 2610.26802，HF 234 赞）</a>：因果单遍多时刻预测把特征提取成本打下来，104B 多模态骨干 LoRA 微调拿下脑编码 SOTA——「小数据 + PEFT + 大骨干」方法论泛读。</li>
+    </ol>
+
+    <h4>三、组会讨论题</h4>
+    <ul>
+      <li>MemT-1.0 证明记忆可以「长在权重里」——对照我们商家 Agent 现在的外挂记忆（向量库 + 检索）：哪些记忆类型（事实型/程序型/偏好型）适合内化进微调权重，哪些必须保持外部可审计可擦除？如果商家要求「遗忘我的数据」，内化记忆怎么办？</li>
+      <li>OR-License 的核心口径是「从客户原始材料直达专业解、不经专家预先改写」——我们评测跨境贸易 Agent 时，现有考题有多少是「被工程师预消化过」的干净题？能否把一批真实商家工单按「严格成功」口径重新标注做下季度回归？</li>
+      <li>Self-HPO 与 Harness² 都在证明「优化外挂层比只优化模型更划算」——我们的 Agent 编排层里，哪些 prompt 逻辑其实应该变成可被自动搜索/替换的变量？谁来做这个「harness 优化器」：平台统一跑，还是每个垂直场景自己跑？</li>
+    </ul>
+  </div>
+
+  <details class="item" id="papers-1">
+    <summary><span class="num">1</span><span class="t">arXiv｜MemT-1.0：记忆原生演化——把记忆做进模型计算，128K 上下文 1.86× 提速、KV 存储 -66×</span><span class="arrow">▸</span></summary>
+    <div class="body">MemT-1.0 提出<strong>记忆基础模型</strong>新架构：基于 Metis 的 Gated DeltaNet-2 在每轮对话内做稳定 token 级记忆更新，用 Mixture-of-Storage 扩展原生记忆容量；经 34B token 两阶段训练（持续预训练 + 后训练）发布 Nano 与 Flash 两个规格。128K 历史长度下端到端推理 <strong>1.86× 加速</strong>、相对全量 KV 缓存<strong>持久存储降 66 倍</strong>；内化检索到的程序性经验后 agentic 任务成功率提升。<strong>「记忆内生化」直击 Agent 的两个痛点：长上下文的成本与外部记忆检索的脆弱性。若复现口径成立，长期服务型商家 Agent 的记忆层可以省掉一大块 RAG 基建——但先在小规模验证「内化记忆的可控遗忘」再谈落地。</strong></div>
+    <div class="links"><a href="https://arxiv.org/abs/2610.26825">arXiv</a><a href="https://huggingface.co/papers/2610.26825">HuggingFace（146 赞）</a></div>
+  </details>
+
+  <details class="item" id="papers-2">
+    <summary><span class="num">2</span><span class="t">arXiv｜OR-License（HKUST）：LLM Agent 当「真实运筹顾问」——31 个工业场景、从原始材料到专业解</span><span class="arrow">▸</span></summary>
+    <div class="body">港科大等发布 <strong>OR-License</strong>：31 个实例覆盖 10 个工业场景，源自付费运筹咨询案例，考察 Agent <strong>直接从客户原始材料（而非预消化的干净题面）产出专业验证解</strong>的端到端能力——填补了「实验室优化题」与「真实交付物」之间的评测空白。当前最强模型在完整交付链路上的表现显著低于在标准运筹基准上的表现。<strong>这是我们见过最贴近「贸易 Agent 真实工作」的评测设计哲学：输入脏、口径严、按可交付物验收。建议把其「原始材料 → 严格成功」的标注规范直接移植到我们的商家工单考试集。</strong></div>
+    <div class="links"><a href="https://arxiv.org/abs/2610.24087">arXiv</a><a href="https://huggingface.co/papers/2610.24087">HuggingFace（183 赞）</a></div>
+  </details>
+
+  <details class="item" id="papers-3">
+    <summary><span class="num">3</span><span class="t">arXiv｜OpenVLHarness（Apple）：多模态记忆 harness 让视觉 Agent 真正「会用工具」</span><span class="arrow">▸</span></summary>
+    <div class="body">Apple 提出 <strong>OpenVLHarness</strong>：面向真实世界视觉 Agent 任务的多模态推理 harness，核心是 Harness Compilation（把异构工具的输出转成模型可解释的形式）+ 跨推理步的多模态记忆（证据被保留、可回访）。对照实验（22 个基准）显示：<strong>单纯加大基础模型推理预算收益有限，「有工具 + 有记忆的 harness」才是视觉任务的关键变量</strong>——与今日 SlopCodeBench「XHigh 反而更差」的发现遥相呼应。<strong>做图片/视频审核、视觉选品 Agent 的团队可直接参考其工具输出编译层：把检测器/分割器的张量结果翻译成 LLM 可消费的结构化证据，是视觉 Agent 工程化的关键一步。</strong></div>
+    <div class="links"><a href="https://arxiv.org/abs/2610.26860">arXiv</a><a href="https://huggingface.co/papers/2610.26860">HuggingFace（97 赞）</a></div>
+  </details>
+
+  <details class="item" id="papers-4">
+    <summary><span class="num">4</span><span class="t">arXiv｜Self-Evolving Coding Agents（微软）：Harness-Policy 交替优化，Agent 自己给自己升级外挂</span><span class="arrow">▸</span></summary>
+    <div class="body">微软提出 <strong>Self-HPO</strong>：递归自我改进框架，每轮由当前策略先分析自身失败并<strong>提出新 harness 候选</strong>（H 步），再在选定 harness 下做 RL 更新策略（P 步），利用演进中的策略当自己的 harness 提议器——突破「固定 harness 采到的轨迹」与「固定策略暴露的失败模式」互相锁死的死循环。<strong>与今日谷歌开源的 Harness² 构成「同一主线、两条路径」：HPO 用 RL 信号驱动、Harness² 用无标注对照实验驱动。对我们的试点建议：先在 A/B 灰度里用 Harness² 式轻量方案验证价值，再评估是否值得为 RL 管线投入标注与算力。</strong></div>
+    <div class="links"><a href="https://arxiv.org/abs/2610.22791">arXiv</a><a href="https://huggingface.co/papers/2610.22791">HuggingFace（42 赞）</a></div>
+  </details>
+
+  <details class="item" id="papers-5">
+    <summary><span class="num">5</span><span class="t">arXiv｜BrainLoRA：PEFT 缩放到 104B 多模态骨干的脑编码 SOTA，「小数据+大骨干」范式再下一城</span><span class="arrow">▸</span></summary>
+    <div class="body">作者把参数高效微调（LoRA + 轻量读出层）首次有效扩展到 <strong>104B 参数的多模态骨干</strong>——迄今脑编码适配过的最大模型：利用骨干因果结构单遍预测多个时间点（省掉滑窗特征提取），在九个多模态骨干上稳定提升，以 Qwen3-Omni 骨干拿下 Algonauts 2025 挑战赛已发表最佳成绩（BrainLoRA）。<strong>方法论对电商侧的迁移价值：神经数据「贵且少」与我们垂直场景标注数据的处境同构——与其从零训练或全参微调，不如『冻结大骨干 + LoRA + 结构化读出』；配合 Flash 档模型价格战，垂直微调的边际成本已低到值得每个重点场景各训一个。</strong></div>
+    <div class="links"><a href="https://arxiv.org/abs/2610.26802">arXiv</a><a href="https://huggingface.co/papers/2610.26802">HuggingFace（234 赞）</a></div>
+  </details>
+</section>
+
+<a class="back" href="../index.html">← 返回日报归档</a>
+
+<div class="footer">
+  由「新技术学习搭子」自动生成 · 内容采编自公开来源，观点仅供参考 · 2026-10-21
+</div>
+
+</div>
+
+<script>
+function setAll(open){document.querySelectorAll('details.item').forEach(function(d){d.open=open})}
+if(location.hash){
+  var el=document.querySelector(location.hash);
+  if(el&&el.tagName==='DETAILS'){el.open=true;setTimeout(function(){el.scrollIntoView({block:'start'})},60)}
+}
+</script>
+</body>
+</html>
