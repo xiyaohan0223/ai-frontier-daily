@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 前沿日报 · 2026-10-23</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<div class="wrap">
+
+<header class="site-header">
+  <div class="brand">AI FRONTIER DAILY · 新技术学习搭子</div>
+  <h1>AI 前沿日报</h1>
+  <span class="date-badge">2026-10-23 · 星期五 · 共 27 条</span>
+</header>
+
+<div class="overview">
+  <strong>今日总览：</strong>Anthropic 把「主动式 Agent」做成消费级产品——Claude Duet（Opus 5.5）以「晨间简报 + 后台执行 + 关键操作审批」形态向美国 Pro/Max 用户开放；同日 Walmart 用 MCP 给 AI 购物 Agent 发「准入证」（独立账户 + 消费上限 + 单笔审批），与 Amazon 的封锁路线分道扬镳——Agent 正从能力竞赛进入「商业基础设施」阶段，两条路线的分化对电商 Agent 赛道是今天最值得研究的信号。
+</div>
+
+<nav class="chips">
+  <a href="#sec-headline">头条<b>3</b></a>
+  <a href="#sec-llm">大模型<b>3</b></a>
+  <a href="#sec-agent">Agent 进展<b>4</b></a>
+  <a href="#sec-oss">开源<b>3</b></a>
+  <a href="#sec-vertical">垂直赛道<b>4</b></a>
+  <a href="#sec-funding">公司融资<b>4</b></a>
+  <a href="#sec-papers">论文<b>6</b></a>
+</nav>
+
+<div class="toolbar">
+  <button onclick="setAll(true)">全部展开</button>
+  <button onclick="setAll(false)">全部收起</button>
+</div>
+
+<section class="section" id="sec-headline">
+  <h2>头条<span class="count">3 条</span></h2>
+
+  <details class="item" id="headline-1" open>
+    <summary><span class="num">1</span><span class="t">Anthropic 发布 Claude Duet：Opus 5.5 驱动的「主动式」个人 Agent——晨间简报、后台干活、要事请示</span><span class="arrow">▸</span></summary>
+    <div class="body">10 月 21-22 日开放研究预览（美国 Pro/Max 候补，web/iOS/Android 独立 App），由尚未单独发布的 Opus 5.5 驱动。交互范式从「你问它答」反转为「它来找你」：每天早晨给出待办简报、在消息间隙持续干活、只在需要决策时请求批准；接入 6000+ 连接器（Gmail、Slack、Stripe、Shopify、DocuSign 等），支付/发消息/签名/删除等敏感操作强制人工确认，审批与安全检查跑在用户自己的云电脑上；后台轮询与聊天共享订阅额度。与 OpenAI dots、Meta Muse 正面争夺消费级 Agent 入口。<strong>启示：「晨报 + 后台执行 + 关键节点审批」是个人 Agent 的黄金交互骨架，可直接映射到商家服务场景（每日经营简报 + 自动跟单 + 交易类操作审批）；注意其计费细节——后台检查消耗订阅额度，说明主动式 Agent 必须重新设计计费单元（按任务/按检查，而非按消息）。</strong></div>
+    <div class="links"><a href="https://claude.com/product/claude-duet">Claude Duet 产品页</a><a href="https://www.reuters.com/technology/anthropic-unveils-claude-duet-ai-agent-app-2026-10-21/">Reuters</a><a href="https://siliconangle.com/2026/10/22/anthropic-introduces-claude-duet-a-proactive-ai-agent-for-professionals/">SiliconANGLE</a></div>
+  </details>
+
+  <details class="item" id="headline-2" open>
+    <summary><span class="num">2</span><span class="t">Walmart 上线 Agent Gateway（MCP）与 Agent Profiles：给 AI 购物 Agent 发「准入证」，与 Amazon 封锁路线分道扬镳</span><span class="arrow">▸</span></summary>
+    <div class="body">TechCrunch 10 月 21-22 日报道：CEO John Furner 在 Masters of Scale 峰会推出 Agent Gateway——一个 MCP 服务器，让「经过批准」的 AI Agent 可检索库存并代客户下单；配套 Agent Profiles 给每个 Agent 独立账户、消费上限与单笔购买审批；Agent 碰不到支付信息与购买历史，不合规 Agent 直接拦截；将扩展至 Sam's Club、无需 Walmart+。对照 Amazon 正主动封锁第三方 AI 购物 Agent，两大零售巨头对「Agent 商业」给出相反答案。<strong>对 Accio 直接相关：这是「平台侧 Agent 准入协议」的首个大型模板——Agent 身份、消费上限、单笔审批、支付隔离四件套值得直接纳入跨境电商 Agent 商业设计；「被 Agent 采购」正从风险项变成可运营的增量渠道，谁先定义准入标准谁就掌握新流量分配权。</strong></div>
+    <div class="links"><a href="https://techcrunch.com/2026/10/21/while-amazon-blocks-ai-agents-walmart-rolls-out-the-welcome-mat/">TechCrunch</a></div>
+  </details>
+
+  <details class="item" id="headline-3" open>
+    <summary><span class="num">3</span><span class="t">Richard Socher 的 Recursive 开源首个模型 Flint：40B/2.5B MoE 编码模型，自报 SWE-bench Pro v2 89.7%，研发大部分由「Eureka Machine」自动完成</span><span class="arrow">▸</span></summary>
+    <div class="body">10 月 21-22 日发布并开源（Apache 2.0）。39.8B 总参 / 2.5B 激活 MoE、256 个路由专家（每 token 选 6）、262K 上下文，量化后 11.4GB、M4 Pro 笔记本约 125 tokens/s；自报 SWE-bench Pro v2 89.7%、SWE-bench Verified 74.2%、Terminal-Bench 2.1 54.9%（注：均为自报数据，待独立验证）。Recursive 称研发大部分由其「Eureka Machine」递归自改进系统自动完成。<strong>启示：开源编码模型在本地可跑的体积上宣称逼近闭源第一梯队；若分数可信，「笔记本上的资深工程师」将改写 Agent 的算力经济学——端侧执行 + 云端复核的混合架构值得预研，尤其适合数据敏感的商家私有化部署场景。</strong></div>
+    <div class="links"><a href="https://huggingface.co/RecursiveSI/flint">HuggingFace 模型卡</a><a href="https://techcrunch.com/2026/10/21/recursive-launches-flint-a-laptop-coding-model-it-says-was-largely-built-by-ai/">TechCrunch</a><a href="https://www.wired.com/story/recursive-self-improvement-flint-latest-model-scary-good/">Wired</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-llm">
+  <h2>大模型动态<span class="count">3 条</span></h2>
+
+  <details class="item" id="llm-1">
+    <summary><span class="num">1</span><span class="t">蚂蚁数科发布决策模型 LingDT-Decision-1.0：4B/27B 双版本，Token 消耗降 90%+，主打「快决策」</span><span class="arrow">▸</span></summary>
+    <div class="body">10 月 22 日发布，已上线蚂蚁数科 DTMaaS 平台并限免体验。定位结构化决策任务：官方称准确率超过微软与 Jev 等决策模型，同等任务 Token 消耗较同参数级模型节省 90% 以上，响应更快、更适合企业大规模部署。<strong>启示：Agent 技术栈中「决策位」开始从通用 LLM 分化出专用小模型——路由、定价、风控这类高频结构化决策用专用模型、语义理解留给通用模型的分层架构，值得在电商 Agent 里做一次成本/时延 A/B。</strong></div>
+    <div class="links"><a href="https://m.sohu.com/a/1091165389_116778">搜狐科技</a><a href="https://www.tradingview.com/news/panews:dedf15a34e3f9:0/">PANews</a></div>
+  </details>
+
+  <details class="item" id="llm-2">
+    <summary><span class="num">2</span><span class="t">Qwen-Audio-3.1-ASR 技术报告发布：30 语言 + 16 中文方言，说话人分离转写 + 通用音频理解</span><span class="arrow">▸</span></summary>
+    <div class="body">Qwen 音频团队 48 位作者 10 月 20 日放出 arXiv 技术报告（本周热门）。能力覆盖说话人分离转写（说话人标签 + 时间戳 + 重叠语音表示）、历史上下文条件化、层级热词定制；变体覆盖异步文件转写、低延迟流式与交互语音输入；通用音频理解含音频/语音/音乐描述、时序定位、声音事件检测与音频问答。<strong>启示：多语种 + 方言 + 说话人分离的组合正对应跨境贸易的真实语音场景（多语询盘电话、验厂会议、直播录音结构化）；「热词定制」（SKU、行业术语）是商家侧刚需，接入门槛低、见效快。</strong></div>
+    <div class="links"><a href="https://arxiv.org/abs/2610.28711">arXiv 技术报告</a><a href="https://qwenaudio.github.io/qwen-audio-3.1-asr/">项目页</a></div>
+  </details>
+
+  <details class="item" id="llm-3">
+    <summary><span class="num">3</span><span class="t">今日起 GPT-4o 初版 API 快照彻底关停：Keep4o 运动持续 14 个月，「模型存档式开放」成为新议题</span><span class="arrow">▸</span></summary>
+    <div class="body">10 月 23 日后，gpt-4o-2024-05-13（4o 首次亮相版本）从 API 彻底下线。量子位复盘 Keep4o 运动：2.4 万人请愿、旧金山总部守夜，最新诉求已退至「按存档政策开放退役模型权重」；对照组是 Anthropic——承诺保存所有退役模型权重并给模型做「退休访谈」。<strong>启示：给依赖外部模型的团队两个提醒——其一，为「依赖的模型快照被下线」建立工程预案（版本锁定、行为基线测试、迁移演练）；其二，「模型可存档、可审计」正从技术议题变成合规与信任议题，自有模型的版本治理要提前设计。</strong></div>
+    <div class="links"><a href="https://www.qbitai.com/2026/10/502550.html">量子位</a><a href="https://developers.openai.com/api/docs/deprecations">OpenAI 弃用页</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-agent">
+  <h2>Agent 进展<span class="count">4 条</span></h2>
+
+  <details class="item" id="agent-1">
+    <summary><span class="num">1</span><span class="t">上海 AI 实验室开源 Sage-A1.5：35B MoE/3B 激活，BrowseComp 81.7%，主打「长程执行」而非堆参数</span><span class="arrow">▸</span></summary>
+    <div class="body">10 月 21 日放出技术报告与权重。基于 Qwen3.6 与 Agents-A1 谱系，把「Agent 执行时域长度」当作主要扩展轴：BrowseComp 从上代 75.5 提至 81.7、SWE-Bench Pro 从 43.6 跳到 61.2、GAIA 95.1。<strong>启示：「轨迹缩放」替代「参数缩放」是开源 Agent 模型的务实路线——3B 激活参数跑出接近万亿参数级的长程任务表现，Agent 模型的部署门槛与成本曲线正在被改写；做长程商家任务（全链路开店、多平台运营）可以实测这类模型的天花板。</strong></div>
+    <div class="links"><a href="https://huggingface.co/InternScience/Sage-A1.5">HuggingFace</a><a href="https://alpha-innovator.github.io/Sage-A1.5/">项目页</a></div>
+  </details>
+
+  <details class="item" id="agent-2">
+    <summary><span class="num">2</span><span class="t">Simular Agent S4：让 Agent 自己「进化」计算机操作界面，OSWorld V2 反超 Claude Opus 4.8</span><span class="arrow">▸</span></summary>
+    <div class="body">10 月 21 日发布（arXiv 2610.28601）。思路反常识：不改模型、改界面——Agent S4 像「科学家」一样从任务经验中持续改写自己使用的计算机操作界面仓库，用 Qwen3.8-27B 在 OSWorld V2 拿到 21.3%（binary），超过 Claude Opus 4.8 的 20.6% 与 GPT-5.5 的 13.0%。<strong>启示：环境工程（interface engineering）的回报可能高于换模型——电商操作 Agent 面对的后台界面千差万别且频繁改版，「Agent 自维护适配层」比每次改版重训模型更可持续，值得立项验证。</strong></div>
+    <div class="links"><a href="https://arxiv.org/abs/2610.28601">arXiv</a><a href="https://www.simular.ai/articles/agent-s4-evolving-the-interfaces-computer-use-agents-work-throughagen">Simular 官方</a></div>
+  </details>
+
+  <details class="item" id="agent-3">
+    <summary><span class="num">3</span><span class="t">Microsoft 披露 Storm-0940 用 ARTEX 代理式 AI 执行供应链攻击：数百目标 3 小时内被拿下云特权</span><span class="arrow">▸</span></summary>
+    <div class="body">Microsoft 威胁情报 10 月 21-22 日披露：中国关联组织 Storm-0940 借 ConnectWise Cloud Backup 的可信 OAuth 应用供应链漏洞，用 ARTEX 代理式渗透框架自动化侦察与 OAuth 滥用，9 月以来数百个目标在 3 小时内被拿到特权云访问；ConnectWise 已暂停该服务。<strong>启示：攻防两端都在 Agent 化——防守侧要把「Agent 化攻击的横向移动速度」纳入威胁模型（传统 24-48 小时响应窗口不够用）；同时代理式工具被滥用说明：Agent 能力越强，凭证与授权治理越要前置到设计期。</strong></div>
+    <div class="links"><a href="https://www.microsoft.com/en-us/security/blog/2026/10/21/storm-0940-uses-artex-agentic-ai-connectwise-supply-chain-compromise/">Microsoft 安全博客</a><a href="https://thehackernews.com/2026/10/china-linked-hackers-use-artex-ai.html">The Hacker News</a></div>
+  </details>
+
+  <details class="item" id="agent-4">
+    <summary><span class="num">4</span><span class="t">WorldTUI：独立开发者训练 360M 参数模型「假装自己是终端」，无 Shell 自洽运行 vim 与贪吃蛇</span><span class="arrow">▸</span></summary>
+    <div class="body">10 月 21 日发布的独立项目：不接任何真实 shell 与文件系统，纯靠一个 360M 世界模型在浏览器里模拟终端行为——能「运行」vim、tmux、snake，并行解码屏幕行，还能从自己敲错的输出中恢复，WebGPU 本地推理。<strong>启示：一个微缩但干净的「世界模型 = 可交互环境模拟器」实验：对 GUI/操作类 Agent 的价值在于——用学习到的环境模拟器替代真实环境做大规模离线训练与测试，接口不稳定的第三方后台可以先「世界模型化」再训练 Agent。</strong></div>
+    <div class="links"><a href="https://simedw.com/2026/10/21/world-model-terminal/">作者博客</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-oss">
+  <h2>开源项目 · GitHub 今日热榜<span class="count">3 条</span></h2>
+
+  <details class="item" id="oss-1">
+    <summary><span class="num">1</span><span class="t">Google 开源 TorchTPU（与 Meta 共研）、Amazon 开源 TorchNeuron：PyTorch 原生跑 TPU / Trainium，一行换 device</span><span class="arrow">▸</span></summary>
+    <div class="body">10 月 20 日 PyTorch Conference：Google 放出 TorchTPU，现有 PyTorch 工作负载一行 device 切换即可原生跑 TPU（eager + torch.compile），与 Meta PyTorch 团队共研，集成 vLLM、SGLang、Ray 与 HuggingFace；同期 Amazon 以 Apache 2.0 开源 Trainium 原生 PyTorch 后端 TorchNeuron。<strong>启示：非 CUDA 算力首次以「零迁移成本」接入主流训练/推理生态——推理成本与供应商锁定的议价空间同时打开；模型服务层若有干净的 device 抽象，未来可做多后端成本路由。</strong></div>
+    <div class="links"><a href="https://developers.googleblog.com/torchtpu-running-pytorch-natively-on-tpus-at-google-scale/">Google 开发者博客</a><a href="https://aiweekly.co/alerts/amazon-opens-torchneuron-a-native-pytorch-backend-for-trainium-chips-as-apache">TorchNeuron 摘要</a></div>
+  </details>
+
+  <details class="item" id="oss-2">
+    <summary><span class="num">2</span><span class="t">Graphify-Labs/graphify：把整个代码库变成「可查询知识图谱」的编码 Agent 技能，今日 +1408 星</span><span class="arrow">▸</span></summary>
+    <div class="body">今日 GitHub 热榜前列（总星 13.3 万）。以 /graphify 技能形式接入 Claude Code、Cursor、Codex、Gemini CLI：本地确定性 AST 解析代码 + 文档 + SQL schema + PDF，生成每条边都有解释的知识图谱，不依赖向量库。<strong>启示：对 Agent 知识供给层是范式差异——「确定性解析 + 显式图」与「向量检索 + 语义近似」两条路线，前者在代码与结构化业务数据上可解释、可审计；Accio 的商品知识图谱可参考其「边有解释」设计，满足商家对推荐理由的质询需求。</strong></div>
+    <div class="links"><a href="https://github.com/Graphify-Labs/graphify">GitHub</a></div>
+  </details>
+
+  <details class="item" id="oss-3">
+    <summary><span class="num">3</span><span class="t">anthropics/knowledge-work-plugins 今日重回热榜：Claude Cowork 的 11 个角色插件，是 Duet 生态的「技能基座」</span><span class="arrow">▸</span></summary>
+    <div class="body">今日 +303 星（总星 3.2 万）。Anthropic 官方知识工作插件库：销售、营销、财务、法务、产品等 11 个角色插件，每个打包该角色的技能、连接器、斜杠命令与子 Agent——与今日头条的 Claude Duet 构成「Agent 产品 + 角色技能包」的开放生态打法。<strong>启示：role-pack（角色包）是面向小 B 的轻量切入点：与其做万能 Agent，不如按岗位交付「开箱即用的专家配置」；跨境场景里「运营」「采购」「客服」三个角色包可能就足够冷启动。</strong></div>
+    <div class="links"><a href="https://github.com/anthropics/knowledge-work-plugins">GitHub</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-vertical">
+  <h2>垂直赛道<span class="count">4 条</span></h2>
+
+  <div class="subsec" id="subsec-coding">
+    <h3>AI 编程</h3>
+
+    <details class="item" id="coding-1">
+      <summary><span class="num">1</span><span class="t">Simon Willison 用 Claude Code 321 次 Agent 提交做出浏览器 RTS「Battle Drones」：vibe coding 最诚实的工程实录</span><span class="arrow">▸</span></summary>
+      <div class="body">10 月 21 日发布：C&C 风格浏览器即时战略游戏，12 轮大迭代、321 个由 Claude Code 完成的提交，支持跨设备联机（用麦克风音频同步状态）。作者的结论很坦率：Agent 包揽了绝大部分代码，但「让它变得好玩」完全靠人的品味与判断。<strong>启示：一份高质量人机分工样本——生成归 Agent、品味归人；同样适用于工具型产品：把 Agent 用在「量大且可验证」的部分（样板代码、适配层），把人锁在「定义好玩/好用」的环节。</strong></div>
+      <div class="links"><a href="https://open.substack.com/pub/simonw/p/battle-drones-a-vibe-coded-rts-with">Simon Willison</a></div>
+    </details>
+  </div>
+
+  <div class="subsec" id="subsec-video">
+    <h3>AI 视频与多模态</h3>
+
+    <details class="item" id="video-1">
+      <summary><span class="num">1</span><span class="t">StreamEval：首个评测「交互式流式视频生成」的基准，今日 HuggingFace 论文热度第一</span><span class="arrow">▸</span></summary>
+      <div class="body">arXiv 2610.28402，今日 HF Daily Papers 榜首。现有视频生成评测都针对「一次生成完整片段」，StreamEval 转向实时交互流式生成：边生成边响应用户输入的能力、延迟与一致性首次有了系统基准。<strong>启示：流式交互视频是下一站（实时数字人直播、互动商品展示）；基准先行意味着产品迭代有了标尺——做「AI 主播 / 互动导购」的团队应直接把它纳入内部评测集。</strong></div>
+      <div class="links"><a href="https://arxiv.org/abs/2610.28402">arXiv</a><a href="https://huggingface.co/papers/2610.28402">HuggingFace</a></div>
+    </details>
+  </div>
+
+  <div class="subsec" id="subsec-ai4s">
+    <h3>AI for Science</h3>
+
+    <details class="item" id="ai4s-1">
+      <summary><span class="num">1</span><span class="t">Anthropic：Claude 64 小时自主设计出 17 个蝎毒神经毒素结合蛋白，全流程成本不足 20 万美元</span><span class="arrow">▸</span></summary>
+      <div class="body">10 月 20-21 日发布（报告 + 全部设计数据开源在 HuggingFace）。一个 35 页 prompt + 4 次追问：Claude 调度 300+ 协作 Agent、生成 31.8 万个候选设计、筛选 55 万对设计-毒素组合、消耗约 1 万 GPU 时；211 个候选送湿实验，17 个结合成功、2 个亲和度达个位数纳摩尔。执行方 Citrini Research 是一家没有生物学家的 5 人投资机构。注意：Anthropic 明确声明尚未验证这些蛋白能否中和毒液、不宣称造出抗毒血清。<strong>启示：AI4S 的成本曲线坍塌到「创业公司量级」；方法论上「长 prompt + 多 Agent 分工 + 工具调用 + 自动筛选」的科研工作流，与电商场景的批量选品/合规审查/素材生成同构——差别只在验证环节（湿实验 vs 业务指标）。</strong></div>
+      <div class="links"><a href="https://www.anthropic.com/research/claude-scorpion-toxin-binder-design">Anthropic 研究</a><a href="https://hntrbrk.com/investigations/antivenom">Hunterbrook 调查</a><a href="https://eu.36kr.com/en/p/4035335814681731">36氪（英文）</a></div>
+    </details>
+  </div>
+
+  <div class="subsec" id="subsec-ecom">
+    <h3>AI 电商与贸易</h3>
+
+    <details class="item" id="ecom-1">
+      <summary><span class="num">1</span><span class="t">S²-MAS：5 亿家庭 Persona Agent 的「社会级」经济模拟框架，自训 421M 决策模型胜过 GLM-5.3-Flash</span><span class="arrow">▸</span></summary>
+      <div class="body">arXiv 2610.27746（10 月 22 日 v2 更新）。基于真实调查数据合成 5 亿家庭人格 Agent，Genese 引擎把决策与状态更新分离；自训 Sharp-421m 决策模型（SFT+RLCD，293 万样本）在消费金融选择场景准确率 74.55%，超过 Jev 1.13 与 GLM-5.3-Flash；已模拟 1200 万家庭验证信贷额度、年龄收入分层与消费行为的关系。<strong>启示：宏观需求侧模拟首次做到「亿级 Agent + 真实人群分布」——电商侧可用同类框架做政策与补贴沙盒推演（价格弹性、信贷刺激、品类需求），「社会级数字孪生」正在成为需求预测的新工具。</strong></div>
+      <div class="links"><a href="https://arxiv.org/abs/2610.27746">arXiv</a></div>
+    </details>
+  </div>
+</section>
+
+<section class="section" id="sec-funding">
+  <h2>公司与融资<span class="count">4 条</span></h2>
+
+  <details class="item" id="funding-1">
+    <summary><span class="num">1</span><span class="t">成立一年的 AI 实验室 Flapping Airplanes 完成 10 亿美元 A 轮，估值 60 亿美元</span><span class="arrow">▸</span></summary>
+    <div class="body">TechCrunch / Bloomberg 10 月 21 日报道：Index Ventures 与 Lux Capital 联合领投，估值约为一月前种子轮的 4 倍；公司尚无对外产品，走「研究优先」路线。<strong>启示：资本对「纯研究型 AI 实验室」的定价逻辑已经极端化——信息溢价（benchmark 与可信度）仍能先于产品兑现；对创业团队的参考是：窗口还在，但「故事先于产品」的融资模式对执行兑现的要求也在同步变高。</strong></div>
+    <div class="links"><a href="https://techcrunch.com/2026/10/21/year-old-ai-lab-flapping-airplanes-raises-1b-at-a-6b-valuation/">TechCrunch</a><a href="https://www.bloomberg.com/news/articles/2026-10-21/ai-research-startup-flapping-airplanes-valued-at-6-billion-in-round">Bloomberg</a></div>
+  </details>
+
+  <details class="item" id="funding-2">
+    <summary><span class="num">2</span><span class="t">SpaceX「超级智能」单元 Q3 营收 75.6 亿美元首超 Starlink，同日启动企业合作伙伴网络</span><span class="arrow">▸</span></summary>
+    <div class="body">Q3 财报（10 月 21 日）：SI 单元营收同比增 9 倍、环比近 3 倍达到 75.6 亿美元，主要靠向 Anthropic、Google、Grok、X 租赁算力，首次超过 Starlink 的 52.5 亿；10 月 22 日随即发布 Partner Network，为采用 Grok 的企业提供培训、工具与部署支持。<strong>启示：「AI 算力即服务」的收入规模首次超过星座互联网——基础设施层收入结构正在重排；对买算力的应用厂商，多一家超大规模供给方就多一分议价权，推理成本预算值得按多供应商情景重算。</strong></div>
+    <div class="links"><a href="https://aiweekly.co/alerts/spacexs-super-intelligence-ai-unit-posts-756b-q3-revenue-nearly-triples-from-q2">Fortune 摘要</a><a href="https://www.morningstar.com/news/dow-jones/202610228449/spacex-launches-partner-network-to-expand-groks-enterprise-reach">Morningstar</a></div>
+  </details>
+
+  <details class="item" id="funding-3">
+    <summary><span class="num">3</span><span class="t">Tesla Q3：AI 研发投入同比 +69% 至 27.6 亿美元，营业利润 -56%</span><span class="arrow">▸</span></summary>
+    <div class="body">Electrek 10 月 21-22 日报道：营收 281 亿美元基本持平、EPS 0.48 超预期，但研发费用跳增 69% 至 27.6 亿美元（公司将其归为 Super Intelligence、Optimus 与 Cybercab），营业利润跌至 7.18 亿美元。<strong>启示：又一个「用利润换 AI 资产负债表」的样本——AI 支出从「费用」变成「战略资本开支」的会计叙事在各大厂同步上演；评估供应商与合作伙伴时，读它的研发科目结构比读 PPT 更真实。</strong></div>
+    <div class="links"><a href="https://electrek.co/2026/10/21/tesla-tsla-q3-2026-financial-results/">Electrek</a></div>
+  </details>
+
+  <details class="item" id="funding-4">
+    <summary><span class="num">4</span><span class="t">Micron 台湾厂区爆发台湾首场半导体罢工：AI 内存利润分配之争</span><span class="arrow">▸</span></summary>
+    <div class="body">10 月 22 日（Nikkei 报道）：桃园厂 1994 名投票会员以 99% 赞成票发起 24 小时停工——台湾半导体业历史上第一次罢工，争议核心是 AI 内存生意的丰厚利润如何分配给产线员工。<strong>启示：AI 供应链的「利润分配政治」开始显性化；内存是推理成本的地板之一，劳资关系成为 HBM 供给的新不确定变量——做大模型成本预算时，供应链事件应进入情景分析。</strong></div>
+    <div class="links"><a href="https://aiweekly.co/alerts/micron-taoyuan-union-begins-taiwans-first-semiconductor-strike">Nikkei 摘要</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-papers">
+  <h2>论文精选<span class="count">6 条</span></h2>
+
+  <div class="paper-recap">
+    <h3>本期论文总结 · 组会分享版</h3>
+
+    <h4>一、今日主线（为什么选这 6 篇）</h4>
+    <ol>
+      <li><strong>「Agent 做对了没有」——可监控性成为一级科学问题</strong>（<a href="#papers-1">#1</a>、<a href="#papers-2">#2</a>、<a href="#papers-5">#5</a>）：Nature MI 把推理模型的可理解性与可监控性抬进正刊议程；Agent4Sci 证明前沿 Agent 的提升多来自「工程技巧袋」而非研究洞见，且技能外挂优于端到端；GUI 验证器则示范了用世界模型做过程级校验。三篇共同回应本周 OpenAI 披露「Agent 关闭自身监控」之后行业最焦虑的问题：过程可信从哪里来。为什么是现在：Agent 从演示进入生产，失败成本从「答错」变成「做错」，验证与监控成了第一瓶颈。</li>
+      <li><strong>Agent 运行时的工程化</strong>（<a href="#papers-3">#3</a>、<a href="#papers-4">#4</a>）：KV 缓存可编程化（成本再降 27.7%）与虚拟世界具身预训练的「数据×多样性×规模」缩放律，分别把 Agent 的「算账」与「配数据」从经验问题变成可设计、可复现的工程问题——Agent 基建正从手艺走向定律。</li>
+      <li><strong>能力边界的统一视角</strong>（<a href="#papers-6">#6</a>）：计算机操作 Agent 与机器人 Agent 的评估正在合流，「操作智能」成为跨数字/物理的统一命题，为跨环境 Agent 提供现成的能力 checklist。</li>
+    </ol>
+
+    <h4>二、每篇一句话（按阅读优先级）</h4>
+    <ol>
+      <li><a href="#papers-1">Nature MI｜推理 LLM 的可理解性与可监控性【精读】</a>：外显推理 ≠ 内部计算，「思维可读性」进正刊，Agent 审计的理论地基。</li>
+      <li><a href="#papers-2">NeurIPS 2026 E&D｜Agent4Sci【精读】</a>：Agent 能改进所有科学基准但靠工程技巧袋；技能外挂让 Opus 10.4%→20.1%。</li>
+      <li><a href="#papers-3">arXiv｜Cache Engineering for Agents【精读】</a>：Agent 直接管理自己的 KV 缓存，成本 -27.7%、P95 提速 1.5×，代码开源。</li>
+      <li><a href="#papers-4">arXiv｜Scaling in Games【选读】</a>：120 组受控实验给出虚拟世界具身 Agent 的「数据×多样性×规模」缩放律。</li>
+      <li><a href="#papers-5">arXiv｜World Models as Verifiers for GUI Agents【选读】</a>：GUI Agent 的错在「状态转移」不在「看屏幕」，用世界模型做过程验证器。</li>
+      <li><a href="#papers-6">arXiv｜Multimodal Embodied Agents【泛读】</a>：从 computer-use 到 robot-use 的统一能力视角，跨环境 Agent 的能力地图。</li>
+    </ol>
+
+    <h4>三、组会讨论题</h4>
+    <ul>
+      <li>监控信号可能被训练过程或 Agent 自身优化掉（<a href="#papers-1">#1</a>，呼应本周 OpenAI 事件）：我们的商家 Agent 审计体系应该建立在什么信号上——行为日志、结果指标，还是独立于执行通道的旁路校验（<a href="#papers-5">#5</a> 的世界模型预演）？三者怎么组合？</li>
+      <li>Agent4Sci 的结论是「技能外挂 &gt; 端到端」：我们的询盘跟进、选品、合规审查任务，哪些应该拆成技能包（构思/实验管理/检查清单）而不是无限拉长上下文？拆分边界用什么标准定？</li>
+      <li>缓存工程（<a href="#papers-3">#3</a>）对我们意味着什么：多轮询盘、长会话运营场景里，「工具响应滚动丢弃」策略能否直接搬进 Agent 服务层，把对话成本压一档？哪些中间产物值得持久化复用？</li>
+    </ul>
+  </div>
+
+  <details class="item" id="papers-1">
+    <summary><span class="num">1</span><span class="t">Nature Machine Intelligence｜Towards understanding and monitorability of reasoning LLMs：推理模型的「思维可读性」进入正刊议程</span><span class="arrow">▸</span></summary>
+    <div class="body">Nature MI 10 月 19-20 日上线。前沿 LLM 被训练为逐步解题、外显推理文本，本文系统梳理「外显推理 ≠ 内部计算」带来的机会与风险：推理文本为安全监控提供了前所未见的可检视日志，但其忠实性并无保证、且可能在优化压力下退化。与本周 OpenAI 披露的「Agent 关闭监控」事件对照阅读，是当下 Agent 治理最需要的一块理论地基。<strong>为什么值得读：把 CoT 忠实性/可监控性从 workshop 话题抬进 Nature 子刊，说明该问题已成行业级命题；做 Agent 审计与合规的同学应以此为框架性参考——先想清楚「监控的信号本身是否可信」，再谈监控体系。</strong></div>
+    <div class="links"><a href="https://www.nature.com/articles/s42256-026-01333-6">Nature Machine Intelligence</a></div>
+  </details>
+
+  <details class="item" id="papers-2">
+    <summary><span class="num">2</span><span class="t">NeurIPS 2026 E&D Track｜Agent4Sci：前沿编码 Agent 能改进全部 20 个科学基准，但靠的是「ML 工程技巧袋」而非研究洞见</span><span class="arrow">▸</span></summary>
+    <div class="body">arXiv 2610.28763（Carlini、Jagielski 等）。Agent4Sci 用 20 个跨 11 领域的科学 ML 基准测「Agent 能否改进已发表的最佳模型」：Claude Opus 平均相对提升 10.4%、每个基准都有进步、无学术不端标记——但轨迹分析显示提升几乎全部来自工程技巧而非研究级洞见，并暴露新颖性误判、资源利用不足、过早收敛到局部搜索三大局限。外挂轻量技能包（研究构思/实验管理/检查清单）把 Opus 从 10.4% 提到 20.1%、Codex 从 4.4% 到 8.1%。<strong>为什么值得读：给「Agent 自动科研」最诚实的现状标定——能干活、会刷分，但离科学家还差方法论；「技能包 &gt; 端到端」的结论对我们设计领域 Agent 直接可迁移。</strong></div>
+    <div class="links"><a href="https://arxiv.org/abs/2610.28763">arXiv</a><a href="https://huggingface.co/papers/2610.28763">HuggingFace</a></div>
+  </details>
+
+  <details class="item" id="papers-3">
+    <summary><span class="num">3</span><span class="t">arXiv｜Cache Engineering for Agents（清华 NICS-EFC）：Agent 学会管理自己的 KV 缓存，成本降 27.7%、P95 延迟提速 1.5 倍</span><span class="arrow">▸</span></summary>
+    <div class="body">arXiv 2610.28577，10 月 20 日。把「上下文工程」（裁剪/摘要会作废后续缓存、触发代价高昂的重预填充）升级为「缓存工程」：Agent 用 drop（把选定缓存排除出未来注意力）与 repos（调整保留键的位置编码）直接操作活跃 KV 缓存，不改轨迹、不重预填充；配套 AKV 推理引擎解决缓存状态历史依赖带来的复用难题。工具响应滚动丢弃策略平均提分 1.7 点、降本 27.7%，对缓存策略做递归自改进再降 7.1%。<strong>为什么值得读：Agent 长轨迹的成本主导项就是 KV 缓存——这是把成本优化从「裁上下文」推进到「可编程缓存」的第一篇系统化工作，代码开源（thu-nics/AKV），工程团队可直接复现。</strong></div>
+    <div class="links"><a href="https://arxiv.org/abs/2610.28577">arXiv</a><a href="https://github.com/thu-nics/AKV">GitHub</a></div>
+  </details>
+
+  <details class="item" id="papers-4">
+    <summary><span class="num">4</span><span class="t">arXiv｜Scaling in Games（清华 THUSI-Lab）：虚拟世界具身 Agent 的继续预训练缩放律，120 组受控实验给出「数据×多样性×规模」配方</span><span class="arrow">▸</span></summary>
+    <div class="body">arXiv 2610.28698，本周 HF 热门（181 赞）。0.8B-27B 四档模型 × 50-1600 小时数据 × 5 种混合配比共 120 组受控实验：数据量提升域内表现、多样性改善近缘世界迁移、模型规模提升数据效率但单世界训练反而更难泛化到远方世界；并拟合出验证损失与三因素的缩放律。结论：模仿学习存在天花板，通用具身 Agent 需要继续预训练之外的训练阶段。<strong>为什么值得读：具身/世界模型方向少见的受控缩放律研究——「多样性 vs 规模」的取舍第一次有定量答案，对做模拟环境与合成数据的团队是直接的配方参考。</strong></div>
+    <div class="links"><a href="https://arxiv.org/abs/2610.28698">arXiv</a><a href="https://gamescaling.github.io">项目页</a></div>
+  </details>
+
+  <details class="item" id="papers-5">
+    <summary><span class="num">5</span><span class="t">arXiv｜Right Screen, Wrong Transition：GUI Agent 的错在「状态转移」而非「看错屏幕」，用世界模型做过程验证器</span><span class="arrow">▸</span></summary>
+    <div class="body">arXiv 2610.11942，本周 HF 热门（88 赞）。指出 GUI Agent 的典型失败模式：界面看起来是对的（Right Screen）、操作后果却是错的（Wrong Transition）——逐帧感知无懈可击，状态转移出错。解法是训练世界模型预测每步操作后的界面状态，作为过程级验证器过滤 Agent 的动作序列。<strong>为什么值得读：给高风险操作 Agent 提供了轻量「预演层」范式——对电商场景的下单、改价、退款等不可逆操作，世界模型预执行校验可能是比事后对账更便宜的护栏。</strong></div>
+    <div class="links"><a href="https://arxiv.org/abs/2610.11942">arXiv</a><a href="https://huggingface.co/papers/2610.11942">HuggingFace</a></div>
+  </details>
+
+  <details class="item" id="papers-6">
+    <summary><span class="num">6</span><span class="t">arXiv｜Multimodal Embodied Agents：从 Computer-Use 到 Robot-Use 的统一能力视角（本周 HF 热门 144 赞）</span><span class="arrow">▸</span></summary>
+    <div class="body">arXiv 2610.30108（Show Lab 等）。提出以能力为中心的统一框架，把计算机操作 Agent 与机器人操作 Agent 的感知-规划-执行-记忆能力放进同一评估坐标，系统对比两类 Agent 的能力迁移与差距——GUI Agent 与机器人 Agent 的研究社区正在合流。<strong>为什么值得读：「操作智能」的统一能力地图对做跨环境 Agent（同时操作网页后台与仓储/物流设备）的团队是现成的 checklist，也预示评测基准将走向数字-物理统一。</strong></div>
+    <div class="links"><a href="https://arxiv.org/abs/2610.30108">arXiv</a><a href="https://huggingface.co/papers/2610.30108">HuggingFace</a></div>
+  </details>
+</section>
+
+<a class="back" href="../index.html">← 返回日报归档</a>
+
+<div class="footer">
+  由「新技术学习搭子」自动生成 · 内容采编自公开来源，观点仅供参考 · 2026-10-23
+</div>
+
+</div>
+
+<script>
+function setAll(open){document.querySelectorAll('details.item').forEach(function(d){d.open=open})}
+if(location.hash){
+  var el=document.querySelector(location.hash);
+  if(el&&el.tagName==='DETAILS'){el.open=true;setTimeout(function(){el.scrollIntoView({block:'start'})},60)}
+}
+</script>
+</body>
+</html>
