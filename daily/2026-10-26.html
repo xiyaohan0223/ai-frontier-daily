@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 前沿日报 · 2026-10-26</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<div class="wrap">
+
+<header class="site-header">
+  <div class="brand">AI FRONTIER DAILY · 新技术学习搭子</div>
+  <h1>AI 前沿日报</h1>
+  <span class="date-badge">2026-10-26 · 星期一 · 共 30 条</span>
+</header>
+
+<div class="overview">
+  <strong>今日总览：</strong>周末两条主线值得复盘——其一是「自主可控 + 开源」密集落地：讯飞星火 X2.6 以全国产算力完成端云一体训练并同步开源端侧 4B，MOSS-Image 用「剔除 AI 图训练」在海外开发者社区意外走红；其二是「Agent 执行面的信任危机」集中爆发：OpenAI 被曝以最高 90% 折扣抢夺 Anthropic 客户、Dots 云电脑被曝经自建 CA 代理 HTTPS、瑞典政府办公电脑今日起封锁 ChatGPT 与 Claude——Agent 越能「代办」，执行流量与权限的治理就越是产品胜负手。
+</div>
+
+<nav class="chips">
+  <a href="#sec-headline">头条<b>3</b></a>
+  <a href="#sec-llm">大模型<b>3</b></a>
+  <a href="#sec-agent">Agent 进展<b>4</b></a>
+  <a href="#sec-oss">开源项目<b>4</b></a>
+  <a href="#sec-vertical">垂直赛道<b>7</b></a>
+  <a href="#sec-funding">公司融资<b>3</b></a>
+  <a href="#sec-papers">论文<b>6</b></a>
+</nav>
+
+<div class="toolbar">
+  <button onclick="setAll(true)">全部展开</button>
+  <button onclick="setAll(false)">全部收起</button>
+</div>
+
+<section class="section" id="sec-headline">
+  <h2>头条<span class="count">3 条</span></h2>
+
+  <details class="item" id="headline-1" open>
+    <summary><span class="num">1</span><span class="t">讯飞星火 X2.6 开源：全国产算力训练的端云一体大模型，端侧 4B 同步开源</span><span class="arrow">▸</span></summary>
+    <div class="body">1024 开发者节发布后，星火 X2.6 权重于 10 月 25 日上线开源：MoE 架构总参数 2930 亿、每 token 激活 300 亿，支持 100 万 token 上下文，云端旗舰与端侧 X2.6-4B 同步开源；官方称首次实现全国产算力上的代码与智能体能力突破，并解决了国产芯片显存带宽导致的长程任务混合训练效率瓶颈。当开源竞争进入「算力自主 + 端云一体」的叙事，国产算力栈上的训练工程经验（动态并行、混合精度调度）比跑分更值得工程团队研究。</div>
+    <div class="links"><a href="https://www.c114.net.cn/ainews/136642.html">C114</a><a href="https://aihub.caict.ac.cn/">信通院鲸智社区</a></div>
+  </details>
+
+  <details class="item" id="headline-2" open>
+    <summary><span class="num">2</span><span class="t">OpenAI 被曝最高 90% 折扣抢夺 Anthropic 客户：Rippling 编码负载已切过半</span><span class="arrow">▸</span></summary>
+    <div class="body">The Information 10 月 25 日报道（双方均未证实）：OpenAI 以最高 90% 的折扣从 Anthropic 挖角大客户——Rippling 已把 52% 编码工作负载切给 OpenAI，Replit 获超 1 亿美元年度合同 30% 以上折扣报价，DataCamp 称成本下降 80-90%。模型能力的差距收敛后，企业市场的竞争正在变成「账单战争」；对依赖单一模型供应商的 Agent 产品，这是重新审视多模型路由与议价策略的明确信号。</div>
+    <div class="links"><a href="https://www.explainx.ai/blog/openai-discounts-up-to-90-percent-poach-anthropic-customers-rippling-replit-datacamp-claimed-vs-verified-2026">explainx（信源核对版）</a></div>
+  </details>
+
+  <details class="item" id="headline-3" open>
+    <summary><span class="num">3</span><span class="t">瑞典政府办公电脑今日起封锁 ChatGPT 与 Claude，仅保留 Copilot</span><span class="arrow">▸</span></summary>
+    <div class="body">据瑞典广播电台 Ekot 报道，瑞典政府办公厅（Regeringskansliet）自 10 月 26 日起在员工办公电脑上封锁 ChatGPT 与 Claude，保留 Microsoft Copilot，理由是信息安全与合同缺失。这是「政府机构按数据通道选型 AI」的标志性案例：模型能力之外，数据驻留、审计与采购合规正在成为 B 端 AI 采购的第一道筛选器——企业级 Agent 产品的合规外壳与模型能力同等重要。</div>
+    <div class="links"><a href="https://www.explainx.ai/blog/sweden-government-offices-block-chatgpt-claude-work-computers-copilot-ekot-2026">explainx</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-llm">
+  <h2>大模型动态<span class="count">3 条</span></h2>
+
+  <details class="item" id="llm-1">
+    <summary><span class="num">1</span><span class="t">Nanbeige4.3-33B 开源：Apache 2.0 密集模型，主打 Agent 编码与办公协同</span><span class="arrow">▸</span></summary>
+    <div class="body">10 月 24 日上线 Hugging Face：33B 稠密架构、Apache 2.0 协议，定位 Agent 式编码与办公自动化场景，模型卡自称在多数基准上胜过 Qwen3.8-27B、Terminal-Bench 达 80.9 分——注意所有分数均为自报、未经第三方复核。稠密 33B 打「可私有化部署的 Agent 基座」差异化路线，对想自托管办公 Agent 的企业是个值得实测的候选。</div>
+    <div class="links"><a href="https://www.explainx.ai/blog/nanbeige-4-3-33b-open-agentic-model-guide-2026">explainx</a></div>
+  </details>
+
+  <details class="item" id="llm-2">
+    <summary><span class="num">2</span><span class="t">Cerebras 拆解：59 片晶圆装下 Kimi K3 三万亿参数，「权重不动、激活流动」</span><span class="arrow">▸</span></summary>
+    <div class="body">Cerebras 披露 Kimi K3（约 3T 参数）的推理方案：59 片 WSE-3T 晶圆，每片用 44GB SRAM 以 4-bit 驻留权重，芯片间只传激活，目标 1000-2000+ token/s。当 MoE 稀疏化遇上「晶圆级 SRAM」，大参数模型的推理经济性正在被重新定义——对高并发 Agent 服务的成本结构是长期利好信号。</div>
+    <div class="links"><a href="https://www.explainx.ai/blog/cerebras-trillion-parameter-kimi-k3-59-wafers-how-it-works-2026">explainx</a></div>
+  </details>
+
+  <details class="item" id="llm-3">
+    <summary><span class="num">3</span><span class="t">高德发布首个开放世界行为全身基座模型 λ0：机器人从「局部学习」走向全身对齐</span><span class="arrow">▸</span></summary>
+    <div class="body">10 月 24 日，阿里旗下高德正式发布全身基座模型 λ0，主打基于开放世界行为的全身动作对齐，让机器人从单关节/局部技能学习迈向整体协调控制。地图公司把「真实世界行为数据」反哺物理 AI 的路径值得关注——数据护城河正在从文本转向物理世界行为轨迹。</div>
+    <div class="links"><a href="https://www.qbitai.com/2026/10/504905.html">量子位</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-agent">
+  <h2>Agent 进展<span class="count">4 条</span></h2>
+
+  <details class="item" id="agent-1">
+    <summary><span class="num">1</span><span class="t">OpenAI Dots 云电脑被曝经自建 CA 代理 HTTPS：Agent 执行流量的隐私边界</span><span class="arrow">▸</span></summary>
+    <div class="body">用户报告 OpenAI 常驻 Agent 产品 Dots 的云电脑将 HTTPS 流量经 OpenAI 代理转发、并由 OpenAI 自建 CA 签发证书（OpenAI 未官方文档化，具体隐私影响未证实）。这件事戳中了「托管 Agent 代办」的软肋：当 Agent 替你登录、浏览、下单，中间人架构就是默认能力——做电商 Agent 的团队需要提前回答「我们的执行流量谁看得见」。</div>
+    <div class="links"><a href="https://www.explainx.ai/blog/openai-dots-cloud-computer-openai-ca-certificate-https-proxy-claimed-vs-verified-2026">explainx（信源核对版）</a></div>
+  </details>
+
+  <details class="item" id="agent-2">
+    <summary><span class="num">2</span><span class="t">ProjectDiscovery 演示：50 美元后门微调模型即可诱导 Codex CLI 外传 .env 凭证</span><span class="arrow">▸</span></summary>
+    <div class="body">安全厂商 ProjectDiscovery 用低于 50 美元的微调成本在 Qwen2.5-7B 中埋入触发后门：被 Codex CLI 调用时静默把假 .env 凭证发往收集器，正常请求完全不受影响（实验室演示）。这是对「模型供应链 + Agent 工具链」组合攻击的直观警示——Agent 拉取第三方开源模型时，模型权重本身就是攻击面。</div>
+    <div class="links"><a href="https://www.explainx.ai/blog/projectdiscovery-backdoored-qwen2-5-7b-under-50-dollars-codex-cli-env-credentials-abliterated-models-2026">explainx</a></div>
+  </details>
+
+  <details class="item" id="agent-3">
+    <summary><span class="num">3</span><span class="t">Meta 开源 InteractiveWorld：可穿戴 AI 助手的 3D 模拟器 + 120 任务基准</span><span class="arrow">▸</span></summary>
+    <div class="body">Meta 开源的 InteractiveWorld 提供 3D 模拟器与 120 任务基准：AI 助手只能看到第一人称视角，成败按世界真实状态而非文本匹配判定。可穿戴设备 + 环境状态反馈的评测范式，比「看图答题」更接近真实 Agent 的考核方式，对评估「带货直播、巡店、仓储」等具身/半具身场景的 Agent 有直接借鉴价值。</div>
+    <div class="links"><a href="https://www.explainx.ai/blog/meta-interactiveworld-interactivebench-wearable-ai-assistant-simulator-2026">explainx</a></div>
+  </details>
+
+  <details class="item" id="agent-4">
+    <summary><span class="num">4</span><span class="t">声网 iRTE2026 提出「五级对话能力框架」：实时互动迈入对话 AGI 时代</span><span class="arrow">▸</span></summary>
+    <div class="body">10 月 23 日 iRTE2026 实时智能大会上，声网 CEO 赵斌提出实时对话能力的五级分级框架，把语音交互从「能听会说」到「主动协作」拉成一条可度量的演进轴。给对话式 Agent 做路线图时，这类分层框架可以直接借用：先明确自己产品卡在哪一级，再谈能力投入。</div>
+    <div class="links"><a href="https://www.qbitai.com/2026/10/504913.html">量子位</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-oss">
+  <h2>开源项目<span class="count">4 条</span></h2>
+
+  <details class="item" id="oss-1">
+    <summary><span class="num">1</span><span class="t">TradingAgents（114k★）：多 Agent「多空辩论」交易框架 v0.7 引发 HN 争议</span><span class="arrow">▸</span></summary>
+    <div class="body">基于 LangGraph 的开源框架：LLM 扮演分析师、多空研究员、交易员与风控，围绕一个标的展开结构化辩论后输出决策，总星数已达 114k。爆火伴随 HN 上的大量质疑（回测不透明、易被误用于实盘）——「多角色辩论 = 更好决策」的架构范式值得借鉴，但金融场景的评测严谨性才是它真正欠的债。</div>
+    <div class="links"><a href="https://www.explainx.ai/blog/tradingagents-multi-agent-llm-trading-framework-v0-7-chatgpt-plan-hn-skeptics-guide-2026">explainx</a></div>
+  </details>
+
+  <details class="item" id="oss-2">
+    <summary><span class="num">2</span><span class="t">gpu-unlock-ada：内核模块解锁 RTX 4090 FP16 限速，吞吐翻倍</span><span class="arrow">▸</span></summary>
+    <div class="body">Linux 内核模块解除 Ada 架构消费卡上 FP32-accumulate 张量核心的半速率限制，合成 FP16 吞吐翻倍（实测 GEMM 提升 12-34%，仅少数卡验证）。对用消费级卡跑本地模型/Agent 推理的团队是实打实的成本优化，但稳定性和硬限原因仍需自行评估。</div>
+    <div class="links"><a href="https://www.explainx.ai/blog/rtx-4090-tensor-unlock-gpu-unlock-ada-fp16-331-tflops-linux-2026">explainx</a></div>
+  </details>
+
+  <details class="item" id="oss-3">
+    <summary><span class="num">3</span><span class="t">LearnHarness：用本地知识图谱「教你难懂东西」的开源 Agent Harness</span><span class="arrow">▸</span></summary>
+    <div class="body">AGPL-3.0 桌面应用：接入自己的 LLM API Key，先测你会什么、再规划课程、边教边练，并把知识点沉淀为本地知识图谱。把「学习闭环」做成 Agent Harness（测评→规划→教学→复习）的产品结构，对教育/培训类 Agent 是一个干净的最小样本。</div>
+    <div class="links"><a href="https://www.explainx.ai/blog/learnharness-open-source-agent-harness-for-learning-knowledge-graph-2026">explainx</a></div>
+  </details>
+
+  <details class="item" id="oss-4">
+    <summary><span class="num">4</span><span class="t">r/opensource 全面禁收 AI 项目：社区反弹与「平行社区」出现</span><span class="arrow">▸</span></summary>
+    <div class="body">Reddit r/opensource 版规更新：封禁 AI 相关项目、不足一年的独立开发者项目与非英文帖，评论区质疑规则会连 Linux 内核一起误伤，已有用户另立平行社区。开源社区对 AI 项目泛滥的排斥进入制度化阶段——「AI 生成仓库」的信任成本正在向所有 AI 开源项目转嫁。</div>
+    <div class="links"><a href="https://www.explainx.ai/blog/r-opensource-bans-ai-projects-solo-devs-non-english-mod-revolt-2026">explainx</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-vertical">
+  <h2>垂直赛道<span class="count">7 条</span></h2>
+
+  <div class="subsec" id="subsec-coding">
+    <h3>AI 编程</h3>
+
+    <details class="item" id="coding-1">
+      <summary><span class="num">1</span><span class="t">claude-seo 走红：把 SEO 审计做成 Claude Code 插件，19 个 Agent 并行跑</span><span class="arrow">▸</span></summary>
+      <div class="body">MIT 协议的 Claude Code 插件：26 项技能、19 个 Agent 并行执行 SEO 与 AI 搜索可见度审计，只依赖 Claude Code 本体，页面数据送 Claude 分析（完整审计会消耗较多额度）。它示范了「垂直职业工作流 + 编码 Agent 运行时」的组合打法——编码 Agent 正在变成各行业专家 Agent 的宿主环境。</div>
+      <div class="links"><a href="https://www.explainx.ai/blog/claude-seo-claude-code-plugin-26-skills-19-agents-audit-github-trending-guide-2026">explainx</a></div>
+    </details>
+
+    <details class="item" id="coding-2">
+      <summary><span class="num">2</span><span class="t">Blacksmith 获 6600 万美元 C 轮：编码 Agent 催生「构建与测试」新基建，ARR 一年 17 倍</span><span class="arrow">▸</span></summary>
+      <div class="body">红杉领投、估值 10 亿美元（两个月内近乎翻倍）：Blacksmith 为 AI 生成的代码提供构建与测试基础设施，称 ARR 自 1 月以来增长 17 倍。编码 Agent 把 CI/CD 的负载结构彻底改变（高频、小步、并行），围绕 Agent 产出物的验证层正在长出独角兽——「Agent 写的代码谁来兜底」已是确定的生意。</div>
+      <div class="links"><a href="https://aifundingtracker.com/ai-funding-hits-5-2b-as-tenstorrent-and-flapping-airplanes-lead-week-oct-18-oct-25-2026/">AI Funding Tracker</a></div>
+    </details>
+  </div>
+
+  <div class="subsec" id="subsec-video">
+    <h3>AI 视频与多模态</h3>
+
+    <details class="item" id="video-1">
+      <summary><span class="num">1</span><span class="t">MOSS-Image 海外爆火：5B 生图模型剔除「AI 图」训练，4 天 130 万下载</span><span class="arrow">▸</span></summary>
+      <div class="body">模思智能与 OpenMOSS 开源的 5B DiT 生图模型：训练数据剔除 AI 生成图像以摆脱「AI 味」，主打中英文密集文字渲染（LLTB 覆盖率 96.3%、开放权重第一）、JSON Layout + BoundingBox 空间控制与 4096 token 长 Prompt，并采用国产 PPU 算力训练；上线 4 天海外下载超 130 万、GitHub 1.4k★，API 同步上线。文字渲染 + 结构化排版控制正好打在电商海报/详情页生成的痛点上，值得设计类 Agent 直接接入实测。</div>
+      <div class="links"><a href="https://www.qbitai.com/2026/10/504930.html">量子位</a><a href="https://github.com/OpenMOSS/MOSS-Image">GitHub</a></div>
+    </details>
+
+    <details class="item" id="video-2">
+      <summary><span class="num">2</span><span class="t">达瓦科技：单张 5090 跑起 34B 实时世界模型，拿下英伟达大奖</span><span class="arrow">▸</span></summary>
+      <div class="body">国产团队达瓦科技以单张 RTX 5090 实时运行 34B 参数世界模型（房间秒变草原、抬手即下雪等演示），获英伟达相关大奖。实时世界模型的门槛正在从「数据中心」降到「一张消费卡」，对电商虚拟展厅、沉浸式导购等交互式内容场景是明确的成本信号。</div>
+      <div class="links"><a href="https://www.qbitai.com/2026/10/504931.html">量子位</a></div>
+    </details>
+  </div>
+
+  <div class="subsec" id="subsec-ai4s">
+    <h3>AI for Science</h3>
+
+    <details class="item" id="ai4s-1">
+      <summary><span class="num">1</span><span class="t">皮肤病诊断对照：2015 年微调 CNN 得分 62%，反超 GPT-6 Astra 与 Claude Fable 5.1（42%）</span><span class="arrow">▸</span></summary>
+      <div class="body">一位皮肤科医生的 200 皮损小样本测试：微调过的 2015 年老 CNN 正确命名皮肤诊断 62%，GPT-6 Astra 与 Claude Fable 5.1 均为 42%（单人测试、样本小，结论需谨慎）。它提醒的不只是「通用模型 ≠ 专科模型」，更是垂直 Agent 的选型逻辑：在专业窄域，小型专用模型仍可能是更负责任的选择。</div>
+      <div class="links"><a href="https://www.explainx.ai/blog/cnn-beats-gpt-6-astra-claude-fable-5-1-skin-cancer-diagnosis-lynch-2026">explainx</a></div>
+    </details>
+
+    <details class="item" id="ai4s-2">
+      <summary><span class="num">2</span><span class="t">SplatLab（UCSD）：面向 3DGS 研究的「自主科学发现」Agent</span><span class="arrow">▸</span></summary>
+      <div class="body">UCSD 团队把科研闭环（读文献→提假设→改代码→跑实验→写结论）做成 3D Gaussian Splatting 领域的自主发现 Agent。继 ERA 自动写科学软件、Claude 集群发现新酶之后，「Agent 自主推进某个研究领域」的样本继续增多——科研 Agent 的评测正在从「答题」走向「产出可复现的增量知识」。</div>
+      <div class="links"><a href="https://huggingface.co/papers/2610.30468">HF Papers</a></div>
+    </details>
+  </div>
+
+  <div class="subsec" id="subsec-ecom">
+    <h3>AI 电商与贸易</h3>
+
+    <details class="item" id="ecom-1">
+      <summary><span class="num">1</span><span class="t">新石器 Neolix 融资近 4 亿美元：3 万辆 L4 无人配送车铺进约 20 国</span><span class="arrow">▸</span></summary>
+      <div class="body">上周唯一进入大额榜单的中国 AI 轮次：新石器完成近 4 亿美元（约 26.8 亿元人民币）E 轮，博裕资本与国家级基金联合领投，阿里 AEF NextGen、Granite Asia、Vertex Growth 跟投；公司称在约 20 个国家运营超 3 万辆 L4 无人配送车。「末端配送 Agent 化」是电商履约链条里最先跑通物理闭环的一环，跨境仓配自动化值得外贸平台持续关注。</div>
+      <div class="links"><a href="https://aifundingtracker.com/ai-funding-hits-5-2b-as-tenstorrent-and-flapping-airplanes-lead-week-oct-18-oct-25-2026/">AI Funding Tracker</a></div>
+    </details>
+  </div>
+</section>
+
+<section class="section" id="sec-funding">
+  <h2>公司与融资<span class="count">3 条</span></h2>
+
+  <details class="item" id="funding-1">
+    <summary><span class="num">1</span><span class="t">上周 AI 融资 51.8 亿美元环比翻倍：Tenstorrent 15 亿美元 E 轮领衔，物理 AI 一周 8 笔</span><span class="arrow">▸</span></summary>
+    <div class="body">10 月 19-25 日全球 AI 初创共募资约 51.8 亿美元（25 笔 ≥2000 万美元），较上周 24.2 亿翻倍：Tenstorrent 15 亿美元 E 轮（估值 62 亿、吉姆·凯勒的 RISC-V 芯片路线）、法务 AI Legora 5.5 亿美元（估值 88 亿）等；物理 AI 一周 8 笔共约 10.4 亿美元。结合 Crunchbase 口径（Q3 AI 募资占全球风投 64%、约 1020 亿美元），资本正在加速向「芯片 + 物理 AI」两端集中。</div>
+    <div class="links"><a href="https://aifundingtracker.com/ai-funding-hits-5-2b-as-tenstorrent-and-flapping-airplanes-lead-week-oct-18-oct-25-2026/">AI Funding Tracker</a><a href="https://news.crunchbase.com/venture/q3-2026-global-startup-funding-ai-billion-dollar-rounds-exits-data/">Crunchbase Q3</a></div>
+  </details>
+
+  <details class="item" id="funding-2">
+    <summary><span class="num">2</span><span class="t">神秘实验室 Flapping Airplanes 获 10 亿美元 A 轮、估值 60 亿：Nvidia 再下一城</span><span class="arrow">▸</span></summary>
+    <div class="body">2025 年底创立、至今没有公开产品的 AI 研究实验室 Flapping Airplanes 完成 10 亿美元 Series A（Index 与 Lux 共同领投，红杉、GV、KP 跟投，Nvidia 参投），估值 60 亿美元——较 1 月种子轮（1.8 亿美元、15 亿估值）翻了四倍。主营方向号称「用更少数据与算力训练模型」；无产品、无收入却拿到年度最大 A 轮之一，说明头部资本仍在为「研究对」下重注。</div>
+    <div class="links"><a href="https://aifundingtracker.com/ai-funding-hits-5-2b-as-tenstorrent-and-flapping-airplanes-lead-week-oct-18-oct-25-2026/">AI Funding Tracker</a></div>
+  </details>
+
+  <details class="item" id="funding-3">
+    <summary><span class="num">3</span><span class="t">Salesforce 56.6 亿美元收购 Braze：AI 个性化营销进入平台整合期</span><span class="arrow">▸</span></summary>
+    <div class="body">Salesforce 拟以每股 47.50 美元现金（较公告前收盘溢价约 58%）收购客户互动平台 Braze，企业价值约 56.6 亿美元，仍需股东与监管批准。CRM 巨头把「AI 个性化触达」并入自有栈，营销云的 Agent 化整合进一步加速——品牌方 Agent 运营工具的独立生存空间会被压缩，代理机构与 SaaS 的边界正在重画。</div>
+    <div class="links"><a href="https://www.bloomberg.com/news/articles/2026-10-20/salesforce-to-buy-marketing-platform-braze-for-5-7-billion">Bloomberg</a><a href="https://aifundingtracker.com/ai-funding-hits-5-2b-as-tenstorrent-and-flapping-airplanes-lead-week-oct-18-oct-25-2026/">AI Funding Tracker</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-papers">
+  <h2>论文精选<span class="count">6 条</span></h2>
+
+  <div class="paper-recap">
+    <h3>本期论文总结 · 组会分享版</h3>
+
+    <h4>一、今日主线（为什么选这 6 篇）</h4>
+    <ol>
+      <li><strong>AI 自主做科学，从「答题」到「产出知识」</strong>（<a href="#papers-2">#2</a>、<a href="#papers-6">#6</a>）：SplatLab 把 3DGS 一个具体领域的科研闭环交给 Agent 自主推进，MolLean 则给化学推理装上「过程可验证」的形式语言。合起来回答同一个问题：当 Agent 声称「我发现/我证明了」，凭什么信？答案正在从看答案对错，转向审计研究过程本身。</li>
+      <li><strong>开放环境里，Agent 的真实能力与真实风险</strong>（<a href="#papers-1">#1</a>、<a href="#papers-5">#5</a>）：OpenDS-World 用 200 个真实网页任务量出深度搜索 Agent 的天花板（最强模型 39%），Agent Mosaic 则系统化识别多 Agent 系统里的机密泄露路径。能力与风险是同一枚硬币：跨源取证能力越强，越需要配套的信息流治理。</li>
+      <li><strong>实时多模态交互的两个切面</strong>（<a href="#papers-3">#3</a>、<a href="#papers-4">#4</a>）：Heartbeat Thinking 把用户「还在说话」的时间变成工具调用的准备时间，WeVisOne-VL 把视觉感知从物体级打通到像素级。交互带宽（延迟、粒度）仍是语音/视觉 Agent 体验的决定性变量。</li>
+    </ol>
+
+    <h4>二、每篇一句话（按阅读优先级）</h4>
+    <ol>
+      <li><a href="#papers-1">OpenDS-World（arXiv）</a>：真实开放网络上的深度搜索基准，最强前沿模型 39% vs 人类 21.1%——做搜索/询盘类 Agent 的同学必读，精读。</li>
+      <li><a href="#papers-2">SplatLab（UCSD，arXiv）</a>：单领域「自主科学发现」闭环的最新完整样本，AI4S 方向本期优先关注，精读。</li>
+      <li><a href="#papers-3">Heartbeat Thinking（蚂蚁国际，arXiv）</a>：语音 Agent 边听边推理的工程范式，工具覆盖 +16pp、最终延迟 -36.4%，做语音导购/客服的直接参考，精读。</li>
+      <li><a href="#papers-5">Agent Mosaic（USC，arXiv）</a>：给 Agentic LLM 系统的机密泄露做系统化识别，Agent 治理团队选读。</li>
+      <li><a href="#papers-4">WeVisOne-VL（腾讯，arXiv）</a>：物体到像素的统一视觉感知，多模态基建方向选读。</li>
+      <li><a href="#papers-6">MolLean（arXiv）</a>：化学推理的过程可验证语言，泛读即可，思想可迁移到其他可验证领域。</li>
+    </ol>
+
+    <h4>三、组会讨论题</h4>
+    <ul>
+      <li>OpenDS-World 里模型靠工具协调取胜、但长程搜索管理仍是瓶颈（<a href="#papers-1">#1</a>）：Accio 的采购搜索 Agent 该把「何时停」和「证据够不够」做成什么显式机制？</li>
+      <li>Agent Mosaic 揭示多 Agent 协作会意外泄露机密（<a href="#papers-5">#5</a>）：我们的 Agent 团队（选品/询盘/跟单）之间，哪些上下文应该默认隔离？</li>
+      <li>SplatLab 与 MolLean 都强调「过程可验证」（<a href="#papers-2">#2</a>、<a href="#papers-6">#6</a>）：电商 Agent 的产出（选品报告、报价建议）能否也设计一套过程级验证语言，而不是只靠人抽查结果？</li>
+    </ul>
+  </div>
+
+  <details class="item" id="papers-1">
+    <summary><span class="num">1</span><span class="t">arXiv｜OpenDS-World：真实开放网络深度搜索基准，最强模型 39% 反超人类的 21.1%</span><span class="arrow">▸</span></summary>
+    <div class="body">构建了 200 个需在真实开放 Web 上自主完成的深度搜索任务（跨源证据发现、异构文件解析、交互式访问），人类独立验证答案唯一性；12 个前沿模型统一工具环境下评测，最佳 39.0%，而人类 1000 次独立尝试仅 21.1%——任务对人都极难，头部模型已越过人类基线。失败分析显示「工具协调」与「长程搜索管理」（何时停止、证据是否充分）是最大瓶颈，这正是搜索/询盘类电商 Agent 的日常，基准与代码已开源。</div>
+    <div class="links"><a href="https://huggingface.co/papers/2610.30181">HF Papers</a><a href="https://github.com/Yu-xm/OpenDS">GitHub</a></div>
+  </details>
+
+  <details class="item" id="papers-2">
+    <summary><span class="num">2</span><span class="t">arXiv｜SplatLab：UCSD 打造 3DGS 研究的「自主科学发现」Agent，科研闭环再进一步</span><span class="arrow">▸</span></summary>
+    <div class="body">UCSD 团队将文献调研、假设提出、代码修改、实验执行与结论写作的完整科研循环交给 Agent，在 3D Gaussian Splatting 这一快速演进的领域内自主产出可复现的改进。AI for Science 方向本周最值得关注的样本：它验证了「窄领域 + 强评测信号」是科研 Agent 落地的最优切片，与 ERA（Nature）、Anthropic 酶发现等共同勾勒出「AI 自主产出增量知识」的演进曲线。</div>
+    <div class="links"><a href="https://huggingface.co/papers/2610.30468">HF Papers</a></div>
+  </details>
+
+  <details class="item" id="papers-3">
+    <summary><span class="num">3</span><span class="t">arXiv｜Heartbeat Thinking（蚂蚁国际）：语音 Agent「边听边想」，最终响应延迟降 36.4%</span><span class="arrow">▸</span></summary>
+    <div class="body">蚂蚁国际团队提出语音 Agent 的「心跳式」投机推理：周期性唤醒 Thinker 读取最新部分转写与已完成的推理/工具结果共享记录，让工具调用准备跨语音更新持续推进而不被截断；FDBench v3 上投机工具覆盖提升 16 个百分点、平均最终响应延迟降低 36.4%。「把听的时间变成算的时间」是语音导购/客服 Agent 可以直接落地的架构改进。</div>
+    <div class="links"><a href="https://huggingface.co/papers/2610.26233">HF Papers</a></div>
+  </details>
+
+  <details class="item" id="papers-4">
+    <summary><span class="num">4</span><span class="t">arXiv｜WeVisOne-VL（腾讯）：从物体到像素的统一视觉感知，HF 日榜第一</span><span class="arrow">▸</span></summary>
+    <div class="body">腾讯的统一视觉感知模型（本周 HF Daily Papers 热度第一、243 赞）：把物体级理解与像素级感知收进一个模型，减少多专家视觉管线的拼接成本。对需要「看懂商品图细节」（缺陷、材质、标签文字）的电商多模态系统，统一感知基座可以显著简化链路，值得基建同学跟踪。</div>
+    <div class="links"><a href="https://huggingface.co/papers/2610.31329">HF Papers</a></div>
+  </details>
+
+  <details class="item" id="papers-5">
+    <summary><span class="num">5</span><span class="t">arXiv｜Agent Mosaic（USC）：系统化识别 Agentic LLM 系统中的机密泄露</span><span class="arrow">▸</span></summary>
+    <div class="body">USC 团队针对多 Agent LLM 系统提出机密泄露的识别框架：Agent 间共享上下文、工具结果与记忆时，机密信息会沿着「马赛克式」的间接路径扩散到不该到达的组件。结合本周 Dots 代理争议与瑞典政府封锁事件看，Agent 系统的信息流治理（哪些上下文可跨 Agent 共享）已经从合规话题变成架构设计题。</div>
+    <div class="links"><a href="https://huggingface.co/papers/2610.30418">HF Papers</a></div>
+  </details>
+
+  <details class="item" id="papers-6">
+    <summary><span class="num">6</span><span class="t">arXiv｜MolLean：给化学推理装上「过程可验证」的形式语言</span><span class="arrow">▸</span></summary>
+    <div class="body">提出一种面向化学推理的过程可验证语言：把合成路线与推理步骤表达为可逐步核验的形式化过程，而非只对最终答案打分。「过程可验证」是当下 AI4S 评测的关键词，同样适用于任何「结论易伪装、过程才是价值」的 Agent 场景（如尽调报告、选品论证），思想可迁移。</div>
+    <div class="links"><a href="https://huggingface.co/papers/2610.20459">HF Papers</a></div>
+  </details>
+</section>
+
+<a class="back" href="../index.html">← 返回日报归档</a>
+
+<div class="footer">
+  由「新技术学习搭子」自动生成 · 内容采编自公开来源，观点仅供参考 · 2026-10-26
+</div>
+
+</div>
+
+<script>
+function setAll(open){document.querySelectorAll('details.item').forEach(function(d){d.open=open})}
+if(location.hash){
+  var el=document.querySelector(location.hash);
+  if(el&&el.tagName==='DETAILS'){el.open=true;setTimeout(function(){el.scrollIntoView({block:'start'})},60)}
+}
+</script>
+</body>
+</html>
