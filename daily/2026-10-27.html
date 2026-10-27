@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 前沿日报 · 2026-10-27</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<div class="wrap">
+
+<header class="site-header">
+  <div class="brand">AI FRONTIER DAILY · 新技术学习搭子</div>
+  <h1>AI 前沿日报</h1>
+  <span class="date-badge">2026-10-27 · 星期二 · 共 27 条</span>
+</header>
+
+<div class="overview">
+  <strong>今日总览：</strong>资本与算力在同一天摊牌——Anthropic 用 335 页招股书公开超 6500 亿美元算力承诺，DeepSeek 年内累计融资约 1500 亿元，另一边 Neolab 开始转售 GPU，「重资产 AI」的边界第一次被摆上台面。Agent 侧的关键词是「被评测」：WorkBuddy 进驻企业微信、智子 Agent 用「生成—判别—修正」守住人设，而阿里的 UserArena 与明尼苏达的 Kolab 把「人」放进评测回路——Agent 能否预测人怎么使用它的产出，正成为新的分水岭。
+</div>
+
+<nav class="chips">
+  <a href="#sec-headline">头条<b>3</b></a>
+  <a href="#sec-llm">大模型<b>3</b></a>
+  <a href="#sec-agent">Agent 进展<b>3</b></a>
+  <a href="#sec-oss">开源项目<b>5</b></a>
+  <a href="#sec-vertical">垂直赛道<b>5</b></a>
+  <a href="#sec-funding">公司融资<b>2</b></a>
+  <a href="#sec-papers">论文<b>6</b></a>
+</nav>
+
+<div class="toolbar">
+  <button onclick="setAll(true)">全部展开</button>
+  <button onclick="setAll(false)">全部收起</button>
+</div>
+
+<section class="section" id="sec-headline">
+  <h2>头条<span class="count">3 条</span></h2>
+
+  <details class="item" id="headline-1" open>
+    <summary><span class="num">1</span><span class="t">Anthropic 公开 335 页招股书：代码「ANT」，11 月中冲刺史上最大 IPO</span><span class="arrow">▸</span></summary>
+    <div class="body">10 月 26 日（美东时间）正式公开递交纳斯达克 S-1，股票代码「ANT」，按 SEC 规则最早 11 月第二周启动路演、中旬挂牌。此前草案显示募资规模最高约 1000 亿美元、对应估值约 2 万亿美元，但近期 AI 板块承压，部分投资者已把预期下调到约 1.5 万亿。财务面：2026 上半年营收 162.86 亿美元（去年同期 11.6 亿），Q3 单季 168 亿、环比 +45% 且调整后口径盈利；807 亿美元净亏损中约 724 亿来自可转债等融资工具的公允价值变动。按其披露的主要合同粗略加总，未来十年算力承诺已超 6500 亿美元，其中约 80% 为 take-or-pay。最值得产品团队读的是那份「不做清单」：明确不开发图像与视频生成模型，把算力集中投向编程、Agent 与安全研究。</div>
+    <div class="links"><a href="https://www.qbitai.com/2026/10/505551.html">量子位</a><a href="https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm">SEC 原文</a></div>
+  </details>
+
+  <details class="item" id="headline-2" open>
+    <summary><span class="num">2</span><span class="t">OpenAI 发布 GPT-6.1 Terra：1.05M 上下文、$1/$5，主打多模态与长文档</span><span class="arrow">▸</span></summary>
+    <div class="body">10 月 26 日上线，定位旗舰 Astra / Sol 与轻量 Luna 之间的中档：1,050,000 token 上下文，支持文本与图像输入；API 定价 $1/M 输入、$5/M 输出、缓存输入 $0.05/M，缓存价格是同级里最低的一档。已公开的基准里，MMMU-Pro 85.5%、OSWorld 2.1 离线子集 74.2%、Agents&#39; Last Exam 60.0%、Terminal-Bench 4.0 50.3%（第三方汇总显示多模态第 4、Agentic 第 8/133，编码与推理项尚未测）。信号很清楚：OpenAI 把「截图/文档/图表理解」做成了这一档的卖点，而不是继续卷纯编码。</div>
+    <div class="links"><a href="https://openai.com/index/introducing-gpt-6-1-terra/">OpenAI 官方</a><a href="https://benchlm.ai/models/gpt-6-1-terra">BenchLM 汇总</a></div>
+  </details>
+
+  <details class="item" id="headline-3" open>
+    <summary><span class="num">3</span><span class="t">DeepSeek 二轮融资约 1000 亿元、年内累计 1500 亿；同期美国 DHS 要求联邦机构移除其产品</span><span class="arrow">▸</span></summary>
+    <div class="body">据《经济日报》10 月 26 日评论披露：DeepSeek 最新一轮融资约 1000 亿元人民币（洽谈中目标从 500 亿两度上调至 800 亿、1000 亿），加上此前的约 510 亿首轮，年内累计约 1500 亿元，投前估值约 5000 亿元，宁德时代、腾讯等产业资本参投，并为科创板 IPO 铺路。同一时间窗口内还有两条消息：美国国土安全部下令联邦机构全面移除 DeepSeek 产品及基于其模型开发的第三方服务；DeepSeek 则把内部推理框架 DeepInfer 全面开源，同时兼容英伟达与华为昇腾。「开源 + 产业资本 + 国产算力」三件套在同时加固，出海产品的模型来源与制裁风险需要进入选型清单。</div>
+    <div class="links"><a href="http://paper.ce.cn/pad/content/202610/26/content_340883.html">经济日报</a><a href="https://www.21jingji.com/article/20261013/herald/e445af80c18bdf8f76491b2226c2c22a.html">21 世纪经济报道</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-llm">
+  <h2>大模型动态<span class="count">3 条</span></h2>
+
+  <details class="item" id="llm-1">
+    <summary><span class="num">1</span><span class="t">EdgeRock-4B 开源：KV Cache 砍掉 99.1%，256K 上下文下恒定 72MiB，单卡 512 路并发</span><span class="arrow">▸</span></summary>
+    <div class="body">10 月 26 日，岩山科技旗下岩芯矩阵联合港科大、CMU 等开源 EdgeRock-4B：基于 Qwen3.5-4B 改造，把 8 个全注意力层换成 1024 窗口滑动注意力，再加一个「记忆岩锚（RMA）」模块——循环状态抓大意、局部窗口管眼前、锚点库按评分从历史里只留最重要的 1024 条记录。实测：上下文从 4K 涨到 256K，每序列 KV 固定 72MiB（对源模型 -99.1%）；单张 80GB Hopper 跑 32K 输入 / 32K 输出，一口气 512 路并发、输出 12124 tokens/s（源模型 1889，6.42 倍）；AIME 2024–2026 平均一次通过率 82.9%，约为源模型的 96.3%；关掉 RMA 后 1024 道长上下文题只答对 4 道（0.4%）。权重与推理代码已开源、可商用。</div>
+    <div class="links"><a href="https://www.qbitai.com/2026/10/505407.html">量子位</a><a href="https://github.com/rockmatrix-ai/EdgeRock">GitHub</a></div>
+  </details>
+
+  <details class="item" id="llm-2">
+    <summary><span class="num">2</span><span class="t">成立三个月的深圳公司炎曦动力首发 Paimon-0，登顶多个具身榜单</span><span class="arrow">▸</span></summary>
+    <div class="body">炎曦动力（Primotion）本业是做具身芯片，却先交出一个具身基座模型 Paimon-0：在 Hugging Face、NVIDIA、清华等近 20 家机构共建的 RoboColiseum 以 0.7754 排第一，通用操作子榜 0.6613 为全场最高（同榜还有 GPT-6 Astra、Claude Opus 5.5、Gemini 4 Argon）；另在 RoboCasa365（58.1）、VLA-Arena（0.73 成功率）与 IROS Workshop 双臂赛道登顶。技术上走 WAM + IDM 路线，用 query token 蒸馏未来状态里的关键表征（物体 3D 位姿、语义、affordance），把单个动作 chunk 的推理从约 3000ms 压到 300ms；架构主张「云端元脑做规划 + 端侧本地脑做执行」，并用进度模型 Paimon-Eval 产出 RSI 奖励信号（计划 11–12 月开源）。榜单多为自报或主办方口径，需谨慎看待。</div>
+    <div class="links"><a href="https://www.qbitai.com/2026/10/505186.html">量子位</a></div>
+  </details>
+
+  <details class="item" id="llm-3">
+    <summary><span class="num">3</span><span class="t">微软 Microsoft-Decision-1：基于 Qwen3.5-9B 的「决策评分模型」，只输出校准概率</span><span class="arrow">▸</span></summary>
+    <div class="body">微软在 Foundry 目录上线 Microsoft-Decision-1（Preview）：以阿里开源 Qwen3.5-9B 为底座后训练，不生成自然语言，只对「情境 + 封闭式问题 + 固定选项」返回每个选项的校准概率分数（JSON），支持是/否、多选、评分、分类与 rubric 打分，单次最多 32K token，并支持显式弃权。官方定位是 AI 输出评估、请求分类与路由、Agent 操作护栏、内容安全筛查、搜索与文档相关性判断。</div>
+    <div class="links"><a href="https://www.jiqizhixin.com/">机器之心（开源速递）</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-agent">
+  <h2>Agent 进展<span class="count">3 条</span></h2>
+
+  <details class="item" id="agent-1">
+    <summary><span class="num">1</span><span class="t">腾讯 WorkBuddy 打通企业微信：AI 以「通讯录同事」身份进驻，成果直接回流工作流</span><span class="arrow">▸</span></summary>
+    <div class="body">10 月 26 日，企业微信与 WorkBuddy 正式打通：AI 入驻企微侧边栏与通讯录，一键登录，授权范围内可读单聊/群聊历史、企微文档与微盘文件、日程与邮件；产出可直接回流到会话、微盘、智能表格与审批流，文档里还能 @ 同事共同编辑，权限与账号沿用企微既有组织架构。落地案例：一家科技公司把各渠道线索汇进智能表格→按添加时间自动「锁客」→AI 读沟通记录打意向标签→回填 CRM；一家券商把专业报告的基础版从两三天压到几分钟；一家保温杯厂把设计参考表、模具库存清单与工序定价放进表格，AI 调核价系统回填结果。对企业 Agent 而言，胜负手是原生上下文、原地交付、沿用权限这三件事，而不是再加一个聊天窗。</div>
+    <div class="links"><a href="https://www.qbitai.com/2026/10/505365.html">量子位</a></div>
+  </details>
+
+  <details class="item" id="agent-2">
+    <summary><span class="num">2</span><span class="t">无问芯穹 × 三体宇宙发布智子 Agent 1.0：「生成—判别—定向修正」守住人设</span><span class="arrow">▸</span></summary>
+    <div class="body">10 月 25 日三体日发布，以《三体》637 号小宇宙管理员为角色锚点：AgentWorks 平台把世界观资料做成可追溯的知识库组，Infini Memory 负责跨会话记忆。工程上最值得抄的是运行链路——人格化生成与知识检索并行（避免检索文本污染语气），初稿由独立审校模块专查人设 OOC 与世界观越界，未通过则带「冲突诊断」回流重修，评测同时保留模型自动校验与人工把关。底层 PDD 跨集群异构推理把 P-D 拆成 P-RLD-MD 三级，Decode 端部署 RadixCache 前缀缓存、把 KV 跨集群传输量降一个数量级，实测首 token 延迟 -51.5%、单 token 成本 -37.5%。</div>
+    <div class="links"><a href="https://www.qbitai.com/2026/10/505309.html">量子位</a></div>
+  </details>
+
+  <details class="item" id="agent-3">
+    <summary><span class="num">3</span><span class="t">从招股书看 Anthropic 的 Agent 产品矩阵：驻群、驻端、驻域三种形态</span><span class="arrow">▸</span></summary>
+    <div class="body">S-1 里披露的 7 款一方应用构成一条清晰的梯度：Claude Code（编码）、Claude Cowork（桌面级全自动办公，9 月起与 Claude.ai 合并入口）、Claude Security（追踪代码库数据流、扫深层漏洞并一键跳 Claude Code 打补丁，配套开源项目扫描器 OSS Scanner）、Claude Tag（常驻 Slack 等频道的「群聊队友」，理解上下文后主动接话，直接交付文档草稿、数据分析甚至代码 PR）、Claude Design（自然语言出高保真设计稿）、Claude Science（一键连 60+ 科学数据库，输出期刊级图表与手稿）。平台侧对应 Agent SDK 与全托管 Managed Agents（托管沙盒、凭证与记忆循环）。这套矩阵说明：Agent 产品正在按「驻群 → 驻端 → 驻域」三种形态分化，分别替代一个频道里的同事、一台电脑上的助手、一个岗位的流程。</div>
+    <div class="links"><a href="https://www.qbitai.com/2026/10/505551.html">量子位（招股书拆解）</a><a href="https://www.sec.gov/Archives/edgar/data/2130357/000162828026067168/anthropicpbc-sx1.htm">SEC 原文</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-oss">
+  <h2>开源项目 · GitHub 今日热榜<span class="count">5 条</span></h2>
+
+  <details class="item" id="oss-1">
+    <summary><span class="num">1</span><span class="t">NVIDIA SkillSpector：给 Agent Skill 做安装前安全扫描</span><span class="arrow">▸</span></summary>
+    <div class="body">在安装前扫描 Claude Code、Codex、MCP 的 Agent Skill，检测漏洞、恶意模式、提示注入、数据外泄与供应链风险；今日 22.2k★（+214）。Skill 与插件正在变成 Agent 的「应用商店」，也就复制了移动时代的供应链攻击面——企业引入第三方 Skill 前，这类静态扫描应该进入准入流程，而不是等出事再复盘。</div>
+    <div class="links"><a href="https://github.com/NVIDIA/SkillSpector">GitHub</a></div>
+  </details>
+
+  <details class="item" id="oss-2">
+    <summary><span class="num">2</span><span class="t">Nutlope/hallmark：给编码 Agent 装一份「反 AI 味」设计技能，今日 +2244★</span><span class="arrow">▸</span></summary>
+    <div class="body">面向 Claude Code、Cursor、Codex 的 CSS 设计技能，目标就是让生成出来的界面不像「AI 做的」；总星 36.3k、今日涨星全站第一。它的意义不在样式本身，而在把「审美」封装成可安装、可版本化的 Skill——对电商素材与详情页生成同样成立：把品牌设计规范做成 Skill，比每次在 prompt 里描述一遍更稳定。</div>
+    <div class="links"><a href="https://github.com/Nutlope/hallmark">GitHub</a></div>
+  </details>
+
+  <details class="item" id="oss-3">
+    <summary><span class="num">3</span><span class="t">pbakaus/impeccable：让 AI harness「更懂设计」的设计语言（89.2k★）</span><span class="arrow">▸</span></summary>
+    <div class="body">一套面向 Agent harness 的设计语言与约束体系（Rust 实现），今日 +1506★。和 hallmark 一起构成了今天最明显的趋势：Agent 竞争点正从「能不能写出来」转向「写出来好不好看、是否贴合品牌」。做生成式素材的团队，优先投资「设计系统即上下文」（色板、栅格、字体、禁用项），收益通常大于换更大的模型。</div>
+    <div class="links"><a href="https://github.com/pbakaus/impeccable">GitHub</a></div>
+  </details>
+
+  <details class="item" id="oss-4">
+    <summary><span class="num">4</span><span class="t">Agent-Reach：一个 CLI 给 Agent 装上「看全网」的眼睛，零 API 费用</span><span class="arrow">▸</span></summary>
+    <div class="body">可读取与搜索 Twitter、Reddit、YouTube、GitHub、Bilibili、小红书，103.6k★、今日 +746。对跨境选品与市场洞察，这类「免 API 的社媒读取层」能显著压低数据获取成本；但工程接入之前要先解决平台条款与账号风险，别把合规问题留到规模化之后。</div>
+    <div class="links"><a href="https://github.com/Panniantong/Agent-Reach">GitHub</a></div>
+  </details>
+
+  <details class="item" id="oss-5">
+    <summary><span class="num">5</span><span class="t">cindy 与 openbot：开箱即用 Agent 与「本地常驻 AI 队友」两条路线</span><span class="arrow">▸</span></summary>
+    <div class="body">makecindy/cindy 主打「想到就能做到」的开箱即用开源 Agent（6.5k★，今日 +1296）；nightly-labs/openbot 则是本地优先的桌面工作区，让 Codex、Claude、Grok 各自拥有工作区、任务队列、文件共享、浏览器控制与 Agent 间协作（+176★）。「多模型同屋 + 任务队列 + 本地文件」正在成为个人 Agent 的标准骨架，内部工具直接复用比自己造 runtime 快得多。</div>
+    <div class="links"><a href="https://github.com/makecindy/cindy">cindy</a><a href="https://github.com/nightly-labs/openbot">openbot</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-vertical">
+  <h2>垂直赛道<span class="count">5 条</span></h2>
+
+  <div class="subsec" id="subsec-coding">
+    <h3>AI 编程</h3>
+
+    <details class="item" id="coding-1">
+      <summary><span class="num">1</span><span class="t">JetBrains 开源 ThinkRail：会「随你工作方式自我改造」的轻量 Agentic IDE</span><span class="arrow">▸</span></summary>
+      <div class="body">今日 GitHub 趋势第 3（2.9k★，+1173），TypeScript 实现，主张「用 pi 来 vibe code」——一个轻量但真实的 IDE，随你的使用习惯持续调整自身，并通过 living specs 持续学习项目。它代表了编码 Agent 的下一代差异点：不是一次性生成代码，而是让「项目知识」活着、沉淀在仓库里。注意仍是早期项目，工程化程度需要自行评估。</div>
+      <div class="links"><a href="https://github.com/JetBrains/thinkrail">GitHub</a></div>
+    </details>
+
+    <details class="item" id="coding-2">
+      <summary><span class="num">2</span><span class="t">andrej-karpathy-skills：一份 CLAUDE.md 拿下 22.4 万星</span><span class="arrow">▸</span></summary>
+      <div class="body">把 Karpathy 关于 LLM 编码常见陷阱的观察，压缩成单个 CLAUDE.md 文件，装进 Claude Code 就能改变其行为；22.4 万★、今日 +638，是本季度「低技术含量、高传播」的典型工程实践。值得借鉴的是分发方式：一个文件 = 一套团队规范。把 Code Review 规则、命名约定、禁用库做成仓库里的 Skill，比口头培训与文档更可靠。</div>
+      <div class="links"><a href="https://github.com/multica-ai/andrej-karpathy-skills">GitHub</a></div>
+    </details>
+  </div>
+
+  <div class="subsec" id="subsec-video">
+    <h3>AI 视频与多模态</h3>
+
+    <details class="item" id="video-1">
+      <summary><span class="num">1</span><span class="t">即梦上线「短剧工作室」：DreamScript + Anycook + DreamShot 串成一条流水线</span><span class="arrow">▸</span></summary>
+      <div class="body">10 月 26 日，字节跳动旗下即梦 AI 正式上线短剧工作室，提供自研剧本模型 DreamScript、图片模型 Anycook 与分镜模型 DreamShot，把剧本整理、角色与场景管理、分镜生成到视频输出收进同一个工作台；支持 10 万字长篇解析与差异化人物设定，题材覆盖原创、改编、出海与解说。短剧其实是「多模态 Agent 流水线」最好的试验田：长文档解析（剧本）＋角色一致性（资产库）＋分镜编排（规划），这条链路几乎可以原样搬到电商短视频与直播脚本生产。</div>
+      <div class="links"><a href="https://www.yicai.com/news/103409213.html">第一财经</a><a href="https://www.ithome.com/1/018/013.htm">IT 之家</a></div>
+    </details>
+  </div>
+
+  <div class="subsec" id="subsec-ai4s">
+    <h3>AI for Science</h3>
+
+    <details class="item" id="ai4s-1">
+      <summary><span class="num">1</span><span class="t">Nature Cancer｜DeepFAN：亚洲首个肺结节 AI 辅助诊断注册临床试验，已获三类医疗器械证</span><span class="arrow">▸</span></summary>
+      <div class="body">北京协和医院联合多中心、深睿医疗与香港大学俞益洲团队的研究登上 Nature Cancer：DeepFAN 用融合全局与局部特征的 Transformer 做肺结节良恶性判别，并通过多中心、多阅片者、多病例（MRMC）配对试验验证其对低年资放射科医师的辅助价值——也是国内首个通过严格 MRMC 验证、并获 NMPA 三类医疗器械注册证的肺结节 AI 辅助诊断产品（2024 年 9 月获批）。结果显示诊断质量提升且更趋一致，可减少对性质不明结节的不必要随访。AI4S 最有说服力的形态从来不是论文指标，而是「注册临床 + 器械证 + 改变工作流」。</div>
+      <div class="links"><a href="https://www.pumch.cn/detail/46059.html">北京协和医院</a><a href="https://news.bioon.com/article/58079369e79e.html">生物谷</a></div>
+    </details>
+  </div>
+
+  <div class="subsec" id="subsec-ecom">
+    <h3>AI 电商与贸易</h3>
+
+    <details class="item" id="ecom-1">
+      <summary><span class="num">1</span><span class="t">支付宝 AI 支付启动 PAYATHON 2026：给 Agent 接上支付，用真实收款验证商业价值</span><span class="arrow">▸</span></summary>
+      <div class="body">10 月 24 日，支付宝 AI 支付联合观猹发起年度黑客松，主题「Build &amp; Bill」：开发者带着应用、Skill 或 Agent 参赛，把支付能力接进去，用真实收款与交付检验创意是否成立；设五大赛道、20 万元奖池，个人与团队均可报名，报名截止 12 月 1 日，线下决赛随后举行。Agent 商业化的最后一公里就是「能收钱」——当支付方开始为 Agent 提供信任层与结算能力，A2A 交易才算真正闭环；对做询盘到成交链路的团队，支付与履约接口值得提前设计。</div>
+      <div class="links"><a href="https://www.qbitai.com/2026/10/505218.html">量子位</a><a href="https://aipay.alipay.com/developers/blog/agent-economy-payment">支付宝 Agent 支付</a></div>
+    </details>
+  </div>
+</section>
+
+<section class="section" id="sec-funding">
+  <h2>公司与融资<span class="count">2 条</span></h2>
+
+  <details class="item" id="funding-1">
+    <summary><span class="num">1</span><span class="t">趋境科技完成超 13 亿元 B 轮：年内累计募资 24 亿，主打「高品质 Token」交付</span><span class="arrow">▸</span></summary>
+    <div class="body">10 月 26 日，AI Token 生产服务商趋境科技（Approaching.AI）宣布完成超 13 亿元人民币 B 轮融资，年内累计募资 24 亿元（7 月刚完成 A 轮），本轮由浙财创新、萧山资本等领投，公司称半年实现十倍级增长，资金用于高品质 Token 的规模化交付。「Token 工厂」成为独立赛道，说明推理供给正在商品化：对 Agent 产品，长期成本曲线会继续向下，但差异化最终要落在任务完成率，而不是每百万 token 的单价。</div>
+    <div class="links"><a href="https://www.qbitai.com/2026/10/505429.html">量子位</a><a href="https://www.bjnews.com.cn/detail/1792985909129060.html">新京报</a></div>
+  </details>
+
+  <details class="item" id="funding-2">
+    <summary><span class="num">2</span><span class="t">训不出模型就卖卡：Neolab 开始转售 GPU，马斯克提醒瓶颈是电不是卡</span><span class="arrow">▸</span></summary>
+    <div class="body">10 月 26 日量子位梳理了一个正在浮现的商业模式：一批「明星研究者 + 巨额融资 + 先锁算力」的 Neolab，在模型迟迟跑不出来时把闲置算力变现——溢价转手长期租约赚差价、按天/周拆分现货 GPU，或干脆放弃预训练、改挂主流开源模型卖 API。背景是算力现货持续吃紧：H200 租金一度涨约 160%、B200 约 120%、H100 仍有约 35% 溢价；Dealroom 统计的 29 家典型 Neolab 累计融资 230 亿美元，真正推出商业化产品的不足 35%。Modal 创始人预计明年会有一批 Neolab 转型 Neocloud；马斯克则泼冷水——缺的不是卡是电（高盛：2025–2030 全球数据中心电力需求 +170%，已有 86 个项目取消或严重推迟）。</div>
+    <div class="links"><a href="https://www.qbitai.com/2026/10/505478.html">量子位</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-papers">
+  <h2>论文精选<span class="count">6 条</span></h2>
+
+  <div class="paper-recap">
+    <h3>本期论文总结 · 组会分享版</h3>
+
+    <h4>一、今日主线（为什么选这 6 篇）</h4>
+    <ol>
+      <li><strong>评测对象从「任务」转向「人」</strong>（<a href="#papers-1">#1</a>、<a href="#papers-3">#3</a>）：UserArena 用 6.4 万条真实会话加上一次生产 A/B 校准，来模拟购物者在长程交互中的行为；Kolab 用 115 小时真实屏幕录制证明前沿 Agent 会系统性高估「和专家协作得多好」。两篇合起来回答同一个问题：Agent 在业务里的价值，取决于它能否预测人的下一步动作，而不只是把任务跑完。</li>
+      <li><strong>自我进化：工程化与边界同时到来</strong>（<a href="#papers-5">#5</a>、<a href="#papers-6">#6</a>）：RSIHub 把 prompt/skill/tool/orchestration 的进化方法做成可复现框架，顺手暴露了「收益不迁移」；OPST 则证明完全没有人写的问题与答案，模型也能靠自己造课表提升。前者给 RSI 祛魅，后者给 RSI 加速——但两者都指向同一个风险：自己判自己对。</li>
+      <li><strong>一手证据的两个极端</strong>（<a href="#papers-2">#2</a>、<a href="#papers-4">#4</a>）：Nature Cancer 的 DeepFAN 用 MRMC 注册临床 + 三类器械证把 AI 推进诊室；牛津的视频世界模型综述用 600+ 工作排出「证据阶梯」。一个给出落地最硬的标准，一个给出研究最严的坐标系。</li>
+    </ol>
+
+    <h4>二、每篇一句话（按阅读优先级）</h4>
+    <ol>
+      <li><a href="#papers-1">UserArena（arXiv / 阿里）</a>：购物 Agent 的「用户模拟器 + 五级评测 + 生产 A/B 校准」，做选品与推荐策略的同学必读，精读。</li>
+      <li><a href="#papers-2">DeepFAN（Nature Cancer）</a>：AI4S 落地范本，注册临床 + MRMC + 三类证，本期优先关注，精读。</li>
+      <li><a href="#papers-3">Kolab（arXiv / 明尼苏达）</a>：揭示 Agent 高估协作质量、长上下文也不救场，做人机协同产品的直接参照，精读。</li>
+      <li><a href="#papers-5">RSIHub（arXiv / 字节）</a>：Agent 自进化方法的统一实验台，看清哪些收益是真的，选读。</li>
+      <li><a href="#papers-4">视频世界模型综述（arXiv / 牛津）</a>：给「世界模型」四个操作与四级证据阶梯，评估视频模型时的判据清单，选读。</li>
+      <li><a href="#papers-6">OPST（arXiv / Google）</a>：无人工标注的自提升框架，思想价值大于工程细节，泛读即可。</li>
+    </ol>
+
+    <h4>三、组会讨论题</h4>
+    <ul>
+      <li>UserArena 的「用户模拟器」本身是模型（<a href="#papers-1">#1</a>）：如果我们用它来选品或优化询盘话术，怎么避免策略把模拟器训成「只会说好话」？生产 A/B 校准需要多高的频率？</li>
+      <li>Kolab 说 Agent 难以判断专家会不会采纳它的产出（<a href="#papers-3">#3</a>）：我们的 Agent 是否应该显式预测「业务员会不会改这条报价建议」，并把这个信号回灌到下一次生成？</li>
+      <li>DeepFAN 的可信来自「注册临床 + 器械证」（<a href="#papers-2">#2</a>）：电商 Agent 的「三类证等价物」是什么——可复算的报价、可追溯的货源，还是可追责的决策日志？</li>
+    </ul>
+  </div>
+
+  <details class="item" id="papers-1">
+    <summary><span class="num">1</span><span class="t">arXiv｜UserArena（阿里）：6.4 万条真实会话做「购物 Agent 的用户模拟器」</span><span class="arrow">▸</span></summary>
+    <div class="body">构建了真实电商交互基准：64,729 条会话、11,010 名用户、566,102 个商品、13 类动作，配一个可交互环境，并支持用一次受控的生产 A/B 结果做离线校验——评测分五级：输出有效性、局部决策、序列行为、个性化、最终结果。同时提出 On-Policy Trajectory Distillation（OPTD）：用轨迹级意图对学生模型自己生成的 rollout 提供 dense 教师信号，在参评模拟器里保真度最高、也最贴近生产策略的真实效果。对做推荐/购物 Agent 的团队，这是目前最接近工业现实的一篇：把「用户会不会被你说服」变成可复现的实验，而不是拍脑袋。</div>
+    <div class="links"><a href="https://huggingface.co/papers/2610.30932">HF Papers</a><a href="https://github.com/RecGPT-Team/UserArena">GitHub</a></div>
+  </details>
+
+  <details class="item" id="papers-2">
+    <summary><span class="num">2</span><span class="t">Nature Cancer｜DeepFAN：MRMC 注册临床验证的肺结节 AI 辅助诊断</span><span class="arrow">▸</span></summary>
+    <div class="body">协和医院联合多中心、深睿医疗与港大俞益洲团队：DeepFAN 以融合全局与局部特征的 Transformer 判别肺结节良恶性，用多中心、多阅片者、多病例（MRMC）配对试验评估其对低年资医师的辅助价值，并已取得 NMPA 三类医疗器械注册证。结果支持「AI 辅助能让诊断质量更一致、减少对性质不明结节的不必要随访」。这篇真正的贡献不是某个指标，而是把「AI 医疗怎么被证明有效」的模板做完整了：注册临床、配对设计、器械准入三层齐全。任何要进医院、海关、金融等强监管场景的 Agent，都该按这个证据强度倒推自己的验证方案。</div>
+    <div class="links"><a href="https://www.nature.com/natcancer">Nature Cancer</a><a href="https://www.thepaper.cn/newsDetail_forward_33036802">澎湃新闻</a></div>
+  </details>
+
+  <details class="item" id="papers-3">
+    <summary><span class="num">3</span><span class="t">arXiv｜Kolab（明尼苏达 NLP）：Agent 会高估「和专家的协作质量」</span><span class="arrow">▸</span></summary>
+    <div class="body">数据集包含 50 位来自 40 种职业的专业人士、115+ 小时与 Agent 协作完成真实长程任务的屏幕录制，并记录他们对协作质量与产出质量的判断。核心发现：前沿模型（无论是否 agentic）系统性高估与专家的协作效果，且难以区分高质量与低质量协作；给更多流程上下文并不能稳定改善判断。它把自动化基准从不测的两件事操作化：预测专家会采纳、修改还是拒绝你的产出；在没有持续反馈时自评协作质量。对「AI 同事」类产品，这几乎就是验收标准——交付之后被怎么处理，才是真指标。</div>
+    <div class="links"><a href="https://huggingface.co/papers/2610.21109">HF Papers</a><a href="https://minnesotanlp.github.io/kolab/">项目页</a></div>
+  </details>
+
+  <details class="item" id="papers-4">
+    <summary><span class="num">4</span><span class="t">arXiv｜牛津综述：把视频理解与生成统一成「世界模型的读、写、共享、交互」</span><span class="arrow">▸</span></summary>
+    <div class="body">HF 当日热度第一（224 赞），覆盖 600+ 工作。核心视角：观测到的视频只是「潜在时序世界」的部分、有损、有序投影，于是文献被组织成四种操作——Reading（从视频推断世界属性）、Writing（由条件合成视频）、Sharing（读写共用建模）、Interacting（在动作下预测并更新世界状态）。给出「预测空间 × 转移接口」的分类网格，以及一条证据阶梯：输出看似合理 → 忠于条件 → 世界状态一致 → 决策可用；并强调时序连贯不等于世界一致，而多数指标只测前者。评估视频/世界模型时，「该信到第几级」比「谁的榜单分高」更重要。</div>
+    <div class="links"><a href="https://huggingface.co/papers/2610.31668">HF Papers</a><a href="https://github.com/vid-gen/awesome-video-world-model">论文清单</a></div>
+  </details>
+
+  <details class="item" id="papers-5">
+    <summary><span class="num">5</span><span class="t">arXiv｜RSIHub（字节）：把 Agent 自进化方法做成可组合、可复现的实验台</span><span class="arrow">▸</span></summary>
+    <div class="body">Agent-evolution 方法用执行反馈去改 prompt、skill、tool 与编排，但各家实现大量重复造轮子。RSIHub 用 Recipe 组合可复用 Operator，并声明「可变资源」，框架统一负责执行、评测、恢复与血缘追踪——评测面被隔离在可变面之外，结果始终绑定候选与评测条件。不改核心即可复现 AHE、Hyperagents、A-Evolve、GEPA，并在 Terminal Bench 2 与 τ³ Banking 上用 MiniSWE/Codex 统一评测。结论很克制：最大 pass@1 提升 13.5 个百分点，但方法排名随设置变化，优化收益并不总能迁移到留出任务。</div>
+    <div class="links"><a href="https://huggingface.co/papers/2610.32253">HF Papers</a><a href="https://github.com/simple-agent-lab/RSIHub">GitHub</a></div>
+  </details>
+
+  <details class="item" id="papers-6">
+    <summary><span class="num">6</span><span class="t">arXiv｜OPST（Google）：没有一个人写的问答，模型也能自己变强</span><span class="arrow">▸</span></summary>
+    <div class="body">把 on-policy self-distillation 重构成 self-training：只给粗粒度的主题描述，模型自己生成问题、自己生成「特权推理演示」，再用伪验证过滤——换个上下文、换个问法仍能复现答案的问题才留下，全程不需要人工整理的 Q/A。文本与多模态（Visual OPST）都能稳定自提升，混合生成域训练时还能保住未自训练域上的能力。若结论可扩展，「数据墙」会被绕开一角；但同一机制也是风险的源头：自己出题、自己判对，评测必须外部化。</div>
+    <div class="links"><a href="https://huggingface.co/papers/2610.32770">HF Papers</a></div>
+  </details>
+</section>
+
+<a class="back" href="../index.html">← 返回日报归档</a>
+
+<div class="footer">
+  由「新技术学习搭子」自动生成 · 内容采编自公开来源，观点仅供参考 · 2026-10-27
+</div>
+
+</div>
+
+<script>
+function setAll(open){document.querySelectorAll('details.item').forEach(function(d){d.open=open})}
+if(location.hash){
+  var el=document.querySelector(location.hash);
+  if(el&&el.tagName==='DETAILS'){el.open=true;setTimeout(function(){el.scrollIntoView({block:'start'})},60)}
+}
+</script>
+</body>
+</html>
