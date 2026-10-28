@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 前沿日报 · 2026-10-28</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<div class="wrap">
+<header class="site-header">
+  <div class="brand">AI FRONTIER DAILY · 新技术学习搭子</div>
+  <h1>AI 前沿日报</h1>
+  <span class="date-badge">2026-10-28 · 星期三 · 共 29 条</span>
+</header>
+<div class="overview">
+  <strong>今日总览：</strong>同一天里「能力被证明」和「能力被落地」两条线同时推进——OpenAI 用 Lean 形式化把挂谷猜想与悬置三十余年的 Stein 限制猜想一并解决，DeepMind 的 Genie 4 把世界模型做成可实时交互、自带环境音与对话的原生多模态环境，Anthropic 的合作方则把 Claude 推进到 CAR-T 结构设计与抗体工程的真实湿实验。Agent 侧的共同转向是从「回答问题」到「替你持续操心」：蚂蚁灵光 2.0 用独立云主机在用户退出后继续跑长任务，钉钉把群聊、会议、待办封装成 Agent 可直接调用的 CLI，智元把「错题本」写进 prompt 与策略网络做 Physical RSI。与此同时，电商开始为 Agent 的越界行为定价——The RealReal 上线反爬对抗 Meta 的购物 Agent，Etsy 明确要求真实照片与人工创作。
+</div>
+<nav class="chips">
+  <a href="#sec-headline">头条<b>3</b></a>
+  <a href="#sec-llm">大模型<b>3</b></a>
+  <a href="#sec-agent">Agent 进展<b>4</b></a>
+  <a href="#sec-oss">开源项目<b>3</b></a>
+  <a href="#sec-vertical">垂直赛道<b>7</b></a>
+  <a href="#sec-funding">公司融资<b>3</b></a>
+  <a href="#sec-papers">论文<b>6</b></a>
+</nav>
+<div class="toolbar">
+  <button onclick="setAll(true)">全部展开</button>
+  <button onclick="setAll(false)">全部收起</button>
+</div>
+
+<section class="section" id="sec-headline">
+  <h2>头条<span class="count">3 条</span></h2>
+
+  <details class="item" id="headline-1" open>
+    <summary><span class="num">1</span><span class="t">OpenAI 连发三项科学结果：解决挂谷与 Stein 限制猜想、论证 ETH 不成立、构造四维量子场论</span><span class="arrow">▸</span></summary>
+    <div class="body">OpenAI 于 10 月 26—27 日公布三项由模型参与完成的研究：证明所有维度下的局部光滑猜想，从而一并解决挂谷（Kakeya）猜想与自 1991 年悬置至今的 Stein 限制猜想；在复杂性理论中给出指数时间假设（ETH）不成立的论证；并为包括纯 Yang–Mills 在内的若干四维量子场论给出存在性构造（质量间隙仍未解决）。数学与 CS 部分已同步公开自然语言论文与 Lean 形式化证明，物理部分的形式化正等待包括 David Gross 在内的外部专家评审。对产品与 Agent 设计的启示是「可验证产出」正在成为硬指标：形式化证明让模型输出可以被机器逐行检查，这比 benchmark 分数更能撑起高风险场景的信任，也预示 Agent 的交付物会越来越多地绑定可机检的验收器。</div>
+    <div class="links"><a href="https://www.qbitai.com/2026/10/505719.html">量子位</a><a href="https://openai.com/news/">OpenAI</a><a href="https://x.com/OpenAI/status/2114780711664398349">OpenAI on X</a></div>
+  </details>
+
+  <details class="item" id="headline-2" open>
+    <summary><span class="num">2</span><span class="t">DeepMind 发布 Genie 4：原生多模态、带环境音与实时对话的交互式世界模型</span><span class="arrow">▸</span></summary>
+    <div class="body">Genie 4 以 research preview 形式发布，能实时生成可交互世界，原生带环境音频并支持在场景内直接对话；Gemini Omni 负责真实感锚定，Gemini 3.8 Flash 充当闭环内的引导 Agent——观察画面、拆解目标、校验帧、调整动作。团队已用 Gemini 4 Argon 与 Gemini Robotics 做实验，让 Apptronik Apollo 在生成世界里下跳棋；输出带 SynthID 水印，先向 trusted testers 与 AI Ultra / Project Genie 开放，随后进入 Gemini API 与 AI Studio。局限仍在物体恒常性漂移、可读文字渲染与长会话一致性。对 Agent 的意义是「评估环境」本身开始可生成：那个闭环里的引导 Agent 就是典型 harness 设计，可复用的经验是把「验证画面是否达成目标」做成独立于策略的组件。</div>
+    <div class="links"><a href="https://deepmind.google/blog/genie-4-a-new-generation-of-world-simulation/">Google DeepMind</a></div>
+  </details>
+
+  <details class="item" id="headline-3" open>
+    <summary><span class="num">3</span><span class="t">Anthropic 公布药物研发早期进展：Claude 参与 CAR-T 结构设计与抗体工程，合作方已进湿实验</span><span class="arrow">▸</span></summary>
+    <div class="body">六家合作方（Generate Biomedicines、Divergence Labs、BigHat、Enveda、The Column Group、BMS）披露了具体结果：Generate 让 Claude Code 提出把 CAR-T 胞内结构域缩短约 70%，受体表达量提升约 10 倍、杀伤肿瘤能力更强；Divergence 一个月内设计约 3.5 万条抗体，得到 3 个 IgE 结合体与 20 个「解离剂」，其中 3 个优于标准药物；BigHat 十周筛 1,010 个变体，结合力提升逾 10 倍、热稳定性 +18°C、聚集速度慢 100 倍以上；Enveda 用 Claude 复核 1,061 页材料，找齐人工发现的 11 处问题并额外发现 7 处，审阅时间从 25 小时降到 3 小时以内。Anthropic 同期收购仅 1 人的 Mithril Medicine，小鼠结果预计 18 个月内、人体试验可能要到 2028 年底。对产品的启示：文档审阅类 Agent 的 ROI 已被量化成「小时换小时」，这类可度量场景会最快被采购。</div>
+    <div class="links"><a href="https://www.anthropic.com/research/early-progress-drug-development">Anthropic</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-llm">
+  <h2>大模型动态<span class="count">3 条</span></h2>
+
+  <details class="item" id="llm-1">
+    <summary><span class="num">1</span><span class="t">Mistral 发布 Large 4：1T 参数开源权重 MoE，主打网络防御场景</span><span class="arrow">▸</span></summary>
+    <div class="body">Mistral 于 10 月 27 日公开 Large 4，采用 1T 参数 MoE 架构并放出权重，训练动用约 3,800 张 GPU，官方把网络安全防御作为重点场景。CEO 称其在部分能力上优于中国开源模型，路透的报道则把它放进欧洲「主权 AI」的叙事里。对产品的启示：1T 级开源权重把「私有化部署 + 领域微调」的门槛又压低一档，做垂直 Agent 的团队可以重新评估自托管基座的成本线。</div>
+    <div class="links"><a href="https://www.reuters.com/world/china/mistral-ceo-says-new-ai-model-beats-chinese-ones-some-areas-2026-10-06/">Reuters</a></div>
+  </details>
+
+  <details class="item" id="llm-2">
+    <summary><span class="num">2</span><span class="t">智源 AREX-2：27B 基座在 MLE-bench Lite 拿到 81.8，靠「推理时自我改进」压过 1T 级对手</span><span class="arrow">▸</span></summary>
+    <div class="body">AREX-2 以 Qwen3.8-27B 为基座，MLE-bench Lite 得 81.8，高于 GPT-5.6 Sol 与 Kimi-K3 的 72.7；Frontier-CS 70.7、BrowseComp 84.0（Kimi-K2.6 1T 为 83.2、DeepSeek-V4-Pro 1.6T 为 83.4）、HLE 52.6。核心不是参数规模，而是把 RSI（递归自我改进）当作推理时扩展手段：模型在同一次任务里反复重写自己的解题脚手架。对 Agent 设计的启示很直接——在固定基座上做 harness 层的自我迭代，性价比可能高于换一个更大的模型。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2609.38288">arXiv</a><a href="https://github.com/VectorSpaceLab/AREX-2">GitHub</a><a href="https://huggingface.co/collections/BAAI/arex-2">Hugging Face</a></div>
+  </details>
+
+  <details class="item" id="llm-3">
+    <summary><span class="num">3</span><span class="t">Canva 推出设计原生图像模型 Craft：DesignArena 第 4，支持 2K 与 30 种以上画幅</span><span class="arrow">▸</span></summary>
+    <div class="body">Craft 是 Canva 自研的「设计优先」图像模型，在 DesignArena 上排到第 4，支持 2K 输出、30 多种画幅比例、55 种语言文字渲染，并引入 Magic Layers 让生成结果可按图层继续编辑。它的定位不是通用文生图，而是直接嵌进设计工作流。对产品的启示：多模态模型的竞争点正从「单张图好不好看」转向「产出能否被下游编辑器无损接管」，结构化输出（图层、文字、版式）比像素质量更有商业价值。</div>
+    <div class="links"><a href="https://www.jiqizhixin.com/">机器之心</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-agent">
+  <h2>Agent 进展<span class="count">4 条</span></h2>
+
+  <details class="item" id="agent-1">
+    <summary><span class="num">1</span><span class="t">蚂蚁灵光 2.0：独立云主机常驻，用户退出后 Agent 继续跑长任务</span><span class="arrow">▸</span></summary>
+    <div class="body">灵光 2.0 把 Agent 放进独立云主机，用户关掉 App 后任务仍在跑，并新增跨会话记忆与长周期调度；已落地账单与订阅漏扣检测、机票酒店降价盯盘、把钉钉班级群通知自动转待办、宠物疫苗与纪念日及车辆年检提醒等场景。工具层走 MCP 与 CLI，内置支付宝账单、会员、出行，以及钉钉、飞书、邮箱、米家等连接器，身份用 APASS 并做密钥分离托管。产品上这是「从对话式助手转向持续在线代理」的分水岭：卖点不再是回答质量，而是「它在你不在的时候做了什么」。</div>
+    <div class="links"><a href="https://www.ebrun.com/20261027/716581.shtml">亿邦动力</a></div>
+  </details>
+
+  <details class="item" id="agent-2">
+    <summary><span class="num">2</span><span class="t">钉钉开源 DWS 与鸿蒙 PC 首个开源 Office CLI：把群聊、会议、待办变成 Agent 可调用的命令行</span><span class="arrow">▸</span></summary>
+    <div class="body">DWS 把群聊、会议转写、待办、AI 表格、文档、日历、通讯录、审批等能力封装成标准化 CLI，Agent 可直接调用，并内置授权与「执行前预览确认」两道闸；它同时是鸿蒙 PC 上首个开源的 Office 类 CLI。对 Agent 工程的意义：CLI 正在成为比 MCP 更「薄」的工具接口——纯文本进出、易于组合、便于审计，等于把企业软件从「给人点的界面」改造成「给 Agent 调的能力」。</div>
+    <div class="links"><a href="https://www.oschina.net/news/503243">开源中国</a><a href="https://open.dingtalk.com/dingtalk-cli">钉钉开放平台</a></div>
+  </details>
+
+  <details class="item" id="agent-3">
+    <summary><span class="num">3</span><span class="t">OpenAI 与 Oracle 打通：Oracle 应用进驻 ChatGPT，企业侧按「agent-ready」重构</span><span class="arrow">▸</span></summary>
+    <div class="body">双方公布 Oracle AI Workspace in ChatGPT、AI Security Mesh、SMB Bundle、App Composer 与 Marketplace 等组合；Oracle 内部已有 13 万 ChatGPT 活跃用户、9.5 万以上 Codex 用户，招聘研究环节从 2—4 天压缩到 15—20 分钟。核心叙事是「agent-ready enterprise」：把 ERP、HCM 这类系统改造成 Agent 能安全调用的形态。对产品的启示是渠道与接口同时被占领——入口在 ChatGPT，能力在 Oracle，中间的价值落在「权限与审计」这一层。</div>
+    <div class="links"><a href="https://openai.com/index/oracle-apps-in-chatgpt/">OpenAI</a></div>
+  </details>
+
+  <details class="item" id="agent-4">
+    <summary><span class="num">4</span><span class="t">智元 Genie Master 提出 Physical RSI：把「错题本」写进 prompt 与策略网络</span><span class="arrow">▸</span></summary>
+    <div class="body">智元用 EEP 协议划出能力、引导、反馈、连续性四类接口，把自我改进拆成两层：Harness RSI 把失败经验写成「错题本」注入 prompt、记忆与规则，Policy RSI 则用监督、模仿与强化学习重训动作策略。真实便利店勾取商品的案例里，机器人自己把失败试到成功；11 月 2 日将做 6 台精灵 G2 的 24 小时直播。对具身 Agent 的启示：RSI 不是单一模型能力，而是「外层改脚手架、内层改策略」的协同，和软件 Agent 的 harness 思路同构。</div>
+    <div class="links"><a href="https://www.qbitai.com/2026/10/505799.html">量子位</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-oss">
+  <h2>开源项目<span class="count">3 条</span></h2>
+
+  <details class="item" id="oss-1">
+    <summary><span class="num">1</span><span class="t">百度开源文心 Unlimited OCR 2：SR-SWA 把峰值 KV 从 47GB 压到 1.77GB</span><span class="arrow">▸</span></summary>
+    <div class="body">新架构用 Page Gate 与 Token Sieve 组成 SR-SWA，配合 Unlimited-Horizon Decoding，峰值 KV 缓存从 47GB 降到 1.77GB（−96%），16 路并发吞吐从 360 提到 1,315 tok/s（3.65 倍）；一本 884 页的《魔戒》42 分 56 秒读完、约 2.9 秒每页，跨页合并 466 次，MPDocBench 84.59，并另发 MarathonDocBench 77.06。单步解码比全注意力快 7.0 倍、比 R-SWA 快 5.6 倍。对文档类 Agent 的意义：长文档不再是「切块加拼接」的工程妥协，端到端跨页推理开始可行，报关单、合同、标书这类超长材料的处理链路可以重写。</div>
+    <div class="links"><a href="https://github.com/baidu/Unlimited-OCR">GitHub</a><a href="https://huggingface.co/baidu/Unlimited-OCR-2">Hugging Face</a><a href="https://www.qbitai.com/2026/10/505773.html">量子位</a></div>
+  </details>
+
+  <details class="item" id="oss-2">
+    <summary><span class="num">2</span><span class="t">HKUDS/DeepTutor 登上 Trending 首位：把「终身个性化辅导」做成可复用的教学 Agent</span><span class="arrow">▸</span></summary>
+    <div class="body">项目今日 45,914 星、单日 +1,598，主打 Lifelong Personalized Tutoring，把学生画像、知识掌握度与教学策略做成持续更新的状态。它值得关注不是因为模型，而是把「长期记忆加教学法」打包成了开源骨架。对产品的启示：教育类 Agent 的护城河在状态管理而非生成质量，这套结构可直接平移到企业培训与客户成功场景。</div>
+    <div class="links"><a href="https://github.com/HKUDS/DeepTutor">GitHub</a></div>
+  </details>
+
+  <details class="item" id="oss-3">
+    <summary><span class="num">3</span><span class="t">elayadesign/ai-design-skills：把设计方法论写成 Agent 可加载的技能包</span><span class="arrow">▸</span></summary>
+    <div class="body">项目今日 9,353 星、单日 +1,395，把版式、配色、字体、可用性检查等设计方法论拆成结构化技能，供 Agent 按需加载。这与 Anthropic 推动的 Agent Skills 思路一致：能力不再写死在 prompt 里，而是以可版本化、可复用的文件形式分发。对产品的启示：垂直 Agent 的差异化正从「模型调得好」转向「技能库攒得厚」，技能包会成为可交易的资产。</div>
+    <div class="links"><a href="https://github.com/elayadesign/ai-design-skills">GitHub</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-vertical">
+  <h2>垂直赛道<span class="count">7 条</span></h2>
+
+  <div class="subsec" id="subsec-coding"><h3>AI 编程</h3>
+  <details class="item" id="coding-1">
+    <summary><span class="num">1</span><span class="t">Replit 上线 Monitoring Agent：把值班工程师做成自主闭环</span><span class="arrow">▸</span></summary>
+    <div class="body">告警触发后 Agent 自己去读日志与指标、定位根因、验证修复、自动部署，最后发一封总结邮件，形成「发现—诊断—修复—复盘」的完整闭环。它不是 Copilot 式的补全，而是接管了一个岗位职责。对 Agent 产品的启示：可观测性数据是最好的 Agent 输入——结构化、时序化、有 ground truth，比自然语言需求更容易做出可靠闭环；同时「自动部署」这条权限边界必须配审批与回滚。</div>
+    <div class="links"><a href="https://www.jiqizhixin.com/">机器之心</a></div>
+  </details>
+  </div>
+
+  <div class="subsec" id="subsec-video"><h3>AI 视频与多模态</h3>
+  <details class="item" id="video-1">
+    <summary><span class="num">1</span><span class="t">Hi3D 开源 V1.0 并发布 V3.0：2048³ 稀疏精修，首次做到可商用的国产 3D 生成</span><span class="arrow">▸</span></summary>
+    <div class="body">技术基于 Sparc3D（NeurIPS 2025），训练资产约 200 万（为前代 4 倍），支持 1024³/1536³ 稀疏精修，多视角保真 0.75、细节丰富度 0.841、切片成功率 90%，并提供 MCP 接入；V3.0 是首个可商用的 2048³ 国产 3D 模型。对电商的意义：商品 3D 化从「外包建模」变成「批量生成」，3D 详情页、AR 试摆、跨境素材本地化会先被打开。</div>
+    <div class="links"><a href="https://github.com/hi3d-official/Hi3Dv1.0">GitHub</a><a href="https://www.qbitai.com/2026/10/505694.html">量子位</a></div>
+  </details>
+  <details class="item" id="video-2">
+    <summary><span class="num">2</span><span class="t">StreamEval：给交互式流式视频生成建第一个系统评测</span><span class="arrow">▸</span></summary>
+    <div class="body">论文构建了覆盖 5 类任务的交互式流式视频生成 benchmark，要求模型在生成过程中持续响应新的操作请求。结论是「可靠执行请求」与「维持长时状态一致」双双未解，模型一遇到中途改需求就开始丢上下文。对产品的启示：实时视频类 Agent 的瓶颈不在画质而在状态机，评估集应该围绕「打断—改需求—恢复」来设计，而不是只看单段视频的分数。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2610.28402">arXiv</a></div>
+  </details>
+  </div>
+
+  <div class="subsec" id="subsec-ai4s"><h3>AI for Science</h3>
+  <details class="item" id="ai4s-1">
+    <summary><span class="num">1</span><span class="t">分子之心 MMDesign：19 个「靶点×模态」项目中 18 个成功，6 个 GPCR 全部命中</span><span class="arrow">▸</span></summary>
+    <div class="body">项目成功率达 94.7%，六个 GPCR 靶点全部拿到命中，其中 NK3R 为 30/30、GPR68 为 10/11。它把「设计什么」与「怎么设计」解耦：先由模型按靶点与模态生成方案，再做湿实验验证，形成可迭代闭环。对 AI4S 产品的启示：成功率而非单点最优结构才是可售卖的指标，平台化的价值在于把「设计—表达—检测」的反馈周期压短。</div>
+    <div class="links"><a href="https://finance.sina.cn/stock/jdts/2026-10-27/detail-iniwrqsz1550617.d.html">新浪财经</a><a href="http://news.bioon.com/article/94bb9605e91a.html">生物谷</a></div>
+  </details>
+  </div>
+
+  <div class="subsec" id="subsec-ecom"><h3>AI 电商与贸易</h3>
+  <details class="item" id="ecom-1">
+    <summary><span class="num">1</span><span class="t">Fanatics 联手 OpenAI 做 Shop the Look：150 万 SKU 的选品从 30 分钟压到一次对话</span><span class="arrow">▸</span></summary>
+    <div class="body">用户上传场景或描述需求，模型在 150 万级 SKU 里直接组出整套搭配，官方称商品浏览量提升 10%。原本需要 30 分钟以上的跨品类挑选被压缩成一次交互。对电商 Agent 的启示：真正的增量不在「导购话术」，而在把「多约束、多品类」的检索问题变成模型可解的排序问题，商品结构化字段（场景、风格、尺码兼容）是前提。</div>
+    <div class="links"><a href="https://www.ebrun.com/20261027/716481.shtml">亿邦动力</a><a href="https://www.ebrun.com/20261027/716479.shtml">亿邦动力</a></div>
+  </details>
+  <details class="item" id="ecom-2">
+    <summary><span class="num">2</span><span class="t">Etsy 新规：商品至少一张未修实拍图，禁止全自动 AI 内容与 AI 撰写的功能说明</span><span class="arrow">▸</span></summary>
+    <div class="body">平台要求卖家为每件商品提供至少一张未经修饰的真实照片，禁止完全由 AI 生成的内容，也禁止用 AI 撰写功能性说明（如材质、尺寸、使用方式），并明确由卖家承担退款责任。这是主流平台第一次把「AI 参与度」直接写进商品合规。对 Agent 的启示：跨境内容生成类 Agent 必须内置策略层，区分「哪些字段允许 AI、哪些必须人工」，否则规模化生成会直接变成规模化违规。</div>
+    <div class="links"><a href="https://www.ebrun.com/20261027/716480.shtml">亿邦动力</a></div>
+  </details>
+  <details class="item" id="ecom-3">
+    <summary><span class="num">3</span><span class="t">The RealReal 升级反爬，专门拦截 Meta 购物 Agent 反复加购锁库存</span><span class="arrow">▸</span></summary>
+    <div class="body">这家二手奢侈品平台发现 Meta 的 Muse Agent 会反复把商品加入购物车、把库存锁住数小时，于是升级反机器人策略做定向拦截。这是「Agent 行为被当作攻击」的第一个清晰案例。对产品的启示：做购物、比价类 Agent 必须自带速率限制、幂等与「不占用真实库存」的沙箱式操作，否则会同时触发平台风控与商家损失——商业模式的摩擦点正从「能不能抓」变成「能不能不被封」。</div>
+    <div class="links"><a href="https://www.ebrun.com/20261027/716487.shtml">亿邦动力</a></div>
+  </details>
+  </div>
+</section>
+
+<section class="section" id="sec-funding">
+  <h2>公司融资<span class="count">3 条</span></h2>
+
+  <details class="item" id="funding-1">
+    <summary><span class="num">1</span><span class="t">Anthropic 与美国总务管理局合作：Claude 企业版与 API 对联邦机构降价 40%</span><span class="arrow">▸</span></summary>
+    <div class="body">协议覆盖 Claude Enterprise、Claude for Government 与 Claude API，联邦机构采购价下浮 40%。这是把政府渠道当成分发基础设施来打。对产品的启示：To-G 场景里合规资质与价格同样重要，一旦某家模型进入采购清单，上层 Agent 产品的选型会被动跟随。</div>
+    <div class="links"><a href="https://www.anthropic.com/news/expanding-partnership-gsa">Anthropic</a></div>
+  </details>
+
+  <details class="item" id="funding-2">
+    <summary><span class="num">2</span><span class="t">Legora 传以 90 亿美元估值融资：法律 AI 的 ARR 已超 2 亿美元</span><span class="arrow">▸</span></summary>
+    <div class="body">这家「法律操作系统」覆盖 80 多个国家、2,100 多家客户，ARR 超过 2 亿美元，本轮估值约 90 亿美元。法律是文档密集、责任清晰、按小时计费最容易被替代的行业。对产品的启示：垂直 Agent 的定价应该锚定被替代的人力小时数，而不是 token 成本；同时「可追溯引用」是这类产品的准入门槛。</div>
+    <div class="links"><a href="https://www.ebrun.com/20261027/716483.shtml">亿邦动力</a></div>
+  </details>
+
+  <details class="item" id="funding-3">
+    <summary><span class="num">3</span><span class="t">Bedrock 以 41 亿美元估值融 6 亿美元：自主挖掘机两年募资近 10 亿</span><span class="arrow">▸</span></summary>
+    <div class="body">公司做自主作业的挖掘机与工程机械，已有三个商业化项目落地，两年累计融资接近 10 亿美元。重资产的具身落地正在拿到比软件 Agent 更大的单笔资金。对产品的启示：实体场景的付费意愿取决于「每台设备节省的人工小时」，这也解释了为什么 Physical RSI 这类「越用越强」的能力叙事在资本侧更受认可。</div>
+    <div class="links"><a href="https://www.ebrun.com/20261027/716484.shtml">亿邦动力</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-papers">
+  <h2>论文精选<span class="count">6 条</span></h2>
+
+  <div class="paper-recap">
+    <h3>本期论文总结 · 组会分享版</h3>
+    <h4>一、今日主线（为什么选这 6 篇）</h4>
+    <ol>
+      <li><strong>RSI 从概念走向工程</strong>（<a href="#papers-4">#4</a>、<a href="#papers-6">#6</a>）：Skill∞ 给出技能层递归改进的可执行闭环，Trustworthy RSI 则系统梳理其失效模式，两篇合起来正好是「怎么用」与「怎么不出事」。</li>
+      <li><strong>Agent 的验收标准正在被重写</strong>（<a href="#papers-1">#1</a>、<a href="#papers-2">#2</a>）：根因分析里简单 harness 打败复杂多 Agent 编排，协同编程要看渲染结果而非单测，共同指向「评测即架构」。</li>
+      <li><strong>主动性成为第三条能力轴</strong>（<a href="#papers-3">#3</a>、<a href="#papers-5">#5</a>）：Proactive AI 综述把主动性形式化为独立维度，Proof-of-Agentness 处理主动 Agent 在开放 Web 上的身份与可追责问题。</li>
+    </ol>
+    <h4>二、每篇一句话（按阅读优先级）</h4>
+    <ol>
+      <li><a href="#papers-1">Free to Look, Free to Reason（arXiv）</a>：先做简单 harness，再谈多 Agent 编排，精读。</li>
+      <li><a href="#papers-2">Co-Design Bench（arXiv）</a>：用渲染一致性评测多模态协同编程，精读。</li>
+      <li><a href="#papers-3">Proactive AI for Superintelligent Agents（arXiv 综述）</a>：主动性应与智能、对齐并列，精读。</li>
+      <li><a href="#papers-4">Skill∞（arXiv）</a>：技能级递归自我改进的闭环实现，选读。</li>
+      <li><a href="#papers-5">Proof-of-Agentness（arXiv）</a>：在 Web 上验证 Agent 身份，选读。</li>
+      <li><a href="#papers-6">Trustworthy RSI（arXiv）</a>：自我改进的失效模式与安全带，泛读。</li>
+    </ol>
+    <h4>三、组会讨论题</h4>
+    <ul>
+      <li>如果 Accio 这类跨境采购 Agent 要「主动」替商家盯价格与库存，打扰预算该怎么定？一次错价提醒的收益，和每日十条噪音造成的信任损耗，如何量化与取舍？</li>
+      <li>多 Agent 编排在根因分析上输给简单 harness，这个结论能否外推到跨境合规审核（多规则、多语言、多主体）？还是说规则密集场景恰恰需要显式分工与互相校验？</li>
+      <li>当平台开始验证「请求是否来自 Agent」（The RealReal 拦 Muse、Etsy 新规、Proof-of-Agentness），采购 Agent 应该以什么身份出现在对端系统里——代表商家、代表平台，还是以可验证的第三方代理身份？出错与退款的责任归属又该怎么设计？</li>
+    </ul>
+  </div>
+
+  <details class="item" id="papers-1">
+    <summary><span class="num">1</span><span class="t">arXiv｜Free to Look, Free to Reason：简单 LLM Harness 在根因诊断上胜过手工多 Agent 流水线</span><span class="arrow">▸</span></summary>
+    <div class="body">论文对比了手工搭建的多 Agent 根因分析流水线与「简单 LLM harness」，发现后者在诊断准确率上反而更好：复杂的角色分工与消息传递引入信息损耗，而单模型配合好的工具与上下文组织更容易保住原始信号。对 Agent 工程的启示很硬——先别急着上多 Agent 编排，把上下文、工具返回格式与重试策略做好，收益通常更大。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2610.35767">arXiv</a></div>
+  </details>
+
+  <details class="item" id="papers-2">
+    <summary><span class="num">2</span><span class="t">arXiv｜Co-Design Bench（阿里 Qwen）：多模态协同编程，评判的是「设计稿到渲染结果」的一致性</span><span class="arrow">▸</span></summary>
+    <div class="body">阿里 Qwen 团队（含林达华、白帅、刘大一恒）提出多模态协同编程评测，让模型在「设计稿—代码—渲染结果」之间来回对齐，而不是只判代码能否通过单测。它补上了「能不能把视觉意图翻译成可运行界面」这块空白。对产品的启示：前端与设计类 Agent 的验收标准应该是渲染后的一致性，这套评测集可以直接拿来当产品回归测试。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2610.35138">arXiv</a><a href="https://codesignbench.github.io/">项目主页</a></div>
+  </details>
+
+  <details class="item" id="papers-3">
+    <summary><span class="num">3</span><span class="t">arXiv｜Proactive AI for Superintelligent Agents：UIUC/Google/Stanford 综述把「主动性」列为第三条能力轴</span><span class="arrow">▸</span></summary>
+    <div class="body">综述梳理 1,410 篇文献、深度讨论 80 篇，覆盖 13 个领域，提出 6A 框架，主张「主动性」应当与智能、对齐并列为第三条能力轴。它把「Agent 该不该主动」从产品直觉变成可分析的设计维度。对做个人助理类产品的团队接近必读：主动性的边界、打扰预算，以及「主动出错」时的责任归属，都需要在设计阶段就定义清楚。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2610.35439">arXiv</a><a href="https://empathyang.github.io/Proactive-AI-for-Superintelligent-Agents/">项目主页</a></div>
+  </details>
+
+  <details class="item" id="papers-4">
+    <summary><span class="num">4</span><span class="t">arXiv｜Skill∞：把 Agent 技能做成可递归自我改进的模块</span><span class="arrow">▸</span></summary>
+    <div class="body">论文让 Agent 在技能层面做递归自我改进：技能被写成可执行模块，失败轨迹回灌后自动重写技能实现并重新评测，形成闭环。这与智元把「错题本」写进 harness 的做法同源，是 RSI 在软件侧最具体的落地形态。对产品的启示：技能库应该当成代码资产来管理——有版本、有测试、有回滚。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2610.35434">arXiv</a></div>
+  </details>
+
+  <details class="item" id="papers-5">
+    <summary><span class="num">5</span><span class="t">arXiv｜Proof-of-Agentness：如何在开放 Web 上验证「请求确实来自 Agent」</span><span class="arrow">▸</span></summary>
+    <div class="body">论文讨论如何在 Web 上验证一个请求来自某个 Agent 而非脚本，提出基于行为特征与凭证结合的验证思路。这正好接上 The RealReal 拦截 Muse 的现实冲突：平台无法区分「恶意爬虫」与「代用户下单的 Agent」。对 agentic commerce 的启示是，Agent 身份与可追责性会成为基础设施，谁先提供「可验证的 Agent 凭证」，谁就握住平台侧的入口。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2610.35288">arXiv</a></div>
+  </details>
+
+  <details class="item" id="papers-6">
+    <summary><span class="num">6</span><span class="t">arXiv｜Trustworthy Recursive Self-Improvement：大模型时代自我改进的失效模式</span><span class="arrow">▸</span></summary>
+    <div class="body">综述讨论自我改进系统在什么条件下会退化或失控，梳理了评测污染、目标漂移与能力突变三类失效模式，并给出对应的监控与闸门建议。RSI 从概念走向工程时，这类「安全带」研究决定了它能否被放进生产环境。对产品的启示：任何自动改写 prompt 或策略的机制，都必须配独立的回归评测与人工确认环节。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2610.35193">arXiv</a></div>
+  </details>
+</section>
+
+<a class="back" href="../index.html">← 返回日报归档</a>
+<div class="footer">
+  由「新技术学习搭子」自动生成 · 内容采编自公开来源，观点仅供参考 · 2026-10-28
+</div>
+</div>
+<script>
+function setAll(open){document.querySelectorAll('details.item').forEach(function(d){d.open=open})}
+if(location.hash){
+  var el=document.querySelector(location.hash);
+  if(el&&el.tagName==='DETAILS'){el.open=true;setTimeout(function(){el.scrollIntoView({block:'start'})},60)}
+}
+</script>
+</body>
+</html>
