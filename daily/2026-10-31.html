@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 前沿日报 · 2026-10-31</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<div class="wrap">
+<header class="site-header">
+  <div class="brand">AI FRONTIER DAILY · 新技术学习搭子</div>
+  <h1>AI 前沿日报</h1>
+  <span class="date-badge">2026-10-31 · 星期六 · 共 25 条</span>
+</header>
+<div class="overview">
+  <strong>今日总览：</strong>今天最值得记住的是一句「别自欺」：DoorDash 在财报会上承认，Muse、Instinct、Fo 这些第三方 Agent 加起来只带来「几百单」，而它日均完成约 300 万单——Agentic Commerce 的叙事与真实成交量之间，还隔着一整层信任、授权与履约。同一时间，百度把搜索讲成「一项任务、一份交付」，并用 4.9 元/千次的价格把搜索 API 变成 Agent 的入口；面壁的 ForgeKernel 让一个无人值守的 Agent 在 22.5 小时里把 DeepSeek 的核心算子写快了 9.8%，OXR 则用递归自我改进把 1.3B 的文档解析模型推上三榜第一。三条线指向同一个结论：RSI 开始有可结算的产出，而评价 Agent 的方式正从「最终做对了吗」转向「过程是否可执行、结论是否有证据」。
+</div>
+<nav class="chips">
+  <a href="#sec-headline">头条<b>3</b></a>
+  <a href="#sec-llm">大模型<b>3</b></a>
+  <a href="#sec-agent">Agent 进展<b>2</b></a>
+  <a href="#sec-oss">开源项目<b>4</b></a>
+  <a href="#sec-vertical">垂直赛道<b>4</b></a>
+  <a href="#sec-funding">公司融资<b>3</b></a>
+  <a href="#sec-papers">论文<b>6</b></a>
+</nav>
+<div class="toolbar">
+  <button onclick="setAll(true)">全部展开</button>
+  <button onclick="setAll(false)">全部收起</button>
+</div>
+
+<section class="section" id="sec-headline">
+  <h2>头条<span class="count">3 条</span></h2>
+
+  <details class="item" id="headline-1" open>
+    <summary><span class="num">1</span><span class="t">DoorDash 承认第三方 Agent 只带来「几百单」：在日均 300 万单面前，Agentic Commerce 还在 demo 阶段</span><span class="arrow">▸</span></summary>
+    <div class="body">10 月 30 日的三季度财报电话会上，DoorDash 披露来自 Muse、Instinct、Fo 等第三方 Agent 的订单「总共大约几百单」；作为对照，公司在 2025 年报告中给出的日均配送量约为 300 万单。CEO Tony Xu 的回应很克制：「在技术这件事上，你永远不想对抗重力，但也不能自欺。」他明确说用户仍然主要在 DoorDash 自己的 App 里下单，但公司希望理解 Agent 场景、与第三方 Agent 开发者建立健康关系，并认为未来可能在 Agent 内部做广告。DoorDash 自己也在铺路：9 月的短信下单 Agent、7 月的 CLI Agent、6 月的 Ask DoorDash，以及面向企业订餐的 MCP。渠道态度正在分化——Amazon 在拦 Agent，Walmart 则铺红毯欢迎。对做电商 Agent 的团队，这条数据的价值不在唱衰，而在校准：Demo 里的「一句话下单」与真实成交之间，差的是账号授权、价格一致性、库存锁定、售后归属和商家结算，任何一项没打通，量就起不来。与其追逐 Agent 入口的曝光，不如先把「订单真的完成、商家真的收到钱」做成可复现的指标。</div>
+    <div class="links"><a href="https://techcrunch.com/2026/10/30/doordash-said-its-only-received-several-hundred-orders-from-ai-agents/">TechCrunch</a><a href="https://ir.doordash.com/news/news-details/2026/DoorDash-Releases-Third-Quarter-2026-Financial-Results/default.aspx">DoorDash 财报</a></div>
+  </details>
+
+  <details class="item" id="headline-2" open>
+    <summary><span class="num">2</span><span class="t">百度 APP 四大 AI 升级：搜索宣称实现「递归自我进化」，搜索 AI API 降到 4.9 元/千次</span><span class="arrow">▸</span></summary>
+    <div class="body">10 月 30 日的产品沟通会上，百度把搜索的重心从「一次提问、一次回答」改成「一项任务、一份交付」：复杂问题做多步查找与整理后直接给核实过的结论，高频事务直接交付结果，需要长期关注的事项经用户确认后持续跟踪并主动提醒，目前覆盖 170 余种工具场景。现场举的例子很具体——家长查升学信息时会结合孩子成绩、住址与寄宿偏好，把通勤、学费、招生政策放在一起比较；规划三亚行程时会生成五天行程与预算，并在酒店降价时提醒，五晚省下 2100 元。AI 镜头支持多目标同步识别与动态追踪、9 种方言实时对话；GUI 场景覆盖提升 5 倍，接入政务、民生、央行等超 50 亿权威资源，覆盖 20 多个行业。价格是最有攻击性的一环：搜索 AI API 限时最低 4.9 元/千次，明确低于 DeepSeek 的搜索 API。官方把效果归因于 AI 原生四层架构，其中引擎层用「检索—反馈—再训练」的在线闭环让多 Agent 协同自进化，迭代效率提升 80% 以上，文心助手接入后效果提升 20%。所谓「递归自我进化」需要更严格的第三方验证，但把真实检索与用户反馈沉淀成训练信号，确实是搜索做 Agent 的天然优势；对产品团队而言，这意味着「搜索」不再只是一个工具，而是任务运行时加分发渠道，API 与 MCP、Skill 的全方案接入会把竞争拉到入口层。</div>
+    <div class="links"><a href="https://www.qbitai.com/2026/10/506771.html">量子位</a></div>
+  </details>
+
+  <details class="item" id="headline-3" open>
+    <summary><span class="num">3</span><span class="t">Claude 新模型曝光：Fable 5.5 与代号 Obsidian 3 的下一代 Opus 同时现身，最快一两周发布</span><span class="arrow">▸</span></summary>
+    <div class="body">10 月 30 日，社区发现 Azure 模型目录里短暂出现过 claude-fable-5-5 的条目，随后被删除，但截图已经扩散；流出的实测图里，「鹈鹕骑自行车」这类老题的画面质感、光影和细节明显上了一个台阶，连沙滩上的车辙与鹈鹕嘴里的鱼都被画了出来。几乎同时，开发者在基准测试平台上发现代号 Obsidian 3 的模型，跑分略高于当前的 Opus 5.5。时间点很微妙：Anthropic 刚公开提交 S-1，市场讨论的估值区间已经来到 1.5 万亿至 2 万亿美元，上市前展示「最强技术 + 最快迭代」是最直接的肌肉秀；有消息称新模型最快一两个星期内发布，也可能压在 IPO 前后。对使用方的启示不是追新，而是把模型选型做成可替换的配置：当头部模型的迭代周期缩短到以周计，任何写死在提示词、工具 schema 或评测集里的假设都会迅速过期，评测 harness 必须模型无关、可回归。</div>
+    <div class="links"><a href="https://www.qbitai.com/2026/10/506674.html">量子位</a><a href="https://techcrunch.com/2026/10/26/anthropics-ipo-filing-reveals-its-strategy-for-keeping-enterprise-customers-hooked/">TechCrunch（IPO 文件）</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-llm">
+  <h2>大模型动态<span class="count">3 条</span></h2>
+
+  <details class="item" id="llm-1">
+    <summary><span class="num">1</span><span class="t">1.3B 的 OXR 登顶三大文档解析榜：用 RSI 后训练替代人工标注，100 页 101 秒</span><span class="arrow">▸</span></summary>
+    <div class="body">国产团队 SoMark 开源的 OXR（Optical Everything Recognition）只有 1.3B 参数，却在 OmniDocBench（97.18）、olmOCR-Bench（87.84）、DocParsingBench（87.76）三个文档解析榜上同时第一，代码、权重与评测流程全部公开，还提供免注册的免费 API。它一次能处理表格、公式、代码块、图片、化学方程式、脚注、页眉页脚、印章等 13 类元素，输出保留语义结构与阅读顺序的 Markdown；单张 RTX PRO 6000 端到端解析 100 页只要 101 秒，量化后一张 RTX 3060 就能跑。真正的方法论在后训练：文档解析的每一个输入都有客观确定的标准答案，于是团队用递归自我改进（RSI）替代人工标注——先用通用 VLM 把样本分成 Correct / Wrong / Uncertain 三类，Uncertain 这一档是关键，避免把评判者的犹豫硬包装成标签；再对高分歧样本做轻微图像扰动，找出模型的视觉脆弱点；随后让 VLM 做失败归因并聚类成「原因簇」，最后按原因簇生成新数据回流训练。架构上把版面分析拆成独立可插拔模块，主模型同时做内容识别与阅读顺序，既提速又让行业可以替换私有版面模型。对 Agent 产品的启示：文档解析不是外围工具，而是上下文基础设施——RAG 的检索质量、工具调用的参数正确率，很多时候死在 PDF 的表格与公式上；而「可客观判分」正是 RSI 能成立的前提，选场景时先问一句「对错能不能被机器验证」。</div>
+    <div class="links"><a href="https://www.qbitai.com/2026/10/506686.html">量子位</a><a href="https://github.com/SoMarkAI/OXR">GitHub</a><a href="https://huggingface.co/SoMarkAI/OXR-1.0">Hugging Face</a></div>
+  </details>
+
+  <details class="item" id="llm-2">
+    <summary><span class="num">2</span><span class="t">联想天禧 AI 4.5 上 AIPC：超能模式打通飞书/企微连接器，手机可远程调度家里电脑干活</span><span class="arrow">▸</span></summary>
+    <div class="body">10 月 30 日，联想天禧 AI 4.5 在 AIPC 端正式发布，此前已先后上线 AI 手机（10 月 20 日）与 AI 平板（10 月 27 日），完成三端覆盖。核心是「超能模式」：打通飞书、联想浏览器、企业微信等连接器，并与个人知识库融合，用户一句话就能让 AI 拆解任务、跨应用闭环执行，例如查会议、分任务、理待办、跨平台检索资料并群发通知；同时上线技能广场，覆盖连接器、多任务协作与 PPT 生成等 Skills，系统级操控技能包 2.0 可以按一句话调整显卡、功耗与系统设置。会议场景里，AI 能作为「参会者」实时发表观点、中途被提问并基于转录作答，会后自动生成总结卡片并入库跨端同步，知识库单次可上传 20 个文件并支持图片。差旅场景最能说明产品意图：用户在手机或平板上可以远程调用办公室或家里的 AIPC 接力执行重任务，执行过程可见、完成状态主动推送、产物可在线预览，做到「人在旅途走，活在 PC 干」。联想 AI 主机 P7 则用 Auto 模式在云端模型与本地模型之间按任务复杂度自动选择。对 Agent 产品的启示：PC 正在变成常驻的 Agent 运行时，「本地文件 + 企业 IM + 远程调度」这一组合比纯云端助手更接近真实办公；连接器与权限才是护城河，模型只是其中一个部件。</div>
+    <div class="links"><a href="https://www.qbitai.com/2026/10/506779.html">量子位</a></div>
+  </details>
+
+  <details class="item" id="llm-3">
+    <summary><span class="num">3</span><span class="t">OpenAI 表态遵守共享 robots.txt 训练偏好信号，并发文主张「合理使用惠及所有人」</span><span class="arrow">▸</span></summary>
+    <div class="body">10 月 30 日，OpenAI 连发两篇政策向文章。第一篇《让网站更容易表达 AI 训练偏好》承诺遵守一个共享的 robots.txt 信号，让网站运营者用一套标准表达「是否允许用于 AI 训练」，并在参与该机制的提供商之间通用，减少站长针对每家爬虫分别配置的负担。第二篇《合理使用惠及所有人》则从作者、记者、创作者、学者、无障碍倡导者与法律专家的角度论证合理使用的价值。两篇合起来是一次典型的「技术标准 + 法律叙事」双线布局：一边把 opt-out 做成基础设施，一边为训练数据的使用权辩护。对做检索与购物 Agent 的团队，这件事的现实影响是：站点级的 AI 使用偏好会逐渐变成抓取与索引的产品约束，合规不再是法务附录，而是抓取调度、缓存策略与来源标注的一等需求；当商家页面明确拒绝 AI 使用时，Agent 需要有替代路径（官方 API、Merchant Center、合作协议），而不是靠换 UA 硬闯。</div>
+    <div class="links"><a href="https://openai.com/index/helping-websites-express-ai-training-preferences/">OpenAI（训练偏好）</a><a href="https://openai.com/index/fair-use-benefits-everyone/">OpenAI（合理使用）</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-agent">
+  <h2>Agent 进展<span class="count">2 条</span></h2>
+
+  <details class="item" id="agent-1">
+    <summary><span class="num">1</span><span class="t">智元发布「Worken」物理 AI 工时单位：GO-3 三榜第一、WITA-OMNI 无唤醒词交互、灵渠 OS 年底开源</span><span class="arrow">▸</span></summary>
+    <div class="body">10 月 30 日的智元创新日上，稚晖君抛出一个新单位 Worken，用来衡量机器人的有效智能工时，公式是「活跃机器人数量 × 自主工作时长 × 产出效能比」——部署规模、无人工接管的持续作业能力、实际产出效率三个维度被压成一个可结算的数。技术侧同时发了三样东西：具身基座模型 GO-3 Preview 采用 WRAM（World Reasoning Action Model）架构，把任务理解、推理、未来状态预测与动作生成放进统一框架，在 RoboDojo、RoboTwin、RoboColiseum 三榜登顶，并支持跨本体迁移；交互大模型 WITA-OMNI 在 Daily-Omni、TimeLens-Bench、EmbSpatialBench、MMAU 四榜第一，不需要唤醒词，靠声音方位、声纹、人脸与唇动识别对话对象，平均 600 毫秒、最快 400 毫秒响应，能听懂 100 多种语言、说 29 种语言与 7 种方言，并支持本地无网交互；快慢双系统把即时回应的 Interaction Engine 与负责推理、工具调用、长任务的 Background Agent 分开。硬件与系统侧，AHA3 用单颗 SoC 把运动、交互、作业三套智能合一，体积缩小 50%、响应提升 90%；灵渠 OS 1.0 支持 15 类 100 多种外设，在 1000Hz 负载下端到端时延抖动小于 4 微秒，系统服务封装为可复用的 Skill，年底全面开源并捐赠给开放原子基金会。落地数据也不再是 demo：龙旗 3C 产线稳定运行 7 个月，6 天直播累计作业 64,824 次、生产 17,625 台平板，成功率 99.99%，节拍 22 秒与熟练工持平；100 台灵犀 X2 在爱仕达门店 3 天带动 223 万元销售；横琴长隆部署近 500 台、覆盖 100 多个岗位。对 Agent 产品的启示：Worken 之于机器人，类似 token 之于大模型——当行业有了统一计量单位，采购与考核才会真正发生；而「快慢双系统 + 异常恢复」这套结构，对任何长任务 Agent 都直接适用。</div>
+    <div class="links"><a href="https://www.qbitai.com/2026/10/506819.html">量子位</a></div>
+  </details>
+
+  <details class="item" id="agent-2">
+    <summary><span class="num">2</span><span class="t">清华×无问芯穹×智元 CEL：96 台机器人互相「抄作业」，五项任务成功率全部超过人类操作员平均</span><span class="arrow">▸</span></summary>
+    <div class="body">清华大学、无问芯穹与智元联合提出群体经验学习（Collective Experience Learning，CEL），核心是让机器人不只向人类学习，还能复用同伴的成功经验：一台机器人在任务里卡住时，可以从群体过去的执行记录中检索相似场景下的有效做法。验证规模是 96 台真实机器人，任务包括插花、叠衣服、手机充电、凳子组装与手机包装。结果相当硬：两台没参加过训练的机器人做了 600 次测试只失败 15 次，总体成功率 97.5%，五项任务全部超过 6 名人类操作员的平均水平；手机包装从 79.2% 提升到 98.3%，连续 120 次只失败 2 次。更有意思的是规模化趋势——参与训练的机器人从 16 台增加到 96 台，成功率从 86.7% 升到 98.3%，同样的训练时间里机器越多、经验越厚、群体越强。系统层用基于 RLinf 的容错异步训练系统 FATS 支撑近百台机器人协同，96 台规模下累计 9,834 轮经验，22 台机器人发生 30 次故障，但故障造成的机时损失只占 1.3%；算法层用失败引导的经验检索微调（FERT），从成功里学「该怎么做」、从失败里找「哪里不对」。对 Agent 产品的启示：跨会话、跨用户的经验共享会形成和「机器人越多越强」同构的飞轮，但前提是经验可检索、可归因、可隔离——哪些经验能共享、哪些涉及隐私不能出域，会成为产品设计问题而不是纯技术问题。</div>
+    <div class="links"><a href="https://www.qbitai.com/2026/10/506662.html">量子位</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-oss">
+  <h2>开源项目<span class="count">4 条</span></h2>
+
+  <details class="item" id="oss-1">
+    <summary><span class="num">1</span><span class="t">thedotmack/claude-mem 单日 +1,140 星：把「跨会话记忆」做成所有 Agent 的通用插件</span><span class="arrow">▸</span></summary>
+    <div class="body">claude-mem 目前约 10.6 万星、9,354 个 fork，今日新增约 1,140 星。它做的事很聚焦：记录 Agent 在会话中做过的所有事，用 AI 压缩成结构化记忆，再在后续会话开始时自动注入，让 Agent 不必每次从零了解项目背景。兼容面铺得很广，Claude Code、OpenClaw、Codex、Gemini、Hermes、Copilot、OpenCode 都能接，用 TypeScript 实现。它走红的背景是「Agent 记忆」正在从产品功能变成独立基础设施：模型上下文再长，也架不住项目跨周、跨人、跨工具。对做采购或商家 Agent 的团队，这类项目的价值是提供了一种可借鉴的形态——记忆不该是聊天记录堆叠，而应是「压缩后的结论 + 可追溯的原始证据」，并且要能按项目、按用户隔离；同时要警惕记忆投毒，任何自动注入的长期记忆都必须带来源与失效时间。</div>
+    <div class="links"><a href="https://github.com/thedotmack/claude-mem">GitHub</a></div>
+  </details>
+
+  <details class="item" id="oss-2">
+    <summary><span class="num">2</span><span class="t">CopilotKit/OpenBot 单日 +706 星：给每个「AI 同事」配一台自己的电脑</span><span class="arrow">▸</span></summary>
+    <div class="body">OpenBot 目前约 8,794 星、1,110 个 fork，今日新增约 706 星。它的定位是开源的「AI 同事」：每个 Agent 都拥有自己的计算机——浏览器、文件与工具，行动在执行前被确定下来、执行后被完整记录，因此可以审计、可以回放；同时通过 AG-UI 协议接入任意 Agent 实现，用 TypeScript 编写。这和前几天的 OpenMausBot、OpenClaw 属于同一波「给 Agent 一台机器」的范式，但 OpenBot 更强调团队部署与可观测性：不是一个人的玩具，而是一组可以被管理的数字同事。对 Agent 产品的启示：当 Agent 拥有浏览器与文件系统，权限边界、操作日志与产物归属就必须先设计好；「执行前决策、执行后记录」这个顺序，本身就是一种低成本的安全架构，值得抄进自己的运行时。</div>
+    <div class="links"><a href="https://github.com/CopilotKit/OpenBot">GitHub</a></div>
+  </details>
+
+  <details class="item" id="oss-3">
+    <summary><span class="num">3</span><span class="t">macro-inc/macro：把邮件、文档、任务、Agent 和 CRM 放进一个共享记忆的工作台</span><span class="arrow">▸</span></summary>
+    <div class="body">macro 目前约 5,878 星，定位是团队的统一工作空间：邮件、聊天、文档、任务、Agent、通话与 CRM 放在同一个界面里，并且通过 @ 引用互相链接，底层用 Rust 实现。它想解决的是「团队的知识被切碎在十几个 SaaS 里」这个老问题，而 AI 让这件事第一次有了可行解——不是再做一个聊天框，而是让所有对象共享同一份上下文与记忆。对 Agent 产品的启示：企业级 Agent 的竞争力往往不在模型，而在「它能不能看到足够完整的上下文」；把 CRM、邮件、文档打通之后，Agent 才能回答「这个客户上次为什么没成交」这种真正值钱的问题。做跨境贸易 Agent 时，询盘邮件、报价单、样品记录、物流节点本质上也是同一类对象图，值得用同样思路先建上下文层。</div>
+    <div class="links"><a href="https://github.com/macro-inc/macro">GitHub</a></div>
+  </details>
+
+  <details class="item" id="oss-4">
+    <summary><span class="num">4</span><span class="t">lightpanda-io/browser 单日 +626 星：为 AI 与自动化重写的无头浏览器</span><span class="arrow">▸</span></summary>
+    <div class="body">Lightpanda 目前约 3.8 万星、1,874 个 fork，今日新增约 626 星。它不是给人类用的浏览器，而是给 AI 与自动化用的无头浏览器，用 Zig 从零实现，目标是比通用浏览器更适合大规模、长时间的自动化访问。这类项目的重要性会随着「浏览器 Agent」普及而上升：当 Agent 要替用户比价、填表、下单、查后台，浏览器就从展示层变成了执行层，启动速度、内存占用、并发密度直接决定单位任务成本。对电商与贸易 Agent 的启示很实际：抓取与操作要区分「读」和「写」，读可以用轻量无头浏览器压低成本，写则必须走官方接口或带完整审计的受控浏览器；同时要尊重站点的 AI 使用偏好与反爬规则，否则规模一上来就会撞墙。</div>
+    <div class="links"><a href="https://github.com/lightpanda-io/browser">GitHub</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-vertical">
+  <h2>垂直赛道<span class="count">4 条</span></h2>
+
+  <div class="subsec" id="subsec-coding">
+    <h3>AI 编程</h3>
+
+    <details class="item" id="coding-1">
+      <summary><span class="num">1</span><span class="t">面壁 ForgeKernel 直播 22.5 小时：零源码把 DeepSeek-V4.1 的 FlashMLA Prefill 算子写快 9.8%</span><span class="arrow">▸</span></summary>
+      <div class="body">10 月 30 日，面壁智能的算子生成系统 ForgeKernel 做了一场全程直播：在只有算子数学定义与目标硬件约束、没有 DeepSeek 源码也没有参考论文的条件下，一个无人参与的 Agent 在单张 B200 上重写 FlashMLA Prefill 算子。第一版通过正确性检查但耗时 1,834 微秒；不到 4 小时压到 593 微秒；第 7 小时前后先超过自己的上一版，随后首次超过 FlashMLA；最终 472 微秒对 518 微秒，快 9.8%。全程 42 轮迭代、留下 32 个版本、消耗 22 个 GPU 小时，人类写的代码是 0 行。它此前还在昇腾 CANNBench 的 950DT、950PR、A3 三个硬件榜同时第一，总分分别为 4010.75、4165.94、4341.16，领先第二名 27.8%、18%、22%。方法上，ForgeKernel 基于 10 月 27 日与清华等机构发布的 JustGoal 论文：把架构设计与实现能力分离、把验证过的硬件经验存进知识库、把自己最好的版本当作下一轮对手。29 项对比中 24 项打平或超越专家实现；从英伟达迁移到昇腾只需把性能分析工具从 NCU 换成 msprof；同样的优化方法在国产芯片上能提速 20%–30%，在英伟达上是 5%–10%。生成的算子已经接入训练框架，完成 MiniCPM5-1B 的长训测试。对 AI 编程的启示：这是 RSI 在工程领域最干净的样本——因为「正确性 + 性能」都能被机器验证，Agent 才能安全地自我迭代；人类的工作重心从写代码转向上限设定、环境搭建与验收标准设计。</div>
+      <div class="links"><a href="https://www.qbitai.com/2026/10/506785.html">量子位</a></div>
+    </details>
+  </div>
+
+  <div class="subsec" id="subsec-video">
+    <h3>AI 视频与多模态</h3>
+
+    <details class="item" id="video-1">
+      <summary><span class="num">1</span><span class="t">NVIDIA×MIT 开源 Open-H3-Regenerate-2K：把 H3 草稿重生成到 2K/4K，5 秒视频从 87 秒压到 22 秒</span><span class="arrow">▸</span></summary>
+      <div class="body">英伟达与 MIT 的 Efficient-Large-Model 团队在 Hugging Face 放出视频增强项目 Open-H3-Regenerate-2K 的权重，推理代码开在 NVlabs/Sana 仓库。方案基于 MiniMax H3：低分辨率草稿负责场景、布局与运动，细化阶段把画面重新生成到 2560×1440，最高支持 3840×2160 的原生 4K。训练时保持 H3 的 Transformer 主干与视频 VAE 冻结，只训练新增的细化 LoRA；推理时把 LoRA 与 LightX2V FL2VA Turbo、LMS Sharp 等社区适配器合并，用三步去噪完成细化，再配合潜空间放大器、SoL-Engine 的稀疏注意力、低精度计算与快速 VAE 解码器压成本。单张 B200、预热后的条件下，一段约 5 秒视频的放大、三步细化与 2K 解码合计从 87.26 秒降到 22.45 秒，约 3.9 倍；解码从约 15 秒降到约 1.6 秒。画质上，RefinerBench-150 的 UniPercept 平均分 60.0，官方 H3-Regenerate-2K API 为 53.4；VBench 的美学、成像与主体一致性更好，官方 API 在运动平滑度与动态程度上仍略优。H3 今年 8 月开放权重，一个月下载量超过 2400 万次、衍生模型超过 300 个。对视频产品的启示：高分辨率不是「一次生成」出来的，而是「草稿 + 重生成」两段式，这既符合成本结构，也符合创作流程；对电商而言，商品视频的最后一公里往往就是清晰度与一致性，开源方案把这块的成本打下来，意味着批量生成商品视频第一次算得过账。</div>
+      <div class="links"><a href="https://www.qbitai.com/2026/10/506743.html">量子位</a><a href="https://github.com/NVlabs/Sana">NVlabs/Sana</a></div>
+    </details>
+  </div>
+
+  <div class="subsec" id="subsec-ai4s">
+    <h3>AI for Science</h3>
+
+    <details class="item" id="ai4s-1">
+      <summary><span class="num">1</span><span class="t">arXiv｜多 Agent 自主实验室：在金刚石色心上做量子实验，发现信号漂移后自己改协议、不放松验收标准</span><span class="arrow">▸</span></summary>
+      <div class="body">这篇论文（Mansouri、Kimura、Koga、Arai）搭了一个由大模型 Agent 组成的自主实验室：Agent 之间会互相评估工作，可以叫停或改变研究方向；能提出并否决研究问题、要求独立的理论校验、设计专门用来挑战自己结论的实验。验证任务是在金刚石中的量子自旋系综上，推导出一族微波脉冲序列所需的最少校准设置数，先用计算检查结果，再设计实验区分竞争预测。第一次实验与理论预测一致，但重复的参考测量显示采集过程中信号在漂移；Agent 没有把这次「一致」当作成功，而是判定结果不确定，修改测量协议，并且没有放松验收标准。修改后的实验满足标准并支持了原预测。代码已开放在 auctopus 仓库。对 AI for Science 的启示：自主实验室真正的门槛不是「会做实验」，而是「知道什么时候不该相信一次漂亮的结果」；这也正好呼应今天几条 Agent 评测工作——验收标准必须独立于执行者，且不能在压力下被下调。</div>
+      <div class="links"><a href="https://arxiv.org/abs/2610.40589">arXiv</a><a href="https://github.com/E-zClap/auctopus">代码</a></div>
+    </details>
+  </div>
+
+  <div class="subsec" id="subsec-ecom">
+    <h3>AI 电商与贸易</h3>
+
+    <details class="item" id="ecom-1">
+      <summary><span class="num">1</span><span class="t">Zest 把餐厅订位做成短信 Agent：群聊投票、用消费记录做口味画像，靠订位与点单抽成</span><span class="arrow">▸</span></summary>
+      <div class="body">10 月 30 日，餐厅发现应用 Zest 上线了一个住在短信里的「餐厅管家」：用户发消息到 (212) 470-6067，就能按菜系、场合、饮食限制或街区找餐厅，问营业忙不忙、有没有 Wi-Fi，甚至让它把菜单发过来；它还能被拉进群聊，融合所有人的口味给出建议，用群内投票解决分歧，然后通过 OpenTable、Resy、SevenRooms 直接订位。Zest 的差异化在数据：它通过 Plaid 接入用户的信用卡消费记录，只看餐饮类交易，用「你实际去过哪里」来推断口味，而不是靠反复提问。公司 2024 年 11 月成立，拿到 Alexis Ohanian 的 776 与 Kindred Ventures 的 180 万美元 pre-seed。创始人的判断很直接：「Agent 本身就是产品」，应用会消失；商业化从订位与点单开始，未来可能扩展到购物等场景。对电商与贸易 Agent 的启示有三点：第一，消息线程可能是比 App 更低的入口摩擦；第二，真实交易历史比问卷更懂用户，但隐私与授权必须讲清楚；第三，Agent 只有在「建议—决策—交易」闭环里才收得到钱，只做推荐很难变现。</div>
+      <div class="links"><a href="https://techcrunch.com/2026/10/30/zests-new-ai-agent-finds-restaurants-and-books-reservations-over-text/">TechCrunch</a><a href="https://www.textzest.com/">Zest</a></div>
+    </details>
+  </div>
+</section>
+
+<section class="section" id="sec-funding">
+  <h2>公司与融资<span class="count">3 条</span></h2>
+
+  <details class="item" id="funding-1">
+    <summary><span class="num">1</span><span class="t">Anthropic IPO 后预计拿到「高收益垃圾级」评级：Blackstone 改口，双 B 区间意味着更贵的钱</span><span class="arrow">▸</span></summary>
+    <div class="body">据《金融时报》报道，Blackstone 在一笔 630 亿美元的 Anthropic 芯片融资交易中担任锚定投资方，并已告知交易投资人：预计 Anthropic 在 IPO 后会拿到「高」垃圾级评级，落在双 B 区间，也就是投机级里最高的一档。此前 Blackstone 的口径相反，认为公司在 2027 年前能拿到投资级评级。Anthropic 与 Blackstone 均拒绝置评。评级只是预测，但方向很明确：垃圾级会让发债更贵、更难，而这笔钱正是用来支撑其算力开支的。Anthropic 本周刚正式提交上市申请，市场对这笔可能是史上最大 IPO 之一的交易讨论热烈。对行业的启示：前沿实验室的商业模式越来越像重资产公司——算力靠债务融资，评级就成了和模型能力同等重要的约束；当融资成本上升，API 定价、算力采购节奏与对外承诺都会被迫更保守。</div>
+    <div class="links"><a href="https://techcrunch.com/2026/10/30/anthropic-expected-to-receive-high-junk-rating-from-credit-agencies-following-ipo-report-says/">TechCrunch</a><a href="https://www.ft.com/content/59383c7f-8d82-493f-bf01-d2e862a1018f">Financial Times</a></div>
+  </details>
+
+  <details class="item" id="funding-2">
+    <summary><span class="num">2</span><span class="t">Utopai Studios 估值 10 亿美元：基于 MiniMax H3 定制的视频模型双榜第二，2027 年三部院线片</span><span class="arrow">▸</span></summary>
+    <div class="body">成立四年的 Utopai Studios 完成 6000 万美元融资，据 Dealroom、The Information 等媒体报道估值站上 10 亿美元；The Information 还称公司已拿到下一轮 20 亿至 30 亿美元区间的投资意向。它的技术底座是基于 MiniMax H3 定制的视频模型 Utopai X，在 Artificial Analysis 的文生视频与图生视频两个盲评榜上都位列全球第二，这也是首次有影视公司定制模型进入该位置。更重要是体系：自研制片系统 PAI 把剧本拆成场景与镜头，角色、场景、道具全程与项目绑定，AI 作为「制片助理」生成多版本，再接入既有后期流程；公司是首家同时加入美国编剧协会（WGA）与演员工会（SAG）的 AI 影视公司，并与 CJ ENM、Globoplay、DeNA、华策等合作。2027 年有三部院线片计划上映，剧集《Space Nation》已按非 AI 内容的市场价格卖出首批发行权。对视频与电商的启示：模型权重会过时，制作体系与 IP 不会；真正的壁垒是「多镜头一致性 + 工作流 + 创作者关系」，这套逻辑同样适用于品牌商品视频的规模化生产。</div>
+    <div class="links"><a href="https://www.qbitai.com/2026/10/506747.html">量子位</a></div>
+  </details>
+
+  <details class="item" id="funding-3">
+    <summary><span class="num">3</span><span class="t">AI 支出繁荣出现裂缝：四大云厂今年资本开支超 7,400 亿美元，Alphabet 单日蒸发 5,000 亿美元市值</span><span class="arrow">▸</span></summary>
+    <div class="body">过去两周，Alphabet、Amazon、Meta、Microsoft 陆续给出今年合计超过 7,400 亿美元的资本开支指引，市场将其读作 AI 基础设施投入。但进入四季度，投资者开始担心负自由现金流、债务累积以及这些投入能否产生足够回报。10 月 30 日，纳斯达克下跌 2.9%，英伟达跌 4%、博通跌超 5%、高通跌 11%；Alphabet 周四单日跌 12%，创最差单日纪录、蒸发 5,000 亿美元市值，周五继续下行。具体数字很难看：Alphabet 三季度自由现金流为 -91 亿美元，连续第二个季度为负，资本开支 514 亿美元，全年最多 2,050 亿美元，而搜索广告增速降到 12%，为五个季度最低；Amazon 过去 12 个月自由现金流 -424 亿美元，去年同期为 +148 亿美元，今年资本开支预计 2,200 亿美元；Meta 三季度自由现金流 -21 亿美元，资本开支最高 1,450 亿美元，扎克伯格承认免费的 Muse 个人 Agent「非常吃算力」；Microsoft 是唯一自由现金流为正的（186 亿美元），资本开支 452 亿美元低于 500 亿预期，原因是第三方容量交付延迟，结果租算力的 neocloud 股价反而下跌。标普全球市场情报显示，这五家公司 2026 年合计发债 3,260 亿美元，是去年的三倍。对创业公司的启示：算力价格与融资环境会同步收紧，「单位任务成本」将重新成为产品设计的硬约束，而不是上线后再优化的指标。</div>
+    <div class="links"><a href="https://techcrunch.com/2026/10/30/cracks-are-emerging-in-the-ai-spending-boom/">TechCrunch</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-papers">
+  <h2>论文精选<span class="count">6 条</span></h2>
+
+  <div class="paper-recap">
+    <h3>本期论文总结 · 组会分享版</h3>
+    <h4>一、今日主线（为什么选这 6 篇）</h4>
+    <ol>
+      <li><strong>从「做对了」到「能证明」</strong>（<a href="#papers-1">#1</a>、<a href="#papers-3">#3</a>、<a href="#papers-4">#4</a>）：AWM 让 Agent 把对未知环境的理解写成 Lean 4 证明，甚至证明「此关无解」；VeriCUA 把「任务完成」变成一次主动取证；Prefix Executability 则指出最终成功率会掩盖「中间步骤根本不可执行」。三篇合起来，是在给 Agent 评价换一套计量单位：证据与过程。</li>
+      <li><strong>RSI 开始有可结算的产出</strong>（<a href="#papers-2">#2</a>）：MoLRSI 让 Agent 自己改 workflow 与模型架构、把跨任务经验存进长期记忆，在抗生素发现上把实验命中率从 8.7% 提到 15.9%。它和今天 ForgeKernel 的算子自进化、OXR 的文档解析 RSI 是同一套逻辑：先让对错可被机器验证，再让 Agent 自己找错、自己造数据、自己迭代。</li>
+      <li><strong>真实世界会动，复现才是终局评测</strong>（<a href="#papers-5">#5</a>、<a href="#papers-6">#6</a>）：PAPERBENCHX 用 93 道跨 12 学科的复现任务说明，AI 科学家得先能复现已知科学；ClinGeX 则在临床基因组分析里证明，技能化编排加人类协作能把一致率从 45.7% 拉到 71.7%。再叠加今天那条「量子实验信号漂移」的自主实验室论文，核心难点是一致的：环境会变、证据会跑，Agent 必须自己发现并承认「这次不算数」。</li>
+    </ol>
+    <h4>二、每篇一句话（按阅读优先级）</h4>
+    <ol>
+      <li><a href="#papers-1">Algebraic World Model（arXiv，清华）</a>：把探索写成可执行假设、再用范畴论化简成 Lean 4 模型，在 25 个 ARC-AGI-3 游戏的全部 183 关复现通关轨迹，精读。</li>
+      <li><a href="#papers-2">MoLRSI（arXiv，MIT / 哈佛等）</a>：会改自己 workflow 的分子发现 Agent，抗生素筛选命中率 15.9%、8 个肽-MHC 结合物湿实验验证，精读。</li>
+      <li><a href="#papers-3">VeriCUA（arXiv，港大 / Google 等）</a>：把「任务是否完成」做成主动取证，显著提升对虚假完工声明的拒绝率，选读。</li>
+      <li><a href="#papers-4">Prefix Executability（NeurIPS 2026，Amazon 等）</a>：用前缀可执行性曲线与首次出错深度评价工具调用轨迹，揭示「计划条件化」带来的虚假成功率，选读。</li>
+      <li><a href="#papers-5">PAPERBENCHX（arXiv，复旦等）</a>：93 道跨 12 学科论文复现任务，考核的是科学有效而非表面一致，选读。</li>
+      <li><a href="#papers-6">ClinGeX（arXiv，上海交大 / 新华医院等）</a>：105 个可执行技能按依赖编排的临床基因组 Agent，223 例一致率 71.7% 对 45.7%，泛读。</li>
+    </ol>
+    <h4>三、组会讨论题</h4>
+    <ul>
+      <li>AWM 能证明「这一关在所有合法操作下都无解」。放到采购场景，我们能不能用同样的思路证明「这个供应商在当前规格、起订量与交期约束下不可能满足」，从而在试错超时之前就切换？要证明这件事，需要哪些可机读的约束（规格、产能、认证、账期）？</li>
+      <li>Prefix Executability 说：只看最终成功率，会奖励那些「计划没验证却碰巧成功」的轨迹。如果给 Accio 的询盘—比价—下单链路加一层前缀校验，哪些步骤的前置条件最值得先做（价格有效期、库存、MOQ、收货地、支付方式）？校验失败时应该重试、降级还是升级给人工？</li>
+      <li>MoLRSI 与 ClinGeX 都说明「技能/工作流的组织方式」比单点模型能力更决定上限。我们的 Agent 技能库该按场景切还是按能力切？当 Agent 自己改 workflow 时，谁来判断新 workflow 是否仍然合规、可解释、可回滚？</li>
+    </ul>
+  </div>
+
+  <details class="item" id="papers-1">
+    <summary><span class="num">1</span><span class="t">arXiv｜Algebraic World Model：让 Agent 把未知环境写成 Lean 4 证明，还能证明「这一关无解」</span><span class="arrow">▸</span></summary>
+    <div class="body">清华团队（Guancheng Pan、Qixin Tan、Yang Yuan、姚期智）提出 Algebraic World Model。它要回答一个比「解题」更根本的问题：AI 能不能对一个完全未知的世界做严格推理？做法分四步：先在环境里探索，写出可执行的 Python 假设并不断用观测检验、修正；再把假设结构化成类型化对象与共享规则；然后用范畴论引导的变换化简结构；最后把模型形式化到 Lean 4，证明可达性与不可达性。关键结果是「不可达也能证」：在两个本就无解的游戏关卡上，AWM 构造出内核校验通过的 Lean 证明，排除了全部合法通关序列，六次运行全部成功；而配上编码工具的 Claude Opus 5.5 与 GPT-6 Astra 在 12 次基线运行里一次都没做出来。六次初始上界中有四次正确（Opus 5.5 为一次、Astra 为零次）；只告诉它「存在更便宜的获胜方式」，它就能改规则、重建证明，达到六次全对。在 25 个公开 ARC-AGI-3 游戏、183 个关卡上，这些模型让 Lean 复现全部获胜轨迹，并能预测未见过的状态转移、检测机制变化；配合 Claude Opus 5，AWM 以 99.9 分通关全部关卡，认证过的获胜轨迹只用了人类基线 43% 的动作。对 Agent 的启示：世界模型的价值不只是「预测下一个状态」，而是「能对边界下结论」；当 Agent 能证明某条路走不通，它才真正学会停止。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2610.40503">arXiv</a></div>
+  </details>
+
+  <details class="item" id="papers-2">
+    <summary><span class="num">2</span><span class="t">arXiv｜MoLRSI：会改自己 workflow 的分子发现 Agent，抗生素实验命中率 15.9% 对专家 8.7%</span><span class="arrow">▸</span></summary>
+    <div class="body">MoLRSI 由 MIT、哈佛等团队完成（含 James J. Collins、Nir Hacohen、Wengong Jin）。它要解决的不是「把专家流程自动化」，而是「怎么为从未见过的新任务优化流程，并从经验里改进开发流程本身」。方法把两件事合在一起：系统性地优化 workflow 与模型架构；用持久化的跨任务记忆保存「流程表现、细化结果、执行反馈」，让这些信号指导下一次搜索。也就是说，它不仅改工作流，还改「改工作流的方法」。在两个需要平衡竞争性生物目标的任务上验证：抗生素发现中，它设计的筛选流程同时兼顾抗菌活性、细胞毒性与结构新颖性，实验命中率 15.9%，而此前专家主导的流程在同样数据与化合物库上是 8.7%；从头设计肽-MHC 结合物时，它让 workflow 同时考虑靶点结合与特异性，最终得到 8 个实验验证的命中物，对 MART-1 与 SARS-CoV-1 pMHC 有 preferential binding，且优于测试过的脱靶；论文还直言 Claude Science 在该任务上完全失败。对 Agent 的启示：RSI 的收益不是「更会聊天」，而是「更会设计实验」；但它的可信度取决于验收标准是否独立——命中率、结合特异性这些湿实验指标，恰好是无法被 Agent 自己糊弄的硬约束。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2610.39714">arXiv</a></div>
+  </details>
+
+  <details class="item" id="papers-3">
+    <summary><span class="num">3</span><span class="t">arXiv｜VeriCUA：把「任务完成」变成一次主动取证，拒绝 Agent 的虚假完工声明</span><span class="arrow">▸</span></summary>
+    <div class="body">计算机使用 Agent（CUA）要在桌面、移动端与网页上规模化，前提是能可靠判断任务是否真的完成——数据清洗、评测与强化学习都依赖它。现有做法各有盲区：让视觉语言模型当裁判，只能看到被提供的观测；让模型生成程序去检查应用状态，又受限于可访问的状态。两者都可能漏掉决定性证据，导致「完成」判断没有支撑。VeriCUA 把验证本身做成 Agent 的主动探索：先检查可用上下文、构造任务 rubric，再针对未解决的要求选择 GUI 检查或代码检查，最后在明确的证据规则下合并结论；同一套流程同时适用于在线与离线、不同平台与观测模态。实验里，它与参考标签的一致率优于基线，离线难例上的提升最大，在线场景对「虚假完工声明」的拒绝也更强。对 Agent 产品的启示：验收器不能只是「再看一眼截图」，而要能主动去拿证据；在电商场景里，这意味着「下单成功」不能以页面提示为准，而要以订单号、支付流水、库存扣减与商家确认四类证据交叉验证。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2610.40578">arXiv</a></div>
+  </details>
+
+  <details class="item" id="papers-4">
+    <summary><span class="num">4</span><span class="t">NeurIPS 2026｜Prefix Executability：别只看最终成功率，先看每一步工具调用是否真的可执行</span><span class="arrow">▸</span></summary>
+    <div class="body">论文（Amazon 等，Amir H. Rezaeian、Dan Roth 等）指出，工具使用 Agent 的评测常用「最终任务是否成功」打分，但终局结果会掩盖中间轨迹是否可执行。作者提出「前缀可执行性」：检查预测出的工具调用序列的每一个前缀，在工具 schema、状态前置条件与数据依赖下是否仍然可执行；并用前缀可执行性曲线（PEC）、首次出错深度（FED）、轨迹可执行率（TER）、按步长归一的 AUC-PEC 与恢复率（RR）来刻画可靠性。在 BFCL-v3 多轮、ToolSandbox，以及 τ³-bench 的 Airline / Retail 全量基础划分上实测后发现：只看结果与看前缀，排名会分叉——那些「先做计划但不验证计划」的 Agent，最终成功率点估计反而更高，但 TER 与 AUC-PEC 明显更低。这恰好暴露了论文想抓的失败模式：成功是不是建立在一条可执行轨迹上、无效性最早从哪一步进入、成功是否只是从早先失败里恢复。作者还做了一个干预验证：在执行前显式检查计划，能提升可执行前缀的存活率。对 Agent 工程的启示：把「过程指标」写进评测与线上监控，否则会被「碰巧成功」的轨迹骗过去；对采购、比价这类多步流程，越早出错越贵。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2610.40444">arXiv</a></div>
+  </details>
+
+  <details class="item" id="papers-5">
+    <summary><span class="num">5</span><span class="t">arXiv｜PAPERBENCHX：93 道跨 12 学科复现任务，AI 科学家得先能复现已知科学</span><span class="arrow">▸</span></summary>
+    <div class="body">论文的出发点很朴素：在信任 AI 去发现新科学之前，它应该先能复现已知科学。复现是一个严格的检查点——目标结论已知，但要把不完整的科学描述翻译成可执行实验、并产出可独立验证的证据，仍然很难。现有复现基准大多集中在 AI / ML，实验共享相对同质的软件栈；跨学科之后，Agent 必须操作领域专用科学软件、做物理与数值上的选择、诊断长时间运行的计算、并区分「有效证据」与「看起来合理的输出」。PAPERBENCHX 包含 93 个专家构造的论文复现任务，覆盖电磁学、光子学、化学、材料、生物与机器人等 12 个研究领域；每个任务给出原论文、公开任务说明与领域原生的科学环境，要求 Agent 重建关键实验、执行并诊断、最后交付一个可运行且能支撑目标结论的 workflow。评测会重放每一份提交，以科学有效性而非表面一致来判分。对 AI for Science 的启示：这是把「科研 Agent」从 demo 拉回地面的基准——真正的门槛是环境配置、数值稳定性与证据链，而不是写出一段像论文的总结；对做垂直 Agent 的团队，这也是一个很好的任务设计模板：给环境、给验收、不给答案。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2610.39744">arXiv</a></div>
+  </details>
+
+  <details class="item" id="papers-6">
+    <summary><span class="num">6</span><span class="t">arXiv｜ClinGeX：105 个可执行技能按依赖编排的临床基因组 Agent，223 例一致率 71.7% 对 45.7%</span><span class="arrow">▸</span></summary>
+    <div class="body">临床基因组分析需要专家整合不断更新的指南、数据库与计算证据；测序越来越便宜，这一步反而成了瓶颈。ClinGeX 把分析拆成 105 个经过整理的「可执行技能」，由大模型按任务做检索，并按依赖关系编排，而不是让模型自由生成一段长流程。在 223 个按时间留出的基准病例上，它与专家参考分类的任务级宏观一致率为 71.7%，最强对照为 45.7%。论文还做了三条件、平衡顺序的人机协作研究：45 位临床基因组专业人员评估 135 个真实来源病例，分别在没有 AI、DeepSeek 辅助与 ClinGeX 辅助下工作；ClinGeX 辅助把病例级一致率在变异分析、罕见病基因组解读与肿瘤分子决策三个维度上分别拉到 51.1%、57.8%、64.4%，对照条件为 15.6%、31.1%、20.0%，并缩短了所有场景下的解读时间。另有一个为期一个月的探索性真实世界评估，11 位资深专业人员提交了 96 次自选分析记录。对垂直 Agent 的启示：高 stakes 场景里，「技能化 + 依赖编排 + 人类复核」比「端到端大模型」更可信；技能边界清晰，才能做权限、审计与责任划分——这套结构对跨境合规、报关与质检同样适用。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2610.40556">arXiv</a></div>
+  </details>
+</section>
+
+<a class="back" href="../index.html">← 返回日报归档</a>
+<div class="footer">
+  由「新技术学习搭子」自动生成 · 内容采编自公开来源，观点仅供参考 · 2026-10-31
+</div>
+</div>
+<script>
+function setAll(open){document.querySelectorAll('details.item').forEach(function(d){d.open=open})}
+if(location.hash){
+  var el=document.querySelector(location.hash);
+  if(el&&el.tagName==='DETAILS'){el.open=true;setTimeout(function(){el.scrollIntoView({block:'start'})},60)}
+}
+</script>
+</body>
+</html>
