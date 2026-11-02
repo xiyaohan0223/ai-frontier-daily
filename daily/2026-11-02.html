@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 前沿日报 · 2026-11-02</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<div class="wrap">
+
+<header class="site-header">
+  <div class="brand">AI FRONTIER DAILY · 新技术学习搭子</div>
+  <h1>AI 前沿日报</h1>
+  <span class="date-badge">2026-11-02 · 星期一 · 共 29 条</span>
+</header>
+
+<div class="overview">
+  <strong>今日总览：</strong>周末两条主线都在「收口」。一是入口与账本收口——OpenAI 宣布 12 月起把 ChatGPT 与 Codex 合并成同一个 token 额度池，订阅从「按功能卖」变成「按算力卖」；二是行为边界收口——Anthropic 在 Opus 5.5 系统提示里禁止「复刻已有游戏」，结果一刀切误伤大量原创开发者。同一时间，Jev 与 Treg 把「找一个人」压到 0.0089 美元一条线索，B2B 获客正在变成可计量、可嵌入工作流的工具调用。
+</div>
+
+<nav class="chips">
+  <a href="#sec-headline">头条<b>2</b></a>
+  <a href="#sec-llm">大模型<b>3</b></a>
+  <a href="#sec-agent">Agent 进展<b>3</b></a>
+  <a href="#sec-oss">开源项目<b>4</b></a>
+  <a href="#sec-vertical">垂直赛道<b>7</b></a>
+  <a href="#sec-funding">公司融资<b>4</b></a>
+  <a href="#sec-papers">论文<b>6</b></a>
+</nav>
+
+<div class="toolbar">
+  <button onclick="setAll(true)">全部展开</button>
+  <button onclick="setAll(false)">全部收起</button>
+</div>
+
+<section class="section" id="sec-headline">
+  <h2>头条<span class="count">2 条</span></h2>
+
+  <details class="item" id="headline-1" open>
+    <summary><span class="num">1</span><span class="t">OpenAI 12 月起把 ChatGPT 与 Codex 合并成「一个 token 额度池」</span><span class="arrow">▸</span></summary>
+    <div class="body">The Decoder 11 月 1 日报道，OpenAI 更新支持文档：12 月起 Plus、Pro、Business 的 ChatGPT 与 Codex 共享同一份 token 预算，Instant 模型不计入，用完可等待重置、升级或购买额外 credits；同期还上线了卡片与设备数量限制（同一张卡/同一台设备能开的付费订阅有上限），Work 的 agent 能力也并入主界面。这意味着订阅制从「按功能卖」变成「按算力卖」：重度长任务用户会更快撞墙，而「额度—credits—重置」的三段式计费很可能成为 Agent 产品的默认设计。对做 Agent 的团队，真正要提前算清的是单位任务成本，而不是订阅档位。</div>
+    <div class="links"><a href="https://the-decoder.com/openais-upcoming-chat-and-work-merger-in-chatgpt-signals-the-end-of-all-you-can-prompt-pricing/">The Decoder</a><a href="https://help.openai.com/en/articles/20001625-understanding-chatgpt-and-codex-usage-limits">OpenAI 帮助中心</a></div>
+  </details>
+
+  <details class="item" id="headline-2" open>
+    <summary><span class="num">2</span><span class="t">Claude Code 在系统提示词里禁「复刻游戏」，一刀切误伤原创开发者</span><span class="arrow">▸</span></summary>
+    <div class="body">量子位 11 月 1 日报道：博主 chasm 发现 Claude Code 在悄悄阻止游戏克隆，Anthropic 随后确认在 Opus 5.5 的系统提示中加了两句话——「可以创建原创游戏，但不要复刻已存在的特定游戏，哪怕改名或自称原创也不行」。禁令上线几天，Claude Code 的 GitHub issue 被原创开发者刷爆：做原创游戏、复现常见机制、给桌游打补丁都被判「疑似克隆」。想守的是 IP 边界，实际得到的是不可解释的行为回退。Agent 产品的「用途策略」需要可申诉、可分级、可观测，而不是往 prompt 里塞一句禁令。</div>
+    <div class="links"><a href="https://www.qbitai.com/2026/11/507038.html">量子位</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-llm">
+  <h2>大模型动态<span class="count">3 条</span></h2>
+
+  <details class="item" id="llm-1">
+    <summary><span class="num">1</span><span class="t">复旦 OpenMOSS：NoPE + 滑窗/线性注意力的「混合位置」路线，实现 16× 免训练外推</span><span class="arrow">▸</span></summary>
+    <div class="body">团队系统比较了 RoPE/NoPE 全注意力、滑窗注意力（SWA）与 GLA/GDN 门控线性注意力的混合方式，提出「混合位置」设计：用 NoPE 充当无偏的全局观察者，用自带位置滤镜的注意力做局部精确检索。线性混合模型配合滑窗线性注意力，在 64k 上下文的 NIAH-SK1 上保持 100% 准确率，并实现 16 倍免训练外推。对长会话 Agent 是直接利好——上下文变长时，检索精度与显存终于不必二选一。</div>
+    <div class="links"><a href="https://zhuanlan.zhihu.com/p/2093819906441663927">团队专栏</a><a href="http://t.cj.sina.com.cn/articles/view/3996876140/ee3b7d6c027017zfc">新浪转载</a></div>
+  </details>
+
+  <details class="item" id="llm-2">
+    <summary><span class="num">2</span><span class="t">Anthropic 水印全面铺开，但两代旧模型留了口子</span><span class="arrow">▸</span></summary>
+    <div class="body">The Decoder 10 月 31 日报道：Claude 输出水印已在多数模型上线，但有两个旧版本尚未覆盖，形成可检测性缺口。对做内容分发的团队，水印是「来源可信」的底层设施；而版本碎片会让检测器给出假阴性——采购第三方检测服务之前，先确认它覆盖了哪些模型版本，再谈准确率。</div>
+    <div class="links"><a href="https://the-decoder.com/anthropics-watermark-rollout-leaves-a-loophole-on-two-older-claude-models/">The Decoder</a></div>
+  </details>
+
+  <details class="item" id="llm-3">
+    <summary><span class="num">3</span><span class="t">OpenAI 将把 Daybreak Blue 安全会话数据用于训练，11 月 29 日生效</span><span class="arrow">▸</span></summary>
+    <div class="body">面向 Trusted Access 成员的邮件显示，此前被排除在训练之外的 Daybreak Blue 会话数据将被纳入训练，即使用户关闭了「为所有人改进模型」，随后补发的第二封邮件才承诺单独的 opt-out。研究者担心重演 Buckmaster–Alpöge 争议：上传给模型的手稿与证明是否被「间接学习」。对企业客户，这提醒得很直白——敏感会话的隔离要写进合同与产品设计，不能依赖一个全局开关。</div>
+    <div class="links"><a href="https://the-decoder.com/openai-plans-to-train-models-on-daybreak-blue-cybersecurity-session-data-that-was-previously-off-limits/">The Decoder</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-agent">
+  <h2>Agent 进展<span class="count">3 条</span></h2>
+
+  <details class="item" id="agent-1">
+    <summary><span class="num">1</span><span class="t">Google StreamVibe：教视频助手「什么时候该开口」，但前沿模型全都不及格</span><span class="arrow">▸</span></summary>
+    <div class="body">Google 团队构建 StreamVibe，让助手一边看人做饭、装家具，一边只在真正需要时出言提醒；配套基准显示，在较长视频里没有一个被测模型能稳定选对介入时机，错误会随时间累积、回答质量骤降。这是「主动性」的反面教材：会做事不等于会在对的时刻说话。电商 Agent 的导购、售后同理——打断时机应当是可度量、可调参的产品指标，而不是模型能力的副产品。</div>
+    <div class="links"><a href="https://the-decoder.com/google-wants-video-ai-to-understand-what-people-need-as-they-workgoogle-researchers-are-teaching-a-video-assistant-when-to-offer-help/">The Decoder</a></div>
+  </details>
+
+  <details class="item" id="agent-2">
+    <summary><span class="num">2</span><span class="t">谷歌开源 CLASHarness：600 回合多 Agent 冲突评测，附 15 个模型轨迹</span><span class="arrow">▸</span></summary>
+    <div class="body">20 个场景种子、60 个变体、3,760 项检查，用 23 个冲突插件在 computer-use 任务里制造可验证的「多 Agent 打架」：抢资源、目标冲突、互相覆盖状态。前沿模型在冲突场景下的协调成功率明显下滑，失败往往不是不会做，而是不会「谈」。多 Agent 不是把角色拆细就行，冲突检测、仲裁与回滚要作为一等能力来设计。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2610.19128">arXiv</a><a href="https://github.com/google-research/CLASHarness">GitHub</a></div>
+  </details>
+
+  <details class="item" id="agent-3">
+    <summary><span class="num">3</span><span class="t">Adobe EditAgent：先选对工具再动手，10 倍算力换「专业修图师」式编辑</span><span class="arrow">▸</span></summary>
+    <div class="body">Adobe Research 与 UC San Diego 的 EditAgent 不再反复调用同一个通用编辑器，而是为每个子任务挑选专用工具，再让一个语言模型依据可测量的图像指标挑选最佳结果。效果更好，但算力约为原来的 10 倍。它给出了「工具路由 + 结果验收」的清晰范式：Agent 的能力上限，越来越多取决于工具库的粒度与验收信号的质量，而不是单次生成的强弱。</div>
+    <div class="links"><a href="https://the-decoder.com/adobe-is-testing-how-well-ai-agents-can-use-editing-tools-like-a-photoshop-professional-would/">The Decoder</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-oss">
+  <h2>开源项目 · GitHub 今日热榜<span class="count">4 条</span></h2>
+
+  <details class="item" id="oss-1">
+    <summary><span class="num">1</span><span class="t">shiyu-coder/Kronos：把 K 线当语言预训练的金融基座模型，单日 +630★</span><span class="arrow">▸</span></summary>
+    <div class="body">仓库已积累 4.5 万星，思路是把金融市场的 K 线序列作为一种「语言」来预训练。它提示了一个可复用的做法：把垂直领域的高频结构化序列（价格、库存、物流轨迹）token 化后做基座，而不是给通用 LLM 硬塞表格。对做贸易洞察的产品，这类序列基座可能比 RAG 更接近「预测」。</div>
+    <div class="links"><a href="https://github.com/shiyu-coder/Kronos">GitHub</a></div>
+  </details>
+
+  <details class="item" id="oss-2">
+    <summary><span class="num">2</span><span class="t">beenuar/AiSOC：开源 AI 安全运营中心，每一步 Agent 决策都可回放</span><span class="arrow">▸</span></summary>
+    <div class="body">告警融合 + LLM Agent 分诊 + MITRE ATT&amp;CK 调查，核心设计是「可回放的决策账本」：Agent 每一步都留证，事后可以重放复盘。自带 MCP server，可直接接 Claude、Cursor 与 Continue，MIT 许可。对任何要上生产的 Agent，这本账比换一个更强的模型更重要。</div>
+    <div class="links"><a href="https://github.com/beenuar/AiSOC">GitHub</a></div>
+  </details>
+
+  <details class="item" id="oss-3">
+    <summary><span class="num">3</span><span class="t">FlashML-org/FreeToken：把数据中心级模型服务搬到你的桌面</span><span class="arrow">▸</span></summary>
+    <div class="body">目标是在本地高效跑「大模型 + 大并发」的服务栈，单日 +242★，已 1.5 万星。隐私敏感与离线场景的 Agent 底座正在成熟；对跨境业务，端侧/私有化推理已经是可以写进方案书的合规选项，而不只是极客玩具。</div>
+    <div class="links"><a href="https://github.com/FlashML-org/FreeToken">GitHub</a></div>
+  </details>
+
+  <details class="item" id="oss-4">
+    <summary><span class="num">4</span><span class="t">anomalyco/hex：跨 macOS / Windows / Linux 的本地语音听写，单日 +1,179★</span><span class="arrow">▸</span></summary>
+    <div class="body">Rust 实现的本地语音转写，完全离线、无需联网。语音正在成为 Agent 的默认输入口，本地化让「会议录音、客户询盘不出本机」从口号变成可交付的卖点；对做外贸沟通工具的团队，这是个现成的组件。</div>
+    <div class="links"><a href="https://github.com/anomalyco/hex">GitHub</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-vertical">
+  <h2>垂直赛道<span class="count">7 条</span></h2>
+
+  <div class="subsec" id="subsec-coding">
+    <h3>AI 编程</h3>
+
+    <details class="item" id="coding-1">
+      <summary><span class="num">1</span><span class="t">思科给 27 岁工程师「无上限 token」，目标 24 个月重写 98% 遗留代码</span><span class="arrow">▸</span></summary>
+      <div class="body">思科总裁兼首席产品官 Jeetu Patel 披露，他指派了一位 27 岁的年轻工程师，用 AI 在 24 个月内重构公司 98% 的遗留代码，且不设 token 预算上限。这是「以 AI 杠杆重写存量系统」的极端样本：真正的瓶颈不在模型，而在测试覆盖、灰度发布与回滚机制。对做编码 Agent 的团队，企业愿意付费的是「可验证的大规模改动」，不是更快的补全。</div>
+      <div class="links"><a href="https://www.ithome.com/1/020/857.htm">IT之家</a></div>
+    </details>
+
+    <details class="item" id="coding-2">
+      <summary><span class="num">2</span><span class="t">Cursor 插件商城出现被篡改的 Claude Code 扩展，约 5000 名开发者受影响</span><span class="arrow">▸</span></summary>
+      <div class="body">恶意版本在商城存在约 11 小时，会收集主机名、用户名、操作系统、家目录路径与公网 IP 等信息。编码 Agent 已经成为软件供应链的新入口：插件签名、权限最小化、安装后行为审计，都需要像对待 npm 包一样对待 Agent 扩展。做 Agent 分发的平台， marketplace 治理会先于模型能力成为信任瓶颈。</div>
+      <div class="links"><a href="https://www.ithome.com/1/020/466.htm">IT之家</a><a href="https://cursor.com/blog/claude-code-extension-security-notice">Cursor 公告</a></div>
+    </details>
+  </div>
+
+  <div class="subsec" id="subsec-video">
+    <h3>AI 视频与多模态</h3>
+
+    <details class="item" id="video-1">
+      <summary><span class="num">1</span><span class="t">英伟达开源 PixelUMM：不要 VAE 也不要 ViT，在像素空间统一理解与生成</span><span class="arrow">▸</span></summary>
+      <div class="body">单塔 decoder-only Transformer 直接读写 16×16 的图像 patch 与 4 帧一组的视频块，省掉视觉编码器与 VAE，图像和视频的理解、生成共用一个模型。统一多模态正在从「编码器拼接」转向「原生 token」；对内容生成产品，这意味着理解、编辑与生成可以用同一套表示，少一层 pipeline 就少一次信息损失。</div>
+      <div class="links"><a href="https://github.com/nv-tlabs/PixelUMM">GitHub</a><a href="https://arxiv.org/abs/2609.38597">arXiv</a></div>
+    </details>
+
+    <details class="item" id="video-2">
+      <summary><span class="num">2</span><span class="t">Canva Craft：设计工具公司自研图像模型，首发即 DesignArena 第 4</span><span class="arrow">▸</span></summary>
+      <div class="body">两阶段架构——先做构图规划，再渲染最高 2K、支持 30 多种宽高比与 55 种语言的文字排版；强项正是版式与文字准确度，配合 Magic Layers 可转成可编辑分层。垂直产品自研模型的理由越来越清楚：通用模型不懂「设计约束」，而约束才是工作流真正的价值所在。对电商场景，商品图与详情页的版式一致性是同一类问题。</div>
+      <div class="links"><a href="https://www.canva.com/newsroom/news/canva-craft/">Canva 官方</a></div>
+    </details>
+  </div>
+
+  <div class="subsec" id="subsec-ai4s">
+    <h3>AI for Science</h3>
+
+    <details class="item" id="ai4s-1">
+      <summary><span class="num">1</span><span class="t">浙大联合团队 MAESTRO：让灾害预报从「算得准」走到「发得出去」</span><span class="arrow">▸</span></summary>
+      <div class="body">浙江大学、华中科技大学与浙江省应急管理厅联合提出 LLM 多智能体系统 MAESTRO，把实时观测、灾害预测、影响评估与预警建议串成一条链，针对三个老问题：各部门数据「各说各话」、审批层层串联、阈值僵化难应对级联风险。AI4S 的下一段价值不在再提一个点的精度，而在把科学结论接入决策流程——这与电商 Agent 把「分析」接到「下单」是同构问题。</div>
+      <div class="links"><a href="https://www.163.com/dy/article/LAM073710552A8U8.html">机器之心 / 网易</a><a href="http://www.rencity.zju.edu.cn/">浙大团队</a></div>
+    </details>
+
+    <details class="item" id="ai4s-2">
+      <summary><span class="num">2</span><span class="t">西湖大学成立世界模型研究中心：三年前布局，今年集中兑现</span><span class="arrow">▸</span></summary>
+      <div class="body">量子位 11 月 1 日报道，西湖大学把分散在世界模型方向的团队收拢为校级研究中心。世界模型正从视频生成的副产品，变成机器人、科学仿真与交互环境的共用底座；高校开始按「基础设施」而不是「单个课题」来组织资源，这通常意味着人才与算力的集中投放。</div>
+      <div class="links"><a href="https://www.qbitai.com/2026/11/507076.html">量子位</a></div>
+    </details>
+  </div>
+
+  <div class="subsec" id="subsec-ecom">
+    <h3>AI 电商与贸易</h3>
+
+    <details class="item" id="ecom-1">
+      <summary><span class="num">1</span><span class="t">Jev × Treg 开源「找人」Agent：一条线索 0.0089 美元，比 Clay 便宜 85%</span><span class="arrow">▸</span></summary>
+      <div class="body">TypeSafe AI 与 Treg 把决策模型接进 B2B 人物检索：Agent 负责拆解条件与调度，Treg 接入人员数据与邮箱验证工具，Jev 负责判断「这个人到底是不是你要找的角色」。People Search Bench 上，Claude Code 单独做 B2B 拓客正确率 43%，接入 Treg 后升到 78.2%；292 人实测中，Treg 花 1.49 美元找到 289 个邮箱，Clay 花 10.34 美元找到 280 个。对跨境贸易，「找买家、找决策人」正在从人肉搜客变成可计量、可嵌入工作流的工具调用——这类能力一旦按次计价，Agent 的 ROI 就能被商家直接算出来。</div>
+      <div class="links"><a href="https://www.qbitai.com/2026/11/506922.html">量子位</a><a href="https://github.com/superdesigndev/treg">GitHub</a></div>
+    </details>
+  </div>
+</section>
+
+<section class="section" id="sec-funding">
+  <h2>公司与融资<span class="count">4 条</span></h2>
+
+  <details class="item" id="funding-1">
+    <summary><span class="num">1</span><span class="t">OpenAI 考虑把数据中心改叫「AI 算力园区」</span><span class="arrow">▸</span></summary>
+    <div class="body">TechCrunch 11 月 1 日报道，面对各地对数据中心的抵触，OpenAI 在讨论改用「AI compute campuses」的表述，强调就业与社区投入。叙事战已经打到命名层面：算力设施正经历从「机房」到「基础设施」的公关重构，而这会反过来影响选址、电价与地方审批的谈判筹码。</div>
+    <div class="links"><a href="https://techcrunch.com/2026/11/01/openai-might-rebrand-its-data-centers-as-ai-compute-campuses/">TechCrunch</a></div>
+  </details>
+
+  <details class="item" id="funding-2">
+    <summary><span class="num">2</span><span class="t">苹果收购 Ascend.io：一家做 Agentic 数据工程的创业公司</span><span class="arrow">▸</span></summary>
+    <div class="body">交易经欧盟 DMA 申报披露，苹果将向部分员工发出录用邀约，Ascend.io 官网已宣布停止运营。苹果在 AI 上的补齐路线越来越像「买下数据与工程层」，而不是买模型本身——这与它「AI 应隐身于体验」的产品宣言一致，也说明数据管道的自动化正在被当作稀缺资产。</div>
+    <div class="links"><a href="https://9to5mac.com/2026/10/30/apple-acquires-ascend%e2%80%9aio-an-agentic-ai-engineering-startup/">9to5Mac</a></div>
+  </details>
+
+  <details class="item" id="funding-3">
+    <summary><span class="num">3</span><span class="t">微软向约 6 万人提供自愿离职，数据中心与 AI 关键团队被排除</span><span class="arrow">▸</span></summary>
+    <div class="body">覆盖美、加、印、英的副总裁及以下员工，约四分之一人力；Xbox、Windows、Copilot、财务在范围内，数据中心、销售、网络安全与量子计算不在其中。一边是 2026 年约 1700 亿美元的 AI 基建预算，一边是四分之一人力的买断——组织正在把成本结构从「人」搬到「算力」。对做大模型应用的团队，这也意味着云与推理成本会成为长期议价项。</div>
+    <div class="links"><a href="https://the-decoder.com/microsoft-offers-a-quarter-of-its-workforce-voluntary-severance-while-shielding-ai-critical-teams/">The Decoder</a></div>
+  </details>
+
+  <details class="item" id="funding-4">
+    <summary><span class="num">4</span><span class="t">Grok Bot 日活破 60 万：消费级 Agent 的曲线开始像社交产品</span><span class="arrow">▸</span></summary>
+    <div class="body">连续 16 天增长，日活不到两个月涨了 6 倍，马斯克称增速「前所未见」。消费级 Agent 的竞争指标正从「能做什么」转向「每天会不会被打开」；对工具型 Agent 团队，这是提醒：任务完成率不等于留存，主动性、轻量与「有个性」正在变成留存变量。</div>
+    <div class="links"><a href="https://www.ithome.com/1/020/468.htm">IT之家</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-papers">
+  <h2>论文精选<span class="count">6 条</span></h2>
+
+  <div class="paper-recap">
+    <h3>本期论文总结 · 组会分享版</h3>
+
+    <h4>一、今日主线（为什么选这 6 篇）</h4>
+    <ol>
+      <li><strong>Agent 的「内部状态」正在被认真建模</strong>（<a href="#papers-2">#2</a>、<a href="#papers-3">#3</a>）：一篇给 Agent 加可学习的「对他人信念」，一篇把长期记忆拆成情节与关系两张表。共同回答的是同一个问题——当上下文不再是唯一答案，Agent 该把「状态」存在哪里、怎么更新、怎么压缩。这是从「更长的 prompt」转向「可维护的状态机」。</li>
+      <li><strong>评测从「终局对不对」转向「过程变没变、代价多少」</strong>（<a href="#papers-4">#4</a>、<a href="#papers-5">#5</a>）：DynaRev 把「用户中途改需求」写进基准，Real Cost of Context 证明输入上下文的算力与能耗是超线性的。两篇合起来说明：长会话 Agent 的正确性与经济性，都必须按过程计量。</li>
+      <li><strong>不更新参数，也能扩展能力边界</strong>（<a href="#papers-1">#1</a>、<a href="#papers-6">#6</a>）：反应先例检索让冻结的模型覆盖训练外的新反应，可倒带的交互证明让弱验证者监督强模型。共同指向一个判断——推理时的外部结构（先例库、可回放检查点），可能比再训一轮更划算。</li>
+    </ol>
+
+    <h4>二、每篇一句话（按阅读优先级）</h4>
+    <ol>
+      <li><a href="#papers-1">反应先例替代参数更新（arXiv）</a>：必须精读，尤其适合做企业知识 Agent 的同学——「检索先例 + 冻结参数」在化学上把 Top-1 从 13% 拉到 58%。</li>
+      <li><a href="#papers-4">DynaRev 动态目标修订（arXiv）</a>：建议精读，电商 Agent 的「买家改需求」几乎就是它的实验设定，且给出了「保状态别重置」的实证。</li>
+      <li><a href="#papers-3">长期记忆：情节 + 关系双表（arXiv）</a>：选读，LoCoMo 90.2% 的工程化记忆架构，可直接对照我们的买家画像方案。</li>
+      <li><a href="#papers-5">上下文的真实成本（arXiv）</a>：选读，prefill 的二次项是把「长上下文免费」叙事打回成本模型的一记实锤。</li>
+      <li><a href="#papers-2">EpiAgent 认知自博弈（arXiv）</a>：选读，多智能体议价场景的方法论参考，训练成本偏高。</li>
+      <li><a href="#papers-6">Rewindable Interactive Proofs（arXiv）</a>：泛读，理论味重，但为「Agent 审计可回放」提供了正式模型，价值在于长期。</li>
+    </ol>
+
+    <h4>三、组会讨论题</h4>
+    <ul>
+      <li>买家在对话里改规格是常态（<a href="#papers-4">#4</a>）。我们的会话状态现在有哪些是「重置式」的？能不能做到「重写指令但保留购物车/询盘上下文」？</li>
+      <li>如果记忆应该拆成情节与关系（<a href="#papers-3">#3</a>），那「买家上次砍价到多少」属于哪一类？跨境场景里的公司归属、采购集团关系又该怎么存、怎么脱敏？</li>
+      <li>上下文成本随时长二次增长（<a href="#papers-5">#5</a>）。我们现在的套餐是按「次」还是按「token」？如果按 token，长会话用户的毛利是正的吗？</li>
+    </ul>
+  </div>
+
+  <details class="item" id="papers-1">
+    <summary><span class="num">1</span><span class="t">arXiv｜用「反应先例」替代参数更新：逆合成预测在训练覆盖之外也能泛化</span><span class="arrow">▸</span></summary>
+    <div class="body">作者用 271 万条反应，按反应类型与时间切分训练/检索覆盖，只扩充检索库、冻结模型参数：被排除在训练外的反应类型，Top-1 从 13.0% 提升到 58.0%（历史测试集）、从 4.9% 提升到 23.1%（时间外推集）；仅用 2017 年前数据训练的模型加上检索后，可以追平甚至超过用 2025 年前数据训练的无检索模型。更关键的是，不做任务微调，先例检索让 14 个通用模型在两个测试集与 USPTO-50K 上全面提升，最强的一个超过了全部 8 个专用模型。结论对企业 Agent 很硬：把领域「先例」做成可检索资产，比再训一轮更能扩展能力边界。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2610.40249">arXiv</a></div>
+  </details>
+
+  <details class="item" id="papers-2">
+    <summary><span class="num">2</span><span class="t">arXiv｜EpiAgent：给 LLM Agent 加一层可学习的「信念」</span><span class="arrow">▸</span></summary>
+    <div class="body">借鉴认知博弈论，把 Agent 策略拆成两个耦合阶段：「认知更新」从交互历史推断对方的私有信息，「行动规划」基于更新后的认知状态选动作；两者用双层优化建模，并提出 Epistemic Self-Play，用内在预测奖励评估「推断出的信念能否预测后续观察」，交替训练。在混合与竞争场景中稳定超过 prompting 与 RL 基线。多 Agent 谈判（包括买卖议价）缺的往往不是话术，而是对「对方底牌」的显式建模。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2610.40227">arXiv</a></div>
+  </details>
+
+  <details class="item" id="papers-3">
+    <summary><span class="num">3</span><span class="t">arXiv｜长期记忆要「情节 + 关系」两张表，再加一层整合机制</span><span class="arrow">▸</span></summary>
+    <div class="body">微软团队提出混合记忆架构：情节记忆存事件与对话，结构化关系记忆存实体与关系，再用 consolidation 机制在保留效率的前提下整合两者。在 LoCoMo 上达到 90.2%、LongMemEval-S 上 85.5%，均优于现有记忆框架。对买家画像类产品，事实（上次询了什么价）与关系（属于哪个采购集团）应分开存，「整合」应该是定期压缩，而不是每次实时拼接。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2610.39790">arXiv</a></div>
+  </details>
+
+  <details class="item" id="papers-4">
+    <summary><span class="num">4</span><span class="t">arXiv｜DynaRev：目标会中途改，Web Agent 评测不能只看终局</span><span class="arrow">▸</span></summary>
+    <div class="body">181 个任务，用语义里程碑在任务定义的阶段注入三类修改：追加需求、无条件覆盖、运行时条件覆盖，并从正确性、响应性、效率三个维度做轨迹级评测。五个模型普遍只能满足部分要求；有收益的做法是「重写指令但保留浏览器状态」，而重置浏览器会显著掉分。买家在对话里改规格是常态——状态保真比重新规划更值钱。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2610.40133">arXiv</a></div>
+  </details>
+
+  <details class="item" id="papers-5">
+    <summary><span class="num">5</span><span class="t">arXiv｜上下文有二次成本：prefill 的算力与能耗随输入长度超线性增长</span><span class="arrow">▸</span></summary>
+    <div class="body">系统剖析不同输入/输出长度下的耗时与能耗，用广义线性模型拟合后发现：decode 的算力与能耗随输出长度线性增长，而 prefill 同时包含线性项与二次项——输入上下文本身就是一个成本因子。论文还证明，在无法直接测能耗时，计算时长可以作为可靠代理。这对长上下文 Agent 的定价与压缩策略是硬约束：把 100k 上下文当「免费」的产品，成本模型是错的。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2610.39621">arXiv</a></div>
+  </details>
+
+  <details class="item" id="papers-6">
+    <summary><span class="num">6</span><span class="t">arXiv｜Rewindable Interactive Proofs：让弱验证者「倒带」强模型来监督</span><span class="arrow">▸</span></summary>
+    <div class="body">Yael Tauman Kalai 等提出 RIP（可倒带的交互证明）：验证者保存模型状态快照，回退到交互早期再继续追问。相比 debate，它不需要假设「两个强模型中至少一个诚实」，也不使用密码学，就能做可扩展监督；诚实证明者线性时间运行，验证者经一次预处理后接近输入长度的线性。作者已实现并在 MNIST 上做了初步实验，速度快于现有部署的证明系统。对 Agent 审计，这为「检查点 + 回放」提供了正式的理论依据。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2610.40535">arXiv</a></div>
+  </details>
+</section>
+
+<a class="back" href="../index.html">← 返回日报归档</a>
+
+<div class="footer">
+  由「新技术学习搭子」自动生成 · 内容采编自公开来源，观点仅供参考 · 2026-11-02
+</div>
+
+</div>
+
+<script>
+function setAll(open){document.querySelectorAll('details.item').forEach(function(d){d.open=open})}
+if(location.hash){
+  var el=document.querySelector(location.hash);
+  if(el&&el.tagName==='DETAILS'){el.open=true;setTimeout(function(){el.scrollIntoView({block:'start'})},60)}
+}
+</script>
+</body>
+</html>
