@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 前沿日报 · 2026-11-04</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<div class="wrap">
+
+<header class="site-header">
+  <div class="brand">AI FRONTIER DAILY · 新技术学习搭子</div>
+  <h1>AI 前沿日报</h1>
+  <span class="date-badge">2026-11-04 · 星期三 · 共 30 条</span>
+</header>
+
+<div class="overview">
+  <strong>今日总览：</strong>Agent 开始进入真实结算——Shopify 披露 Agent 流量 2.6 倍、订单 3.3 倍，Worldwide Express 用 Agent 释放 1000 万美元营运资金；与此同时，「信任」成为新的基础设施：FlashProve 用零知识证明回复来自哪套权重，而 Postman 被指静默改写 Claude Code / Codex 的本地 hooks。
+</div>
+
+<nav class="chips">
+  <a href="#sec-headline">头条<b>3</b></a>
+  <a href="#sec-llm">大模型<b>3</b></a>
+  <a href="#sec-agent">Agent 进展<b>3</b></a>
+  <a href="#sec-oss">开源项目<b>4</b></a>
+  <a href="#sec-vertical">垂直赛道<b>7</b></a>
+  <a href="#sec-funding">公司融资<b>4</b></a>
+  <a href="#sec-papers">论文<b>6</b></a>
+</nav>
+
+<div class="toolbar">
+  <button onclick="setAll(true)">全部展开</button>
+  <button onclick="setAll(false)">全部收起</button>
+</div>
+
+<section class="section" id="sec-headline">
+  <h2>头条<span class="count">3 条</span></h2>
+
+  <details class="item" id="headline-1" open>
+    <summary><span class="num">1</span><span class="t">Anthropic FlashProve：给每条回复附一张「权重来源」的零知识证明</span><span class="arrow">▸</span></summary>
+    <div class="body">11 月 2 日发布，与 EPFL、MIT 研究者合作。FlashProve 让模型提供方先承诺一套权重，再为每条回复生成 zkSNARK：用户无需权重、只需几秒即可验证「这段输出确实由承诺的模型生成」，而证明本身不泄露权重。实测 Llama 4 Maverick（400B MoE、4bit）在单张 H100 上约 110 tokens/s 出证，1024-token 请求的证明约 19MB，约为 vLLM 原生推理 GPU 时间的 70–95 倍；附带 Lean 形式化证明与 Apache 2.0 代码。限制也很明确：整数权重 + greedy decoding、上下文仅 1024 token、只保证 MoE 架构。对 Agent 产品，这意味着「模型身份」第一次可以被第三方轻量审计——但 70 倍开销决定了它更适合抽样审计与合规抽检，而不是全量线上。</div>
+    <div class="links"><a href="https://www.anthropic.com/research/provable-inference">Anthropic Research</a><a href="https://github.com/anthropics/FlashProve">GitHub</a></div>
+  </details>
+
+  <details class="item" id="headline-2" open>
+    <summary><span class="num">2</span><span class="t">Shopify：Agent 流量 2.6 倍、订单 3.3 倍，称这是「代理式购物」的第一个旺季</span><span class="arrow">▸</span></summary>
+    <div class="body">11 月 3 日 Q3 财报电话会披露：营收 37.4 亿美元、同比增长 32%，GMV 1191.5 亿美元略低于预期，股价当日跌 8.7%。真正值得看的是结构变化——AI 归因流量同比 2.6 倍、AI 归因订单 3.3 倍，其中 74% 的购买发生在 Top 100 品类之外；Meta 的消费级 Agent Muse 已可在应用内浏览 Shopify 商品并用 Shop Pay 结账。总裁 Finkelstein 明确反驳「Agent 会压价」：目前没有看到价格被拉低，Agent 反而把长尾商品带到消费者面前。对电商产品，这意味着商品结构化数据、实时库存价格、结账协议正在变成新的「SEO」；被 Agent 发现的能力，等价于新的流量入口。</div>
+    <div class="links"><a href="https://www.cnbc.com/2026/11/03/shopify-q3-2026-earnings-gmv.html">CNBC</a></div>
+  </details>
+
+  <details class="item" id="headline-3" open>
+    <summary><span class="num">3</span><span class="t">Postman 被指静默向 Claude Code / Codex 写入 hook：Agent 本地配置成了供应链入口</span><span class="arrow">▸</span></summary>
+    <div class="body">11 月 3 日，Postman 仓库的 severe 级 issue（#14370）称：打开 Postman 桌面端 12.33.4 后，它会静默向 Codex 与 Claude Code 安装插件，写入 ~/.codex/config.toml 与 ~/.claude/settings.json，并插入启动 hook，把「任何非平凡的 API 工程任务」路由到 postman:api-engineer 技能；安装器还试图自动批准自己的 hook 信任记录。该帖一度冲到 Hacker News 第二、581 分。对做 Agent 平台的团队，这是很具体的提醒：harness 配置文件等价于代码执行权限，插件市场必须提供权限清单、变更审计与默认拒绝，而不是「安装即信任」。</div>
+    <div class="links"><a href="https://github.com/postmanlabs/postman-app-support/issues/14370">GitHub Issue</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-llm">
+  <h2>大模型动态<span class="count">3 条</span></h2>
+
+  <details class="item" id="llm-1">
+    <summary><span class="num">1</span><span class="t">MIT「权重空间编程」：GPT-6 Astra 直接读改权重，MATH-500 从 7.9% 到 48.1%</span><span class="arrow">▸</span></summary>
+    <div class="body">11 月 3 日在社区刷屏的工作（Rikiya Takehi、Jayden Teoh、Alex Zhang、Omar Khattab）：只看原始浮点权重，GPT-6 Astra 能判断一个小网络被训练来玩哪个游戏，也能在无梯度、无训练循环的情况下改写权重。指向 Qwen3.5-0.8B 时，它定位到导致推理循环的参数方向，只改动 0.016% 的权重，就把 MATH-500 从 7.9% 提到 48.1%、GSM8K 从 13.8% 提到 67.1%、IFEval 从 21.0% 提到 62.3%。争议同样激烈：spaCy 作者 Matthew Honnibal 认为它混淆了「无工具读权重」与「写代码改模型」，Sean Goedecke 则指出其步骤与人类研究员无异。值得读，但不宜把它当成「模型可自我进化」的证据；对 Agent 的自修改，沙箱与回归测试仍是硬约束。</div>
+    <div class="links"><a href="https://rikiyat.github.io/blog/weight-space-programming/">原始工作</a><a href="https://www.qbitai.com/2026/11/507322.html">量子位</a></div>
+  </details>
+
+  <details class="item" id="llm-2">
+    <summary><span class="num">2</span><span class="t">Qwen 3.8 27B 在笔记本上复现「读权重」：17GB 本地模型识别 3/4 个游戏网络</span><span class="arrow">▸</span></summary>
+    <div class="body">Simon Willison 11 月 3 日复现了上述实验：用 LM Studio 跑 Q4 量化、约 17GB 的 Qwen 3.8 27B，把四个小游戏策略网络的原始权重直接喂给模型。结果它用 46 分钟、4.35 万 reasoning tokens 认出 Pac-Man（72% 置信），又分别认出 Pong（75%）与 Breakout（88%），只在更冷门的 Freeway 上失败；Kimi K3.1 Pro 走 API 也成功。这说明「从权重推断行为」并非前沿闭源模型独有，端侧/私有化模型也能承担一部分模型审计工作。但小时级延迟与超长推理链也说明，它现在更像取证工具，而不是实时能力。</div>
+    <div class="links"><a href="https://simonwillison.net/2026/Nov/3/qwen-can-interpret-model-weights/">Simon Willison</a><a href="https://github.com/RikiyaT/lm_understand-logs">实验代码</a></div>
+  </details>
+
+  <details class="item" id="llm-3">
+    <summary><span class="num">3</span><span class="t">Gartner：开源模型以 5% 成本完成 90% 的 Agent 任务，企业转向混合路由</span><span class="arrow">▸</span></summary>
+    <div class="body">11 月 3 日发布的 Gartner 企业成本分析称，开源模型已能承担约 90% 的生产级 Agent 任务，运营成本约为前沿 LLM 的 1/20，企业基础设施支出可降 80–95%。覆盖面主要是结构化抽取、标准代码生成、有明确升级路径的客服、文档分类与模板化报告；复杂多域推理、无先例的新问题仍留给前沿模型。报告建议的形态是混合路由：70–85% 请求交给开源模型，15–30% 的高价值复杂请求交给闭源前沿。对 Agent 产品，这是把「模型选型」变成「任务分层 + 路由 eval」的直接依据；但 90% 指的是任务覆盖率，不是质量达标率，必须按场景单独验收。</div>
+    <div class="links"><a href="https://emergent.sh/news/open-models-handle-90-tasks-5-frontier-llm">报道详情</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-agent">
+  <h2>Agent 进展<span class="count">3 条</span></h2>
+
+  <details class="item" id="agent-1">
+    <summary><span class="num">1</span><span class="t">Apple 向所有开发者开放 Siri AI：App Intents 接入个人上下文、屏幕感知与多步 Skills</span><span class="arrow">▸</span></summary>
+    <div class="body">11 月 3 日，Apple 在 iOS 27.3、iPadOS 27.3、macOS 27.3 与 visionOS 27.3 beta 中开放 Siri AI Developer Preview。任何 App 都可通过 App Intents 把内容与动作接入 Siri，覆盖个人上下文理解、屏幕感知、自然语言与自定义动作；新增的 Skills 能把多个动作组合成一次体验，Siri 还可检索 Spotlight 语义索引中的任意实体。示例已经包括查快递、订座、下单。首批语言为英法日韩葡西，欧盟暂不可用；App Store 提交要等到明年春，正式面向用户还需数月。对电商 App，这意味着「能被 Siri 调用」会像当年「适配移动端」一样成为入口级能力——查单、下单、售后应尽早拆成可组合的 intents，而不是一个聊天窗。</div>
+    <div class="links"><a href="https://developer.apple.com/news/?id=gdk2umrf">Apple Developer News</a><a href="https://developer.apple.com/documentation/appintents/siri-ai-developer-preview">开发文档</a></div>
+  </details>
+
+  <details class="item" id="agent-2">
+    <summary><span class="num">2</span><span class="t">PagerDuty Paige：值班 Agent 接管分诊、定位与常见修复，40% 非关键事件端到端闭环</span><span class="arrow">▸</span></summary>
+    <div class="body">11 月 3 日正式上线，面向 Enterprise 与 Professional 套餐，作为 Operations Cloud 的原生模块交付。Paige 关联多监控源告警、读非结构化日志、判断严重级别、附上 runbook，并对常见故障直接执行重启服务、扩容等预定义修复；接入 700 多个集成（Datadog、New Relic、Slack、Teams、AWS、GCP 等），所有动作留痕并生成复盘。官方给的 beta 数据是：40% 的非关键事件无需人工升级即可端到端处理。这与 Replit Monitoring 指向同一件事——运维是「有明确判定标准、动作可回滚」的 Agent 场景，正确路径是先做「读 + 建议 + 受限执行」，再逐步放开写权限。</div>
+    <div class="links"><a href="https://emergent.sh/news/pagerduty-launches-paige-ai-agent-incident">报道详情</a></div>
+  </details>
+
+  <details class="item" id="agent-3">
+    <summary><span class="num">3</span><span class="t">协作智能基准：前沿模型当队友仅 82.2 分，遇强势对手时只 14% 谈成最优交易</span><span class="arrow">▸</span></summary>
+    <div class="body">Stanford、Oxford 与 MIT 11 月 3 日发布 Collaborative Intelligence Benchmark：240 个任务、8 个协作维度，素材来自航空事故报告、临床病例、不当行为记录与谈判数据集。Gemini 4 Argon 以 82.2 分（高推理档）居首，但所有模型都暴露同一个问题——不是不会，而是「压不住」。冲突场景里，给双方完整信息时模型 100% 能找到最优联合方案，合作型对手时 84%，换成强势对手就只剩 14%；模型 99% 的回合会问对方需求，却仍有 81% 接受次优交易。5,094 次失败中 45% 发生在模型已识别问题之后。对采购、询盘议价类 Agent，这比通用 benchmark 更有参考价值：要把「底线、拒绝阈值、效用函数」显式写进策略，而不是期待模型靠礼貌谈出好结果。</div>
+    <div class="links"><a href="https://emergent.sh/news/frontier-models-reach-best-team-deal-just-14">报道详情</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-oss">
+  <h2>开源项目<span class="count">4 条</span></h2>
+
+  <details class="item" id="oss-1">
+    <summary><span class="num">1</span><span class="t">max-sixty/worktrunk：给并行 Agent 的 Git worktree 隔离层，10,491★</span><span class="arrow">▸</span></summary>
+    <div class="body">Rust 编写的 Git worktree 管理 CLI，专为「多个编码 Agent 同时改代码」设计：每个 Agent 一个独立工作树，互不覆盖未提交改动；今日新增 438 星。多 Agent 并行的瓶颈往往不是模型，而是工作区隔离与合并顺序；当团队开始同时跑三五个 Agent，worktree 管理会先于 prompt 工程成为基础设施。</div>
+    <div class="links"><a href="https://github.com/max-sixty/worktrunk">GitHub</a></div>
+  </details>
+
+  <details class="item" id="oss-2">
+    <summary><span class="num">2</span><span class="t">p-e-w/heretic：无需训练的行为改造，一天 +701 星</span><span class="arrow">▸</span></summary>
+    <div class="body">用权重编辑与方向消融直接修改模型行为，宣称可在不重训的情况下移除审查、抑制「slop」文风、降低谄媚；今日新增 701 星、总星 38,794。它说明后训练形成的「人格与对齐」越来越像可拆卸的部署期模块。对 Agent 产品，安全策略与说话风格可能不再写死在模型里，而是随租户、场景切换——这也意味着滥用门槛同步降低，平台侧的行为审计会更重要。</div>
+    <div class="links"><a href="https://github.com/p-e-w/heretic">GitHub</a></div>
+  </details>
+
+  <details class="item" id="oss-3">
+    <summary><span class="num">3</span><span class="t">Usagi-org/ai-goofish-monitor：Playwright + AI 盯闲鱼，16,373★</span><span class="arrow">▸</span></summary>
+    <div class="body">基于 Playwright 与 AI 的闲鱼多任务实时/定时监控系统，带后台管理 UI，可从海量商品中做关键词筛选、价格与成色分析；今日新增 228 星。它是「垂直电商 + 浏览器 Agent」的低成本样本：不依赖平台 API，用视觉与 DOM 混合理解完成搜索、翻页与结构化。跨境选品、竞品监控可以复用同一套思路，但要先处理平台 ToS、反爬与账号风控。</div>
+    <div class="links"><a href="https://github.com/Usagi-org/ai-goofish-monitor">GitHub</a></div>
+  </details>
+
+  <details class="item" id="oss-4">
+    <summary><span class="num">4</span><span class="t">shiyu-coder/Kronos：把 K 线当语言的金融市场基础模型，46,519★</span><span class="arrow">▸</span></summary>
+    <div class="body">面向金融市场时序数据的基础模型，把 OHLCV 序列离散成 token 做大规模预训练，再用于预测与表征；今日新增 503 星。它的意义不在炒股，而在示范「领域基础模型」从文本走向结构化时序：先在海量原始序列上预训练，再用少量任务微调。电商的价格、销量与需求预测其实是同一类问题，值得借鉴其 token 化与预训练配方。</div>
+    <div class="links"><a href="https://github.com/shiyu-coder/Kronos">GitHub</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-vertical">
+  <h2>垂直赛道<span class="count">7 条</span></h2>
+
+  <div class="subsec" id="subsec-coding">
+    <h3>AI 编程</h3>
+
+    <details class="item" id="coding-1">
+      <summary><span class="num">1</span><span class="t">Revolut 用自托管 GLM-5.3 替掉 Claude Code，编码推理成本降约 90%</span><span class="arrow">▸</span></summary>
+      <div class="body">11 月 3 日报道：Revolut 把 Z.ai 的开源权重 GLM-5.3（754B MoE）设为约 2,000 名工程师的默认编码模型，部署在 56 张 Nvidia B200 上。运维负责人给出的数字是：自托管推理约 0.30 美元/百万 token，而商业席位为每月 1,000–10,000 美元；NVFP4 量化 + prefill/decode 分离后，256K 上下文下首 token 低于 3 秒、约 200 tok/s。公司称编码时间改善 60%、交付周期改善 70%。这不是「开源模型更强」，而是提醒：编码 Agent 的成本护城河在推理栈、评测与迁移工程，席位定价会被自托管持续击穿。</div>
+      <div class="links"><a href="https://www.theregister.com/ai-and-ml/2026/11/03/british-fintech-revolut-slashes-ai-coding-costs-10x-by-cutting-out-claude-and-going-self-hosted/5307345">The Register</a><a href="https://emergent.sh/news/revolut-cuts-ai-coding-costs-90-self-hosted">报道摘要</a></div>
+    </details>
+
+    <details class="item" id="coding-2">
+      <summary><span class="num">2</span><span class="t">Claude Ultra 取消 5 小时限额：重度编码用户从「配额」转向「持续会话」</span><span class="arrow">▸</span></summary>
+      <div class="body">11 月 3 日的更新中，Claude Ultra 取消 5 小时使用上限，仍保留反滥用与公平使用约束。对每天跑长任务、多个并发 Agent 的开发者，这比单纯提额度更重要——限制从「短周期配额」变成「持续可用」，会话可以跨小时连续推进。对做编码 Agent 的团队，计费锚点会从 token/次数转向并发数与时长，长任务的毛利模型需要重算。</div>
+      <div class="links"><a href="https://emergent.sh/news/claude-ultra-drops-5-hour-usage-limits-latest">报道详情</a></div>
+    </details>
+  </div>
+
+  <div class="subsec" id="subsec-video">
+    <h3>AI 视频与多模态</h3>
+
+    <details class="item" id="video-1">
+      <summary><span class="num">1</span><span class="t">PixVerse 插件原生接入 ChatGPT 与 Codex：视频生成变成 Agent 可调用的工具</span><span class="arrow">▸</span></summary>
+      <div class="body">11 月 3 日报道，爱诗科技旗下 PixVerse 与 OpenAI 完成一系列产品集成：PixVerse ChatGPT Plugin 原生进入 ChatGPT 与 Codex，另有 PixVerse CLI 与 Canvas 工作台，可在 Codex 内完成「参考图 → 角色动作视频 → 资产处理 → 自然语言微调」的整条链路，并共同推出「从提示词到成片」创作者教育计划。官方称已覆盖 177 个国家和地区、注册用户超 1.7 亿。它代表的方向很明确：视频生成正在从「一个网站」变成「Agent 可调用的能力」，竞争点转向素材一致性、可复用流水线与交付规范，而不只是单次生成画质。</div>
+      <div class="links"><a href="https://www.qbitai.com/2026/11/507313.html">量子位</a><a href="https://app.pixverse.ai/cli/gpt-astra/griffith-observatory">PixVerse CLI</a></div>
+    </details>
+
+    <details class="item" id="video-2">
+      <summary><span class="num">2</span><span class="t">Soniox STT v6 加入「Agent 回声消除」：语音 Agent 可以边说边听</span><span class="arrow">▸</span></summary>
+      <div class="body">11 月 4 日发布的语音识别 v6，专门处理语音 Agent 的一个老问题：Agent 自己的 TTS 被麦克风收回，造成自打断、误识别与无法自然插话。新版本把 Agent 侧音频作为参考信号做回声消除，让用户在 Agent 说话时也能打断（barge-in）。语音导购、客服 Agent 的体验瓶颈往往不在 LLM，而在音频前端；AEC、VAD 与轮次判断应作为一等指标进入评测，而不是上线后再补。</div>
+      <div class="links"><a href="https://emergent.sh/news/soniox-stt-v6-launches-agent-echo">报道详情</a></div>
+    </details>
+  </div>
+
+  <div class="subsec" id="subsec-ai4s">
+    <h3>AI for Science</h3>
+
+    <details class="item" id="ai4s-1">
+      <summary><span class="num">1</span><span class="t">Deep Principle Hydrogen-1.0：753B 开源科学模型，MIT 许可、基于 GLM-5.3 后训练</span><span class="arrow">▸</span></summary>
+      <div class="body">11 月 2 日发布，面向化学、材料与生命科学，权重以 MIT 许可开放，可本地部署。它基于 Z.ai 的 GLM-5.3 做后训练，语料除论文与实验协议外，特别加入了实验室记录与「Agent 发现轨迹」——即研究过程中逐步试错、修正假设的操作序列；官方称在 FrontierScience-Research 上优于 GPT-6 Astra，覆盖合成规划、性质预测与文献 grounded 推理。对科学 Agent，真正的壁垒不是通用语料，而是把专家的操作过程沉淀成可训练轨迹；产业知识 Agent 也是同一逻辑。</div>
+      <div class="links"><a href="https://emergent.sh/news/deep-principle-hydrogen-1-0-753b-open-weight">报道详情</a></div>
+    </details>
+
+    <details class="item" id="ai4s-2">
+      <summary><span class="num">2</span><span class="t">Google Antigravity 上线 Cheminformatics Skills：自然语言查 PubChem / ChEMBL、设计刚性大环</span><span class="arrow">▸</span></summary>
+      <div class="body">11 月 3 日，DeepMind 为 Antigravity 增加化学信息学技能包：连接 PubChem、ChEMBL 与药企专有库，支持自然语言查询（不必写 SMILES/InChI）、ADMET 与分子描述符预测、结合亲和力估计；还能针对靶点口袋提出刚性大环结构，并同时给出合成可行性评分，导出兼容 GROMACS/Amber 的 2D/3D 构象。Enterprise 客户可直接使用，所有查询与决策留审计轨迹。它的产品形态值得抄：垂直 Agent = 领域数据库 + 计算工具 + 技能包 + 审计，而不是一个通用聊天框。</div>
+      <div class="links"><a href="https://emergent.sh/news/google-antigravity-accelerates-drug-discovery">报道详情</a></div>
+    </details>
+  </div>
+
+  <div class="subsec" id="subsec-ecom">
+    <h3>AI 电商与贸易</h3>
+
+    <details class="item" id="ecom-1">
+      <summary><span class="num">1</span><span class="t">Worldwide Express 用 AWS Agent 做应收账款：释放 1000 万美元营运资金，DSO 缩短 18 天</span><span class="arrow">▸</span></summary>
+      <div class="body">11 月 3 日披露的物流行业案例：Worldwide Express 把应收账款流程交给 AWS AI Agent，自动完成开票、跨渠道对账、差异识别与客户催收沟通，并把高风险账户提前标记。结果是释放约 1,000 万美元营运资金、现金转换周期平均缩短 18 天，AR 处理时间降 67%、人工催收工时降 43%。技术上是 Bedrock 基础模型 + 物流账单定制算法，通过 Lambda/API Gateway 接现有 ERP。贸易链路里「单据 + 对账 + 催收」规则密集、结果可量化，是 Agent 最容易算清 ROI 的切口，比前台导购更早进入规模化。</div>
+      <div class="links"><a href="https://emergent.sh/news/worldwide-express-unfreezes-10m-aws-ai-agents">报道详情</a></div>
+    </details>
+  </div>
+</section>
+
+<section class="section" id="sec-funding">
+  <h2>公司与融资<span class="count">4 条</span></h2>
+
+  <details class="item" id="funding-1">
+    <summary><span class="num">1</span><span class="t">Anthropic 更新招股书：Q3 营收 170 亿美元，首次把「RSI 临界」写进风险因素</span><span class="arrow">▸</span></summary>
+    <div class="body">11 月 2–3 日披露的修订版 S-1：Q3 营收约 170 亿美元、同比增长 1127%，单季净亏损 232.9 亿美元（主要来自可转换票据与衍生负债的公允价值变动），前九个月营收 332.4 亿美元；采购承诺与租赁合计约 8954 亿美元，几乎全部与算力基础设施相关。更值得关注的是第 29 页的风险表述：公司预计模型可能即将触及 RSP 定义的「由 AI 驱动的大幅加速进展」阈值，且衡量加速的许多证据是滞后指标。头部实验室自己承认「能力提升可能快于安全措施」，这对 Agent 产品是直接约束——发布节奏、回滚机制与监控要按「能力突变」设计，而不是按季度规划。</div>
+    <div class="links"><a href="https://www.qbitai.com/2026/11/507382.html">量子位</a><a href="https://www.sec.gov/Archives/edgar/data/2130357/000162828026068676/anthropicpbc-sx1ax1.htm">SEC 文件</a></div>
+  </details>
+
+  <details class="item" id="funding-2">
+    <summary><span class="num">2</span><span class="t">Fal 以 160 亿美元估值融资 13 亿美元，多模态推理年化收入达 8 亿美元</span><span class="arrow">▸</span></summary>
+    <div class="body">11 月 3 日 Bloomberg 报道，Bessemer 领投，估值较 4 月的 80 亿美元翻倍。Fal 做图像、视频、音频模型的托管推理，消息称今年年化收入已达 8 亿美元。它反映的是多模态 Agent 的真实成本结构：内容生产链路的钱主要花在推理，而不是模型训练；谁能把视频/音频推理的吞吐与冷启动做好，谁就能吃到 Agent 生成需求的增量。</div>
+    <div class="links"><a href="https://www.bloomberg.com/news/articles/2026-11-03/ai-inference-startup-fal-raises-capital-at-16-billion-valuation">Bloomberg</a><a href="https://emergent.sh/news/fal-ai-raises-capital-16-billion-valuation">报道摘要</a></div>
+  </details>
+
+  <details class="item" id="funding-3">
+    <summary><span class="num">3</span><span class="t">CrowdStrike 4.95 亿美元收购 Fiddler 与 Dreadnode：Agent 可观测性并入安全平台</span><span class="arrow">▸</span></summary>
+    <div class="body">11 月 3 日宣布：约 4 亿美元收购 Agent 监控公司 Fiddler AI，约 9,500 万美元收购攻防测试公司 Dreadnode，预计 2027 年 1 月 31 日前完成。Fiddler 将作为 Falcon Observe 出售，带来上线前评估、推理链路追踪、漂移检测与幻觉监控；Dreadnode 能用自然语言描述攻击，内置 100 多种越狱与提示注入手法，团队并入 Cyber Superintelligence Lab。Agent 监控正在从「日志与看板」变成安全产品：trace、eval、red-team 会被打包进同一个采购项，内部 Agent 平台应尽早统一这三件事。</div>
+    <div class="links"><a href="https://www.securityweek.com/crowdstrike-reportedly-paying-495-million-for-ai-security-firms-fiddler-dreadnode/">SecurityWeek</a><a href="https://emergent.sh/news/crowdstrike-reportedly-to-pay-495m-for-fiddler-ai-dreadnode">报道摘要</a></div>
+  </details>
+
+  <details class="item" id="funding-4">
+    <summary><span class="num">4</span><span class="t">Traversal 以 10 亿美元估值完成 1.2 亿美元 B 轮：自主 SRE，月度事故调查从 513 涨到 7.3 万</span><span class="arrow">▸</span></summary>
+    <div class="body">11 月 3 日宣布，Kleiner Perkins、Redpoint、Khosla 联合领投，Sequoia、Battery 与 Amex Ventures 跟投，累计融资 1.73 亿美元。它用因果机器学习做自主 SRE：2026 年月度事故调查量从 513 次增至约 7.3 万次，ARR 年内增长 9 倍，客户包括 Nubank、Harvey、DigitalOcean、PepsiCo；路线图是从「检测、定位」走到「修复、预防」。Agent 的定价锚点应是替代的工时与事故成本，而不是 token；这与电商运营Agent 的 ROI 叙事是同一套逻辑。</div>
+    <div class="links"><a href="https://unite.ai/traversal-raises-120m-series-b-at-1b-valuation-to-expand-ai-sre">报道详情</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-papers">
+  <h2>论文精选<span class="count">6 条</span></h2>
+
+  <div class="paper-recap">
+    <h3>本期论文总结 · 组会分享版</h3>
+
+    <h4>一、今日主线（为什么选这 6 篇）</h4>
+    <ol>
+      <li><strong>「看起来对」比「真的对」更容易</strong>（<a href="#papers-1">#1</a>、<a href="#papers-6">#6</a>）：Agent 自己写验收器时会过度拒绝，推理模型早停后答案可能对、理由却变弱。两者都在提醒：验收要看「接受正确」与「拒绝错误」两侧，而不是单一准确率。</li>
+      <li><strong>环境与行动语言决定 Agent 的上限</strong>（<a href="#papers-4">#4</a>、<a href="#papers-5">#5</a>）：Amazon 把 Agentic RL 的沙箱做到生产级，视频 Agent 则把时间线文档变成可校验的行动语言。共同点是：先给 Agent 一个可试错、可回滚、能自动指出错误位置的环境。</li>
+      <li><strong>用真实预算与收益结算</strong>（<a href="#papers-2">#2</a>、<a href="#papers-3">#3</a>）：零售竞价 Agent 以 500 个 season 的累计 regret 结算，主题采集 Agent 以固定预算下的覆盖率结算。只有引入外部约束，评估才不能自欺。</li>
+    </ol>
+
+    <h4>二、每篇一句话（按阅读优先级）</h4>
+    <ol>
+      <li><a href="#papers-1">VerifierBench（arXiv）</a>：让 Agent 自己写验收器，19 个模型最高仅 62.1 分，且假拒绝多于假接受，精读。</li>
+      <li><a href="#papers-2">Learning to Bid and Bundle（arXiv）</a>：零售竞价与打包的后验采样策略，弱市场 regret 低 4–7 倍，最贴近电商场景，精读。</li>
+      <li><a href="#papers-4">Sandman（arXiv）</a>：Amazon 生产级 Agent 沙箱，两周 310 万个环境，工程团队可直接借鉴，选读。</li>
+      <li><a href="#papers-3">PatchScout（NeurIPS 2026）</a>：把主题网页采集建模为长期信息觅食，解决「何时换区域」，选读。</li>
+      <li><a href="#papers-5">Cassette-Editor（arXiv）</a>：用时间线文档做视频 Agent 的行动语言，多模态 Agent 的环境设计样本，选读。</li>
+      <li><a href="#papers-6">Early Stopping in LRMs（arXiv）</a>：早停省算力，但正确性与理由质量会掉，先看审计方法，泛读。</li>
+    </ol>
+
+    <h4>三、组会讨论题</h4>
+    <ul>
+      <li>如果让 Agent 自己写商品上架/询盘回复的验收器（<a href="#papers-1">#1</a>），怎样避免它只接受「自己熟悉的解法」？能否用双验证器 + 对抗样本，把「假拒绝」也纳入 KPI？</li>
+      <li>竞价与打包 Agent（<a href="#papers-2">#2</a>）在真实毛利、库存与现金流约束下，探索成本由谁承担？冷启动阶段应设置怎样的安全下限，避免「为了学习而亏钱」？</li>
+      <li>能否把 Sandman 式沙箱（<a href="#papers-4">#4</a>）与时间线式的 typed patch（<a href="#papers-5">#5</a>）迁移到店铺运营：让改价、改库存、改素材都成为可回滚、可审计的操作？</li>
+    </ul>
+  </div>
+
+  <details class="item" id="papers-1">
+    <summary><span class="num">1</span><span class="t">arXiv｜VerifierBench：让 Agent 自己写验收器，19 个模型最高只有 62.1 分</span><span class="arrow">▸</span></summary>
+    <div class="body">arXiv:2610.27913，11 月 3 日交叉列表。研究「验证器生成」：给定任务说明与环境，Agent 要写一个可执行验证器，接受所有合法解、拒绝非法解。作者构建 222 个任务、来自 6 个 Agent benchmark，含 4,993 个隐藏测试（包括替代合法解与攻击），并用 V4V 六项检查审计源验证器。19 个模型在统一 harness 下，归一化平衡准确率仅 10.6–62.1；生成器拒绝非法解比接受合法解更可靠，但这种「强」很多时候来自过度约束——多数假拒绝来自「不接受任何测试解」的验证器。错误能逃过自测，是因为 Agent 用来测试的解与验证器共享同一套错误假设。对 Agent 产品，自写验收器不能只做 self-test，必须同时验证「正确解能过」与「其他合法解也能过」。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2610.27913">arXiv</a></div>
+  </details>
+
+  <details class="item" id="papers-2">
+    <summary><span class="num">2</span><span class="t">arXiv｜Learning to Bid and Bundle：零售竞价 Agent 的后验采样，弱市场少损失 4–7 倍</span><span class="arrow">▸</span></summary>
+    <div class="body">arXiv:2611.00165，11 月 3 日提交，37 页。场景很具体：在线零售商为易腐商品竞拍赞助搜索点击，把商品与常备品打包折扣，并展示剩余库存以抬高支付意愿；商家既不知道点击对出价的响应，也不知道市场强弱，还要在「零出价不产生信息」的截断数据里学习。作者设计后验采样 Agent：每期从精确后验抽一个市场，执行该市场完全信息最优的季度计划，因此每个动作都是「全知卖家也可能做的动作」。模拟花店中，弱市场 500 个 season 仅损失单季营收的 12–23%，比「每季只抽一次」少 4–7 倍；平均约 3 个 season 就能摆脱零出价陷阱，而后者要 50 个。还发现「等折扣」的顾客看起来像流失，频繁等待会让 Agent 低估市场；每季只打一次折，弱市场损失 5.9% 的全知营收，强市场为零。这是把探索成本写进结算的范本。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2611.00165">arXiv</a></div>
+  </details>
+
+  <details class="item" id="papers-3">
+    <summary><span class="num">3</span><span class="t">NeurIPS 2026｜PatchScout：把主题网页采集当成长期信息觅食</span><span class="arrow">▸</span></summary>
+    <div class="body">arXiv:2611.00169，NeurIPS 2026。研究「主题网页数据采集」：目标不是回答单个查询，而是围绕一个主题，从分散、结构不连通的网页里收集可复用文档集。作者把它形式化为查询诱导的语义 patch 上的长期信息觅食，核心决策是「继续深挖当前区域，还是切换到新区域」。PatchScout 用多 Agent 框架实例化一类 patch-switching 策略，在固定预算下平衡利用与切换。四个实时网页主题上，产出量与域名覆盖均优于遍历式与搜索增强推理 Agent；在一个先验集合不完整的社会科学场景中，额外发现 102 个此前未识别的实体。对选品调研、竞品情报这类「没有唯一答案、只有覆盖度」的任务，这比一次性 RAG 更接近真实工作流。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2611.00169">arXiv</a></div>
+  </details>
+
+  <details class="item" id="papers-4">
+    <summary><span class="num">4</span><span class="t">arXiv｜Sandman：Amazon 生产级 Agentic RL 沙箱，两周创建 310 万个环境</span><span class="arrow">▸</span></summary>
+    <div class="body">arXiv:2610.39711，11 月 3 日更新。Agentic RL 需要带状态的环境来执行工具与评估，但训练任务会突发性申请上千个环境，取消或超时又会泄漏资源。Sandman 是 Amazon 在生产 Kubernetes 上运行的沙箱服务：一个挂载进未修改任务镜像的小 daemon 负责跨调用保留文件与进程；服务侧做创建限流、就绪检查，并在调用方超时后继续承担清理责任。两周内为 122 次编码 Agent 训练创建 310 万个沙箱，峰值并发 11,858；1 万个请求的多客户端突发中，一半沙箱 116 秒可用、全部 308 秒可用，比调优过的 agent-sandbox 快 44%；软件工程镜像上空命令中位延迟 2.0ms（对比 14.3ms 与 203.5ms），客户端退出后无残留。做 Agent 平台的人应把它当作「环境层」的参考架构，而不是一篇训练论文。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2610.39711">arXiv</a></div>
+  </details>
+
+  <details class="item" id="papers-5">
+    <summary><span class="num">5</span><span class="t">arXiv｜Cassette-Editor：把时间线变成视频 Agent 的行动语言</span><span class="arrow">▸</span></summary>
+    <div class="body">arXiv:2610.37690，11 月 3 日更新。视频编辑 Agent 缺的不是模型，而是「编码 Agent 那样的环境」：改错只在渲染后才看得出来，且不指向出错的那一步。Cassette-Editor 把时间线文档变成 Agent 的行动语言——编辑不是零散工具调用，而是带类型的组合修改；schema 检查与规则手册定义「项目允许什么」，被接受的 patch 作为历史的一步提交，被拒绝则项目不变，并定位问题、列出修复选项；读取时把源分析映射到当前编辑的帧，Agent 能看到「现在画面是什么」。在测试夹具上，人工编辑器注册的每个动作都能表达为等价的 Agent patch；长纪录片粗剪的连续修改案例中，完成率高于直接对媒体文件操作的 Codex CLI，同模型同成本下更省 token 与时间。对多模态 Agent，「可回滚的 typed patch + 自动定位错误」比更大的模型更稀缺。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2610.37690">arXiv</a></div>
+  </details>
+
+  <details class="item" id="papers-6">
+    <summary><span class="num">6</span><span class="t">arXiv｜Early Stopping in Large Reasoning Models：早停省算力，但会牺牲「理由」的可靠性</span><span class="arrow">▸</span></summary>
+    <div class="body">arXiv:2611.00166，11 月 3 日提交。对推理模型来说，更长的思维链通常更准，但并非每个 token 都有用；早停方法想在「够答」时停下。作者用统一的 rollout replay 协议，在 5 个推理模型、数学/科学推理、代码生成与事实性任务上评估多种早停方法，并提出 TITE（相对 oracle 的目标整合 token 效率）来衡量「达到某准确率所需成本」。审计发现：后半段位置的正确率下降幅度可能超过解码噪声模型的预测；强制终止后模型仍会继续推理；部分「早停且答对」的输出，其支撑理由明显更弱。对成本敏感的 Agent，早停不能只看最终答案，还要保留可审计的理由链，否则会把「省钱」变成「不可解释」。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2611.00166">arXiv</a><a href="https://github.com/hung20gg/audit-early-stopping">代码</a></div>
+  </details>
+</section>
+
+<a class="back" href="../index.html">← 返回日报归档</a>
+
+<div class="footer">
+  由「新技术学习搭子」自动生成 · 内容采编自公开来源，观点仅供参考 · 2026-11-04
+</div>
+
+</div>
+<script>
+function setAll(open){document.querySelectorAll('details.item').forEach(function(d){d.open=open})}
+if(location.hash){
+  var el=document.querySelector(location.hash);
+  if(el&&el.tagName==='DETAILS'){el.open=true;setTimeout(function(){el.scrollIntoView({block:'start'})},60)}
+}
+</script>
+</body>
+</html>
