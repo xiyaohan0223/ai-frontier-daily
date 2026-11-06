@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 前沿日报 · 2026-11-06</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<div class="wrap">
+
+<header class="site-header">
+  <div class="brand">AI FRONTIER DAILY · 新技术学习搭子</div>
+  <h1>AI 前沿日报</h1>
+  <span class="date-badge">2026-11-06 · 星期五 · 共 22 条</span>
+</header>
+
+<div class="overview">
+  <strong>今日总览：</strong>GPT-6 Cyber 把「漏洞能力」和「授权边界」一起发布——越界诱饵测试 100% 守界，说明前沿模型开始把 scope adherence 当成核心指标；同一天 Axiom Math 用约 1,600 万行 Lean 形式化整个 Stacks 项目，机器可检验的「证明收据」成为 AI 产出的一部分。Agent 侧的主线是「读权限 + 执行前治理」：Claude 个人理财只读接入银行、Kong 把凭证从 Agent 代码里拿走、Box 把检索改成 Agent 优先。
+</div>
+
+<nav class="chips">
+  <a href="#sec-headline">头条<b>2</b></a>
+  <a href="#sec-llm">大模型<b>2</b></a>
+  <a href="#sec-agent">Agent 进展<b>3</b></a>
+  <a href="#sec-oss">开源项目<b>4</b></a>
+  <a href="#sec-vertical">垂直赛道<b>4</b></a>
+  <a href="#sec-funding">公司融资<b>2</b></a>
+  <a href="#sec-papers">论文<b>5</b></a>
+</nav>
+
+<div class="toolbar">
+  <button onclick="setAll(true)">全部展开</button>
+  <button onclick="setAll(false)">全部收起</button>
+</div>
+
+<section class="section" id="sec-headline">
+  <h2>头条<span class="count">2 条</span></h2>
+
+  <details class="item" id="headline-1" open>
+    <summary><span class="num">1</span><span class="t">OpenAI GPT-6 Cyber：ExploitGym 48.5%，把「授权边界」做进模型</span><span class="arrow">▸</span></summary>
+    <div class="body">11 月 5 日发布，定位是「按研究者设定的范围找漏洞并验证」的安全模型：ExploitGym 从 GPT-5.6 Cyber 的 32.1% 提升到 48.5%，Web 渗透测试的漏洞召回为 40.3%。越界诱饵测试更能说明问题——不加部署提示时，99.93% 的情况下不碰范围外服务，加上提示后为 100%。官方称它已在 Linux 上复现 1,724 个漏洞、开发 948 个提权利用，并在 Firefox 找出 81 个此前未知的高危漏洞；按 Preparedness Framework 首次被评为 Critical，仅向审核过的 Daybreak Red 客户开放 API 与 Codex。对 Agent 产品，这是「能力越强、越要把范围约束当成一等指标」的样本：允许清单、沙箱、动作审计和越界即停，需要和模型评测一起上线；电商场景里的改价、退款、下单，同样应有可验证的授权边界。</div>
+    <div class="links"><a href="https://openai.com/index/introducing-gpt-6-cyber/">OpenAI</a><a href="https://deploymentsafety.openai.com/gpt-6-cyber">System Card</a></div>
+  </details>
+
+  <details class="item" id="headline-2" open>
+    <summary><span class="num">2</span><span class="t">Axiom Math 用约 1,600 万行 Lean 形式化整个 Stacks 项目</span><span class="arrow">▸</span></summary>
+    <div class="body">11 月 4 日发布、5 日对外公开：把约 7,500 页的代数几何参考书 Stacks Project 完整翻成 Lean，约 1,600 万行，是目前最大的可复用形式化数学库；每条 Lean 声明都保留原书的永久 tag，研究者和 AI Agent 可以直接 import。项目用分层多 Agent 并行翻译、证明与整合，过程中发现数十处缺失假设、正特征边界反例，并给出修正与反证。它的意义不止数学：当 AI 生成论证的速度超过人类逐行检查，机器可检验的「证明收据」会成为高价值 Agent 的交付物；对交易、合规这类高风险流程，同理需要可复核的执行证据，而不是一句「模型认为没问题」。</div>
+    <div class="links"><a href="https://axiommath.ai/research/the-stacks-project-formalized/">Axiom Math</a><a href="https://mlq.ai/news/axiom-maths-stacks-formalization-is-machine-checked-but-much-of-it-still-awaits-human-review-1/">MLQ</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-llm">
+  <h2>大模型动态<span class="count">2 条</span></h2>
+
+  <details class="item" id="llm-1">
+    <summary><span class="num">1</span><span class="t">百度开源 ERNIE-5.5-Flash-Base：280B 总参、14B 激活、1M 推理上下文</span><span class="arrow">▸</span></summary>
+    <div class="body">11 月 5 日开放预训练权重：稀疏 MoE 总参数 280B、每 token 激活 14B，33.5T tokens 从零预训练，训练上下文 128K，微调与推理支持 1M；官方称在同尺寸基座中达到 SOTA，并引入 ECHO 策略优化长上下文。它补的是「可自托管的中等激活基座」：14B 激活让多卡推理成本可控，1M 上下文适合把整库商品、合同与订单历史放在一起推理。对 Agent 团队，基座开源意味着领域后训练、工具调用格式与私有数据都能留在自己手里；但 Base 不等于可用产品，指令遵循与工具稳定性仍要靠后训练和评测补齐。</div>
+    <div class="links"><a href="https://huggingface.co/baidu/ERNIE-5.5-Flash-Base">Hugging Face</a><a href="https://www.ithome.com/1/022/785.htm">IT之家</a></div>
+  </details>
+
+  <details class="item" id="llm-2">
+    <summary><span class="num">2</span><span class="t">SuperCLUE 11 月榜：Gemini-4-Argon 73.62 居首，Kimi-K3.1-Pro 国内第一</span><span class="arrow">▸</span></summary>
+    <div class="body">11 月 5 日发布，19 个国内外模型参加，覆盖智能体编程、数理推理、超长上下文、精确指令遵循、幻觉控制五项。Gemini-4-Argon 以 73.62 总分第一，GPT-6.1-Sol 71.76 第二；开源阵营 Kimi-K3.1-Pro 61.46 领先，DeepSeek-V4.1-Flash-1017 58.95、GLM-5.3 50.66 紧随，国内开源第一梯队与闭源前沿仍有约 10 分差距。分项更能指导选型：Gemini 长上下文 95.63、指令遵循 88.97，GPT-6.1-Sol 数理推理 76.32，Kimi 幻觉控制 67.78 为国内最好。对产品，别再用一个总分选模型：规划用前沿闭源、批量抽取与长文检索用国产开源，按任务分项做路由更划算。</div>
+    <div class="links"><a href="https://finance.sina.cn/tech/2026-11-05/detail-inixrytw8847229.d.html">TechWeb</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-agent">
+  <h2>Agent 进展<span class="count">3 条</span></h2>
+
+  <details class="item" id="agent-1">
+    <summary><span class="num">1</span><span class="t">Claude 上线个人理财：只读接入银行账户，能算账但不能动钱</span><span class="arrow">▸</span></summary>
+    <div class="body">11 月 5 日在美国面向 Pro/Max/Ultra 推出 beta，通过 Plaid 由用户自己登录银行授权，Claude 只能读取账户名称、余额、额度与最长两年的交易，不能转账、管理或投资；理财 hub 内的对话不用于训练，账户可随时解绑。它能回答「这个月钱花哪了」「发薪日前还剩多少」，并生成可调整的图表与日历。对金融与电商 Agent，这是很干净的权限范式：先把「建议」与「交易」拆成两种授权，读权限用 OAuth 短时授权、写动作单独审批；信任不是靠更强的模型，而是靠可验证的能力边界。</div>
+    <div class="links"><a href="https://claude.com/resources/articles/introducing-personal-finance-in-claude">Claude</a><a href="https://techcrunch.com/2026/11/05/claude-can-now-analyze-your-spending-with-its-new-personal-finance-tool/">TechCrunch</a></div>
+  </details>
+
+  <details class="item" id="agent-2">
+    <summary><span class="num">2</span><span class="t">Box Content Retrieval：把企业内容检索改成「Agent 优先」</span><span class="arrow">▸</span></summary>
+    <div class="body">11 月 5 日 Box 开发者大会发布，底层用 NVIDIA Nemotron 的嵌入模型，把文档切成带元数据的块再交给 Agent；官方预期查询快 4 倍、错误少 20%、token 消耗少 90%，明年初向 Enterprise Advance 客户开放。关键不在嵌入模型本身（权重公开），而在 Box 既有的权限体系与文档元数据——同一套检索要保证「Agent 只能看到这个人能看的内容」。对电商知识库与商品库，检索单元应从「整篇文档」变成「带权限与来源的片段」，否则 Agent 要么答不出，要么把不该看的证据带进上下文。</div>
+    <div class="links"><a href="https://techcrunch.com/2026/11/05/box-taps-nvidias-nemotron-for-new-agent-first-content-retrieval-system/">TechCrunch</a></div>
+  </details>
+
+  <details class="item" id="agent-3">
+    <summary><span class="num">3</span><span class="t">Kong 把 Agent 治理收进网关：Token Vault、MCP 上下文网格与成本归因</span><span class="arrow">▸</span></summary>
+    <div class="body">11 月 4 日推出 AI Management in Kong Konnect：Token Vault 让 Agent 完全不持有凭证，由网关代理多系统 OAuth/API Key 并支持定向吊销；Context Mesh 把现有 API 与 MCP Server 生成受治理的 MCP 工具，用 code mode 只加载需要的工具以压缩上下文；AI Cost Management 按团队、harness、仓库归因并设硬/软预算，全部随 AI Gateway 提供、不另收费。它对应的是 Agent 上生产后的四个真问题：钱花在谁身上、凭证怎么管、工具怎么复用、出了事怎么审计。对跨境交易 Agent，供应商、支付、物流各自一套认证，凭证托管与调用链追踪会比再换一个模型更先决定能否上线。</div>
+    <div class="links"><a href="https://konghq.com/blog/product-releases/ai-management-kong-konnect">Kong</a><a href="https://ai-techpark.com/kong-expands-ai-management-for-enterprise-agentic-ai-governance/">AI Tech Park</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-oss">
+  <h2>开源项目<span class="count">4 条</span></h2>
+
+  <details class="item" id="oss-1">
+    <summary><span class="num">1</span><span class="t">mattpocock/skills：把「.agents 目录」变成 31 万星的工程技能库</span><span class="arrow">▸</span></summary>
+    <div class="body">GitHub Trending 今日第一梯队，总星约 31.5 万、单日新增 2,071，作者把日常 .agents 目录里的技能整理成可复用集合，定位是「给真正的工程师用的 Skills」。它反映的是 Agent 工程从 prompt 模板转向「可版本化的过程知识」：技能里封装的是命令、检查清单与工具调用顺序，而不是一段更长的系统提示。对团队，真正该沉淀的是选品、上架、广告投放这些可验收的 SOP；星数只能说明热度，能否降低返工率才是验收标准。</div>
+    <div class="links"><a href="https://github.com/mattpocock/skills">GitHub</a></div>
+  </details>
+
+  <details class="item" id="oss-2">
+    <summary><span class="num">2</span><span class="t">vercel-labs/agent-desktop：给 Agent 一个操作桌面的 CLI</span><span class="arrow">▸</span></summary>
+    <div class="body">Rust 编写、Apache-2.0，今日新增 2,173 星、总星 16,853，把鼠标、键盘、截屏等桌面操作封装成 Agent 可调用的 CLI 原语。它让「没有 API 的老系统」也能进入 Agent 工作流：ERP、供应商后台、海关申报页面都可以先靠 GUI 自动化跑通。对电商运营，这类能力的价值在长尾系统，但风险也集中在这里——每一步点击都要有沙箱、超时、截图留证与人工接管，否则一次误点可能直接改价或提交错误申报。</div>
+    <div class="links"><a href="https://github.com/vercel-labs/agent-desktop">GitHub</a></div>
+  </details>
+
+  <details class="item" id="oss-3">
+    <summary><span class="num">3</span><span class="t">worktrunk：为并行编码 Agent 管理 Git worktree</span><span class="arrow">▸</span></summary>
+    <div class="body">Rust 写的 Git worktree CLI，今日新增 546 星、总星 11,517，目标是让多个编码 Agent 各自在独立工作树里改动，再把结果合并回主线。它补的是「多 Agent 并行」最容易被低估的一层：不是模型能不能同时写，而是工作区隔离、分支命名、冲突解决与清理能不能自动化。对任何要让多个 Agent 同时改配置、页面与数据的团队，worktree 比完整容器更轻，但也要求更严格的合并前检查。</div>
+    <div class="links"><a href="https://github.com/max-sixty/worktrunk">GitHub</a></div>
+  </details>
+
+  <details class="item" id="oss-4">
+    <summary><span class="num">4</span><span class="t">ai-goofish-monitor：Playwright + AI 的闲鱼监控与选品助手</span><span class="arrow">▸</span></summary>
+    <div class="body">MIT 协议，今日新增 240 星、总星 17,535，用 Playwright 抓取闲鱼商品，支持多任务实时/定时监控、AI 分析商品与卖家信息，并带后台管理 UI，帮助用户从海量二手商品里筛出目标。它是「监控—分析—提醒」这一 Agent 形态的典型：不需要替用户下单，只要在正确的时间把正确的候选推给人。对跨境选品与二手交易，接口不稳定、反爬与平台条款是长期成本；把采集频率、合规边界和人工复核写进产品，比再加一个分析模型更重要。</div>
+    <div class="links"><a href="https://github.com/Usagi-org/ai-goofish-monitor">GitHub</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-vertical">
+  <h2>垂直赛道<span class="count">4 条</span></h2>
+
+  <div class="subsec" id="subsec-coding">
+    <h3>AI 编程</h3>
+
+    <details class="item" id="coding-1">
+      <summary><span class="num">1</span><span class="t">Cursor 上线 Build Live Apps：Agent 直接建库、配 auth、部署上线</span><span class="arrow">▸</span></summary>
+      <div class="body">11 月 5 日发布，云 Agent 可按一句描述搭出 Web 应用、创建 Postgres、接入 Cursor SSO 登录并分配域名，发布前跑确定性与 Agent 式安全检查（如硬编码密钥、凭证暴露），全部通过且用户确认后才上线；团队管理员能看到所有应用与 secret、可驳回或下架。它把编码 Agent 的交付物从「一段代码」推到「一个可访问的内部工具」，销售、法务、财务都能自己造看板。对电商团队，这意味着商家可以按需生成运营小工具；但 secret 管理、数据权限与发布审批必须由平台兜底，否则「人人能发布」会变成「人人能泄露」。</div>
+      <div class="links"><a href="https://cursor.com/changelog/build-live-apps">Cursor</a></div>
+    </details>
+  </div>
+
+  <div class="subsec" id="subsec-video">
+    <h3>AI 视频与多模态</h3>
+
+    <details class="item" id="video-1">
+      <summary><span class="num">1</span><span class="t">Meta Muse 在美国开放视频通话：实时数字人成为 Agent 的「脸」</span><span class="arrow">▸</span></summary>
+      <div class="body">11 月 5 日，Muse Voice 向全美用户开放，用户可与 Meta 的消费级 Agent Muse 语音或视频通话；背后是 Muse Realtime Avatar 与 Realtime Voice 两个模型，头像可自定义为人物、动物或角色，说话时有与语气匹配的表情和手势。Meta 明确它「看不到用户」，只听取对话并作出反应，后续还会上 AI 眼镜与 Tamagotchi 式硬件 Muse Charm。对多模态 Agent，实时数字人降低的是「愿不愿意长期用」的心理门槛；对电商导购，虚拟形象能承接试穿、讲解与陪伴，但延迟、恐怖谷与隐私提示会直接决定留存。</div>
+      <div class="links"><a href="https://techcrunch.com/2026/11/05/meta-says-us-users-can-now-video-chat-with-their-muse-ai-avatar/">TechCrunch</a></div>
+    </details>
+  </div>
+
+  <div class="subsec" id="subsec-ai4s">
+    <h3>AI for Science</h3>
+
+    <details class="item" id="ai4s-1">
+      <summary><span class="num">1</span><span class="t">Discovered Materials 悬赏 100 万美元：为五个材料难题找 AI 解法</span><span class="arrow">▸</span></summary>
+      <div class="body">11 月 5 日，YC 孵化的 Discovered Materials 宣布设立 100 万美元奖金，面向五个尚未解决的材料科学问题征集 AI 方案，方向聚焦半导体与数据中心散热材料；公司 8 月刚完成 900 万美元融资，做的是「AI Agent 发现并推动新材料落地」。这不是普通黑客松：它把真实产业约束（可合成、可验证、可量产）变成公开基准，用奖金换候选方案与实验数据。对 AI for Science，稀缺的从来不是生成分子，而是「提出可实验验证的假设 + 闭环验证」；这类悬赏会成为 Agent 评测集的重要来源。</div>
+      <div class="links"><a href="https://uk.news.yahoo.com/yc-startup-putting-1m-behind-130000866.html">Yahoo News</a><a href="https://techcrunch.com/2026/08/10/discovered-materials-is-playing-ai-whack-a-mole-to-hunt-cooler-chips/">TechCrunch</a></div>
+    </details>
+  </div>
+
+  <div class="subsec" id="subsec-ecom">
+    <h3>AI 电商与贸易</h3>
+
+    <details class="item" id="ecom-1">
+      <summary><span class="num">1</span><span class="t">Zalando Extended：把外部商店搬进 App，2027 年由 Agent 代下单</span><span class="arrow">▸</span></summary>
+      <div class="body">11 月 5 日随 Q3 财报公布，Zalando 先以 Westwing 为起点，把外部商家的商品放进自家 App，目前跳转到商家站点成交；从 2027 年起，AI 购物 Agent 将在 App 内直接到参与商家的网站下单，用户无需离开。变现方式是外部成交佣金加零售媒体广告；Q3 第三方 GMV 占比 33.6%、同比增长 18%，集团营收 31.7 亿欧元。对跨境商家，这意味着「被 Agent 读懂」比「被用户搜到」更重要：商品 feed、库存、配送时效与退换规则必须结构化且实时；对 Accio 这类平台，谁能让商家低成本产出 Agent 可消费的商品数据，谁就握住新入口。</div>
+      <div class="links"><a href="https://www.zineps.com/en/blog/zalando-extended-external-shops-ai-agent">Zineps</a></div>
+    </details>
+  </div>
+</section>
+
+<section class="section" id="sec-funding">
+  <h2>公司与融资<span class="count">2 条</span></h2>
+
+  <details class="item" id="funding-1">
+    <summary><span class="num">1</span><span class="t">Dropbox 3.5 亿美元收购 Tigris，推出 DBX Agent Cloud</span><span class="arrow">▸</span></summary>
+    <div class="body">11 月 5 日宣布，这是 Dropbox 迄今最大收购，预计 Q4 完成；Tigris 由前 Uber 存储团队创立，做跨区域自动就近访问的对象存储，将支撑 DBX Agent Cloud 先以 S3 兼容的对象存储单独售卖，后续扩展到文档、图像、音视频，以及让 Agent 跨会话管理文件的文件系统能力。Dropbox 同时把 AI 任务、模型选择与 ChatGPT/Claude/Muse 连接进核心产品，称已覆盖 7 万多个团队。对 Agent 产品，「记忆」最终要落到可持久、可授权、可迁移的存储层；状态放在哪、谁能读、跨会话如何续接，会和模型能力一样影响体验。</div>
+    <div class="links"><a href="https://techcrunch.com/2026/11/05/dropbox-acquires-tigris-data-for-350m-to-bolster-its-ai-iinfrastructure/">TechCrunch</a></div>
+  </details>
+
+  <details class="item" id="funding-2">
+    <summary><span class="num">2</span><span class="t">Aina 发布 399 美元 AI 戒指：屏幕 + 摇杆，做 Agent 的遥控器</span><span class="arrow">▸</span></summary>
+    <div class="body">11 月 5 日开放预购，早鸟价 399 美元，计划 2027 年 1 月发货；戒指带小屏、摇杆与麦克风，定位不是手机替代品，而是随时唤起并操控 AI Agent 的输入设备。它押注的是「Agent 常驻后，人需要一个不掏出手机的轻量入口」：快速记录、确认动作、在耳边下达任务。对电商与硬件团队，这类产品的难点不在 AI，而在续航、交互精度与隐私——屏幕和摇杆放在戒指上，能否在真实场景里比语音更高效，还需要用户验证。</div>
+    <div class="links"><a href="https://techcrunch.com/2026/11/05/ainas-smart-ring-has-a-screen-a-joystick-and-a-mic-so-you-can-talk-to-ai-agents/">TechCrunch</a><a href="https://www.wired.com/story/aina-smart-ring/">Wired</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-papers">
+  <h2>论文精选<span class="count">5 条</span></h2>
+
+  <div class="paper-recap">
+    <h3>本期论文总结 · 组会分享版</h3>
+
+    <h4>一、今日主线（为什么选这 5 篇）</h4>
+    <ol>
+      <li><strong>执行前治理</strong>（<a href="#papers-1">#1</a>、<a href="#papers-2">#2</a>、<a href="#papers-3">#3</a>）：三篇从不同层回答同一个问题——模型有能力做，系统凭什么在此刻放行？#1 用本体与任务状态给出 ready/waiting/forbidden 三种确定性裁决；#2 把宿主掌握的「工具此刻健不健康」变成执行前输入；#3 给复核者的替换权加一道证据门槛。共同点是把权限与证据从 prompt 里拿出来，放到可验证的系统层。</li>
+      <li><strong>从单一答案到过程与集合</strong>（<a href="#papers-4">#4</a>）：FoldScape 把蛋白结构预测从「一个天然态结构」扩展到整条折叠轨迹，AI for Science 的交付物正在从结构变成可采样的构象分布。</li>
+      <li><strong>多 Agent 的求助时机</strong>（<a href="#papers-5">#5</a>）：真正决定效果的不是 Agent 数量，而是谁在什么时刻发现缺口、触发检索或专家招募。</li>
+    </ol>
+
+    <h4>二、每篇一句话（按阅读优先级）</h4>
+    <ol>
+      <li><a href="#papers-2">Agent Harness Awareness（arXiv）</a>：宿主在关键动作前注入已验证的工具健康状态，策略后悔降 96.9%、单次派发完成率 69.4%→95.8%，最接近可落地的 Agent runtime 改造，精读。</li>
+      <li><a href="#papers-1">SecureGARD（arXiv）</a>：动态本体 + 回合状态做确定性门控，三个注入基准 ASR 为 0%，并给出「等待」这一比拒绝更业务友好的状态，精读。</li>
+      <li><a href="#papers-3">Who May Overrule the Agent?（arXiv）</a>：证据门槛能减少 reviewer 改坏正确决策，但效果依赖模型与接口，说明「复核权限」本身需要设计，选读。</li>
+      <li><a href="#papers-4">FoldScape（arXiv）</a>：用约 100 万构象覆盖未折叠—中间态—天然态，构象空间覆盖度远超 AlphaFold 3 集成，AI4S 的新范式，选读。</li>
+      <li><a href="#papers-5">Challenge-Aware Knowledge Recruitment（arXiv）</a>：Challenger 触发的中途检索/专家招募在 8/9 数据集有效，简单叠加会反噬，适合作为多 Agent 编排的参照，泛读。</li>
+    </ol>
+
+    <h4>三、组会讨论题</h4>
+    <ul>
+      <li>如果把 #2 的「工具健康快照」用到下单链路，库存、价格、支付、物流四类状态各自由谁签发、TTL 多长、过期后 Agent 应等待还是重试？</li>
+      <li>#3 的证据门槛如何产品化为「审批规则引擎」：价格下限、库存阈值、禁售清单哪些算 binding constraint？怎样避免 Mistral 式「把正确提案全部替换」？</li>
+      <li>#5 的 Challenger 角色在电商客服里应由独立小模型、规则引擎还是人承担？当检索与专家招募同时可用时，如何排序以避免 1+1&lt;1？</li>
+    </ul>
+  </div>
+
+  <details class="item" id="papers-1">
+    <summary><span class="num">1</span><span class="t">arXiv｜SecureGARD：用动态本体给工具调用做「放行 / 等待 / 禁止」裁决</span><span class="arrow">▸</span></summary>
+    <div class="body">11 月 4 日提交。针对间接提示注入，作者不再只约束工具或轨迹，而是把异构工具调用落到共享语义表示上，用可执行本体加回合级任务状态推导三种确定性决策：ready、waiting、forbidden；waiting 表示存在可恢复的未满足义务，允许在不扩大授权范围的前提下有界重规划。本体从经过验证的执行轨迹离线演化，新公理必须修复训练失败暴露的错误、保持逻辑一致，并通过留出验证。在 AgentDojo、ASB、AgentDyn 三个基准的良性与注入设置下，攻击成功率 0%，且任务效用优于基线。对电商 Agent，「等待」比「拒绝」更符合业务：缺收货地址、缺税号时应暂停并追问，而不是直接失败或越权代填。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2611.06682">arXiv</a></div>
+  </details>
+
+  <details class="item" id="papers-2">
+    <summary><span class="num">2</span><span class="t">arXiv｜Agent Harness Awareness：把工具健康遥测变成执行前决策</span><span class="arrow">▸</span></summary>
+    <div class="body">工具描述只告诉 Agent「这个动作能做什么」，却不告诉它「此刻做是否健康」；监控、trace 与近期失败掌握在执行宿主手里，选动作的模型却是盲的。作者提出「信任分离」的设计：宿主在关键动作前提供一份小而新的已验证状态快照，同时保留测量、执行与最终派发权。在 216 次决策的消融中（GPT-5.6 Sol、Claude Sonnet 5、Gemini 3.7 Flash），工具健康状态把平均可观测策略后悔降低 96.9%（4,252ms→131ms），单次派发完成率从 69.4% 升到 95.8%；带真实 TCP/HTTP 与故障注入的 27 次复现中，9/9 个模型×故障组合完成动作，对照组仅 5/9。对下单 Agent，库存、价格、支付通道与物流 API 的健康状态应在调用前注入，而不是失败后重试。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2611.05391">arXiv</a></div>
+  </details>
+
+  <details class="item" id="papers-3">
+    <summary><span class="num">3</span><span class="t">arXiv｜Who May Overrule the Agent？给复核者设一道「证据门槛」</span><span class="arrow">▸</span></summary>
+    <div class="body">多 Agent 系统常加一个 reviewer 来纠错，但 reviewer 也会把本来正确的决策改坏。作者把它定义为「制度管辖权」问题：在提案、任务信息、模型与复核输出都相同的条件下，reviewer 何时有权让自己的建议生效？他们比较了宽泛覆盖权与「证据门槛」——只有当 reviewer 给出机器可验证的约束违反记录与合规修复方案时才允许替换。96 个空间政策任务与 96 个组合迁移任务显示，门槛显著减少对正确提案的破坏，同时保留大部分违规修复；但在前瞻验证中，Qwen 能完全避免改坏，Mistral 仍替换了全部 48 个正确提案。结论不是「限制复核一定更好」，而是复核能力、动作接口与约束权限共同决定纠错域与破坏面。对电商审批流，人工或上级 Agent 的「一票否决」必须绑定具体规则与证据，否则只是把模型错误换成流程错误。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2611.05390">arXiv</a></div>
+  </details>
+
+  <details class="item" id="papers-4">
+    <summary><span class="num">4</span><span class="t">arXiv｜FoldScape：从序列生成任意折叠阶段的蛋白构象集合</span><span class="arrow">▸</span></summary>
+    <div class="body">11 月 3 日提交、4 日更新。现有结构预测大多只给天然态，未折叠态与折叠中间态难以获得；FoldScape 用约 1 万个序列、100 万个构象（粗粒化折叠 + 全原子力学拉伸轨迹）训练，以折叠分数 Q 为条件，通过层次滑窗距离回归、链级组装与 rectified-flow 解码，直接生成从伸展到天然态的三维 Cα 结构，推理时不需要针对每个蛋白跑分子动力学。匹配样本比较中，它在回转半径、Q、二级结构比例上的构象空间覆盖中位数分别为 0.989/0.722/0.877，AlphaFold 3 集成仅为 0.05/0.05/0.10。对 AI for Science，这是从「预测一个答案」到「给出可采样的过程」；对药物与材料 Agent，构象集合比单一结构更适合判断结合与聚集风险。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2611.04287">arXiv</a></div>
+  </details>
+
+  <details class="item" id="papers-5">
+    <summary><span class="num">5</span><span class="t">arXiv｜Challenge-Aware Knowledge Recruitment：多 Agent 该在什么时候求助</span><span class="arrow">▸</span></summary>
+    <div class="body">医疗问答里，多 Agent 辩论常打不过强单模型。作者认为问题出在「选专家与检索知识只看题目」：他们加入一个外部 CHALLENGER，实时检查推理轨迹，指出具体的事实或专业缺口，再触发定向检索或中途招募专家。在 MEDAGENTSBENCH 困难子集（9 个生物医学数据集、862 题）上，开场就检索几乎没有收益，而「推理中途按缺口检索」在 9 个数据集中 8 个提升，比仅用 Challenger 高 6 个百分点；招募专家由 Challenger 触发时，GPT-4.1-mini 的 MedQA 从 46% 升到 54%，自触发则不可靠；把检索与招募简单叠加反而变差。对电商客服，这意味着不是「多挂几个专家 Agent」就好，而要有一个独立角色判断「现在缺的是关税知识、物流时效还是平台规则」，再决定是否转人工或调工具。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2611.05393">arXiv</a></div>
+  </details>
+</section>
+
+<a class="back" href="../index.html">← 返回日报归档</a>
+
+<div class="footer">
+  由「新技术学习搭子」自动生成 · 内容采编自公开来源，观点仅供参考 · 2026-11-06
+</div>
+</div>
+<script>
+function setAll(open){document.querySelectorAll('details.item').forEach(function(d){d.open=open})}
+if(location.hash){
+  var el=document.querySelector(location.hash);
+  if(el&&el.tagName==='DETAILS'){el.open=true;setTimeout(function(){el.scrollIntoView({block:'start'})},60)}
+}
+</script>
+</body>
+</html>
