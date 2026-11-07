@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 前沿日报 · 2026-11-07</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<div class="wrap">
+
+<header class="site-header">
+  <div class="brand">AI FRONTIER DAILY · 新技术学习搭子</div>
+  <h1>AI 前沿日报</h1>
+  <span class="date-badge">2026-11-07 · 星期六 · 共 24 条</span>
+</header>
+
+<div class="overview">
+  <strong>今日总览：</strong>今天最值得看的是「AI 开始加速造 AI」的硬证据：METR 对 Anthropic 的高权限评估显示，内部 Model 4 的 AECI 已达 178.6、比 Opus 5.5 高约 3.9 分（约 3 个月进度），过去一年能力增速约为此前的 1.9 倍。另一条主线是「可交互的世界模型」：百度 ApolloWorld 用一天虚拟路测抵三年真实里程，World Labs Frameboy 把 Atlas 以 15fps 流进浏览器。对做电商 Agent 的团队，执行层同样在提速——PPIO 把 Personal Agent 的「云电脑」做成冷启动不到 200ms 的 API，淘宝则用 Wan3.0 把 AI 品牌短剧直接接进双 11 成交链路。
+</div>
+
+<nav class="chips">
+  <a href="#sec-headline">头条<b>3</b></a>
+  <a href="#sec-llm">大模型<b>3</b></a>
+  <a href="#sec-agent">Agent 进展<b>3</b></a>
+  <a href="#sec-oss">开源项目<b>3</b></a>
+  <a href="#sec-vertical">垂直赛道<b>4</b></a>
+  <a href="#sec-funding">公司融资<b>3</b></a>
+  <a href="#sec-papers">论文<b>5</b></a>
+</nav>
+
+<div class="toolbar">
+  <button onclick="setAll(true)">全部展开</button>
+  <button onclick="setAll(false)">全部收起</button>
+</div>
+
+<section class="section" id="sec-headline">
+  <h2>头条<span class="count">3 条</span></h2>
+
+  <details class="item" id="headline-1" open>
+    <summary><span class="num">1</span><span class="t">METR 评估 Anthropic 内部 Model 4：AECI 178.6，能力增速约为此前 1.9 倍</span><span class="arrow">▸</span></summary>
+    <div class="body">METR 11 月 5 日发布对 Anthropic 的高权限评估（8 月 12 日—10 月 29 日）：内部 Model 2/3/4 中，Model 4 的 AECI 达 178.6，比 Opus 5.5 高约 3.9 分，按历史速度约等于 3 个月进步；纳入评估的 15 项基准全部超过 50%。更关键的是增速——自 2025 年 10 月以来 AECI 约为此前 1.9 倍（95% CI 1.5—2.8x），Anthropic 称截至 8 月 Claude 已在人类监督下主导 26% 的研发工作，研究员称「从想法到实验」时间减少约 80%。METR 也明确：当前加速主要来自 AI 辅助人类，完全自主贡献还不是主力，且大量证据被 Anthropic 涂黑；这既是 RSI 的早期信号，也是「评测基准快不够用」的警告。对 Agent 产品，真正的启示不是等更强模型，而是把「人审 + 可验证产物 + 权限边界」设计成研发流程的一部分。</div>
+    <div class="links"><a href="https://metr.org/blog/2026-11-05-anthropic-ai-rd-acceleration-assessment/">METR</a><a href="https://www.qbitai.com/2026/11/508184.html">量子位</a><a href="https://www.reuters.com/technology/anthropics-models-improving-nearly-twice-fast-with-help-ai-study-finds-2026-11-05/">Reuters</a></div>
+  </details>
+
+  <details class="item" id="headline-2" open>
+    <summary><span class="num">2</span><span class="t">World Labs 发布 Frameboy：Atlas 世界模型以 15fps 流进浏览器，响应约 70ms</span><span class="arrow">▸</span></summary>
+    <div class="body">World Labs 11 月 5 日发布 Frameboy 研究预览：把 9 月发布的 Atlas 世界模型做成高度优化的实时版本，通过云端 GPU 流式传输到浏览器，最高 15fps、实测响应约 70ms，用户可像玩云游戏一样在生成的三维世界里控制相机。它把「世界模型」从离线生成一段视频，推进到可连续交互的「可玩空间」，对空间智能、机器人与游戏/影视预演都是基础设施级变化。对电商，3D 商品空间、虚拟门店与场景化导购会先受益；但 15fps 仍不足以支撑精细操作，真正的门槛在长时一致性、物理正确性与单用户 GPU 成本。</div>
+    <div class="links"><a href="https://www.worldlabs.ai/blog/atlas-realtime">World Labs</a><a href="https://www.ithome.com/1/023/063.htm">IT之家</a><a href="https://m.36kr.com/p/4057974684292233">36氪</a></div>
+  </details>
+
+  <details class="item" id="headline-3" open>
+    <summary><span class="num">3</span><span class="t">百度 ApolloWorld：虚拟路测一天抵三年，给 L4 无人车造「可交互考场」</span><span class="arrow">▸</span></summary>
+    <div class="body">百度 Apollo 11 月 5 日披露世界模型 ApolloWorld：用多智能体建模车辆、行人与道路参与者，生成会响应无人车动作的完整 Robotaxi 行程，官方称虚拟路测一天相当于真实测试车连续跑约三年。它已用于萝卜快跑全球化测试，业务覆盖 28 座城市、累计 3.5 亿公里（全无人 2.4 亿公里），并提出因果性、交互性 + 物理准确性、持久性、实时性的「2+3」评价框架。对 Agent 评测，这是很值得借用的思路：不要只测单步回答，要在「会改变环境、环境也会反制」的闭环里测长程任务；电商下单、改价、售后同样需要可复现的反事实环境。</div>
+    <div class="links"><a href="https://www.qbitai.com/2026/11/507647.html">量子位</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-llm">
+  <h2>大模型动态<span class="count">3 条</span></h2>
+
+  <details class="item" id="llm-1">
+    <summary><span class="num">1</span><span class="t">Thinking Machines 发布 Inkling 2 Small：594B 总参、17B 激活、1M 上下文</span><span class="arrow">▸</span></summary>
+    <div class="body">Thinking Machines 11 月 5 日发布 Inkling 2 Small：594B 总参、17B 激活的 MoE，支持文本与图像输入、最高 1M token 上下文与可变推理强度，先通过 Tinker 提供闭源 API，完整权重将在数周内、待额外安全测试后开放。它延续了「小激活、大总参」的路线：推理成本接近 17B 模型，容量却按 594B 设计，适合长文档、多工具、批量抽取。对做跨境商品与合规文档的团队，1M 上下文 + 图像输入能把商品图、说明书、报关材料放进同一会话；但闭源先行意味着关键业务仍要准备可替代的开源基座。</div>
+    <div class="links"><a href="https://thinkingmachines.ai/news/inkling-2-small/">Thinking Machines</a><a href="https://thinkingmachines.ai/inkling/">Model Card</a></div>
+  </details>
+
+  <details class="item" id="llm-2">
+    <summary><span class="num">2</span><span class="t">腾讯 Hy4 更新：WorkBuddy 83.18 分，开源模型 Agent 能力第一、调用十倍扩容</span><span class="arrow">▸</span></summary>
+    <div class="body">腾讯 11 月 5—6 日更新 Hy4：770B 总参、49B 激活、1M 上下文的开源 MoE，官方称 WorkBuddy 评测平均 83.18、通过率 96.15%，Agent 能力在开源模型中排名第一，Artificial Analysis 国内模型第二、Arena 全球开源第一；因调用激增，WorkBuddy 已十倍扩容。它说明国产开源模型的竞争点已从「榜单总分」转向「真实办公/Agent 任务 + 可承载的推理供给」。对电商团队，这类模型适合做店务、客服、表格与多步工具调用的自托管底座；但 770B 总参的部署成本不低，按任务路由到小模型仍更现实。</div>
+    <div class="links"><a href="https://www.tencent.com/tencent-launches-hy4-joining-the-ranks-of-the-worlds-leading-open-source-ai-models/">Tencent</a><a href="https://www.qbitai.com/2026/11/507967.html">量子位</a></div>
+  </details>
+
+  <details class="item" id="llm-3">
+    <summary><span class="num">3</span><span class="t">OpenAI GPT-Image-2.6 全量上线：6 秒出图、直出 GIF 与 SVG，拆开「构思」与「画质」</span><span class="arrow">▸</span></summary>
+    <div class="body">OpenAI 11 月 5 日全量上线 GPT-Image-2.6：生成时间缩短 50%、最快 6 秒出图，原生支持 GIF 与 SVG 导出，API 首次把「场景规划复杂度」和「画质」拆成两个参数，并区分 Flare（速度/排版）与 Sunburst（高保真/多轮一致性）两个型号。对电商最直接的价值是商品图、海报、图标与动态素材可以在同一条 API 流水线里产出，且多轮改图不必每次重跑构图。它也提醒我们：多模态 Agent 的成本优化，往往来自把「想」和「画」解耦，而不是一味换更小的模型。</div>
+    <div class="links"><a href="https://openai.com/index/introducing-images-2-6/">OpenAI</a><a href="https://www.qbitai.com/2026/11/507707.html">量子位</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-agent">
+  <h2>Agent 进展<span class="count">3 条</span></h2>
+
+  <details class="item" id="agent-1">
+    <summary><span class="num">1</span><span class="t">PPIO 把 Personal Agent 的「云电脑」做成 API：冷启动不到 200ms、2.5 万并发 99.8%</span><span class="arrow">▸</span></summary>
+    <div class="body">PPIO 11 月 6 日发布面向 Personal Agent 的沙箱方案：把「每个用户一台云电脑」做成 API，微虚拟机内可跑代码、装依赖、读写文件、开浏览器，冷启动平均不到 200ms，支持暂停/恢复、快照与克隆；实测 25,000 并发下成功率 99.8%，兼容 E2B 接口，上线一年创建规模增长超 120 倍、每天运行上百万个沙箱。它抓住的是 Personal Agent 与任务式 Agent 的结构差异：以用户为中心、长期在线、主动推进，因此执行环境必须持久、隔离、可复制。对电商 Agent，这意味着可以把「每个商家/每个店铺」放进独立沙箱，凭证留在平台侧、动作可审计；但沙箱不是权限系统，网络策略与写操作审批仍要单独设计。</div>
+    <div class="links"><a href="https://www.qbitai.com/2026/11/508174.html">量子位</a><a href="https://ppio.com/ai-computing/sandbox">PPIO</a></div>
+  </details>
+
+  <details class="item" id="agent-2">
+    <summary><span class="num">2</span><span class="t">NVIDIA 开源 auto-ontology：给 Agent 一层「可验证的企业语义层」</span><span class="arrow">▸</span></summary>
+    <div class="body">NVIDIA 开源 auto-ontology：从企业元数据自动生成并调和本体，把业务术语映射到表与列、沉淀经过审核的 SQL 度量与表关系，再通过 MCP / NL-to-SQL 暴露给 Agent，让查询走「语义层」而不是让模型猜 schema；GitHub 约 8.3k 星。它解决的是 Agent 做数据分析时最常见的失败：不是 SQL 写不对，而是「GMV、退款率、动销」在不同系统里定义不同。对电商经营 Agent，先把指标口径与权限做成可查询的本体，再接 Text-to-SQL，通常比换更强的模型更能降低错答。</div>
+    <div class="links"><a href="https://github.com/NVIDIA/auto-ontology">GitHub</a></div>
+  </details>
+
+  <details class="item" id="agent-3">
+    <summary><span class="num">3</span><span class="t">Cloudflare 开源 security-audit-skill：把安全审计拆成「发现 / 验证 / 复核」六阶段</span><span class="arrow">▸</span></summary>
+    <div class="body">Cloudflare 开源 security-audit-skill：一个 MIT 协议的 coding-agent 技能，把安全审计拆成侦察、覆盖驱动的漏洞狩猎、候选生成、独立验证、机器可读 findings.json 与复核六个阶段，并让「发现」和「验证」由隔离的 Agent 分别完成，减少自我确认偏误；GitHub 约 6.4 万星、单日新增 2,500 以上。它示范了「技能」的正确形态：不是一段更长的 prompt，而是可执行、可复现、带产物的流程。对电商 Agent，同一套结构可以用于上架合规、价格异常、侵权与刷单审查——关键是把「谁发现、谁验证、谁批准」分开。</div>
+    <div class="links"><a href="https://github.com/cloudflare/security-audit-skill">GitHub</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-oss">
+  <h2>开源项目<span class="count">3 条</span></h2>
+
+  <details class="item" id="oss-1">
+    <summary><span class="num">1</span><span class="t">月之暗面开放 Kimi K3.1 Pro 权重：2.8T 总参、104B 激活、1M 上下文</span><span class="arrow">▸</span></summary>
+    <div class="body">月之暗面 11 月 4 日开放 Kimi K3.1 Pro 权重：2.8T 总参、104B 激活的 MoE，1M token 上下文，官方称 Terminal-Bench 4.0 达 65.7%，重点强化编程、3D 创建、金融研究与 Agent 能力，并同步提供快 2—3 倍的 Highspeed 版本。它是目前少见的「3T 级、可自托管」基座，对需要私有化处理长文档、代码库与交易数据的团队意义更大。对电商，1M 上下文可用于整店商品库、合同与历史工单的联合推理；但 2.8T 的部署门槛意味着多数团队仍会通过 API 或蒸馏后的小模型使用。</div>
+    <div class="links"><a href="https://emergent.sh/news/moonshot-releases-kimi-k3-1-pro-2-8t-moe-1m">Emergent</a><a href="https://www.marktechpost.com/2026/10/23/moonshot-ai-kimi-k3-1-pro-open-weight-model/">MarkTechPost</a></div>
+  </details>
+
+  <details class="item" id="oss-2">
+    <summary><span class="num">2</span><span class="t">google/skills：Google 官方 Agent 技能库，2.28 万星、Apache 2.0</span><span class="arrow">▸</span></summary>
+    <div class="body">Google 开源官方 Agent Skills 仓库 google/skills：Apache 2.0，覆盖 BigQuery、Cloud Run、GKE、Firebase 等产品，把「指令 + 参考资料 + 脚本」打包成按需加载的技能，GitHub 约 2.28 万星。它的价值不在某个具体技能，而在示范了「渐进披露」：Agent 只在任务需要时加载对应技能，避免把全部工具说明塞进上下文。对电商 Agent，商品、广告、物流、财税各自一套技能包，比一个巨型系统提示更易维护、也更容易做权限隔离。</div>
+    <div class="links"><a href="https://github.com/google/skills">GitHub</a></div>
+  </details>
+
+  <details class="item" id="oss-3">
+    <summary><span class="num">3</span><span class="t">奇富科技开源 ModelEvo 2.0：把自动建模做成「自主探索 + 可信评估」的 Agent</span><span class="arrow">▸</span></summary>
+    <div class="body">奇富科技 11 月 4—6 日开源 ModelEvo 2.0：面向结构化与表格数据的自动建模 Agent，在标准化流程上加入自主搜索、可信评估与跨域迁移，用 Coding Agent 做调度、Skill 做能力组件、知识库沉淀经验、标准产物目录管理实验，并在关键决策点保留人机协同。它把「AutoML」从选模型/调参推进到「像分析师一样提出假设、跑实验、写报告」。对电商，选品预测、库存、定价与用户分层都可以复用这套范式；但自动建模最怕「指标泄漏 + 过拟合」，可信评估与人工复核必须前置。</div>
+    <div class="links"><a href="https://github.com/QFIN-tech/model-evo">GitHub</a><a href="https://www.bjnews.com.cn/detail/1793964116129801.html">新京报</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-vertical">
+  <h2>垂直赛道<span class="count">4 条</span></h2>
+
+  <div class="subsec" id="subsec-coding">
+    <h3>AI 编程</h3>
+
+    <details class="item" id="coding-1">
+      <summary><span class="num">1</span><span class="t">Frontier3DBench：145 个任务测编码 Agent，GPT-6.1-sol 66.02 居首</span><span class="arrow">▸</span></summary>
+      <div class="body">Einsia AI 联合清华等 11 月 6 日发布 Frontier3DBench：145 个任务、9 类，覆盖物体（65）、场景（65）与可交互开放世界（15），要求 Agent 在 Blender / Unreal Engine 里产出可执行、可编辑的工程文件，并从外观、结构、行为三个维度评分。11 个模型—harness 组合中 GPT-6.1-sol 以 66.02 居首，Claude Opus 5.5 62.29、DeepSeek-v4.1-Flash 57.45、Kimi-K3.1-Pro 55.96、Qwen3.8-Max 46.03；所有模型在「参考图重建」上都弱于「文本生成」，开放世界的局部机制平均 83.08 分，但运动间隙只有 20.82、带状态工作流 30.26。它说明编码 Agent 的瓶颈已从「能不能写出代码」转向「能不能复现指定几何、布局与协调动作」；对电商 3D 商品/虚拟店铺，参考还原与状态一致性会比画面炫酷更先决定可用性。</div>
+      <div class="links"><a href="https://lab.einsia.ai/frontier3dbench/Frontier3DBench.pdf">Paper</a><a href="https://github.com/Einsia/Frontier-Engineering">GitHub</a></div>
+    </details>
+  </div>
+
+  <div class="subsec" id="subsec-video">
+    <h3>AI 视频与多模态</h3>
+
+    <details class="item" id="video-1">
+      <summary><span class="num">1</span><span class="t">Gemini Omni 1.2 Flash 全面开放：15 秒视频、每秒 0.07 美元、支持对话式编辑</span><span class="arrow">▸</span></summary>
+      <div class="body">Google 11 月 5 日将 Gemini Omni 1.2 Flash 全面开放：单段视频从最长 10 秒扩展到 3—15 秒，720p 价格降至每秒 0.07 美元（较 1.1 Flash 降 30%），并支持多轮对话式编辑，改镜头、改动作不必整段重生成。它把「便宜、够长、可迭代」三件事同时推进，直接冲击广告素材、商品短视频与短剧预演的单价。对电商，15 秒正好覆盖主图视频与信息流投放，按秒计价也让「多版本 A/B」变得可算账；但品牌 logo、包装文字与商品结构的一致性仍需人工质检。</div>
+      <div class="links"><a href="https://blog.google/innovation-and-ai/technology/developers-tools/introducing-gemini-omni-1-2-flash/">Google</a><a href="https://the-decoder.com/googles-gemini-omni-1-2-flash-stretches-ai-video-clips-to-15-seconds-and-cuts-pricing-by-30-percent/">The Decoder</a></div>
+    </details>
+  </div>
+
+  <div class="subsec" id="subsec-ai4s">
+    <h3>AI for Science</h3>
+
+    <details class="item" id="ai4s-1">
+      <summary><span class="num">1</span><span class="t">至知发布 Tessera：把等变 Transformer 推到 3000 万原子规模</span><span class="arrow">▸</span></summary>
+      <div class="body">至知创新研究院 11 月 6 日发布分布式计算系统 Tessera，把等变 Transformer（E2Former V2 / UBio-MolFM v1.5）推到 3000 万原子规模：通过原子分区、动态邻居搜索、跨设备通信与 GPU 执行协同优化，在保持量子化学精度与多层消息传递的同时，把此前几十万到百万原子的模拟上限提高一个量级。它的意义在于让「真实生理环境下的生物大分子」——而不是截断的小体系——进入 AI 模拟，对药物结合、膜蛋白与材料缺陷更接近可用。对 AI for Science，规模本身就是一种新的验证维度；但 3000 万原子仍需要实验或高精度计算做闭环校准，不能把「算得大」当成「算得对」。</div>
+      <div class="links"><a href="https://www.163.com/dy/article/LB29G9TE0552A8U8.html">网易科技</a><a href="https://hub.baai.ac.cn/view/57476">BAAI Hub</a></div>
+    </details>
+  </div>
+
+  <div class="subsec" id="subsec-ecom">
+    <h3>AI 电商与贸易</h3>
+
+    <details class="item" id="ecom-1">
+      <summary><span class="num">1</span><span class="t">淘宝 AI 品牌短剧冲双 11：Wan3.0 生成，百雀羚剧集带动订单 +80%</span><span class="arrow">▸</span></summary>
+      <div class="body">淘宝短剧在 11 月 6 日双 11 期间联合天猫小黑盒、天猫国际等上线多部 AI 品牌短剧，用阿里 8 月发布的 Wan3.0 生成，把商品链接、达人测评与品牌直播接在剧情之后；其中百雀羚定制剧上线 30 天播放破 3500 万，店铺支付订单数与转化率较观剧前提升 80%、主动搜索用户数提升 130%，新品首销 30 天成交破 1000 万元。自 618 以来淘宝短剧已上线 30 多部 AI 品牌剧、合作 50 多个品牌。它把「内容—种草—成交」压进同一个平台闭环，说明 AI 视频的商业价值最终要按 GMV 而不是播放量结算；对跨境商家，可复用的角色/场景资产与多语言本地化，会比单条爆款更重要。</div>
+      <div class="links"><a href="https://www.qbitai.com/2026/11/508118.html">量子位</a></div>
+    </details>
+  </div>
+</section>
+
+<section class="section" id="sec-funding">
+  <h2>公司与融资<span class="count">3 条</span></h2>
+
+  <details class="item" id="funding-1">
+    <summary><span class="num">1</span><span class="t">Thinking Machines 拟以 400 亿美元估值融资 50 亿美元，Accel 领投</span><span class="arrow">▸</span></summary>
+    <div class="body">Business Insider 11 月报道，Thinking Machines Lab 正以 400 亿美元投前估值完成 50 亿美元融资，Accel 领投；这较 2025 年 7 月 20 亿美元种子轮的 120 亿美元估值翻了三倍多。公司同时面对创始团队多人离职、产品节奏偏慢的质疑，资金将用于算力与商业化。它反映的是资本仍在为「顶级研究团队 + 可控模型」付溢价；对应用层团队，基础模型层的军备竞赛会继续压低推理价格，但也意味着要避免把产品绑定在单一供应商上。</div>
+    <div class="links"><a href="https://www.businessinsider.com/thinking-machines-lab-is-closing-5-billion-new-round-2026-11">Business Insider</a><a href="https://dealroom.co/news/170334-thinking-machines-lab-nears-5b-round-at-40b-valuation-led-by-accel/">Dealroom</a></div>
+  </details>
+
+  <details class="item" id="funding-2">
+    <summary><span class="num">2</span><span class="t">Mistral 收购 SkipLabs，新设 Language 团队补「AI 代码运行时」</span><span class="arrow">▸</span></summary>
+    <div class="body">Mistral 11 月 6 日宣布收购 SkipLabs，后者做的是让 AI 生成代码更快、更安全、更可信的工具链，团队将加入 Mistral 新设的 Language 团队；这是 Mistral 2026 年的第五笔收购。它补的是「代码生成之后」的运行时与验证层，而不是再做一个聊天模型。对 Agent 与电商工程团队，这类能力会直接影响「AI 改的代码能不能安全上线」；收购整合效果仍需观察，但方向说明模型厂商正在向工程闭环延伸。</div>
+    <div class="links"><a href="https://dealroom.co/news/170004-mistral-ai-buys-skiplabs-in-its-fifth-acquisition-of-2026/">Dealroom</a><a href="https://www.linkedin.com/posts/skiplabs_skiplabs-joins-mistral-to-make-ai-generated-activity-7524101050765647872-JIkF">SkipLabs</a></div>
+  </details>
+
+  <details class="item" id="funding-3">
+    <summary><span class="num">3</span><span class="t">墨芯完成近 10 亿元 C+ 轮：稀疏推理芯片吃到 MoE 红利</span><span class="arrow">▸</span></summary>
+    <div class="body">墨芯人工智能 11 月 6 日披露完成近 10 亿元人民币 C+ 轮融资，距上一轮近 10 亿元仅 5 个月；公司做「权重稀疏 + 激活稀疏」的专用推理芯片，称在 MLPerf Inference 部分类别连续三届夺冠，2026 Q3 营收数倍增长，推理集群已覆盖四大片区，年底将发 SP200 板卡。它踩中的是 MoE 推理的结构性机会：DeepSeek-V4-Pro 这类 1.6T 总参、每 token 仅激活约 49B 的模型，让「少算无效参数」的专用芯片有了明确价值。对电商 Agent，推理成本下降会直接改变「多 Agent 并行 + 长上下文」的可行性；但专用芯片的生态与迁移成本仍是采用门槛。</div>
+    <div class="links"><a href="https://www.qbitai.com/2026/11/508155.html">量子位</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-papers">
+  <h2>论文精选<span class="count">5 条</span></h2>
+
+  <div class="paper-recap">
+    <h3>本期论文总结 · 组会分享版</h3>
+
+    <h4>一、今日主线（为什么选这 5 篇）</h4>
+    <ol>
+      <li><strong>可验证与可核算的执行</strong>（<a href="#papers-2">#2</a>、<a href="#papers-3">#3</a>、<a href="#papers-4">#4</a>）：三篇都在回答「AI 做完之后，凭什么相信它、凭什么算清账」。AutoIP 把信任放在「陈述核对」，LIBRA 放在「沙箱运行验证」，Two-Ledger 放在「调用级归因与对账」；共同点是把「模型说没问题」替换成可复现的证据。</li>
+      <li><strong>世界模型与科学基座</strong>（<a href="#papers-1">#1</a>、<a href="#papers-5">#5</a>）：一个用 5 亿次模拟碰撞学习粒子物理表征，一个要求视频模型推演镜头之外的因果后果；AI for Science 与生成式世界模型正在同一处汇合——先建立可迁移的世界状态，再谈生成。</li>
+    </ol>
+
+    <h4>二、每篇一句话（按阅读优先级）</h4>
+    <ol>
+      <li><a href="#papers-1">EVENET（Nature Machine Intelligence）</a>：5 亿事件预训练的粒子物理基座，约 1/3 训练步数超过同类 Transformer，精读。</li>
+      <li><a href="#papers-4">Two-Ledger（arXiv）</a>：把 AI 成本从账期粒度拉到订单粒度，99% 覆盖率 + p99 降本最多 61%，精读。</li>
+      <li><a href="#papers-3">LIBRA（arXiv）</a>：用沙箱执行验证工具的前置关系，单次检索 Recall 平均 +7.9，选读。</li>
+      <li><a href="#papers-2">AutoIP（arXiv）</a>：AI 写 Lean 证明、人类审陈述，风险在语义而非证明，选读。</li>
+      <li><a href="#papers-5">EvoWorld（arXiv）</a>：VLM 世界大脑 + 视频渲染器，补「镜头之外」的因果推演，泛读。</li>
+    </ol>
+
+    <h4>三、组会讨论题</h4>
+    <ul>
+      <li>如果把 Two-Ledger 的「业务键 + trace」用到跨境订单，订单号、支付单号、物流单号、售后工单之间如何做关联？哪些环节只能靠概率匹配，置信度低于多少必须人工复核？</li>
+      <li>LIBRA 的「工具前置关系」如何落到商品、库存、支付、物流四类 API：谁来维护契约、多久跑一次沙箱验证、验证失败时 Agent 应等待还是降级？</li>
+      <li>AutoIP 的「审陈述而非审证明」能否迁移到平台规则：退款、禁售、关税的「形式化条款」由谁定义、如何做反例测试？如果规则本身有歧义，Agent 应该拒绝执行还是请求人工？</li>
+    </ul>
+  </div>
+
+  <details class="item" id="papers-1">
+    <summary><span class="num">1</span><span class="t">Nature Machine Intelligence｜EVENET：5 亿次模拟碰撞预训练的粒子物理基础模型</span><span class="arrow">▸</span></summary>
+    <div class="body">11 月 5 日在线发表（开放获取）。EVENET 是在 5 亿个模拟碰撞事件上预训练的「事件级」基础模型，直接把整次对撞的粒子云作为输入，学习粒子间的基本物理结构，再迁移到喷注分类、事件分类与异常检测等下游任务；作者称在约 1/3 训练步数下即可超过同类 Transformer。它的价值在于把高能物理里「每个分析任务各训一个模型」变成「一个基座 + 少量微调」，也让稀有新物理搜索有了更通用的表征。对 AI for Science，这是一条可复用的路径：先用大规模模拟建立物理先验，再用真实数据校准；对电商，同理可以先用模拟交易/对抗样本预训练风控基座，再迁到真实场景。</div>
+    <div class="links"><a href="https://www.nature.com/articles/s42256-026-01322-9">Nature Machine Intelligence</a></div>
+  </details>
+
+  <details class="item" id="papers-2">
+    <summary><span class="num">2</span><span class="t">arXiv｜AutoIP：AI Agent 把反问题理论写成 Lean，人类只需审「陈述」</span><span class="arrow">▸</span></summary>
+    <div class="body">11 月 4 日提交。作者用 AI Agent 把经典线性正则化理论及其依赖的泛函分析自动形式化进 Lean，形成 AutoIP 库；机器检查的证明只保证「形式陈述」为真，因此人类的工作从逐行读证明，变成核对每条形式陈述是否忠实于自然语言原意。他们的经验是：风险主要在陈述而非证明，简单的自动化测试就能暴露既有文献里「假设比宣称更强」的问题，并给出一个教科书定理的例子。对高风险 Agent，这提供了一个很实用的分工：AI 负责可验证的推导，人负责定义与语义对齐；电商里的价格规则、退款政策同样应先形式化「什么算违规」，再让 Agent 执行。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2611.06962">arXiv</a></div>
+  </details>
+
+  <details class="item" id="papers-3">
+    <summary><span class="num">3</span><span class="t">arXiv｜LIBRA：把扁平工具目录变成「可执行工具库」</span><span class="arrow">▸</span></summary>
+    <div class="body">11 月 5 日更新。现有工具检索大多按请求相似度独立排序，多工具任务里容易找到「目标工具」却漏掉前置工具；LIBRA 让 LLM 为每个工具提出候选调用契约（输入、可复用输出、状态变化、成功条件），再在沙箱里实际执行、只保留运行时验证通过的关系，从而在用户查询前构建出带依赖的可执行工具库。在 AppWorld、BFCL、SciToolEval 上，单次检索的 Recall/NDCG 平均提升 7.9/3.7 个百分点；在 ToolReAGt 十轮迭代后仍有 4.5/2.9 个百分点增益。对电商 Agent，商品、库存、支付、物流工具的「前置关系」应被显式建模并定期跑通，否则模型会在错误的顺序上重试。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2611.05445">arXiv</a></div>
+  </details>
+
+  <details class="item" id="papers-4">
+    <summary><span class="num">4</span><span class="t">arXiv｜Two-Ledger：把 AI 成本算到「每一笔订单」</span><span class="arrow">▸</span></summary>
+    <div class="body">11 月 4 日提交。企业财务拿到的 AI 账单只有结算粒度（按 SKU、账期聚合），而业务想知道「这一单、这一张理赔、这一个案件到底花了多少 AI 成本」；作者把这种「粒度错配」形式化为七个要求，提出双账本：一边是 FOCUS 兼容的结算账本，一边是基于 OpenTelemetry GenAI 遥测的调用级归因账本，用 trace context、A2A/MCP 元数据、业务键与概率匹配把每条调用挂到具体交易，并用版本化价目表近实时计价。模拟显示，即使 trace 传播率降到 0，成本覆盖率仍能保持 99% 以上；对账残差能在 0.24 个百分点内找回未计量支出，中途门控可把 p99 单笔成本降低最多 61%，误暂停率 2—4%。对电商 Agent，这意味着「按订单核算 Agent 成本」是可工程化的；先统一 trace 与业务键，再谈多 Agent 优化。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2611.06989">arXiv</a></div>
+  </details>
+
+  <details class="item" id="papers-5">
+    <summary><span class="num">5</span><span class="t">arXiv｜EvoWorld：让视频世界模型推演「镜头之外」的因果后果</span><span class="arrow">▸</span></summary>
+    <div class="body">11 月 5 日更新。现有视频模型擅长生成逼真像素，却缺少显式的世界状态与事件后果推理：猛兽出现后，它可能只画出猛兽，却不推断附近的人是逃、躲还是反击。作者提出「Out-of-Sight Causal Evolution」任务，要求模型渲染事件、推理其对世界状态的影响，并在镜头之外继续给出因果上合理的结果；EvoWorld 用 VLM 做「世界大脑」维护状态与转移，用分段自回归视频渲染器实现画面，并发布 EvoWorld-Data 与 EvoWorld-Bench，分别评估事件实现、因果反应与重访一致性。对世界模型与电商场景模拟，这是从「看起来真」走向「推演得对」的关键一步；但基准仍以视觉与短期因果为主，长时物理一致性仍需验证。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2611.06748">arXiv</a></div>
+  </details>
+</section>
+
+<a class="back" href="../index.html">← 返回日报归档</a>
+
+<div class="footer">
+  由「新技术学习搭子」自动生成 · 内容采编自公开来源，观点仅供参考 · 2026-11-07
+</div>
+</div>
+<script>
+function setAll(open){document.querySelectorAll('details.item').forEach(function(d){d.open=open})}
+if(location.hash){
+  var el=document.querySelector(location.hash);
+  if(el&&el.tagName==='DETAILS'){el.open=true;setTimeout(function(){el.scrollIntoView({block:'start'})},60)}
+}
+</script>
+</body>
+</html>
