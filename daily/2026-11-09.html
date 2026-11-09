@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 前沿日报 · 2026-11-09</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<div class="wrap">
+
+<header class="site-header">
+  <div class="brand">AI FRONTIER DAILY · 新技术学习搭子</div>
+  <h1>AI 前沿日报</h1>
+  <span class="date-badge">2026-11-09 · 星期一 · 共 22 条</span>
+</header>
+
+<div class="overview">
+  <strong>今日总览：</strong>今天的三条主线都指向「验证」：Anthropic 用免费 credits 加 MHS 硬件标准把科研 Agent 铺进 20 家机构，Exin 的活体小鼠手术演示证明模型会在越界时拒绝、也需要人类在环纠错，而 ICLR 2027 的首轮审稿则显示评价端自己先被 AI 冲垮——能力越强，验证器、权限边界和过程审计越要写进产品。
+</div>
+
+<nav class="chips">
+  <a href="#sec-headline">头条<b>3</b></a>
+  <a href="#sec-llm">大模型<b>2</b></a>
+  <a href="#sec-agent">Agent 进展<b>3</b></a>
+  <a href="#sec-oss">开源项目<b>3</b></a>
+  <a href="#sec-vertical">垂直赛道<b>3</b></a>
+  <a href="#sec-funding">公司融资<b>3</b></a>
+  <a href="#sec-papers">论文<b>5</b></a>
+</nav>
+
+<div class="toolbar">
+  <button onclick="setAll(true)">全部展开</button>
+  <button onclick="setAll(false)">全部收起</button>
+</div>
+
+<section class="section" id="sec-headline">
+  <h2>头条<span class="count">3 条</span></h2>
+
+  <details class="item" id="headline-1" open>
+    <summary><span class="num">1</span><span class="t">ICLR 2027 首轮审稿翻车：让作者解释「标准差」，评语开头是「Certainly! Here is a review」</span><span class="arrow">▸</span></summary>
+    <div class="body">11 月 5 日 ICLR 2027 首轮评审开放后，11 月 8 日机器之心汇总了多起争议案例：有审稿人要求作者解释什么是标准差，有三位审稿人给出几乎逐字相同的模板意见，第三位甚至把大模型常见的「Certainly! Here is a review of the paper」开场白原样留在正式评语里；还有人被分到不熟悉的方向却仍给出高置信评分。UT Austin 的 Jiaxin Pei 指出关键问题：LLM 能给任何论文列出上百条「局限性」，却分不清哪些只是正常取舍、哪些真正动摇核心结论，于是评审越来越长，真正该拒的理由反而被淹没。ICLR 2027 已要求署名 3 篇及以上投稿的作者至少审 6 篇，允许有限度使用 AI 但必须披露并提交最初独立撰写的评估与全部对话记录，违规可拒掉其所有投稿；公开讨论持续到 11 月 18 日，12 月 16 日出结果。对 Agent 产品，这是一次现成的「AI 评审 AI」压力测试：评价器的校准、可追溯与责任归属，比生成更多意见更重要。</div>
+    <div class="links"><a href="https://m.aitntnews.com/newDetail.html?newId=31058">机器之心汇总</a><a href="https://blog.iclr.cc/2026/09/02/submission-policies-for-iclr-2027/">ICLR 2027 投稿政策</a></div>
+  </details>
+
+  <details class="item" id="headline-2" open>
+    <summary><span class="num">2</span><span class="t">AI 主刀活体小鼠脑手术：3 台之后学会纠错，越界时会拒绝</span><span class="arrow">▸</span></summary>
+    <div class="body">Exin Therapeutics 把 19 个基因治疗载体、摄像头和立体定位臂交给 Agent，只留一句任务目标「减少癫痫发作」；它自己分析发作扩散路径、选择增强 GABA 能抑制信号的载体，把注射点定在外侧鼻周皮层，5 分钟内注入 250 nL（约 5 亿病毒基因组颗粒），全程 32 次截图检查出血与药液回流。更关键的是边界设计：开颅仍由人完成，持证兽医手持物理急停，注射量设硬上限；Opus 5.5 因涉及活体直接拒绝、Opus 5 在活体操作前停手，最终 Sonnet 5 完成手术，而 GPT-6.1 Sol 在后续 3 台手术中经外科医生纠错后学会修正坐标漂移。它说明长时程物理 Agent 的可用性不取决于「敢不敢做」，而取决于「何时拒绝 + 谁能在环内纠正」；但目前没有同行评审数据，演示不等于疗效。</div>
+    <div class="links"><a href="https://eu.36kr.com/en/p/4051750786405505">36 氪 / APPSO</a><a href="https://x.com/VaibhavSisinty/status/2118470963704860954">GPT-6.1 Sol 复现</a><a href="https://emergent.sh/news/ai-agent-controls-gene-therapy-injection-live">Emergent 报道</a></div>
+  </details>
+
+  <details class="item" id="headline-3" open>
+    <summary><span class="num">3</span><span class="t">Anthropic 把 AI for Science 铺到 20 家机构：送 Claude credits，还拉上 NSF、Sloan、Simons</span><span class="arrow">▸</span></summary>
+    <div class="body">11 月 6 日 Anthropic 宣布扩展 AI for Science 计划，向 20 个科学基金会、研究机构和具体项目提供免费 Claude credits，覆盖 HHMI Janelia、Allen Institute、Space Telescope Science Institute、Wellcome Sanger、Francis Crick、EMBL、Broad 的 gnomAD、Columbia 的 LEAP、Tau Ceti 等；此前该计划已支持数百个生物、医学、物理、化学、气候与数学项目。它把「单个科学家试用」升级为「机构级分发」，并配套 MHS 硬件标准让 Agent 安全操作仪器、让 Agent 团队分析 Allen Institute 的脑与细胞数据（数月人工分析压到数小时）。对做垂直 Agent 的团队，这意味着科研入口正在被模型厂商用 credits + 标准 + 数据合作的方式锁定。</div>
+    <div class="links"><a href="https://www.anthropic.com/news/ai-for-science-expands-foundations-research-institutions">Anthropic 公告</a><a href="https://www.anthropic.com/news/ai-for-science-program">AI for Science 计划</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-llm">
+  <h2>大模型动态<span class="count">2 条</span></h2>
+
+  <details class="item" id="llm-1">
+    <summary><span class="num">1</span><span class="t">Claude 的 Agent 记忆长什么样：转录、笔记、wiki、注入上下文四层，靠「做梦」纠错</span><span class="arrow">▸</span></summary>
+    <div class="body">Anthropic 公开了 agent memory 的系统做法：以可检索的 transcript 为底座，Claude 在会话中写 memory notes，再用 dreaming 在离线时对照 transcript 纠错、生成 wiki 这类记忆表征，最后把极少量内容预加载进下一次会话；Claude Code 只注入 MEMORY.md 的前 200 行或 25 KB 作为索引。CL-Bench 数据库任务上，Opus 5.5 从 0.655 提升到 0.838，Sonnet 5.5 从 0.644 到 0.833；Pokémon 测试里 Fable 5 只写 10 个文件拿到 4 枚徽章，Sonnet 3.7 写了 413 个文件只拿 1 枚；Stainless 35 万文件语料上，wiki 从 2 轮扩到 128 轮，仅靠 wiki 的得分从 13% 升到 48%，wiki 加搜索比纯搜索高 8 个点并省约 2 万 token/题。对 Agent 设计，记忆不是「存更多」，而是「选什么值得记 + 定期用原始记录校准」。</div>
+    <div class="links"><a href="https://www.anthropic.com/research/components-of-agent-memory">Anthropic Research</a></div>
+  </details>
+
+  <details class="item" id="llm-2">
+    <summary><span class="num">2</span><span class="t">Gemini Omni 1.2 Flash：原生 15 秒视频、多轮改片，720p 降到每秒 0.07 美元</span><span class="arrow">▸</span></summary>
+    <div class="body">11 月 5 日 Gemini Omni 1.2 Flash 正式 GA，视频从 10 秒延长到 15 秒（支持 3–15 秒按 1 秒粒度指定），可混合角色、商品、风格图、最长 3 秒的运动片段和音频参考，并在多镜头、多轮编辑中保持人脸、服装、包装字体与品牌色一致；可先以 360p/720p 草稿，再逐轮换背景、光照或画幅，最后升到 1080p/4K，价格较 1.1 下降 30% 至 720p 每秒 0.07 美元。对电商，这意味着「一张模特图 + 三套产品正反面」就能生成 15 秒虚拟试穿或目录旋转，广告变体不必重拍；但 SynthID 水印、素材版权与平台标注要求会成为新的合规成本。</div>
+    <div class="links"><a href="https://blog.google/innovation-and-ai/technology/developers-tools/introducing-gemini-omni-1-2-flash/">Google 官方博客</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-agent">
+  <h2>Agent 进展<span class="count">3 条</span></h2>
+
+  <details class="item" id="agent-1">
+    <summary><span class="num">1</span><span class="t">Claude Code 操控机械臂画水彩：一觉醒来，4.5 小时画完一棵秋树</span><span class="arrow">▸</span></summary>
+    <div class="body">开发者 dhvanil（Nil）用 Claude Code 接上 UFACTORY xArm 7，让 Agent 在夜间自主完成调色、落笔、换色与画面修正；它必须把「秋树」拆成可执行的笔触序列，并通过摄像头观察结果再调整，前后约 4.5 小时。意义不在画得好不好，而在无人值守的长时程物理闭环：状态估计、失败恢复、耗材与时间预算都要自己管。对做实体操作 Agent 的团队，先别追求全自动，先把「可暂停、可回滚、可人工接管」做成默认能力。</div>
+    <div class="links"><a href="https://www.instagram.com/reel/Dfb3RpTgTXw/">创作者演示</a><a href="https://www.reddit.com/r/singularity/comments/1xppyfh/claude_paints_a_watercolor_tree_with_a_robotic/">Reddit 讨论</a></div>
+  </details>
+
+  <details class="item" id="agent-2">
+    <summary><span class="num">2</span><span class="t">Palo Alto 拟 5 亿美元收购 Clutch：AI Agent 的「身份与权限」成了安全头等舱</span><span class="arrow">▸</span></summary>
+    <div class="body">11 月 6 日消息，Palo Alto Networks 拟以 5 亿美元现金加里程碑付款收购成立 3 年的 Clutch Security，后者专注管理 AI Agent 对企业系统的访问；其 ARR 接近 1000 万美元，对应约 50 倍 ARR，而 2025 年 1 月 A 轮时估值仅 8500 万美元。这是 Palo Alto 今年第 7 笔收购，此前还包括 29.5 亿美元收购 Chronosphere、5 亿美元收购 Console；同赛道 Cyera 以 10 亿美元收购 Oasis Security，Cisco 约 4 亿美元收购 Astrix。Agent 落地越深，「它能拿什么凭证、能调哪些系统、出了事怎么追责」越会独立成预算项。</div>
+    <div class="links"><a href="https://uk.finance.yahoo.com/news/palo-alto-networks-talks-buy-062832541.html">TechCrunch / Yahoo</a><a href="https://www.clutch.security/">Clutch Security</a></div>
+  </details>
+
+  <details class="item" id="agent-3">
+    <summary><span class="num">3</span><span class="t">Anthropic 与 HHMI Janelia 推 MHS：给 Agent 操作实验仪器立一套共享硬件规范</span><span class="arrow">▸</span></summary>
+    <div class="body">作为 AI for Science 扩展的一部分，Anthropic 与 HHMI Janelia 合作发布 Model Hardware Standard（MHS，研究预览），用统一规范让 AI Agent 安全地操作实验室仪器；Allen Institute 已在用 Agent 团队分析脑、细胞和免疫数据，把数月人工分析压缩到数小时。MHS 的价值是把「Agent 能开仪器」从一次性集成变成可复用接口：权限、量程、急停与审计都应在协议层定义。对任何连接物理设备的 Agent 产品，这比再做一个垂直应用更有杠杆。</div>
+    <div class="links"><a href="https://www.anthropic.com/news/model-hardware-standard-research-preview">MHS 研究预览</a><a href="https://www.anthropic.com/news/ai-for-science-expands-foundations-research-institutions">AI for Science 扩展</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-oss">
+  <h2>开源项目<span class="count">3 条</span></h2>
+
+  <details class="item" id="oss-1">
+    <summary><span class="num">1</span><span class="t">anthropics/skills 单日 +792 星：Agent Skills 正在变成「能力包」的事实标准</span><span class="arrow">▸</span></summary>
+    <div class="body">Anthropic 官方公开仓库收录可复用的 Agent Skills，总星约 18.97 万，今日仍涨 792 颗；它把提示词、脚本、资源与权限说明打包成可发现、可按需加载的能力单元，而不是把所有指令塞进一个超长 system prompt。对平台，这意味着竞争从「模型谁强」延伸到「技能市场谁大」；对企业，先建立内部 skill registry、版本与审计，比直接堆 prompt 更可持续。</div>
+    <div class="links"><a href="https://github.com/anthropics/skills">GitHub</a></div>
+  </details>
+
+  <details class="item" id="oss-2">
+    <summary><span class="num">2</span><span class="t">OpenMausBot 单日 +1439 星：给 Bot 一台虚拟机，把「电脑操作」关进沙箱</span><span class="arrow">▸</span></summary>
+    <div class="body">OpenMausBot 是开源的 Grok Bot 替代品，核心是给 Agent 一台可操作的虚拟机；总星约 1.83 万，今日新增 1439 颗。它抓住的是 computer-use Agent 最现实的需求：浏览器、桌面、文件系统都能用，但破坏半径要可控、可快照、可回滚。做电商比价或后台运营 Agent 时，VM 隔离 + 网络出口白名单 + 操作录像，应该先于「多智能体协作」。</div>
+    <div class="links"><a href="https://github.com/milind-soni/OpenMausBot">GitHub</a></div>
+  </details>
+
+  <details class="item" id="oss-3">
+    <summary><span class="num">3</span><span class="t">meta/astryx 单日 +875 星：把设计系统做成「Agent 可读」的组件与 token</span><span class="arrow">▸</span></summary>
+    <div class="body">Meta 开源了可完全定制的设计系统 astryx，主打 agent-ready；总星约 1.68 万，今日新增 875 颗。它把颜色、间距、组件变体与可访问性规则显式化，让代码 Agent 生成 UI 时不必猜设计意图。对内部工具和店铺装修，这能显著减少「生成得像但不符合品牌规范」的返工；前提是设计 token 与代码组件同源、可校验。</div>
+    <div class="links"><a href="https://github.com/meta/astryx">GitHub</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-vertical">
+  <h2>垂直赛道<span class="count">3 条</span></h2>
+
+  <div class="subsec" id="subsec-ai4s">
+    <h3>AI for Science</h3>
+
+    <details class="item" id="ai4s-1">
+      <summary><span class="num">1</span><span class="t">Google Antigravity 上线 Cheminformatics Skills：1 小时从文献到新宏环 + 合成路线</span><span class="arrow">▸</span></summary>
+      <div class="body">11 月 3 日 DeepMind 发布，Antigravity 安装 Science 插件后即可调用 RDKit、ChEMBL、PubChem 连接器；以克唑替尼到劳拉替尼的刚性化为例，Agent 检索数千个化合物、筛出 568 个、完成匹配分子对分析（MMPA）与效价模型，约 1 小时给出新宏环设计与合成路线（过去要数天）。它把「LLM 负责编排与推理、确定性化学工具负责计算」的分工写进 skill，并向 1 万名科学家提供 6 个月最高档免费。边界也写得清楚：数据稀疏、实验室间 assay 噪声与窄动态范围决定设计只是可检验假设，必须合成验证。</div>
+      <div class="links"><a href="https://deepmind.google/blog/agentic-cheminformatics-with-google-antigravity/">DeepMind 博客</a><a href="https://antigravity.google/use-cases/science/">Science 用例</a></div>
+    </details>
+
+    <details class="item" id="ai4s-2">
+      <summary><span class="num">2</span><span class="t">ChemE-as-Code：把氨合成工厂的设计、HAZOP 与泄压校核交给 Agent，API 成本 224 美元</span><span class="arrow">▸</span></summary>
+      <div class="body">11 月 5 日的 arXiv 论文提出开源的 agentic 化工设计流程，用代码化工作流生成 P&amp;ID、HAZOP、布置图、设备数据表与泄压计算，并以合成氨案例端到端跑通，模型 API 成本约 224 美元。它的关键不是「自动出图」，而是把工程检查点写成可执行校验，让 Agent 的产出能被人类工程师按条目复核。作者明确说明没有独立评审；对 AI for Science 产品，这提示「可审计的中间产物」比最终报告更有价值。</div>
+      <div class="links"><a href="https://arxiv.org/abs/2611.07947">arXiv</a></div>
+    </details>
+  </div>
+
+  <div class="subsec" id="subsec-ecom">
+    <h3>AI 电商与贸易</h3>
+
+    <details class="item" id="ecom-1">
+      <summary><span class="num">1</span><span class="t">Firmly 拿 1500 万美元 A 轮：让商家不写代码就接入 AI 购物 Agent</span><span class="arrow">▸</span></summary>
+      <div class="body">11 月 5 日 Firmly 宣布由 Squarepoint Capital 领投的 1500 万美元 A 轮，J.P. Morgan Payments、Mastercard 与 Samsung NEXT 参投；核心产品 firmly Connect 把商家的商品、库存与履约接到 AI 助手、市场和社交渠道，同时推出 Ask Agent 帮商家排查接入问题。它押注的是「Agent 不会只有一个入口」：商家需要一次接入、多处可售，同时保留价格与品牌控制。对跨境卖家，这类中间层的价值在合规、支付与退货边界，而不是再做一个聊天前台。</div>
+      <div class="links"><a href="https://www.globenewswire.com/news-release/2026/11/05/3396499/0/en/firmly-raises-15-million-series-a-and-launches-ask-agent-to-help-merchants-more-easily-adopt-agentic-commerce.html">官方新闻稿</a><a href="https://www.geekwire.com/2026/jpmorgan-and-mastercard-back-seattle-startup-firmlys-bet-on-ai-shopping-agents/">GeekWire</a></div>
+    </details>
+  </div>
+</section>
+
+<section class="section" id="sec-funding">
+  <h2>公司与融资<span class="count">3 条</span></h2>
+
+  <details class="item" id="funding-1">
+    <summary><span class="num">1</span><span class="t">Anthropic IPO 估值被下调：从 2 万亿到 1.5 万亿或更低，Q3 收入 169.56 亿美元</span><span class="arrow">▸</span></summary>
+    <div class="body">据钛媒体 11 月 8 日汇总，Anthropic 路演下周启动，估值从此前约 2 万亿美元下调至 1.5 万亿美元或更低；Q3 收入 169.56 亿美元、环比增长 47%，经营亏损 5.67 亿美元，算力承诺 8954 亿美元，已有 1.19 万家企业客户年付超过 10 万美元。收入与亏损同时放大，说明 IPO 定价开始从「叙事」回到「单位经济 + 算力负债」。对二级市场，这是一次给整个 AI 基础设施链重新定锚的机会。</div>
+    <div class="links"><a href="https://www.tmtpost.com/8197405.html">钛媒体</a></div>
+  </details>
+
+  <details class="item" id="funding-2">
+    <summary><span class="num">2</span><span class="t">OpenAI 以 1.25 万亿美元估值融资 110 亿美元</span><span class="arrow">▸</span></summary>
+    <div class="body">同一篇汇总提到，OpenAI 本轮融资 110 亿美元、估值 1.25 万亿美元。它和 Anthropic 的路演形成对照：一级市场仍愿意为头部实验室的算力与分发付溢价，但估值锚已从「模型能力」转向「收入增速 + 企业渗透」。对创业公司，融资窗口没有关闭，只是投资人会更认真看毛利与推理成本。</div>
+    <div class="links"><a href="https://www.tmtpost.com/8197405.html">钛媒体</a></div>
+  </details>
+
+  <details class="item" id="funding-3">
+    <summary><span class="num">3</span><span class="t">Shield AI 28.8 亿美元估值融 25 亿，53 亿美元收购雷达公司 Echodyne</span><span class="arrow">▸</span></summary>
+    <div class="body">11 月 5 日 Shield AI 宣布收购紧凑型反无人机雷达公司 Echodyne，交易含 48 亿美元交割对价与 5 亿美元或有对价，总计 53 亿美元；同时以 28.8 亿美元估值融资 25 亿美元。Echodyne 此前获比尔·盖茨支持，交易把「自主飞行软件 + 传感器」垂直整合到一起。国防 AI 正从软件授权走向硬件与交付能力竞争，资本开支和量产能力比 demo 更重要。</div>
+    <div class="links"><a href="https://shield.ai/shield-to-acquire-echodyne-in-a-transaction-valued-at-5-3-billion-and-raise-2-5-billion-at-a-28-8-billion-valuation/">Shield AI 公告</a><a href="https://www.bloomberg.com/news/articles/2026-11-05/shield-ai-to-hit-28-8-billion-value-with-5-3-billion-radar-acquisition">Bloomberg</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-papers">
+  <h2>论文精选<span class="count">5 条</span></h2>
+
+  <div class="paper-recap">
+    <h3>本期论文总结 · 组会分享版</h3>
+
+    <h4>一、今日主线（为什么选这 5 篇）</h4>
+    <ol>
+      <li><strong>从「能生成」到「能被验证」</strong>（<a href="#papers-1">#1</a>、<a href="#papers-2">#2</a>、<a href="#papers-3">#3</a>）：PharmAgents2 用湿实验回环，MCPHallu 用失败子类型，TCSExam 用 Lean 与可执行 checker，三篇都把评价锚在可复核的证据上。为什么是现在：Agent 进入科研与生产后，demo 的说服力在下降，过程证据开始决定预算。</li>
+      <li><strong>过程比总分更能定位问题</strong>（<a href="#papers-2">#2</a>、<a href="#papers-3">#3</a>、<a href="#papers-5">#5</a>）：子类型排名漂移、专家过程 rubric、课程跳级测试，共同在回答「到底是哪一步坏了」，而不是只给一个成功率。</li>
+      <li><strong>推理成本从「多采样」转向「精准重采样」</strong>（<a href="#papers-4">#4</a>）：先定位首个错误步，再只重跑错误步与后缀，是预算约束下更务实的推理时扩展路线。</li>
+    </ol>
+
+    <h4>二、每篇一句话（按阅读优先级）</h4>
+    <ol>
+      <li><a href="#papers-1">PharmAgents2（NeurIPS 2026）</a>：Paper2Skill + 并行自扩展探索，在 LpxH、JAK1 和未知靶点三个真实案例里给出经湿实验支持的发现，并把「过程 rubric」做成基准；AI for Science 与多 Agent 团队必读，精读。</li>
+      <li><a href="#papers-2">MCPHallu（NeurIPS 2026 Poster）</a>：358 个任务、36 个生产 MCP 服务器、14 个 Agent，平均 0.642，Unreachable Goal 通过率仅 23.2%，且子类型排名平均漂移 6.9/13；做 MCP 工具链的团队精读。</li>
+      <li><a href="#papers-3">TCSExam（arXiv）</a>：100 道 TCS 研究题，定理证明由 Lean kernel 核验，Lite 版 20 题与 Full 排名 ρ=0.93；想用 AI 做形式化科研的选读。</li>
+      <li><a href="#papers-4">StepBack（NeurIPS 2026）</a>：定位首个错误步后只重采样该步与后缀，在 7 个基准上追平 self-consistency 且 token 最多省 41.26%；推理成本优化必看，选读。</li>
+      <li><a href="#papers-5">BabyTheorist（arXiv）</a>：只给前后视觉变化、不给程序标签，考「观察式理论获取」，7 个基线均远低于上限；世界模型研究者的泛读材料。</li>
+    </ol>
+
+    <h4>三、组会讨论题</h4>
+    <ul>
+      <li>电商询盘 Agent 遇到缺货、无权限这类「不可达目标」时，奖励与审计该怎么设计，才能鼓励它承认做不到，而不是继续调工具或谎称完成？（<a href="#papers-2">#2</a>）</li>
+      <li>能否把 PharmAgents2 的专家过程 rubric 搬到采购与上架流程？当过程分与成交率冲突时，谁有最终拍板权？（<a href="#papers-1">#1</a>）</li>
+      <li>MCPHallu 显示不同失败类型的模型排名并不一致，我们的工具域回归集该多大、多久更新一次，才不至于被单一榜单误导？（<a href="#papers-2">#2</a>、<a href="#papers-3">#3</a>）</li>
+    </ul>
+  </div>
+
+  <details class="item" id="papers-1">
+    <summary><span class="num">1</span><span class="t">PharmAgents2（NeurIPS 2026）：把药物发现做成连续决策，湿实验验证新靶点</span><span class="arrow">▸</span></summary>
+    <div class="body">系统从公开来源抽取可迁移的科学决策知识（Paper2Skill），再让并行 Agent 继承研究上下文，在靶点、假设和发现策略上自扩展；同时发布 PharmAgents-Bench v0.1，含 121 道题、9 类决策场景和 3 个端到端任务，用专家定义的过程 rubric 评分。三个真实案例中，LpxH 提出此前未报道的别构位点并筛到新抑制剂骨架，JAK1 优先共价抑制策略并找到有活性化合物，从已知活性分子出发还反推出一个新结合靶点，均由后续湿实验支持。对 Agent 产品，最值得借鉴的是「过程评分 + 实验回环」，而不是让 Agent 直接下结论。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2611.07653">arXiv</a></div>
+  </details>
+
+  <details class="item" id="papers-2">
+    <summary><span class="num">2</span><span class="t">MCPHallu（NeurIPS 2026 Poster）：358 个任务拆开 MCP Agent 的推理、执行与记忆幻觉</span><span class="arrow">▸</span></summary>
+    <div class="body">基准在 36 个生产 MCP 服务器、隔离容器中构造 358 个任务，用 Branch Collapse、Unreachable Goal、Tool Misuse、Context Forgetting 四种子类型做结构性触发，而不是事后归因；14 个前沿 Agent、5012 条轨迹平均只有 0.642，Unreachable Goal 仅 0.458、通过率 23.2%，模型常继续发起工具调用或直接宣称完成。更刺眼的是子类型排名平均偏移 6.9/13，Branch Collapse 与 Unreachable Goal 几乎不相关（r=-0.12）。选 MCP Agent 不能只看一个总分，要按工具域和失败类型建自己的回归集。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2611.07689">arXiv</a><a href="https://neurips.cc/virtual/2026/poster/139758">NeurIPS Poster</a></div>
+  </details>
+
+  <details class="item" id="papers-3">
+    <summary><span class="num">3</span><span class="t">TCSExam（arXiv）：100 道理论计算机科学研究题，Lean 核验，GPT-6 Astra 与 Opus 5.5 领跑</span><span class="arrow">▸</span></summary>
+    <div class="body">覆盖定理证明（20 题，需给出已发表结果的完整 Lean 证明）、求解器工程（隐藏实例评测）、构造与开放猜想四轨，共 100 道专家评审任务，提交由 Lean kernel 或可执行 checker 判定；Lite 版 20 题把尝试量降 80%，与 Full 排名 Spearman ρ=0.93。GPT-6 Astra 在 Full 得 71.9，Opus 5.5 在 Lite 得 72.3，并产出经独立验证的开放猜想特例与界。它把「AI 做研究」的评分从主观 rubric 推向可执行证明，适合作为科研 Agent 的硬门槛。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2611.07962">arXiv</a><a href="https://moonshotai.github.io/TCSExam/">项目主页</a></div>
+  </details>
+
+  <details class="item" id="papers-4">
+    <summary><span class="num">4</span><span class="t">StepBack（NeurIPS 2026）：不再整条重采样，只重跑首个错误步及其后缀</span><span class="arrow">▸</span></summary>
+    <div class="body">先用少量 draft 轨迹与轻量信号定位可能的首个错误位置，再只重采样该步和后缀，最后做多数答案投票；在 7 个数学推理与多跳 QA 基准上平均追平 self-consistency，token 用量最多降低 41.26%，还能叠加 Adaptive Consistency 进一步提升效率。对成本敏感的推理产品，这比「多采样几次」更接近可用的预算控制；难点是错误定位信号在长链工具调用中是否同样可靠。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2611.08403">arXiv</a></div>
+  </details>
+
+  <details class="item" id="papers-5">
+    <summary><span class="num">5</span><span class="t">BabyTheorist（arXiv）：只看「前后变化」学理论，考的是婴儿怎么懂世界</span><span class="arrow">▸</span></summary>
+    <div class="body">基准从隐藏的组合程序生成连续的前后视觉观察流，训练时不给程序标签、任务身份或 support set，只让学习者从变化中提炼可复用理论并迁移到新情境；课程控制程序复杂度、重复子程序与跳级测试。7 个代表性基线都远低于上限，且随课程推进差距扩大，说明当前程序学习还没真正解决「观察式理论获取」。对 Agent，这是从「预测下一帧」走向「解释为什么」的评测抓手，但离产品化还远。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2611.08177">arXiv</a><a href="https://github.com/ahn-ml/babytheorist">代码</a></div>
+  </details>
+</section>
+
+<a class="back" href="../index.html">← 返回日报归档</a>
+
+<div class="footer">
+  由「新技术学习搭子」自动生成 · 内容采编自公开来源，观点仅供参考 · 2026-11-09
+</div>
+
+</div>
+
+<script>
+function setAll(open){document.querySelectorAll('details.item').forEach(function(d){d.open=open})}
+if(location.hash){
+  var el=document.querySelector(location.hash);
+  if(el&&el.tagName==='DETAILS'){el.open=true;setTimeout(function(){el.scrollIntoView({block:'start'})},60)}
+}
+</script>
+</body>
+</html>
