@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 前沿日报 · 2026-11-12</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<div class="wrap">
+
+<header class="site-header">
+  <div class="brand">AI FRONTIER DAILY · 新技术学习搭子</div>
+  <h1>AI 前沿日报</h1>
+  <span class="date-badge">2026-11-12 · 星期四 · 共 30 条</span>
+</header>
+
+<div class="overview">
+  <strong>今日总览：</strong>Google 把 Agent 循环里最频繁的一类调用单独拆成产品——Gemini Decisions API 不做生成，只对候选选项单次前向打分、直接返回概率与置信度，「下一步做什么」第一次有了独立计价和延迟上限；同一天，阿里 Qwen4-Max-Preview 把上下文推到 100 万、单次输出推到 39 万 token，AWS 则放出 200+ 服务、代码 100% 由 Agent 写成的本地 AWS Emulator。三条线索指向同一个结论：Agent 的竞争力正从「模型多强」移向「决策、长交付、工程产物」这三件可以被工程化的事。
+</div>
+
+<nav class="chips">
+  <a href="#sec-headline">头条<b>3</b></a>
+  <a href="#sec-llm">大模型<b>3</b></a>
+  <a href="#sec-agent">Agent 进展<b>3</b></a>
+  <a href="#sec-oss">开源项目<b>4</b></a>
+  <a href="#sec-vertical">垂直赛道<b>9</b></a>
+  <a href="#sec-funding">公司融资<b>3</b></a>
+  <a href="#sec-papers">论文<b>5</b></a>
+</nav>
+
+<div class="toolbar">
+  <button onclick="setAll(true)">全部展开</button>
+  <button onclick="setAll(false)">全部收起</button>
+</div>
+
+<section class="section" id="sec-headline">
+  <h2>头条<span class="count">3 条</span></h2>
+
+  <details class="item" id="headline-1" open>
+    <summary><span class="num">1</span><span class="t">Google 发布 Gemini Decisions API：不生成文字，只给选项打分，$0.10/百万输入</span><span class="arrow">▸</span></summary>
+    <div class="body">11 月 11 日上线，底层是新模型 <code>gemini-decision-1</code>。它不做逐 token 解码，而是对一份共享输入（文本、图像、音频、视频、PDF，最高 256K token）一次性评估最多 1,000 个封闭集问题：是/否（noul）、2–255 个选项的多选、以及有序 rubric 打分，每个答案都附带 0–1 的置信度。模型算力中位 50–100ms、端到端 150–250ms，输入 $0.10/百万 token、输出零计费，官方称在同一组基准上比 Gemini 3.5 Flash-Lite + Interactions API 便宜近 5 倍。Google 内部已在用：Gemini Notebook 拿它做实时模型路由（延迟最高降 40%）、Stitch 快速画布、Google Labs 的 CC 从 200 多个表情里挑一个、Search 用它检测 MCP 工具的对抗行为。</div>
+    <div class="body">Agent 循环里真正高频的调用不是「写答案」，而是路由、选工具、查合规、给上下文打分——这些只需要一个带概率的判断。做成独立端点意味着三件事：成本从「生成多少 token」变成「输入一次」，延迟可以预算，置信度可以直接当阈值用（低于阈值转人工）。对 Accio 这类交易型 Agent，询盘分诊、类目归属、报价与合规前置检查、工具选择都可以先走决策层，把旗舰模型留给真正需要长文本生成的环节。</div>
+    <div class="links"><a href="https://blog.google/innovation-and-ai/technology/developers-tools/gemini-decisions-api/">Google 官方博客</a><a href="https://aistudio.google.com/docs/decisions-api">API 文档</a></div>
+  </details>
+
+  <details class="item" id="headline-2" open>
+    <summary><span class="num">2</span><span class="t">Qwen4-Max-Preview 上线：100 万上下文、单次最多输出 39 万 token</span><span class="arrow">▸</span></summary>
+    <div class="body">11 月 11 日 10:00 开放：官方文档标注上下文 1M、最大输出 393,216 token，原生视觉理解，主打复杂编程、前端设计、专业软件操作与长程 Agent 任务；当前仅 Token Plan 可调用，预览期到 11 月 25 日 24:00，官方未公布参数量与基准。同期双 11 活动里 Qwen4 预览可低至 1–2 折体验，并可领取 30 天免费额度。</div>
+    <div class="body">上下文决定「能读多少」，输出上限决定「一次能交付多少」。39 万 token 足以一次吐出整套多语言 listing、一份完整合规报告，或一版可运行的前端工程，不必再拆成十几轮拼接——这对 Agent 的「交付单元」设计是实质性变化。预览窗口也提醒团队趁现在压测长输出的稳定性与真实单价，别等转正后再补。</div>
+    <div class="links"><a href="https://help.aliyun.com/zh/model-studio/models">阿里云百炼模型列表</a><a href="https://www.aliyun.com/activity/hub/qianwenai1111">千问双 11 活动</a></div>
+  </details>
+
+  <details class="item" id="headline-3" open>
+    <summary><span class="num">3</span><span class="t">AWS 开源 Emulator：200+ 服务、代码 100% 由 Agent 写成，团队没写也没审一行</span><span class="arrow">▸</span></summary>
+    <div class="body">11 月 11 日 AWS 发布本地 AWS 模拟器并以 CC0 开源：起点只是 438 个 API 模型的空壳，代码全部由自主 Agent 编写，团队没有手写或逐行评审。做法是三组 Agent 分工——一组写 fidelity 测试、一组找问题、一组修复，一个 issue 对一个 Agent，数百个并发 Agent 每天修掉数千个 issue，合并前要过四道 gate。官方同时公开了「things-that-do-not-work」清单：不模拟限流、宕机与区域差异，也不做沙箱隔离。</div>
+    <div class="body">这是「Agent 写生产级软件」目前最硬的样本，值得抄的不是规模而是流程：把可验证的测试当作规格、把 issue 当作工作单元、把 merge gate 当作唯一的人工介入点。它也划出了边界——工程正确性可以靠测试逼近，但环境语义（限流、区域、故障）仍必须由人来定义。</div>
+    <div class="links"><a href="https://www.aboutamazon.com/news/aws/how-autonomous-ai-agents-built-aws-emulator">AWS 官方</a><a href="https://www.geekwire.com/2026/aws-gives-developers-a-free-local-stand-in-for-its-cloud-built-from-scratch-by-ai-agents/">GeekWire</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-llm">
+  <h2>大模型动态<span class="count">3 条</span></h2>
+
+  <details class="item" id="llm-1">
+    <summary><span class="num">1</span><span class="t">百度文心 5.5 Flash Preview：2800 亿参数 MoE、1M 上下文、200+ token/s</span><span class="arrow">▸</span></summary>
+    <div class="body">11 月 11 日发布，MoE 总参数 2,800 亿、激活 140 亿，100 万 token 上下文，生成速度超过 200 token/s，主打端到端编程（游戏、3D 建模、视频编排）；训练使用 1,400 万条可执行代码任务与 1,000+ 项创作 Skill，并让自研 RSI 参与推理优化。官方称权重将以 Apache 2.0 开放、支持 SGLang/vLLM；千帆 API 已上线限时五折（输入 1 元、输出 4 元/百万 token，忙时翻倍）。</div>
+    <div class="body">速度和价格才是这一档模型的真实卖点：200+ token/s 让「边生成边预览」的交互成立，1M 上下文让整套素材与代码可以同场。对 Agent 产品，「低延迟 + 可开放权重」意味着高频循环可以自托管，把成本从按调用付费变成按算力付费。</div>
+    <div class="links"><a href="http://www.news.cn/tech/20261111/183aa161e70b4942b622e10b5e3da605/c.html">新华网</a><a href="https://www.qbitai.com/2026-11-509224.html">量子位</a></div>
+  </details>
+
+  <details class="item" id="llm-2">
+    <summary><span class="num">2</span><span class="t">双 11 把 Token 摆上货架：智谱、MiniMax、千问、阿里云、Qoder 最低 3.3 折</span><span class="arrow">▸</span></summary>
+    <div class="body">11 月 11 日，智谱、MiniMax、千问办公、阿里云、Qoder 等在天猫推出双 11 专享价，Token 套餐最低 3.3 折、19.9 元起：MiniMax 三款月卡全 5 折、阿里云两款 Token Plan 月卡 5 折起、智谱周卡 5 折起、千问办公基础版首月 3 折、Qoder 月卡约 3.3 折。天猫数据称开售首日 Token 品类成交环比增长 450%，智谱入驻 48 小时品牌搜索环比涨 50 倍。</div>
+    <div class="body">Token 开始像话费、云资源一样做套餐与折扣，说明推理供给已经过剩到需要零售化清库存。对做 Agent 的团队，这既是降本窗口（把长跑任务和回放压测集中在活动期），也是一个信号：订阅制与按量计价的边界会越来越模糊，产品定价要能跟着上游价格波动。</div>
+    <div class="links"><a href="https://www.jiemian.com/article/15320081.html">界面新闻</a><a href="https://xinwen.bjd.com.cn/content/s6af411d2e4b039a8e2f3798c.html">北京日报</a></div>
+  </details>
+
+  <details class="item" id="llm-3">
+    <summary><span class="num">3</span><span class="t">腾讯 28 周年上线「元宝搜索」：157 个权威信源，强调广告不伪装成答案</span><span class="arrow">▸</span></summary>
+    <div class="body">11 月 11 日上线，入口 <code>so.qq.com</code>，也可在 QQ 浏览器引擎设置里切换。千亿级索引覆盖全网网页、公众号、视频号与学术文献，接入金融、政务、医疗等 13 个行业的 157 个权威信源，靠多源交叉验证抑制幻觉；支持打字、语音、拍照等多模态输入，结果可按需呈现卡片与图表。官方特别强调广告不会伪装成答案，腾讯云同步对外开放三种接入方式。</div>
+    <div class="body">搜索正在从「链接列表」变成「带信源约束的答案层」，而「广告与答案分离」是商业化最难的一步。对做 B 端信息产品的团队，可借鉴的是把信源等级（权威机构/官方/自媒体）做成检索与生成的前置约束，而不是事后标注——这直接决定 Agent 给出的结论能不能被追溯。</div>
+    <div class="links"><a href="https://m.sohu.com/a/1100129851_100117963">搜狐科技</a><a href="https://www.163.com/dy/article/LBFFDG1N0511CPVM.html">网易</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-agent">
+  <h2>Agent 进展<span class="count">3 条</span></h2>
+
+  <details class="item" id="agent-1">
+    <summary><span class="num">1</span><span class="t">Databricks 发布第二代 always-on Genie：自主模式 + 子 Agent + 优先级收件箱</span><span class="arrow">▸</span></summary>
+    <div class="body">11 月 11 日发布。新版本加入 autonomous 模式、sub-agents、priority inbox 与邮件告警；Genie Ontology 提供跨业务的水平上下文，Genie Search 依托 100+ 连接器（Google Drive、Jira、Confluence 等，支持摄取、原地索引与 MCP 联邦查询）；治理侧接 Unity Catalog 与 Unity Gateway，可设预算、全程可审计。Genie 与 Ontology 已 GA，Search、Ontology Manager 与 always-on 为 preview/beta，按用量而非按席位计费。</div>
+    <div class="body">「常驻 Agent」要成立，缺的从来不是模型，而是三样东西：数据连接、权限治理、以及一个让人能异步验收的收件箱。Databricks 把这三样打包并按用量计费，说明企业 Agent 的计价单位正在从「人头」变成「工作量」。对 B 端产品是直接参照：先做收件箱，再谈自动化率。</div>
+    <div class="links"><a href="https://www.databricks.com/company/newsroom/press-releases/databricks-launches-new-always-genie-autonomous-ai-complex">Databricks 新闻稿</a></div>
+  </details>
+
+  <details class="item" id="agent-2">
+    <summary><span class="num">2</span><span class="t">Claude 从对话变工作空间：Whiteboards、Sheets 进 beta，Data 转正</span><span class="arrow">▸</span></summary>
+    <div class="body">11 月 10 日公告、11 日起分批推送：Claude Whiteboards 与 Claude Sheets 进入 beta，Claude Dashboards 转正并更名 Claude Data（支持 certified queries、实时共享、data stories、缓存与版本回滚）；Adobe、Box、Notion、Atlassian 以完整应用形态嵌入，形成 interactive connectors。付费计划全覆盖，Enterprise 的 Claude Data 将于 11 月 19 日默认开启，Whiteboards 与 Sheets 则需管理员手动打开。</div>
+    <div class="body">这是把 Agent 的产物从「一段回答」变成「可继续编辑的工作对象」——白板、表格、仪表盘都是能被继续操作的中间态。对 Accio 的启发很直接：交付物应该是可回滚、可协作的结构化文件（选品表、报价单、合规清单），而不是聊天记录里的一段文字；连接器也应尽量以完整应用而非只读 API 的形式接入，才承载得住后续动作。</div>
+    <div class="links"><a href="https://claude.com/resources/articles/sheets-whiteboards-data">Claude 官方</a><a href="https://aitoolsrecap.com/Blog/ai-news-november-11-2026">AIToolsRecap</a></div>
+  </details>
+
+  <details class="item" id="agent-3">
+    <summary><span class="num">3</span><span class="t">Anthropic 新版使用政策生效：能自主物理动作的硬件须可观察、可急停</span><span class="arrow">▸</span></summary>
+    <div class="body">2026 版使用政策 11 月 12 日生效：整合「欺骗性活动/人造行为」专章，武器禁令覆盖制导与控制软件，监控与执法相关条款收紧；新增对「连接可自主物理动作硬件」的要求——必须可观察、可急停、断开连接时保持安全状态，高危场景要显式 human-in-the-loop，并明确禁止持续无意义地虐待模型。</div>
+    <div class="body">政策文本正在变成产品需求文档。可观察、可急停、断连安全这三条，其实是任何执行型 Agent 的运行时要求（浏览器操作、下单、发邮件同理）。做电商 Agent 的团队可以直接抄成验收清单：每个动作有日志、有中断键、断网后系统处于安全态。</div>
+    <div class="links"><a href="https://www.anthropic.com/news/2026-usage-policy-update">Anthropic 官方</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-oss">
+  <h2>开源项目<span class="count">4 条</span></h2>
+
+  <details class="item" id="oss-1">
+    <summary><span class="num">1</span><span class="t">Qwen Code 1.0 开源：把 Qoder 的 Harness 并进内核，主打「手脑分离」</span><span class="arrow">▸</span></summary>
+    <div class="body">11 月 11 日阿里发布 Qwen Code 1.0（Preview 走独立分支，稳定分支保留），把 Qoder 打磨的 Harness 能力并入开源内核：推理编排与工具执行分离管理，架构从「一个进程、多个会话」走向「多个节点、更多会话」，统一事件模型覆盖接入、调度与执行，MCP 配置与授权集中管理、沙箱按需复用。11 月 11–24 日可领 Qwen4 免费额度，有效期 30 天。</div>
+    <div class="body">「手脑分离」是多 Agent 从 demo 走向基础设施的关键一步：调度与执行解耦之后，才能按任务换模型、按会话复用沙箱、按节点做隔离。对自建 Agent 平台的团队，这是一个可直接读的实现参考——尤其是 MCP 授权集中管理这块，恰好是近期多起凭证外泄事故的根因。</div>
+    <div class="links"><a href="https://m.sohu.com/a/1100056841_114760">搜狐</a><a href="https://www.aitntnews.com/newDetail.html?newId=31170">AITNT</a></div>
+  </details>
+
+  <details class="item" id="oss-2">
+    <summary><span class="num">2</span><span class="t">aiXcompact-4B 开源：上下文压到 25.89%，推理成本降 78%</span><span class="arrow">▸</span></summary>
+    <div class="body">11 月 11 日，孵化自北京大学软件工程研究所的 aiXcoder（硅心科技）开源了面向编程 Agent 长程任务的上下文压缩模型：目标场景历史上下文平均压至原长 25.89%，官方口径推理成本降 78%、API 费用降 97%，单张 A100-40GB 即可部署，权重已上 Hugging Face。</div>
+    <div class="body">上下文压缩正从「工程技巧」变成「独立小模型」。对长会话 Agent，压缩质量直接决定记忆保真度；更值得关注的是它把压缩做成可单独评测、单独替换的模块——这意味着 harness 里会多出一个可优化的组件，而不是继续往提示词里堆话术。</div>
+    <div class="links"><a href="https://huggingface.co/aiXcoder/aiXcompact-4B">Hugging Face</a><a href="https://www.163.com/dy/article/LBFIS7DH051180F7.html">网易</a></div>
+  </details>
+
+  <details class="item" id="oss-3">
+    <summary><span class="num">3</span><span class="t">addyosmani/agent-skills 单日 +787 星：把工程规范做成可加载技能</span><span class="arrow">▸</span></summary>
+    <div class="body">11 月 12 日 GitHub 日榜上，addyosmani/agent-skills 单日新增约 787 星、累计约 11.6 万星。定位是给编码 Agent 的生产级工程技能集：把 code review、测试、重构等流程写成可复用的 skill 文件，供 Claude、Codex 等直接加载。</div>
+    <div class="body">技能包正在成为团队知识的载体：与其在提示词里反复叮嘱规范，不如把规范版本化、可分发、可评测。对平台型产品，这意味着专业 know-how 可以像依赖一样被安装与升级——上一次占据这个位置的是 npm 包。</div>
+    <div class="links"><a href="https://github.com/addyosmani/agent-skills">GitHub</a><a href="https://github.com/trending?since=daily">GitHub Trending</a></div>
+  </details>
+
+  <details class="item" id="oss-4">
+    <summary><span class="num">4</span><span class="t">shadcn/improve：贵模型写审计与计划，便宜模型执行，单日 +361 星</span><span class="arrow">▸</span></summary>
+    <div class="body">11 月 12 日日榜，shadcn 的 improve 单日新增约 361 星、累计约 1.09 万。工作流很直白：用最强的模型审计整个代码库并产出改进计划，再交给便宜模型按计划执行改动。</div>
+    <div class="body">这是「决策/执行分层」最朴素的开源实现，和今天 Google 把决策单独做成 API 是同一判断的两端——一端产品化，一端脚本化。做 Agent 编排时，把「想清楚」和「动手做」拆成两次不同模型的调用，通常比一个模型跑完全程更便宜也更可控。</div>
+    <div class="links"><a href="https://github.com/shadcn/improve">GitHub</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-vertical">
+  <h2>垂直赛道<span class="count">9 条</span></h2>
+
+  <div class="subsec" id="subsec-coding">
+    <h3>AI 编程</h3>
+
+    <details class="item" id="coding-1">
+      <summary><span class="num">1</span><span class="t">VS Code 1.146：本地 harness 被判死刑，SEP-2640「Skills over MCP」进预览</span><span class="arrow">▸</span></summary>
+      <div class="body">11 月 11 日更新：Local harness 被弃用、2027 年 2 月移除（连企业回退开关一并撤销），Copilot harness / Agent Host 成为唯一路线。新增 Inbox mode、chat windows 预览、可在 Agents 窗口内直接装扩展、模型对比可让 Agent 自动跑评估；SEP-2640「Skills over MCP」进入预览，同时做沙箱环境变量脱敏、收窄权限提示粒度、支持 Copilot CLI 的 <code>/code</code> 会话接管。</div>
+      <div class="body">编辑器厂商正在把「谁来跑 Agent」收归己有：本地 harness 下线意味着执行层必须跟着平台走。对做编码工具的团队，这是明确的选边信号；对做 Agent 平台的团队，Skills over MCP 值得提前适配——技能很可能取代提示词，成为跨工具的分发单位。</div>
+      <div class="links"><a href="https://code.visualstudio.com/updates">VS Code Release Notes</a></div>
+    </details>
+
+    <details class="item" id="coding-2">
+      <summary><span class="num">2</span><span class="t">OpenAI 对 Cursor 的模型断供今日到期：编码工具开始拼「模型供给」</span><span class="arrow">▸</span></summary>
+      <div class="body">OpenAI 8 月 28 日通知，因 SpaceX 收购 Cursor 后对条款合规与前沿模型（含 GPT-6 Astra）使用的顾虑，将在 11 月 12 日停止向 Cursor 提供 OpenAI 模型，并称已按合同给到最长期限的提前通知。截至发稿未见双方延期公告，Cursor 的实际切换结果仍待观察。</div>
+      <div class="body">编码 Agent 的竞争第一次出现「断供」这种地缘式变量：产品能力不再只取决于自研 harness，还取决于能否锁定前沿模型供给。对任何依赖单一模型供应商的 Agent 产品，这是必须回答的问题——多模型路由不只是成本优化，也是风险对冲。</div>
+      <div class="links"><a href="https://openai.com/index/our-decision-on-cursor-following-its-acquisition-by-spacex/">OpenAI 官方</a></div>
+    </details>
+  </div>
+
+  <div class="subsec" id="subsec-video">
+    <h3>AI 视频与多模态</h3>
+
+    <details class="item" id="video-1">
+      <summary><span class="num">1</span><span class="t">一句话生成 3D 短片：Fable 5.2 写代码 + 引擎渲染，4K 用 52 分钟、5.75 美元</span><span class="arrow">▸</span></summary>
+      <div class="body">11 月 11 日社区案例刷屏：开发者让 Claude Fable 5.2 纯靠写代码端到端完成一支 3D 短片——建模、动画、运镜、渲染、调色、字幕全包，渲染阶段调用 RunPod 的 10 块 GPU 出 4K，耗时 52 分钟，公开的云端渲染费用 5.75 美元。</div>
+      <div class="body">这条路线值得单独看：它不是视频扩散模型，而是「大模型写代码调用 Blender/引擎」。优点是可控、可改、可复算，缺点是依赖工程能力。对做多模态生成的团队，它提示了另一种交付形态——交付的不只是一段 mp4，而是一个可重渲染的工程文件。</div>
+      <div class="links"><a href="https://www.36kr.com/p/4065250990167170">36 氪</a><a href="https://finance.sina.com.cn/tech/roll/2026-11-11/doc-iniykkpz2295833.shtml">新浪科技</a></div>
+    </details>
+
+    <details class="item" id="video-2">
+      <summary><span class="num">2</span><span class="t">Vilot 让单张 4090 跑满血 MiniMax H3：10 秒视频成本约 0.2 元</span><span class="arrow">▸</span></summary>
+      <div class="body">11 月 11 日专访披露，万格智元的本地视频生成工作站 Vilot 不做模型缩水，在单张 RTX 4090 及以下跑完整 MiniMax H3 视频生成：官方口径把原本需要 4×A100 或云端、约 5 元的 10 秒视频降到约 0.2 元，目标是把设备门槛从十万元级拉到千元级，主打短剧/漫剧「睡前排队、醒来选片」的工作流。</div>
+      <div class="body">视频生成的成本曲线正在分叉：一端是云端大模型拼质量，一端是本地推理拼单条成本。当单条 10 秒素材降到 2 毛，「一次生成几十版再挑」的批量试错才真正成立——这恰好是电商素材生产最需要的能力。</div>
+      <div class="links"><a href="https://www.aitntnews.com/newDetail.html?newId=31154">AI TNT</a></div>
+    </details>
+
+    <details class="item" id="video-3">
+      <summary><span class="num">3</span><span class="t">MXI-SimWorld 以 0.9656 登顶 RoboColiseum：把仿真当策略</span><span class="arrow">▸</span></summary>
+      <div class="body">11 月 11 日 RoboColiseum 周榜显示，北大杨超团队与 1011.AI 的 MXI-SimWorld v0 Preview 以 0.9656 列总榜第一，空间理解与通用操作第一、指令跟随与扰动适应第二。方法叫 Simulation as Policy：从视觉观测重建可交互仿真场景，用轨迹重演校准物理参数，再多世界并行预演候选动作后择优执行；自研「谐物」引擎称刚体/刚柔耦合求解速度达 Genesis、MuJoCo、Newton 的 2 倍以上。</div>
+      <div class="body">「先在仿真里试，再在现实里做」是具身智能的共识，但这个思路对软件 Agent 同样成立：把动作放进可回滚的沙箱里预演，用预测结果选动作。区别在于软件世界的「物理参数」更容易标定，落地会更快。</div>
+      <div class="links"><a href="https://m.sohu.com/a/1100159312_129720">搜狐</a></div>
+    </details>
+  </div>
+
+  <div class="subsec" id="subsec-ai4s">
+    <h3>AI for Science</h3>
+
+    <details class="item" id="ai4s-1">
+      <summary><span class="num">1</span><span class="t">Science｜AlphaGenome 2：因果变异检出率 16% → 30%，API 即日开放</span><span class="arrow">▸</span></summary>
+      <div class="body">11 月 11 日 DeepMind 随 Science 发表 AlphaGenome 2：训练纳入 68 种组织与 1.07 亿单细胞图谱，能预测 DNA 变异如何改变特定细胞类型中的基因活性；在 TenK10K 数据集上，因果变异检出率从前代的 16% 提升到 30%，API 当日开放（非商用）。</div>
+      <div class="body">基因组模型的分水岭是「相关」还是「因果」——只有后者能直接用于靶点发现。30% 看着不高，但已接近翻倍，且是可被下游实验直接消费的量级。对 Agent 产品的启示是分工：通用模型负责提问与编排，领域模型负责给出可验证的判断，两者用结构化接口对接，而不是让通用模型硬背领域规则。</div>
+      <div class="links"><a href="https://deepmind.google/blog/alphagenome-2-deciphering-how-cells-read-dna-to-better-understand-disease/">DeepMind 官方</a></div>
+    </details>
+
+    <details class="item" id="ai4s-2">
+      <summary><span class="num">2</span><span class="t">MIT WorldParticle：一个模型同时模拟沙、流体、软材料与蛋白质</span><span class="arrow">▸</span></summary>
+      <div class="body">MIT 与 UBC 等合作者的 WorldParticle 用单一 transformer 架构建模拉格朗日粒子动力学，把布料、弹性固体、牛顿与非牛顿流体、蛋白质等不同物理过程放进同一个模拟器。论文为 arXiv 2605.15305，MIT News 11 月 9 日介绍，HPCwire 11 月 11 日以「科学模拟的 GPT 时刻」为题做了深度报道。</div>
+      <div class="body">「通用模拟器替代逐场景求解器」的思路，对做 AI4S 产品的人意义在接口：谁定义了「物理过程」的输入输出格式，谁就掌握了上层 Agent 的调用方式。对做垂直 Agent 的团队，这是一个提醒——基础模型的价值往往不在权重，而在它规定的数据契约。</div>
+      <div class="links"><a href="https://news.mit.edu/2026/single-ai-model-simulates-many-substances-behavior-1109">MIT News</a><a href="https://arxiv.org/abs/2605.15305">arXiv</a></div>
+    </details>
+  </div>
+
+  <div class="subsec" id="subsec-ecom">
+    <h3>AI 电商与贸易</h3>
+
+    <details class="item" id="ecom-1">
+      <summary><span class="num">1</span><span class="t">新华社：一个创业者靠 80 多个 Agent 接海外订单，Accio 上已有超 1000 万中小企业</span><span class="arrow">▸</span></summary>
+      <div class="body">11 月 11 日新华社报道：OPC（一人公司）创业者张乾超在 Accio 上用 80 多个 Agent 分工——市场调研抓海外社媒热点、产品设计出棒球帽草图、客户接待回海外询盘，双 11 旺季手上正推进 20 多笔品牌客户订单。阿里巴巴全球 B2B 总裁张阔称，全球已有超 1000 万家中小企业在 Accio 上开展经营，Token 使用量同比增长 10 倍。</div>
+      <div class="body">这是「Agent 团队即公司」最具体的一张现场照片：价值不在单个 Agent 多聪明，而在任务被切分、上下文能交接、产出被串成一条生意链路。对产品设计的直接含义是——编排层的体验（谁先跑、结果怎么传、失败怎么补）比单点能力更决定留存。</div>
+      <div class="links"><a href="http://finance.sina.com.cn/jjxw/2026-11-12/doc-iniymfts8759775.shtml">新浪财经（新华社）</a></div>
+    </details>
+
+    <details class="item" id="ecom-2">
+      <summary><span class="num">2</span><span class="t">双 11 成 AI 试验场：千问进淘宝、东东上岗、豆包进商城；1688 称商品须「可被 AI 读取」</span><span class="arrow">▸</span></summary>
+      <div class="body">同一篇报道里，各家平台都把 AI 摆上双 11：阿里把千问接进淘宝，京东 AI 购物助手「东东」全面上岗、京麦 AI 经营中心首批汇聚 60 余款工具并称已助力 80% 新商家提效，抖音把豆包接进商城，快手提出「AI 提效、全域协同」。1688 副总裁王强给出供给侧判断：当买卖双方都有 Agent，商品必须变成可被 AI 读取的数字模型——参数标准化、品质可溯源、履约可信、售后有保障。</div>
+      <div class="body">需求侧在抢入口，供给侧在补「机器可读性」。对跨境卖家与平台工具，后者才是真门槛：结构化参数、可验证的履约数据、统一的售后承诺，决定了你的商品能不能被别人的 Agent 选中。这也正是 Accio 这类工作台最该沉淀的资产。</div>
+      <div class="links"><a href="http://finance.sina.com.cn/jjxw/2026-11-12/doc-iniymfts8759775.shtml">新浪财经（新华社）</a></div>
+    </details>
+  </div>
+</section>
+
+<section class="section" id="sec-funding">
+  <h2>公司与融资<span class="count">3 条</span></h2>
+
+  <details class="item" id="funding-1">
+    <summary><span class="num">1</span><span class="t">Anthropic 敲定 IPO 条款：$70–78、8.25 亿股，11 月 19 日 Nasdaq 挂牌</span><span class="arrow">▸</span></summary>
+    <div class="body">11 月 10 日更新的 S-1/A 确认：发行 8.25 亿股 A 类普通股，价格区间 $70–78，代码 ANT，预计 11 月 18 日定价、19 日开始交易，隐含估值最高约 1.4 万亿美元，零售配售约 20%。文件披露截至 10 月 31 日的年化收入约 810 亿美元（较 9 月底再增 100 亿），年付 10 万美元以上客户超过 11,900 家，而上年同期为 950 家。</div>
+    <div class="body">数字之外更值得看结构：一年 12 倍的付费客户增长说明企业侧已从试点进入采购；单月再增 100 亿美元年化收入说明推理需求仍在加速。对采购方，这意味着供应商的财务持续性正式进入评估清单——本月的价格战与 IPO 是同一件事的两面。</div>
+    <div class="links"><a href="https://www.reuters.com/business/anthropic-ipo-raise-much-644-billion-latest-draft-prospectus-shows-2026-11-10/">Reuters</a><a href="https://www.cnbc.com/2026/11/10/anthropic-sets-price-range-of-70-to-78-in-upcoming-ipo.html">CNBC</a></div>
+  </details>
+
+  <details class="item" id="funding-2">
+    <summary><span class="num">2</span><span class="t">CoreWeave Q3 收入 36.6 亿美元、同比 +168%，股价单日涨 24.7%</span><span class="arrow">▸</span></summary>
+    <div class="body">11 月 11 日财报：Q3 收入 36.6 亿美元（同比 +168%），backlog 约 1,325 亿美元，全年指引上调至 130–133 亿美元；当日股价收涨 24.7%，为三个多月最大单日涨幅。公司同日发布 CoreWeave Database，彭博称其正洽谈不少于 40 亿美元的投资级贷款，利率 7–7.5%，远低于其高收益债的 14% 以上。</div>
+    <div class="body">算力租赁的瓶颈正从「拿不到卡」转向「融资成本」：谁能把债务成本压下来，谁就能在价格战里活到最后。对 Agent 产品，这解释了为什么推理价格还能继续降——上游仍在用资本换规模。</div>
+    <div class="links"><a href="https://www.cnbc.com/2026/11/11/coreweave-crwv-outlook-earnings-ai.html">CNBC</a></div>
+  </details>
+
+  <details class="item" id="funding-3">
+    <summary><span class="num">3</span><span class="t">Rox 完成 1 亿美元 B 轮、估值 13 亿美元：AI 销售 Agent 正面挑战 Salesforce</span><span class="arrow">▸</span></summary>
+    <div class="body">11 月 11 日 Fortune 报道，Rox 完成 1 亿美元 B 轮，General Catalyst 与 March Capital 联合领投，红杉、GV 跟投，投后估值 13 亿美元；ARR 自上线以来增长 10 倍以上，客户包括 Ramp、MongoDB、Groq。</div>
+    <div class="body">销售 Agent 是少数「效果能直接用收入衡量」的赛道，所以估值给得快。对做 B2B Agent 的团队，它的启示是把 Agent 绑到可归因的业务指标（成交、回款）上，而不是讲「自动化率」——这是当前企业采购最认的语言。</div>
+    <div class="links"><a href="https://fortune.com/2026-11-11/rox-series-b-100-million-funding-take-on-salesforce/">Fortune</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-papers">
+  <h2>论文精选<span class="count">5 条</span></h2>
+
+  <div class="paper-recap">
+    <h3>本期论文总结 · 组会分享版</h3>
+
+    <h4>一、今日主线（为什么选这 5 篇）</h4>
+    <ol>
+      <li><strong>Agent 的「中间产物」决定成败</strong>（<a href="#papers-1">#1</a>、<a href="#papers-3">#3</a>）：ReTrace 把 Agent 每次调用时写下的「为什么这么做」蒸馏成一份人可读的规则文档，FGSE 把记忆更新写成带前提、预期效果与验证器的假设。两篇回答的是同一个问题——怎么让 Agent 的行为可检查、可回滚、可版本化，而不是只能看最终结果的成败。</li>
+      <li><strong>评测本身就是被优化的对象</strong>（<a href="#papers-4">#4</a>）：把八个 Agent 基准的既有运行记录重新打分后，作者发现「饱和」多半出在测量：0/1 太粗、上限被参考值卡住。它解释了为什么榜单分数越来越难指导选型，也给出可落地的替代方案。</li>
+      <li><strong>科学发现需要显式的竞争解释</strong>（<a href="#papers-2">#2</a>，以及垂直赛道的 <a href="#ai4s-1">Science｜AlphaGenome 2</a>、<a href="#ai4s-2">MIT WorldParticle</a>）：今天的顶刊与顶会都在往「可验证的因果/竞争假设」走——Contrastive Discovery 用对比集替代单点假设，AlphaGenome 2 把因果变异检出率翻倍，Nature MI 那篇则指出多模态只做对齐不产生协同增益（<a href="#papers-5">#5</a>）。</li>
+    </ol>
+
+    <h4>二、每篇一句话（按阅读优先级）</h4>
+    <ol>
+      <li><a href="#papers-1">ReTrace（arXiv）</a>：用 3pp 成功率换 100 倍延迟与 24% 成本，SOP 型业务自动化的当前最优解，本期最值得精读。</li>
+      <li><a href="#papers-3">FGSE（arXiv）</a>：把记忆写入做成「带验证器的灰度发布」，长期记忆治理最工程化的一版，精读。</li>
+      <li><a href="#papers-2">Contrastive Discovery（NeurIPS 2026）</a>：用互斥解释集替代单假设，同等预算多解决 67% 的问题，选读。</li>
+      <li><a href="#papers-4">Agent Benchmarks Stop Ranking（arXiv）</a>：自建评测体系前必读的方法论，选读。</li>
+      <li><a href="#papers-5">多模态细胞基础模型（Nature Machine Intelligence）</a>：对齐不等于整合，多模态表征设计的清醒剂，泛读。</li>
+    </ol>
+
+    <h4>三、组会讨论题</h4>
+    <ul>
+      <li>ReTrace 用 3 个百分点成功率换 1/100 的延迟（<a href="#papers-1">#1</a>）：询盘分诊、单证校验这类高频流程，哪些该固化成工作流、哪些必须保留 Agent 的临场判断？固化与灵活的边界怎么定、由谁来定？</li>
+      <li>如果每次记忆更新都必须通过证伪与回归测试（<a href="#papers-3">#3</a>），我们沉淀的「商家偏好」「类目经验」这类软知识，验证器该长什么样？谁来标注什么算「有害提交」？</li>
+      <li>评测只给 0/1 会诱导团队围绕 0/1 优化（<a href="#papers-4">#4</a>）：Accio 的内部 Agent 评测，除了成功率，还应该把什么当作一等指标——单任务成本、人工接管率，还是错误可归因率？</li>
+    </ul>
+  </div>
+
+  <details class="item" id="papers-1">
+    <summary><span class="num">1</span><span class="t">arXiv 2611.14492｜ReTrace：把工具型 Agent 蒸馏成「没有规划器」的工作流</span><span class="arrow">▸</span></summary>
+    <div class="body">业务自动化的本质是把同一套 SOP 反复跑在新输入上，但 Agent 每一轮都要调用 LLM 选择下一步，规模化后延迟与成本都吃不消。ReTrace 用 SOP 加少量运行日志，把 Agent 每次工具调用时写下的「为什么这么做」抽出来，跨多次运行合并成一份紧凑规则文档，再编译成由代码而非 LLM 决定下一步的可执行工作流；只有最后一步依赖平台，因此同一份规则可以编译到不同编排系统。在生产平台的 79 条流程上完成率 93.8%（Agent 为 96.8%），单任务成本低 24%；τ²-Bench 上 75.8% vs 80.6%，但耗时 1.3 秒 vs 170 秒；三轮针对训练失败的修复把 k=2 工作流从 66.7% 提到 81.2%；SOP-Bench 修复后 87.8%、每条 0.40 秒，对比 Agent 的 85.5% / 46.6 秒。</div>
+    <div class="body">用 3 个百分点的成功率换 100 倍的延迟下降和 24% 的成本，对「高频、低变异」的业务（询盘分诊、单证校验、订单状态流转）几乎是稳赚。更值得抄的是它的中间产物：一份人可读的规则文档——这让 Agent 的行为第一次能被业务方评审、diff 和版本化。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2611.14492">arXiv</a></div>
+  </details>
+
+  <details class="item" id="papers-2">
+    <summary><span class="num">2</span><span class="t">NeurIPS 2026｜Contrastive Discovery：让发现 Agent 在「互斥解释」之间做实验</span><span class="arrow">▸</span></summary>
+    <div class="body">现有科研 Agent 多是逐点验证假设：只测 h 与 ¬h。证据否掉 h 之后，Agent 只知道「这个解释不太可能」，并不知道证据支持哪个替代方案。本文把单个假设换成「对比集」——一个科学问题加一组互斥且穷尽的竞争解释，每次实验按「证据如何重新分配信念」打分，当信念集中到一个解释上问题即告解决。六个领域里，逐点方法中信念变化最大的候选有 89% 是被否掉的；用同一批证据，对比集能把其中 73% 落到具体替代解释；用对比集引导搜索时，同等实验预算下解决的问题多 67%；38 位人类专家在 78% 的已解决问题上给出同一解释，在「逐点 Agent 否掉就停」的问题上是 82%。</div>
+    <div class="body">这套东西可以直接搬出实验室：选品失败、投放没效果、询盘转化低，本质上都是「否掉了某个假设但不知道真正原因」。把诊断做成「竞争解释集 + 按证据重分配信念」，比让 Agent 反复猜要可靠得多，也更容易向人解释「为什么换这个方案」。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2611.14514">arXiv</a><a href="https://codiscovery.ai/contrastive-discovery/">项目页</a></div>
+  </details>
+
+  <details class="item" id="papers-3">
+    <summary><span class="num">3</span><span class="t">arXiv 2611.14326｜When Should Agents Remember：把记忆更新当假设来证伪</span><span class="arrow">▸</span></summary>
+    <div class="body">长时程 Agent 的自改进常把「这一轮的经验」直接写进长期记忆，但局部成功并不等于可复用、安全的知识。FGSE 把每条候选经验表示成结构化假设：显式前提、行为改动、预期效果、验证器；先只在临时状态里生效，通过迁移测试、证伪测试与历史回归测试后，再决定提交、修正还是拒绝。在 web、app、工具使用与长期记忆基准上，WebArena 39.8、AppWorld 平均完成 78.8、τ-Retail/τ-Airline 的 Pass^1 为 0.724/0.487，同时把证伪失败压到 5.0%、回归损伤 1.3%、有害提交 3.6%。</div>
+    <div class="body">「Agent 越用越聪明」最大的风险是越用越偏。把记忆写入变成一次带验证器的灰度发布，思路和软件上线完全一致——这是目前最工程化的一版记忆治理方案。做长期记忆时至少要回答三个问题：这条经验的前提是什么、怎么证伪、失败了怎么回滚。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2611.14326">arXiv</a></div>
+  </details>
+
+  <details class="item" id="papers-4">
+    <summary><span class="num">4</span><span class="t">arXiv 2611.13541｜Agent 基准在任务耗尽之前就先失去了区分度</span><span class="arrow">▸</span></summary>
+    <div class="body">作者重新打分八个基准（含 SWE-bench Verified、Terminal-Bench、MLE-bench、ALE-Bench）的已发布运行记录，认为所谓「饱和」很大程度出在测量而非任务：多数基准把一次运行压成一个通过/失败比特。这有两重毛病——粒度太粗，SWE-bench Verified 前十名之间的差距小于测试本身的误差，纠正误差后的重排幅度不超过随机删掉每个 Agent 六分之一通过项；上限被参考值卡住，ALE-Bench 按竞赛分排的前十在对着中位数人类评分时全部打平，尽管近一半运行其实超过了该人类。作者给出带日期锚点的截断对数比评分，并把成本当作独立轴；Terminal-Bench 重跑中，通过率打平的模型在被丢弃的那个量上相差十倍以上。</div>
+    <div class="body">评测只输出 0/1，团队就会围绕 0/1 优化。把「过了多少、好多少、花多少」分开度量，才能看清模型在长任务上的真实边际。做内部 Agent 评测时，最该抄的是「成本作为独立维度」这一条——否则永远不会有人为降本买单。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2611.13541">arXiv</a></div>
+  </details>
+
+  <details class="item" id="papers-5">
+    <summary><span class="num">5</span><span class="t">Nature Machine Intelligence｜多模态细胞基础模型：只做「对齐」不够</span><span class="arrow">▸</span></summary>
+    <div class="body">Richter、Zimmermann 与 Crawford 在 11 月 11 日上线的分析中指出，多模态细胞基础模型当前流行的做法是把不同生物模态（转录组、蛋白、影像等）的表征对齐到同一空间，但对齐只解决「可比较」，并不能带来跨模态的协同增益；真正有效的整合需要在预训练目标与架构层面设计模态间的互补与约束。文章分别讨论了「对齐式整合」与「协同式整合」的差别，并给出判断整合程度的标准。</div>
+    <div class="body">这条结论对多模态 Agent 同样成立：把图片、文本、表格塞进同一个向量空间只是第一步，能不能让一种模态纠正另一种模态的错误，才是「整合」。对商品理解这种天然多模态的场景，值得用同样的标准审视——图文对齐之后，图能不能推翻写错的标题？</div>
+    <div class="links"><a href="https://www.nature.com/articles/s42256-026-01328-3">Nature Machine Intelligence</a><a href="https://www.nature.com/natmachintell/">期刊主页</a></div>
+  </details>
+</section>
+
+<a class="back" href="../index.html">← 返回日报归档</a>
+
+<div class="footer">
+  由「新技术学习搭子」自动生成 · 内容采编自公开来源，观点仅供参考 · 2026-11-12
+</div>
+
+</div>
+
+<script>
+function setAll(open){document.querySelectorAll('details.item').forEach(function(d){d.open=open})}
+if(location.hash){
+  var el=document.querySelector(location.hash);
+  if(el&&el.tagName==='DETAILS'){el.open=true;setTimeout(function(){el.scrollIntoView({block:'start'})},60)}
+}
+</script>
+</body>
+</html>
