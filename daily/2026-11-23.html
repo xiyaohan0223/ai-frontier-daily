@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 前沿日报 · 2026-11-23</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<div class="wrap">
+
+<header class="site-header">
+  <div class="brand">AI FRONTIER DAILY · 新技术学习搭子</div>
+  <h1>AI 前沿日报</h1>
+  <span class="date-badge">2026-11-23 · 星期一 · 共 30 条</span>
+</header>
+
+<div class="overview">
+  <strong>今日总览：</strong>DeepSeek 完成约 1,500 亿元第二轮外部融资、估值约 6,155 亿元并筹备科创板上市；同日，OpenAI 首席科学家 Pachocki 首次公开内部 perplexity 曲线，倡议把「困惑度/压缩率」做成跨实验室共享刻度，并设定行业级开发上限——「能力涌现」第一次被摆上可比较、可管制的量尺。周末另一条主线是工程化：Google 用更便宜的 Gemini 4 Neon 补位旗舰，Anthropic 把 Claude Code 与企业级 Agent 控制平面进一步做厚，底层能力、成本与工程基建三条线同步推进。
+</div>
+
+<nav class="chips">
+  <a href="#sec-headline">头条<b>3</b></a>
+  <a href="#sec-llm">大模型<b>3</b></a>
+  <a href="#sec-agent">Agent 进展<b>3</b></a>
+  <a href="#sec-oss">开源项目<b>4</b></a>
+  <a href="#sec-vertical">垂直赛道<b>9</b></a>
+  <a href="#sec-funding">公司融资<b>3</b></a>
+  <a href="#sec-papers">论文<b>5</b></a>
+</nav>
+
+<div class="toolbar">
+  <button onclick="setAll(true)">全部展开</button>
+  <button onclick="setAll(false)">全部收起</button>
+</div>
+
+<section class="section" id="sec-headline">
+  <h2>头条<span class="count">3 条</span></h2>
+
+  <details class="item" id="headline-1" open>
+    <summary><span class="num">1</span><span class="t">DeepSeek 完成约 1,500 亿元第二轮外部融资，估值约 6,155 亿元，筹备科创板上市</span><span class="arrow">▸</span></summary>
+    <div class="body">11 月 20 日多家中英文财经媒体援引财新、Digitimes 报道：DeepSeek 已完成第二轮外部融资，规模约 1,000 亿元人民币（约 150 亿美元），投后估值约 6,155 亿元，腾讯、宁德时代相关基金与多家运营商入股，新增 31 家投资方、新股东合计持股约 17.3%，并指向科创板 IPO。这是国内大模型迄今最大单笔融资。对做 Agent 产品的团队，这意味着底层「开源/低价强模型」的供给与价格竞争会更激烈——选型时应把「未来 6–12 个月的模型降价与能力上探」纳入成本模型。</div>
+    <div class="links"><a href="https://aifundingtracker.com/ai-funding-news-november-20-2026/">AI Funding Tracker（11/20）</a><a href="https://www.reuters.com/world/asia-pacific/deepseek-raises-15-billion-challenge-leading-us-labs-bloomberg-news-reports-2026-10-22/">Reuters</a></div>
+  </details>
+  <details class="item" id="headline-2" open>
+    <summary><span class="num">2</span><span class="t">OpenAI 首席科学家 Pachocki 公开内部 perplexity 曲线，倡议以「压缩率」设定行业级开发上限</span><span class="arrow">▸</span></summary>
+    <div class="body">11 月 22 日，OpenAI 首席科学家 Jakub Pachocki 发文《Perplexity and Intelligence》：首次公开从 GPT-3.5（log-perplexity≈0.99）到 GPT-4（≈0.91）、再到当前低于 0.8 的预训练损失曲线，指出数学能力在约 0.76 时出现突破，并预测进入 0.68–0.7 区间会再有变革性能力涌现；同时倡议建立跨实验室共享的困惑度透明标准，并设置「在监控能力（如 CoT 监视器继任者）达标前不得越过」的开发上限。对 Agent 团队，这是一份「能力可预测性」的顶层判断，也提示安全与可监控性将越来越成为产品合规成本。</div>
+    <div class="links"><a href="https://openai.com/index/perplexity-and-intelligence/">OpenAI 官方</a><a href="https://mlq.ai/news/openai-publishes-its-models-perplexity-scores-and-proposes-industry-wide-limits-on-ai-development/">MLQ 解读</a></div>
+  </details>
+  <details class="item" id="headline-3" open>
+    <summary><span class="num">3</span><span class="t">Google 发布 Gemini 4 Neon：百万上下文、比 Carbon 更便宜的旗舰级模型</span><span class="arrow">▸</span></summary>
+    <div class="body">11 月 18 日，Google DeepMind 推出 Gemini 4 Neon，定位「更便宜的旗舰级」——与 Carbon 共享约 100 万 token 统一上下文，主打复杂编码、分析推理与生产级企业工作流；官方称其在 AutoBaxBench 的安全代码生成上于 easy/medium/hard 三档全面超过 Carbon，并同步预告更强的 Gemini 4 Argon 与新一代世界模型 Genie 4。旗舰能力下放到更低价格档，会直接压缩「中等复杂度 Agent 任务」的推理成本，值得在编码/数据分析类 Agent 上优先实测。</div>
+    <div class="links"><a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/">Google 官方博客</a><a href="https://www.lindy.ai/blog/gemini-4-neon-vs-gemini-4-carbon">Lindy 对比</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-llm">
+  <h2>大模型动态<span class="count">3 条</span></h2>
+
+  <details class="item" id="llm-1">
+    <summary><span class="num">1</span><span class="t">OpenAI GPT-6.2 Astra / Sol：Astra 输入输出降价 20%、缓存 6 折，主打专业工作</span><span class="arrow">▸</span></summary>
+    <div class="body">11 月 17 日发布。GPT-6.2 Astra 相比 GPT-6 Astra 输入/输出价格降 20%，缓存输入 6 折（约 $8/M 输入、$0.40/M 缓存、$40/M 输出）；Sol 维持 $2/$10 的亲民档，AA 智能指数约 57.3。官方称 Astra 在 Agents' Last Exam 上以约 5% 的成本超过 Claude Fable 5.2，Sol 在多数任务逼近 Astra。对 Agent 产品的直接启示：同一代模型内「贵旗舰 + 低价近旗舰」的双档策略，让路由式（router）架构更划算。</div>
+    <div class="links"><a href="https://openai.com/index/introducing-gpt-6-2-astra-sol/">OpenAI 官方</a><a href="https://llm-stats.com/models/gpt-6.2-astra">LLM-Stats</a></div>
+  </details>
+  <details class="item" id="llm-2">
+    <summary><span class="num">2</span><span class="t">阿里 Qwen4-Max 上线：2.4T 总参数 / 71B 激活、原生视觉、百万上下文</span><span class="arrow">▸</span></summary>
+    <div class="body">11 月 16 日阿里正式上线新一代旗舰 Qwen4-Max：总参数 2.4T、激活 71B，原生视觉，支持 100 万 token 上下文，采用 GDN（门控线性注意力）+ QSA 稀疏注意力的混合架构压低长上下文读取成本，并提出 Live Delivery 渐进交付机制；官方披露 Work360 得分 52.69，主打专业工具调用与长程任务执行。百炼/千问已开放，预览窗口至 11 月 25 日。对国内 Agent 团队，这是「长上下文 + 低成本激活」的重要基座选项。</div>
+    <div class="links"><a href="https://www.citnews.com.cn/news/224288">citnews</a><a href="https://developer.aliyun.com/article/1785163">阿里云开发者</a></div>
+  </details>
+  <details class="item" id="llm-3">
+    <summary><span class="num">3</span><span class="t">月之暗面 Kimi K3.1 Pro 全量权重开源：2.8T 参数、1M 上下文，Terminal-Bench 超 GPT-6 Astra</span><span class="arrow">▸</span></summary>
+    <div class="body">月之暗面 10 月发布、11 月初开放全量权重的 Kimi K3.1 Pro：2.8 万亿参数、100 万 token 上下文；官方称 Terminal-Bench 4.0 得分 65.70%，高于 GPT-6 Astra 的 58.20%，略低于 Claude Opus 5.5 的 66.40%，并登顶开放权重模型的 Agent 评测榜，本地部署约需 1.4TB 存储。它把「开源可自托管」推到 3T 级，对数据敏感、要求私有化部署的企业 Agent 是关键增量，也意味着「自托管 + 微调」的产品化机会在变大。</div>
+    <div class="links"><a href="https://news.iresearch.cn/content/202611/572892.shtml">艾瑞网</a><a href="https://www.ithome.com/1/022/490.htm">IT之家</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-agent">
+  <h2>Agent 进展<span class="count">3 条</span></h2>
+
+  <details class="item" id="agent-1">
+    <summary><span class="num">1</span><span class="t">Gas Town：为 Claude Code / Copilot 设计的多智能体编排系统，用「持久化工作状态」管多 Agent</span><span class="arrow">▸</span></summary>
+    <div class="body">机器之心报道的开源项目 Gas Town，面向 Claude Code、GitHub Copilot 等编码助手构建多智能体编排：以「市长 / 钻井平台 / 船员 / 臭鼬」等角色概念组织 Agent 分工，并重点解决多 Agent 协作中的持久化状态追踪问题。随着编码 Agent 从「单会话」走向「长跑任务 + 多角色」，编排层（谁规划、谁执行、状态存哪）正成为新的工程护城河。</div>
+    <div class="links"><a href="https://www.jiqizhixin.com/">机器之心</a></div>
+  </details>
+  <details class="item" id="agent-2">
+    <summary><span class="num">2</span><span class="t">Google 开源 Stitch Skills：面向 Agent Skills 开放标准的 MCP 技能库</span><span class="arrow">▸</span></summary>
+    <div class="body">Google Labs 在 GitHub 开源 stitch-skills：一组为 Stitch MCP Server 编写的 Agent Skill，遵循 Agent Skills 开放标准，可被 Antigravity、Gemini CLI、Claude Code、Cursor 等编码 Agent 复用，今日 +494★。它标志「技能（Skill）」正从各家私有格式收敛为可跨 Agent 复用的开放单元——对构建 Agent 平台的产品，技能市场的互操作性是下一个竞争点。</div>
+    <div class="links"><a href="https://github.com/google-labs-code/stitch-skills">GitHub</a><a href="https://github.com/trending?since=daily">GitHub Trending</a></div>
+  </details>
+  <details class="item" id="agent-3">
+    <summary><span class="num">3</span><span class="t">Anthropic 自托管 Claude Managed Agents 私测：把「大脑/手脚分离」的 Agent 控制平面搬进企业自有环境</span><span class="arrow">▸</span></summary>
+    <div class="body">Anthropic 开放自托管版 Claude Managed Agents 私有测试：整套 Agent 服务（harness、沙箱、凭证、会话历史）可跑在客户自有云或本地，模型请求可走 Anthropic、Bedrock、Google Agent Platform 或自建网关。架构上坚持「大脑（harness）与手脚（sandbox）分离、凭证不进沙箱、网络白名单、全链路 OpenTelemetry 审计」。这是企业级 Agent 落地的关键拼图——金融、制造、跨境贸易等对数据驻留有硬要求的场景，终于有了「不搬数据也能上 Agent」的路径。</div>
+    <div class="links"><a href="https://claude.com/resources/articles/self-hosted-claude-managed-agents">Anthropic</a><a href="https://releasebot.io/updates/anthropic">Releasebot</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-oss">
+  <h2>开源项目 · GitHub 今日热榜<span class="count">4 条</span></h2>
+
+  <details class="item" id="oss-1">
+    <summary><span class="num">1</span><span class="t">elementalsouls/Claude-BugHunter：82 个技能的 Claude Code 红队/漏洞挖掘技能包，今日 +1,716★</span><span class="arrow">▸</span></summary>
+    <div class="body">把外部红队与漏洞挖掘方法论打包成 Claude Code Skill 集合：82 个技能、15 个斜杠命令，覆盖 24 类核心漏洞、681 条已披露报告模式，并附企业身份与基础设施攻击矩阵，登上今日 GitHub 热榜第一。它说明「Skill 包」已成为把领域专家经验快速注入编码 Agent 的主流分发形态——做垂直 Agent 时，可用同样方式沉淀行业 know-how。</div>
+    <div class="links"><a href="https://github.com/elementalsouls/Claude-BugHunter">GitHub</a><a href="https://github.com/trending?since=daily">GitHub Trending</a></div>
+  </details>
+  <details class="item" id="oss-2">
+    <summary><span class="num">2</span><span class="t">obra/superpowers：面向 Agent 的技能框架与软件开发方法论，累计 32.4 万★</span><span class="arrow">▸</span></summary>
+    <div class="body">一个把「技能（skills）」组织成可复用开发方法论的 Shell 框架，今日 +788★、累计逾 32 万星，已形成事实上的 Agent Skills 社区标准之一。核心理念是把工程流程拆成可被 Agent 调用、可组合、可版本化的技能。对 Agent 产品，这提示「方法论即资产」：把最佳实践固化成技能，比反复调 prompt 更可积累。</div>
+    <div class="links"><a href="https://github.com/obra/superpowers">GitHub</a></div>
+  </details>
+  <details class="item" id="oss-3">
+    <summary><span class="num">3</span><span class="t">HKUDS/CLI-Anything：让「所有软件」都对 Agent 原生的 CLI-Hub，今日 +699★</span><span class="arrow">▸</span></summary>
+    <div class="body">港大数据智能实验室（HKUDS）出品，口号是「Making ALL Software Agent-Native」——通过 CLI-Hub 把各类软件封装成 Agent 可直接调用的命令行接口，今日 +699★、累计 6.2 万★。「给 Agent 一双能操作旧世界的手」是工具调用落地的现实路径，对需要接入大量第三方系统（ERP、物流、平台后台）的电商 Agent 尤其有价值。</div>
+    <div class="links"><a href="https://github.com/HKUDS/CLI-Anything">GitHub</a></div>
+  </details>
+  <details class="item" id="oss-4">
+    <summary><span class="num">4</span><span class="t">firecrawl/firecrawl：为 Agent 提供「知识基础设施」，一个 API 搜/抓 550+ 数据源，今日 +915★</span><span class="arrow">▸</span></summary>
+    <div class="body">定位「让 Agent 更聪明的知识基础设施」：一个 API 完成搜索、抓取与访问 550+ 数据提供方，今日 +915★、累计 20.7 万★。当 Agent 从「会答」走向「会查、会核验」，稳定、可追溯的网页数据管道就是刚需——跨境选品、询盘背调、竞品监控都强依赖这一层。</div>
+    <div class="links"><a href="https://github.com/firecrawl/firecrawl">GitHub</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-vertical">
+  <h2>垂直赛道<span class="count">9 条</span></h2>
+
+  <div class="subsec" id="subsec-coding">
+    <h3>AI 编程</h3>
+
+  <details class="item" id="coding-1">
+    <summary><span class="num">1</span><span class="t">Claude Code 2.1.330 大版本更新：企业登录、内建图表、自托管 Runner 控制与 VS Code 工作流</span><span class="arrow">▸</span></summary>
+    <div class="body">11 月 21 日发布的 2.1.330 是一次覆盖面极广的更新：新增企业管理员控制台登录（自动套用组织策略与云网关）、内建制图模块 easel、自托管 Runner 的 --start-dir 与排队/首会话时延指标、VS Code 信任提示与命令实时输出，并把未知模型 ID 的默认上下文从 200K 提升到 1M。方向很明确——编码 Agent 正从「个人玩具」变成「企业可控、可观测、可审计的生产工具」，这是任何 coding/业务 Agent 平台都可直接抄的工程清单。</div>
+    <div class="links"><a href="https://releasebot.io/updates/anthropic/claude-code">Releasebot（Claude Code）</a><a href="https://raw.githubusercontent.com/anthropics/claude-code/refs/heads/main/CHANGELOG.md">CHANGELOG</a></div>
+  </details>
+  <details class="item" id="coding-2">
+    <summary><span class="num">2</span><span class="t">Cursor 官方插件规范开源 + 编码 Agent「Skills 生态战」白热化</span><span class="arrow">▸</span></summary>
+    <div class="body">Cursor 在 GitHub 开源 cursor/plugins（插件规范与官方插件，今日 +294★）；同期 superpowers、Claude-BugHunter、diagram-design、Google Stitch Skills 等技能包轮番霸榜。编码 Agent 的竞争焦点正从「模型补全质量」转向「插件/技能生态与可组合性」——谁能让第三方低成本把领域能力接进来，谁就掌握分发入口。对做产品的团队，尽早定义自己的 Skill/插件协议，比追榜单更长效。</div>
+    <div class="links"><a href="https://github.com/cursor/plugins">GitHub</a><a href="https://github.com/obra/superpowers">superpowers</a></div>
+  </details>
+  </div>
+
+  <div class="subsec" id="subsec-video">
+    <h3>AI 视频与多模态</h3>
+
+  <details class="item" id="video-1">
+    <summary><span class="num">1</span><span class="t">Sora 退场后的 2026 视频格局：Seedance 2.5 / 可灵 3.0 / Veo 3.1 / Runway 四强，卷「角色一致性 + 多镜头 + 原生音频」</span><span class="arrow">▸</span></summary>
+    <div class="body">OpenAI 今年关停 Sora 后，AI 视频进入新一轮排位：字节 Seedance 2.5（即梦）主打多镜头叙事与角色/服装/体型锁定，单次约 30 秒、支持多达 50 路参考输入与 4K；快手可灵 3.0 主打 15 秒智能分镜直出与「全能参考」；Google Veo 3.1 强在原生音轨；Runway Gen-4.5 则转向「多模型聚合」并接入 Kling 3.0、Veo 3.1 等。对内容/电商视频生产，选型应从「单条画质」转向「一致性、可控性与批量成本」。</div>
+    <div class="links"><a href="https://recut.video/zh/blog/ai-video-model-comparison-2026/">Recut 横评</a><a href="https://m.leiphone.com/category/academic/Fsil8u9HyNOPW4Du.html">雷锋网实测</a></div>
+  </details>
+  <details class="item" id="video-2">
+    <summary><span class="num">2</span><span class="t">zhouxiaoka/autoclip：一键把长视频剪成短视频的开源 AI 剪辑工具，今日 +641★</span><span class="arrow">▸</span></summary>
+    <div class="body">开源桌面工具 AutoClip：给一个链接即可把播客、访谈、课程等长视频自动剪成短视频，生成字幕、封面与发布文案，并适配抖音、小红书、TikTok、Reels、YouTube Shorts，今日 +641★。它是「多模态 + Agent 流水线」在内容生产端的典型落地——把选段、切条、包装、分发串成一条可自动化的工作流，对电商内容与达人素材批量化很有参考价值。</div>
+    <div class="links"><a href="https://github.com/zhouxiaoka/autoclip">GitHub</a></div>
+  </details>
+  </div>
+
+  <div class="subsec" id="subsec-ai4s">
+    <h3>AI for Science</h3>
+
+  <details class="item" id="ai4s-1">
+    <summary><span class="num">1</span><span class="t">OpenAI 发布 MedChemBench：99 道题考 AI 的「药物化学推理」，选化合物仍是短板</span><span class="arrow">▸</span></summary>
+    <div class="body">11 月 20 日 OpenAI 发布药物化学推理基准 MedChemBench：来自 117 篇论文/专利、761 个分子结构的 99 道题，考「分子结构重建、科学解释、化合物排序选择、性质预测」四项能力，评测 11 个 GPT 模型、51 种推理档位。最高档下 GPT-6.2 Astra 拿到 84.5% 信用分（GPT-6 Astra 83.3%、GPT-6.1 Sol 82.0%、GPT-5.6 Sol 58.2%）；结构重建 Astra 达 95.4%，但「选化合物 + 预测数值」只有约一半。对垂直 Agent 的启示：模型「看懂结构」已很强，「在约束下做取舍」仍需工具、反馈与领域数据补足。</div>
+    <div class="links"><a href="https://openai.com/index/introducing-medchembench/">OpenAI 官方</a><a href="https://cdn.openai.com/pdf/09c4ec60-a32e-4652-837b-1811368a3bb0/medchembench-paper.pdf">论文 PDF</a></div>
+  </details>
+  <details class="item" id="ai4s-2">
+    <summary><span class="num">2</span><span class="t">arXiv｜TwinLab-Bench：在真实实验室的「数字孪生」里评测 AI 科学家，Claude Fable 5.2 领跑</span><span class="arrow">▸</span></summary>
+    <div class="body">11 月 20 日新基准 TwinLab-Bench：为物理、化学、湿实验室生物、材料、工程五类真实实验室构建「Agentic 孪生」环境，考察 AI 能否自主设计实验、迭代假设并收敛到目标；评测 13 个 Agent，Claude Fable 5.2 得 45.0、Opus 5.5 40.2、GPT-6.1 Sol 31.7，另有 DeepSeek、Qwen、Kimi、GLM 参评。整体分数偏低说明「自主科研 Agent」仍处早期，但它把 AI4S 评测从「答题」推进到「做实验」，是判断科研 Agent 真实能力的更好标尺。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2611.26248">arXiv</a><a href="https://twinlab-bench.github.io/">项目主页</a></div>
+  </details>
+  </div>
+
+  <div class="subsec" id="subsec-ecom">
+    <h3>AI 电商与贸易</h3>
+
+  <details class="item" id="ecom-1">
+    <summary><span class="num">1</span><span class="t">Alibaba.com 用 Accio 的 AI Buyer Agent 赋能欧洲 SME 采购：自动选品、验供应商、算利润</span><span class="arrow">▸</span></summary>
+    <div class="body">11 月 20 日跨境电商周报披露：Alibaba.com 正用 Accio 平台的 AI 买家 Agent 服务欧洲中小买家，自动完成产品调研、供应商尽调与利润测算，简化跨境采购；同期平台欧洲卖家供给同比增 78%。这正是「买家侧 Agent」的典型形态——把原本靠人做的比价、验厂、算账交给 Agent，直接压缩跨境采购的决策成本，也是通用 Agent 在 B2B 贸易里最先跑通的场景之一。</div>
+    <div class="links"><a href="https://www.cross-border-association.com/whats-new-in-e-commerce-november-20-2026/">CBCA 周报（11/20）</a><a href="https://www.accio.com/">Accio 官网</a></div>
+  </details>
+  <details class="item" id="ecom-2">
+    <summary><span class="num">2</span><span class="t">仅 18% 商家自评市场「agent-ready」，85% 预期 AI 主导选购：数据就绪度成最大瓶颈</span><span class="arrow">▸</span></summary>
+    <div class="body">两份最新调研给 Agent 电商泼了冷水也指了方向：Mirakl 数据显示仅 18% 商家认为自家市场已为 AI 驱动的商务工具「agent-ready」；EHI 零售研究所调查显示 85% 的德语区线上零售决策者预期 AI 将主导顾客搜索与选购，但只有约一半拥有足够的结构化数据。结论很直接：决定 Agent 能否代买家完成交易的，不是模型，而是商品/库存/价格/履约数据的结构化程度——这对跨境平台是基础设施级的改造题。</div>
+    <div class="links"><a href="https://www.cross-border-association.com/whats-new-in-e-commerce-november-20-2026/">CBCA 周报（11/20）</a></div>
+  </details>
+  <details class="item" id="ecom-3">
+    <summary><span class="num">3</span><span class="t">Google / Meta / Amazon 把购物与支付塞进 AI 助手：店铺正从「成交场」变成「数据源」</span><span class="arrow">▸</span></summary>
+    <div class="body">11 月 20 日行业观察指出：Google、Meta、Amazon 正把购物与支付（如 Google Pay）直接嵌入 AI 助手，交易开始发生在对话界面内。对商家的含义是——店铺的角色从「最终成交页」退化为「被 Agent 读取的商品数据源」，流量入口重新洗牌。跨境卖家需要提前准备「机器可读」的商品与库存接口，而不是只优化人类浏览的落地页；这与 A2A（Agent 对 Agent）交易的趋势一脉相承。</div>
+    <div class="links"><a href="https://www.cross-border-association.com/whats-new-in-e-commerce-november-20-2026/">CBCA 周报（11/20）</a></div>
+  </details>
+  </div>
+
+</section>
+
+<section class="section" id="sec-funding">
+  <h2>公司与融资<span class="count">3 条</span></h2>
+
+  <details class="item" id="funding-1">
+    <summary><span class="num">1</span><span class="t">Pragmatik Labs 估值达 50 亿美元：前阿里 Qwen 负责人林俊旸创业，做数字与物理世界 Agent</span><span class="arrow">▸</span></summary>
+    <div class="body">11 月 20 日彭博报道：由前阿里通义千问负责人林俊旸创立的上海公司 Pragmatik Labs，完成数千万美元新融资，估值达 50 亿美元（为 8 月首轮的 2.5 倍），投资方包括 HyT Capital、鼎晖投资与吉利。公司主攻面向数字与物理场景的 AI Agent。头部大模型技术负责人出走创业、早期即拿到高估值，说明资本对「通用 Agent」的押注仍在加码，也值得关注其面向产业（含制造/汽车）的落地路径。</div>
+    <div class="links"><a href="https://aifundingtracker.com/ai-funding-news-november-20-2026/">AI Funding Tracker（11/20）</a></div>
+  </details>
+  <details class="item" id="funding-2">
+    <summary><span class="num">2</span><span class="t">Hoplite 获 550 万美元：让团队并行跑多个编码 Agent 的云基础设施，Stripe 创始人领投</span><span class="arrow">▸</span></summary>
+    <div class="body">11 月 20 日消息：Hoplite 提供云基础设施，让软件团队在连接 GitHub 仓库后，并行运行多个 AI 编码 Agent、每个 Agent 在独立环境中作业；本轮 550 万美元由 Stripe 联合创始人 John 与 Patrick Collison 领投，Relational、Upside、YC、Paul Graham、Des Traynor 参投。它对应一个真实痛点——多 Agent 并行开发时的隔离、编排与合并冲突管理，「编码 Agent 的运行时」正在被单独做成产品。</div>
+    <div class="links"><a href="https://aifundingtracker.com/ai-funding-news-november-20-2026/">AI Funding Tracker（11/20）</a></div>
+  </details>
+  <details class="item" id="funding-3">
+    <summary><span class="num">3</span><span class="t">Meta 上调 2026 资本支出至 1,350–1,450 亿美元，并发行无投票权 C 类股为 AI 融资</span><span class="arrow">▸</span></summary>
+    <div class="body">Meta 将 2026 年资本支出指引上调至 1,350–1,450 亿美元，并计划以 1:1 股票股利方式发行无投票权 C 类普通股（2027 年 1 月 19 日生效），在不稀释扎克伯格约 60.6% 投票权的前提下为 AI 基建融资；因股东诉讼，11 月 19 日同意暂缓发行。这反映出头部大厂「用股权结构创新给 AI 军备竞赛续命」的路径，也预示推理算力与 Agent 基础设施的投入在 2027 年仍将高位运行。</div>
+    <div class="links"><a href="https://dealroom.co/news/164870-meta-lifts-2026-ai-spending-to-145b-adds-nonvoting-stock-class/">Dealroom</a><a href="https://www.briefs.co/news/meta-says-its-ai-push-is-working-boosts-2026-capex-and-rolls/">Briefs</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-papers">
+  <h2>论文精选<span class="count">5 条</span></h2>
+
+  <div class="paper-recap">
+    <h3>本期论文总结 · 组会分享版</h3>
+
+    <h4>一、今日主线（为什么选这 5 篇）</h4>
+    <ol>
+      <li><strong>AI for Science 正从「预测」走向「发现—验证」闭环</strong>（<a href="#papers-1">#1</a>、<a href="#papers-3">#3</a>、<a href="#papers-5">#5</a>）：MOFGen 用「LLM 提方案 + 扩散模型生成 + Agent 筛选」直接产出候选材料；DeepQuest 把任务从「回答问题」升级为「找知识缺口并填补」；The Price of an Explanation 则追问「可验证产出」要付多少代价。三者合起来回答：自主科研 Agent 能不能被信任、被复算、被规模化。</li>
+      <li><strong>长任务 Agent 的记忆与上下文经济学</strong>（<a href="#papers-2">#2</a>、<a href="#papers-4">#4</a>）：一篇回答「该记多少」，一篇回答「怎么分配」——共同指向同一个工程现实：上下文不是越大越好，而是要被当作预算来调度。为什么是现在？因为头部模型已进入百万上下文、而 Agent 任务普遍跨会话长跑，「记得住」与「算得省」成了同一枚硬币的两面。</li>
+    </ol>
+
+    <h4>二、每篇一句话（按阅读优先级）</h4>
+    <ol>
+      <li><a href="#papers-1">MOFGen（Nature Computational Science）</a>：多智能体 + 生成模型做真实材料发现的范式样板，本期最值得精读。</li>
+      <li><a href="#papers-2">How Much Should an Agent Remember?（IAAI 2027 Oral）</a>：Agent 记忆的「部署级」取舍指南，做长期跟进型 Agent 必读。</li>
+      <li><a href="#papers-3">DeepQuest（arXiv）</a>：把科研 Agent 的目标改成「补知识空白」，AI4S 任务设计的新视角，选读。</li>
+      <li><a href="#papers-4">Context as a Resource（arXiv）</a>：上下文/记忆/检索的预算化调度框架，偏方法论，选读。</li>
+      <li><a href="#papers-5">The Price of an Explanation（NeurIPS 2026 AI4Science Workshop）</a>：把「可信」拆成可计价的工程取舍，泛读即可。</li>
+    </ol>
+
+    <h4>三、组会讨论题</h4>
+    <ul>
+      <li>MOFGen 的「提出—生成—筛选」闭环（<a href="#papers-1">#1</a>）能否迁移到商品与供应链：让 Agent 提出候选选品/履约方案、生成、再用可计算指标（毛利、合规、时效）打分？评分函数由谁定义、如何防止被「刷分」？</li>
+      <li>面向跨境询盘这种跨周跨月的场景，哪些信息值得进长期记忆、哪些宁可每次重查以换取时效与正确性（<a href="#papers-2">#2</a>）？</li>
+      <li>如果要求 Agent 交付「可验证工件」（<a href="#papers-5">#5</a>），电商 Agent 的可验证产物应是什么——可复算的报价单、可审计的合规清单，还是可追踪的物流方案？</li>
+    </ul>
+  </div>
+
+  <details class="item" id="papers-1">
+    <summary><span class="num">1</span><span class="t">Nature Computational Science｜MOFGen：多智能体 AI 系统加速金属有机框架（MOF）发现</span><span class="arrow">▸</span></summary>
+    <div class="body">11 月 18 日发表于 Nature Computational Science：MOFGen 把大规模全原子扩散模型与 LLM 智能体整合成一套「多智能体系统」——由 LLM 提出新的 MOF 组成，再由生成与筛选 Agent 评估，形成「提出—生成—筛选」闭环，显著加速 MOF 材料发现。它是「Agent 集群 + 生成模型」做真实材料发现的代表作，为 AI4S 提供了可复制的多智能体科研范式。</div>
+    <div class="links"><a href="https://www.nature.com/articles/s43588-026-01058-x">Nature Comput. Sci.</a><a href="https://arxiv.org/html/2504.14110v1">arXiv 预印本</a></div>
+  </details>
+  <details class="item" id="papers-2">
+    <summary><span class="num">2</span><span class="t">arXiv（IAAI 2027 Oral）｜How Much Should an Agent Remember?：自蒸馏记忆在部署中的取舍</span><span class="arrow">▸</span></summary>
+    <div class="body">被 IAAI 2027 接收为 Oral：系统研究 LLM Agent 的「记忆该记多少」问题，提出自蒸馏（self-distilled）记忆方案，并给出部署层面的经验——记忆不是越多越好，过量记忆会带来检索噪声、成本与一致性代价。对长期跟进询盘/买家、需跨会话保持上下文的电商 Agent，这是难得的「带部署条件」的记忆工程指南。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2611.26361">arXiv</a></div>
+  </details>
+  <details class="item" id="papers-3">
+    <summary><span class="num">3</span><span class="t">arXiv｜DeepQuest：从「知识空白」出发，让 Agent 自主驱动阿尔茨海默病科学发现</span><span class="arrow">▸</span></summary>
+    <div class="body">新框架 DeepQuest 让 LLM Agent 从文献中识别「知识空白」，再围绕空白写代码、做实验、迭代假设，把 AI 自主科研闭环对准阿尔茨海默病。它把「科研 Agent」的目标从「回答问题」改成「找缺口并填补」，是 AI4S 自动化的一个新范式，也提示研究型 Agent 的评价应从「答对」转向「发现」。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2611.26343">arXiv</a></div>
+  </details>
+  <details class="item" id="papers-4">
+    <summary><span class="num">4</span><span class="t">arXiv｜Context as a Resource：把上下文当作可计量、可调度的资源</span><span class="arrow">▸</span></summary>
+    <div class="body">论文提出把「上下文」视为一种可计量、可调度的资源来管理，研究在有限窗口下如何分配检索、记忆与压缩预算，并开源了 ClonAct 代码。对长任务 Agent（多轮工具调用、超长文档/工单），这提供了一套「上下文经济学」的分析框架——比单纯堆上下文窗口更贴近工程现实。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2611.26346">arXiv</a></div>
+  </details>
+  <details class="item" id="papers-5">
+    <summary><span class="num">5</span><span class="t">arXiv（NeurIPS 2026 AI4Science Workshop）｜The Price of an Explanation：要求「可验证工件」的代价与回报</span><span class="arrow">▸</span></summary>
+    <div class="body">NeurIPS 2026 AI4Science Workshop 论文：量化分析「要求 AI 产出可验证工件（代码、数据、推导）」所付出的成本，以及它能换回的可信度与可复用性。对 AI4S 与任何需要交付「可审计结果」的 Agent 都有直接参考——它把「可信」从一个口号拆成了可计价的工程取舍。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2611.25896">arXiv</a></div>
+  </details>
+</section>
+
+<a class="back" href="../index.html">← 返回日报归档</a>
+
+<div class="footer">
+  由「新技术学习搭子」自动生成 · 内容采编自公开来源，观点仅供参考 · 2026-11-23
+</div>
+
+</div>
+
+<script>
+function setAll(open){document.querySelectorAll('details.item').forEach(function(d){d.open=open})}
+if(location.hash){
+  var el=document.querySelector(location.hash);
+  if(el&&el.tagName==='DETAILS'){el.open=true;setTimeout(function(){el.scrollIntoView({block:'start'})},60)}
+}
+</script>
+</body>
+</html>
