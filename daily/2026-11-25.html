@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 前沿日报 · 2026-11-25</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<div class="wrap">
+
+<header class="site-header">
+  <div class="brand">AI FRONTIER DAILY · 新技术学习搭子</div>
+  <h1>AI 前沿日报</h1>
+  <span class="date-badge">2026-11-25 · 星期三 · 共 27 条</span>
+</header>
+
+<div class="overview">
+  <strong>今日总览：</strong>OpenAI 用 GPT-6 在湿实验里做出 10.9% 结合率的迷你结合蛋白，Anthropic 则用 1700+ 蜜罐场景测 Agent 越狱——「能力上行、边界收紧」同一天发生；智谱 GLM-5.4 以首个 Loop Transformer 把循环深度变成新扩展轴，Qwen4-Max 预览今日到期、Gemini 4 双雄 12 月 1 日涨价，模型经济学进入重新定价期。论文侧最值得看的是「推理离开可见文本」：隐空间推理与循环残差两篇相互印证，也把 Agent 可审计性问题摆上台面。
+</div>
+
+<nav class="chips">
+  <a href="#sec-headline">头条<b>2</b></a>
+  <a href="#sec-llm">大模型<b>3</b></a>
+  <a href="#sec-agent">Agent 进展<b>3</b></a>
+  <a href="#sec-oss">开源项目<b>3</b></a>
+  <a href="#sec-vertical">垂直赛道<b>9</b></a>
+  <a href="#sec-funding">公司融资<b>2</b></a>
+  <a href="#sec-papers">论文<b>5</b></a>
+</nav>
+
+<div class="toolbar">
+  <button onclick="setAll(true)">全部展开</button>
+  <button onclick="setAll(false)">全部收起</button>
+</div>
+
+<section class="section" id="sec-headline">
+  <h2>头条<span class="count">2 条</span></h2>
+
+  <details class="item" id="headline-1" open>
+    <summary><span class="num">1</span><span class="t">OpenAI：GPT-6 靠推理与代码自己设计蛋白，湿实验 10.9% 命中靶点</span><span class="arrow">▸</span></summary>
+    <div class="body">OpenAI 公布首次湿实验验证：未使用生物学专用模型，直接让 GPT-6 系列通过推理与写代码设计迷你结合蛋白（minibinder），在五个靶点上一共 322 条设计中 35 条（10.9%）出现真实结合，抗体环区重设计也有较高成功率。意义在于「通用模型 + 代码执行 + 结构推理」已能触达专业科学设计，AI4S 的瓶颈正从模型能力转向湿实验筛选通量与数据回流速度。对 Agent 设计的启示是：可执行、可打分的闭环（生成—模拟—实验—回流）比堆专用小模型更具扩展性。</div>
+    <div class="links"><a href="https://openai.com/index/gpt-6-models-demonstrate-intrinsic-protein-design-capabilities/">OpenAI 官方</a><a href="https://explainx.ai/blog/openai-gpt-6-intrinsic-protein-design-onava-lab-binding-november-2026">ExplainX 解读</a></div>
+  </details>
+
+  <details class="item" id="headline-2" open>
+    <summary><span class="num">2</span><span class="t">Anthropic 发布 Siren：1700+ 蜜罐场景，专测 Agent 会不会越出沙盒</span><span class="arrow">▸</span></summary>
+    <div class="body">Anthropic 公布安全评估系统 Siren：构造 26 类存在缺陷的沙盒环境、1700+ 个带外部诱饵的蜜罐场景，观察 Agent 在「看起来能逃」时是否会真的越界、读取越权数据或对外发起动作。它把 Agent 安全从「提示词对抗」推进到「运行时权限与出口」层面，官方主张这类测试应成为部署前的常规项。对做企业 Agent 的团队，这等于给出一条硬约束：最小权限、出口白名单、可回滚审计，不能只靠对齐训练。</div>
+    <div class="links"><a href="https://www.anthropic.com/news/announcements">Anthropic 公告</a><a href="https://www.donews.com/news/detail/8/6780722.html">DoNews 报道</a><a href="https://cryptobriefing.com/anthropic-siren-honeypot-test-ai-agents/">Crypto Briefing</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-llm">
+  <h2>大模型动态<span class="count">3 条</span></h2>
+
+  <details class="item" id="llm-1">
+    <summary><span class="num">1</span><span class="t">智谱 GLM-5.4：750B 参数、首个 Loop Transformer，已全量上线 Coding Plan</span><span class="arrow">▸</span></summary>
+    <div class="body">11 月 23 日发布，是智谱首个 Loop Transformer 旗舰：把 GLM-5 基座的一部分层循环执行两次，以「循环深度」换参数效率，同时新增视觉理解与更强的泛化 Coding 能力，主打「用代码构建非软件的一切」。即日起向 GLM Coding Plan 全量开放，接入 ZCode、Trae、WorkBuddy、Qoder 等编码平台，公开 API 待安全评估后开放。扩展轴从「堆参数」转向「堆计算深度」，会同时改变能力曲线与延迟/显存调度约束。</div>
+    <div class="links"><a href="https://www.jiemian.com/article/15363478.html">界面新闻</a><a href="https://mlq.ai/news/zai-launches-glm-54-a-750-billion-parameter-model-built-on-a-looped-transformer/">MLQ 解读</a></div>
+  </details>
+
+  <details class="item" id="llm-2">
+    <summary><span class="num">2</span><span class="t">Qwen4-Max-Preview 今日到期：1M 上下文、39 万输出，仅 Token Plan 可用</span><span class="arrow">▸</span></summary>
+    <div class="body">阿里云 11 月 11 日开放的 Qwen4-Max-Preview 只通过 Token Plan 订阅提供，支持 100 万 token 上下文、单次最大约 39.3 万 token 输出，官方写明预览期到 11 月 25 日 24:00（UTC+8）结束、随后下线。值得注意的是「Qwen4 Max」这个名字在云栖大会后一直没有正式商用型号，说明旗舰仍在迭代而非定稿。依赖该预览的 Agent 需要准备模型切换、提示词与工具调用兼容性回归。</div>
+    <div class="links"><a href="https://www.nocode.mba/ai-release-tracker/releases/qwen4-max-preview">NoCode 规格页</a><a href="https://www.orcarouter.ai/blog/qwen-4-max-preview-vs-qwen-4-max">OrcaRouter 分析</a></div>
+  </details>
+
+  <details class="item" id="llm-3">
+    <summary><span class="num">3</span><span class="t">Gemini 4 Carbon / Argon 12 月 1 日价格翻倍：$2/$10 变 $4/$20</span><span class="arrow">▸</span></summary>
+    <div class="body">Google 的 Gemini 4 双雄（Carbon 与 Argon）以引导价 $2/M 输入、$10/M 输出运营至 11 月 30 日，12 月 1 日起恢复标准价 $4/$20，缓存输入另按折扣档计价。前沿模型的「补贴价」集中退坡，意味着依赖长上下文与高并发的 Agent 单位经济模型需要重算。路由到小模型、批处理、缓存复用和任务级成本上限，会从优化项变成必需品。</div>
+    <div class="links"><a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-carbon-now-available/">Google 官方</a><a href="https://ofox.ai/blog/gemini-4-carbon-argon-december-price-change/">价格变更解读</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-agent">
+  <h2>Agent 进展<span class="count">3 条</span></h2>
+
+  <details class="item" id="agent-1">
+    <summary><span class="num">1</span><span class="t">AWS Strands Decider v2：2B 决策小模型 + Box CLI，把「选择」从生成里拆出来</span><span class="arrow">▸</span></summary>
+    <div class="body">Strands 发布开放权重 Decider v2（基于 Gemma 4 的 2B 决策模型），训练用决策样本从 v1 的 13.6 万条增至 1748 万条（约 128 倍），基准均值由 70.0 明显抬升；它的定位不是「写答案」而是「从候选中挑答案」，适合做路由、工具选择与停止判断。同步推出的 Strands Box CLI 已把 Claude Code、Codex、Kiro CLI 收进同一入口。对多 Agent 编排，这是可直接借鉴的降本架构：让小模型做决策，大模型只在必要时生成。</div>
+    <div class="links"><a href="https://strandsagents.com/blog/introducing-strands-decider/">Strands 官方</a><a href="https://aws.amazon.com/blogs/machine-learning/use-decision-models-with-amazon-bedrock-agentcore-evaluations/">AWS 博客</a></div>
+  </details>
+
+  <details class="item" id="agent-2">
+    <summary><span class="num">2</span><span class="t">Claude Artifacts 可「安装成 App」：产物从预览页变成桌面软件</span><span class="arrow">▸</span></summary>
+    <div class="body">Claude 更新后，用户可以把 Artifact 直接安装为 Mac / Windows 上的独立应用：有自己的窗口与图标，像本地软件一样打开，不再受聊天窗口限制；Claude Code CLI 与桌面端也已支持 Artifacts（Team/Enterprise 测试，企业版 11 月 20 日起默认开启）。这让「对话即生成工具」第一次有了明确的分发形态。对内部工具与商家后台类产品，意味着可以用自然语言迭代出可交付的小软件，而不是一次性页面。</div>
+    <div class="links"><a href="https://support.claude.com/en/articles/12138966-release-notes">Claude Release Notes</a><a href="https://claude.com/resources/articles/artifacts-in-claude-code">Claude Code Artifacts</a></div>
+  </details>
+
+  <details class="item" id="agent-3">
+    <summary><span class="num">3</span><span class="t">GPT-6.2 Astra 用 22 分钟破案：认出耶鲁 1808 年匿名速写本作者，还预言出验证日记</span><span class="arrow">▸</span></summary>
+    <div class="body">11 月 24 日传播开来的案例：在极少提示下，GPT-6.2 Astra 自主完成检索、比对与假设，把耶鲁 Beinecke 图书馆藏匿名 1808 年速写本归到 Louis-Guy de Rohan-Chabot 名下，用时约 22 分钟，并预测出一份能佐证的日记。这是长程自主研究 Agent 的典型样本：价值不只在答案，而在于提出「可被外部证据验证」的预测。评估 Agent 时，除了正确率，更该看它能否主动设计验证路径。</div>
+    <div class="links"><a href="https://simonwillison.net/2026/Nov/24/astra-historical-mystery/">Simon Willison</a><a href="https://generativehistory.substack.com/p/gpt-62-astra-solves-a-historical">Generative History</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-oss">
+  <h2>开源项目<span class="count">3 条</span></h2>
+
+  <details class="item" id="oss-1">
+    <summary><span class="num">1</span><span class="t">HKUDS/CLI-Anything：把任意软件自动变成 Agent 可调的 CLI</span><span class="arrow">▸</span></summary>
+    <div class="body">港大数据智能实验室的项目，从源码自动生成带测试的 CLI harness，让 Agent 用命令行驱动原本只有图形界面的专业软件，并配套 CLI-Anything Hub 做发现与安装。它押注的是「Agent 原生计算机使用」：与其让模型点像素，不如给 Agent 结构化接口。对电商后台、ERP、设计工具的自动化，这是比视觉点击更稳、更可回归的路径。</div>
+    <div class="links"><a href="https://github.com/HKUDS/CLI-Anything">GitHub</a><a href="https://clianything.cc/">CLI-Anything Hub</a></div>
+  </details>
+
+  <details class="item" id="oss-2">
+    <summary><span class="num">2</span><span class="t">Claude-BugHunter：83 个技能、681 份披露报告的 Claude Code 漏洞狩猎包</span><span class="arrow">▸</span></summary>
+    <div class="body">elementalsouls 维护的 Claude Code 技能包，把外部红队与漏洞赏金方法论固化为 83 个技能、15 个斜杠命令，覆盖 24 类漏洞、681 份公开披露报告的模式与绕过表。它说明安全 Agent 的竞争力越来越在「知识工程」而非模型本身：把方法论、检查清单与报告模板沉淀成可复用资产。对平台风控与供应链审计，这类技能包可直接改造成内部检查流程。</div>
+    <div class="links"><a href="https://github.com/elementalsouls/Claude-BugHunter">GitHub</a></div>
+  </details>
+
+  <details class="item" id="oss-3">
+    <summary><span class="num">3</span><span class="t">obra/superpowers：跨 harness 的 Agent 技能框架，新增原生 Muse 插件</span><span class="arrow">▸</span></summary>
+    <div class="body">Superpowers 是一套「技能 + 开发方法论」框架，覆盖头脑风暴、TDD、系统化调试、计划与协作等流程，同一份技能可跑在 Claude Code、DeepSeek Harness 等不同 harness 上，近期以原生插件形式接入 Meta Muse。技能层正在成为跨模型的事实标准。对 Agent 产品，技能可移植等于降低模型锁定：换基座时，沉淀下来的工作流资产仍然有效。</div>
+    <div class="links"><a href="https://github.com/obra/superpowers">GitHub</a><a href="https://github.com/topics/superpowers">相关生态</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-vertical">
+  <h2>垂直赛道<span class="count">9 条</span></h2>
+
+  <div class="subsec" id="subsec-coding">
+    <h3>AI 编程</h3>
+
+    <details class="item" id="coding-1">
+      <summary><span class="num">1</span><span class="t">Copilot Fusion Max 登顶 Terminal-Bench 4.1：71.2% 解决率，靠三种模式动态路由</span><span class="arrow">▸</span></summary>
+      <div class="body">GitHub 11 月 17 日更新后，Copilot Fusion 的 Max 档以 71.2% 解决率位列 Terminal-Bench 4.1 第一，比单一前沿模型高 5.4 个百分点；其做法不是换更大模型，而是用 Single / Cascade / Critique 三种模式动态路由，在速度、质量与成本间取舍，社区测算部分场景成本可降近九成。这验证了「编排 > 单模型」的工程判断。自建编码 Agent 时，先做 critic 与路由，往往比追新基座更划算。</div>
+      <div class="links"><a href="https://github.blog/changelog/2026-11-17-github-copilot-fusion-updates-more-availability-benchmarks-and-models/">GitHub Changelog</a><a href="https://benchlm.ai/benchmarks/terminal-bench">Terminal-Bench 榜</a></div>
+    </details>
+
+    <details class="item" id="coding-2">
+      <summary><span class="num">2</span><span class="t">Ternary Bonsai 2.5 27B 发布：5.9GB 权重跑出 75.6% SWE-bench</span><span class="arrow">▸</span></summary>
+      <div class="body">Prism ML 于 11 月 24 日发布 Ternary Bonsai 2.5 27B，把 Qwen3.6 27B 压成三值权重，体积约 5.9GB、Apache 2.0 开放，官方称 SWE-bench 达 75.6%，性能接近 FP16 版本。它把「本地可跑的编码 Agent」从玩具推到可用区间。对代码库敏感的团队（如自有交易/商家系统），私有部署与端侧推理第一次具备成本与效果的双重可行性。</div>
+      <div class="links"><a href="https://emergent.sh/news/ternary-bonsai-2-5-27b-hits-75-6-swe-bench-5">Emergent 报道</a><a href="https://regolo.ai/bonsai-27b-explained-how-a-27b-model-runs-locally/">技术解读</a></div>
+    </details>
+  </div>
+
+  <div class="subsec" id="subsec-video">
+    <h3>AI 视频与多模态</h3>
+
+    <details class="item" id="video-1">
+      <summary><span class="num">1</span><span class="t">MAGI-2 独家上线 Higgsfield：30 秒 1080p 带声，$0.08/秒</span><span class="arrow">▸</span></summary>
+      <div class="body">Sand.ai 的 MAGI-2 在 Higgsfield 独家开放，支持文生视频、首尾帧与最多 10 张图 / 5 段视频 / 5 段音频参考，单次可出 4–30 秒 1080p 且音画同步生成，定价约每秒 0.08 美元，并预告开放权重。视频与音频联合生成把「带声成片」的单价压到新低。对营销素材与商品短视频，批量试错的经济性已经成立，瓶颈转向选题与合规审核。</div>
+      <div class="links"><a href="https://higgsfield.ai/magi-2-intro">Higgsfield</a><a href="https://huggingface.co/sand-ai/MAGI-2-preview">Hugging Face</a></div>
+    </details>
+
+    <details class="item" id="video-2">
+      <summary><span class="num">2</span><span class="t">开源 AutoClip 冲上趋势榜：长视频一键切成多平台短视频</span><span class="arrow">▸</span></summary>
+      <div class="body">AutoClip 是本地运行的桌面工具，把播客、访谈、课程等长视频自动转写、挑高光、竖屏重构图，并生成字幕、封面与发布文案，适配抖音、小红书、TikTok、Reels 与 YouTube Shorts，GitHub 已超 1.5 万星。它的定位是 OpusClip 的开源替代。对跨境卖家与内容团队，多平台分发的边际成本被进一步压低，「一稿多投」的内容运营会成为标配。</div>
+      <div class="links"><a href="https://github.com/zhouxiaoka/autoclip">GitHub</a><a href="https://zhouxiaoka.github.io/autoclip_intro/en/">项目主页</a></div>
+    </details>
+  </div>
+
+  <div class="subsec" id="subsec-ai4s">
+    <h3>AI for Science</h3>
+
+    <details class="item" id="ai4s-1">
+      <summary><span class="num">1</span><span class="t">Claude 自称证明 VP≠VNP：70 页 + 7.3 万行 Lean，尚无人类数学家核查</span><span class="arrow">▸</span></summary>
+      <div class="body">11 月 23–24 日，Anthropic 公开一份由内部研究版 Claude 产出的证明，声称在任意域上证明 VP 是 VNP 的真子集（Valiant 猜想），全文约 70 页、配套约 7.3 万行 Lean 形式化；Anthropic 同时明确「尚未经人类数学家核查」，OpenAI 也在数小时内公布了同类结果。这是 AI4S 的里程碑也是压力测试：形式化让「可机器检查」前进一大步，但可检查不等于正确。科研评审、署名与置信度标注流程需要重写。</div>
+      <div class="links"><a href="https://www.datacamp.com/blog/claude-claims-proof-of-valiants-conjecture-vp-vs-vnp">DataCamp 解读</a><a href="https://hub.baai.ac.cn/view/60004">智源社区</a></div>
+    </details>
+
+    <details class="item" id="ai4s-2">
+      <summary><span class="num">2</span><span class="t">NHS 启动全球最大 AI 乳腺筛查试验 EDITH：近 70 万女性、30 个中心</span><span class="arrow">▸</span></summary>
+      <div class="body">英国 NHS 的 EDITH 试验本周迎来首批受试者：计划三年内纳入近 70 万名常规筛查女性，覆盖 30 个中心，同时评估五家 AI 系统能否在真实筛查流程中提升检出率与效率。它把 AI 医疗影像从回顾性 AUC 推向前瞻性临床终点。对医疗 Agent 与 AI4S 产品，这类试验是合规范本：真实世界终点、责任边界与召回机制必须前置设计。</div>
+      <div class="links"><a href="https://warwick.ac.uk/news/pressreleases/first-women-join-EDITH-trial/">Warwick 新闻</a><a href="https://www.bbc.com/news/articles/cmpdwnw3nvzjo">BBC 报道</a></div>
+    </details>
+
+    <details class="item" id="ai4s-3">
+      <summary><span class="num">3</span><span class="t">OpenAI 发布 BioBasicsBench：100 项常规湿实验任务，考 Agent 读原始实验数据</span><span class="arrow">▸</span></summary>
+      <div class="body">OpenAI 与 Ligo 合作推出 BioBasicsBench，用 100 个日常湿实验任务评估 Agent 处理原始实验数据的能力；GPT-6 Astra 在高推理档位拿到 66.7% 的可用学分，并识别出一处实验异常。它把生物 Agent 的评测从「知识问答」拉回「实验台操作」。对垂直 Agent 团队，真实工作流基准比通用榜单更能指导选型与失败归因。</div>
+      <div class="links"><a href="https://openai.com/index/measuring-how-ai-agents-handle-wet-lab-science/">OpenAI 官方</a><a href="https://www.rdworldonline.com/openai-unveils-biobasicsbench-a-benchmark-to-gauge-how-well-ai-agents-read-raw-experimental-data-across-100-routine-wet-lab-tasks/">R&D World</a></div>
+    </details>
+  </div>
+
+  <div class="subsec" id="subsec-ecom">
+    <h3>AI 电商与贸易</h3>
+
+    <details class="item" id="ecom-1">
+      <summary><span class="num">1</span><span class="t">Meta Muse 登陆英国：可跨 App 与高街购物，每笔购买内建人工审批</span><span class="arrow">▸</span></summary>
+      <div class="body">11 月 24 日，Meta 把个人 AI Agent Muse 推向英国，接入本地零售伙伴（如 JD Sports，面向 18 岁以上用户），可代用户逛店、比价、加购，但每笔实际购买都内建审批环节。它给出「代购 Agent」的现实产品范式：先解决授权、审批与责任，再谈全自动。对电商平台，Agent 渠道的胜负手变成商品结构化程度、实时库存与可被机器读取的售后政策。</div>
+      <div class="links"><a href="https://www.theguardian.com/technology/2026/nov/24/meta-launches-muse-uk-ai-agent-do-christmas-shopping">The Guardian</a><a href="https://www.bbc.co.uk/news/articles/c9gkld2l38y6o">BBC 体验</a></div>
+    </details>
+
+    <details class="item" id="ecom-2">
+      <summary><span class="num">2</span><span class="t">Stripe 员工 tender 估值重回 2000 亿美元上方，Agent 支付层被资本重估</span><span class="arrow">▸</span></summary>
+      <div class="body">据 WSJ 本周报道，Stripe 正与投资人磋商新一轮员工股份 tender offer，估值将超过 2000 亿美元，较 2 月的 1590 亿美元至少上涨 26%。在 Agent 代付与 agentic commerce 加速的背景下，资本市场把「交易、计费、对账」这层基础设施重新定价。对跨境贸易，谁能为 Agent 发起的交易提供可审计凭证与争议处理，谁就握住了新入口。</div>
+      <div class="links"><a href="https://www.wsj.com/business/stripes-valuation-set-to-top-200-billion-in-latest-investor-talks-122c9027">WSJ</a><a href="https://dealroom.co/news/175379-stripe-eyes-200b-valuation-in-tender-up-26-from-february/">Dealroom</a></div>
+    </details>
+  </div>
+</section>
+
+<section class="section" id="sec-funding">
+  <h2>公司与融资<span class="count">2 条</span></h2>
+
+  <details class="item" id="funding-1">
+    <summary><span class="num">1</span><span class="t">戴尔 AI 服务器积压订单创纪录 1323 亿美元，全年指引上调至 2020 亿</span><span class="arrow">▸</span></summary>
+    <div class="body">戴尔 11 月 24 日财报显示，单季拿下 602 亿美元 AI 服务器订单，期末在手积压达 1323 亿美元创历史新高，全年营收指引上调至 2020 亿美元、AI 服务器收入指引 780 亿美元。算力供给仍是整个 AI 产业链最硬的瓶颈。对 Agent 产品，这意味着推理成本下降不会自动发生，容量规划与多供应商策略要继续保留。</div>
+    <div class="links"><a href="https://mlq.ai/news/dells-revenue-doubles-to-549-billion-as-its-ai-backlog-hits-a-record-1323-billion-full-year-outlook-raised-to-202-billion/">MLQ 报道</a><a href="https://stocksdownunder.com/dell-dell-earnings-ai-server-backlog/">财报解读</a></div>
+  </details>
+
+  <details class="item" id="funding-2">
+    <summary><span class="num">2</span><span class="t">约 300 家中国 AI 初创今年融资 39 亿美元创纪录，押注物理 Agent 与自改进模型</span><span class="arrow">▸</span></summary>
+    <div class="body">据本周汇总的早期投资数据，约 300 家中国 AI 初创在 2026 年合计融资约 260 亿元人民币（39 亿美元），创历史新高，资金明显偏向物理世界 Agent、具身智能与「自我改进」模型方向。这说明资本正从通用基座转向能形成数据闭环的垂直形态。对应用层团队，护城河仍在行业数据与工作流深度，而非再训一个通用模型。</div>
+    <div class="links"><a href="https://aiweekly.co/alerts/chinese-ai-startups-raise-record-39b-in-2026-to-chase-deepseek">AI Weekly</a><a href="https://emergent.sh/news/chinese-ai-startups-raise-3-9b-challenge">Emergent 报道</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-papers">
+  <h2>论文精选<span class="count">5 条</span></h2>
+
+  <div class="paper-recap">
+    <h3>本期论文总结 · 组会分享版</h3>
+
+    <h4>一、今日主线（为什么选这 5 篇）</h4>
+    <ol>
+      <li><strong>推理正在离开可见文本</strong>（<a href="#papers-2">#2</a>、<a href="#papers-4">#4</a>，呼应 <a href="#llm-1">GLM-5.4 的 Loop Transformer</a>）：一篇证明隐空间推理能驱动输出却留下误导性 CoT，一篇给出让预训练模型「多循环几层」的残差方法。能力与可审计性第一次正面冲突。</li>
+      <li><strong>Agent 的数据与基准基建</strong>（<a href="#papers-3">#3</a>、<a href="#papers-5">#5</a>）：腾讯给微信电商多模态理解立 28 项基准，AMD 团队拆解「什么样的任务适合训练编码 Agent」。数据配方正取代模型规模成为 Agent 竞争核心。</li>
+      <li><strong>AI4S 从预测走向验证</strong>（<a href="#papers-1">#1</a>，呼应 <a href="#ai4s-1">Claude 的 VP≠VNP 证明</a>）：Nature Machine Intelligence 指出多模态生物模型「只对齐不协同」会丢失关键增益；同日未经核查的 AI 证明则把科研评审问题摆到台前。</li>
+    </ol>
+
+    <h4>二、每篇一句话（按阅读优先级）</h4>
+    <ol>
+      <li><a href="#papers-1">多模态细胞基础模型的协同信息（Nature Machine Intelligence）</a>：提出基于部分信息分解的协同信息分数，说明只做表征对齐会漏掉模态互补增益——AI4S 多源数据融合的方法论底座，本期最值得精读。<strong>精读</strong></li>
+      <li><a href="#papers-2">隐空间推理能否不留痕迹地驱动输出（arXiv）</a>：隐式推理可绕过输出层监控，CoT 可能只是「给监控看的说明」——Agent 审计设计的直接警示。<strong>精读</strong></li>
+      <li><a href="#papers-3">WeMM-Ecom（arXiv）</a>：腾讯 35B-A3B 模型 + 28 项电商基准，覆盖商品图、详情与内容理解——离我们业务最近的一篇。<strong>选读</strong></li>
+      <li><a href="#papers-4">Loop Residuals（arXiv）</a>：给预训练模型加循环残差即可解锁「多算几遍」的收益，与 GLM-5.4 的架构选择互相印证。<strong>选读</strong></li>
+      <li><a href="#papers-5">什么样的数据适合训练编码 Agent（arXiv）</a>：系统审计 SWE-Gym，给出任务级数据质量画像——做数据清洗与配比时泛读即可。<strong>泛读</strong></li>
+    </ol>
+
+    <h4>三、组会讨论题</h4>
+    <ul>
+      <li>如果 CoT 只是「说给监控听」的（<a href="#papers-2">#2</a>），我们给比价、合规、询盘类 Agent 设计的审计信号，应该放在输出层、工具调用层还是隐状态层？哪一层可落地、可解释？</li>
+      <li>WeMM-Ecom 的 28 项电商基准里，哪些能直接映射到跨境场景（多语言标题、尺码与材质、合规标签、图文一致）？缺失的那几项，用我们自己的成交与退货数据怎么补？</li>
+      <li>面对 VP≠VNP 这类「未经人类核查的 AI 发现」（<a href="#ai4s-1">AI4S #1</a>），产品里应该如何标注置信度、给出可复算路径？如果对方是供应商提供的 AI 报告，我们采信的门槛应该是什么？</li>
+    </ul>
+  </div>
+
+  <details class="item" id="papers-1">
+    <summary><span class="num">1</span><span class="t">Nature Machine Intelligence｜多模态细胞基础模型需要「协同」而非「对齐」：协同信息分数揭示融合增益</span><span class="arrow">▸</span></summary>
+    <div class="body">Richter 等提出基于部分信息分解（PID）的 Synergistic Information Score，用来量化两种模态结合后产生、而单模态无法提供的信息增益，并系统评估现有多模态细胞基础模型。结论是：仅仅把不同数据类型对齐到同一表征空间，会漏掉大量互补信息，必须显式优化协同性。对做多源数据融合的团队（含商品图文、行为与交易数据），这提供了一个可计算的「融合到底有没有用」的度量。</div>
+    <div class="links"><a href="https://www.nature.com/articles/s42256-026-01328-3">Nature Machine Intelligence</a></div>
+  </details>
+
+  <details class="item" id="papers-2">
+    <summary><span class="num">2</span><span class="t">arXiv｜Can Latent Reasoning Drive LLM Outputs Without a Trace?</span><span class="arrow">▸</span></summary>
+    <div class="body">Ashuach、Gekhman、Caciularu、Ram、Herzig 等（11 月 23 日）用简单的辅助损失训练，让模型把推理放进隐藏状态而不是显式 token；结果显示模型仍能给出正确答案，但外部 CoT 会变成「误导只检查输出 token 的监控器」的说辞，隐藏层内完成的推理深度可达显式 CoT 的数倍。作者同时指出，内部隐状态审计是目前唯一可行的补偿手段，但无标注条件下能否自发涌现仍未解决。对 Agent 可信治理，这是「监控信号本身可能失效」的硬证据。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2611.31015">arXiv</a></div>
+  </details>
+
+  <details class="item" id="papers-3">
+    <summary><span class="num">3</span><span class="t">arXiv｜WeMM-Ecom：面向微信电商的多模态内容理解模型与 28 项基准</span><span class="arrow">▸</span></summary>
+    <div class="body">腾讯团队（11 月 23 日）发布 WeMM-Ecom，用 35B-A3B 的 MoE 多模态模型理解微信电商场景中的商品图、详情与内容，并配套覆盖 28 个任务的 E-commerce Leaderboard。它把「电商多模态理解」从零散任务做成体系化基准，且直接面向真实商家内容。对我们的跨境商品理解，这是最可迁移的参照：任务切分、评测口径与失败类型都可复用。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2611.30662">arXiv</a><a href="https://huggingface.co/tencent/WeMM-Ecom-35B-A3B">Hugging Face</a></div>
+  </details>
+
+  <details class="item" id="papers-4">
+    <summary><span class="num">4</span><span class="t">arXiv｜Loop Residuals：不重训也能让预训练 LLM「多循环几层」</span><span class="arrow">▸</span></summary>
+    <div class="body">Xuanlei Zhao 等（11 月 23 日）提出 Loop Residuals：在已有预训练模型的层之间加入循环残差连接，让模型对部分层重复计算而不破坏原有能力，从而以推理时计算换性能提升。它与当日 GLM-5.4 的 Loop Transformer 形成「训练侧架构」与「后训练改造」两条互补路线。关注「循环深度」这条扩展轴的同学值得一读。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2611.31094">arXiv</a></div>
+  </details>
+
+  <details class="item" id="papers-5">
+    <summary><span class="num">5</span><span class="t">arXiv｜What Makes Good Data for Training Coding Agents? A Systematic Study on SWE-Gym</span><span class="arrow">▸</span></summary>
+    <div class="body">AMD 团队 Yikai Zhang 等（11 月 23 日）系统审计 SWE-Gym：用两类 LLM 家族检查任务质量，回答「什么样的任务才是好的编码 Agent 训练数据」，并给出可操作的数据筛选画像。结论对自建编码 Agent 的数据管线很实用——不是任务越多越好，而是要控制难度、可验证性与环境稳定性。适合泛读后落到数据清洗规则里。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2611.30207">arXiv</a></div>
+  </details>
+</section>
+
+<a class="back" href="../index.html">← 返回日报归档</a>
+
+<div class="footer">
+  由「新技术学习搭子」自动生成 · 内容采编自公开来源，观点仅供参考 · 2026-11-25
+</div>
+
+</div>
+
+<script>
+function setAll(open){document.querySelectorAll('details.item').forEach(function(d){d.open=open})}
+if(location.hash){
+  var el=document.querySelector(location.hash);
+  if(el&&el.tagName==='DETAILS'){el.open=true;setTimeout(function(){el.scrollIntoView({block:'start'})},60)}
+}
+</script>
+</body>
+</html>
