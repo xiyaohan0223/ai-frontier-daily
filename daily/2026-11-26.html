@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 前沿日报 · 2026-11-26</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<div class="wrap">
+
+<header class="site-header">
+  <div class="brand">AI FRONTIER DAILY · 新技术学习搭子</div>
+  <h1>AI 前沿日报</h1>
+  <span class="date-badge">2026-11-26 · 星期四 · 共 29 条</span>
+</header>
+
+<div class="overview">
+  <strong>今日总览：</strong>今日主线是「Agent 电商开闸、编码 Agent 工业化、可靠性成硬约束」——沃尔玛用 Agent Gateway 给 Meta Muse 开出「有围栏的货架」，Cognition 以纯 RL 训练的 SWE-2.1 把编码 Agent 推向生产，而 RUIBench 与 ShellBench 两篇评测同时指出：模型分数之外，接口设计与验证闭环才是真实完成率的分水岭；成本侧，Delegent 用 27B 小模型委派把 Claude Code 编码成本砍掉 67%，Nature 则以一篇特稿宣告「数学的终结与开始」正在同时发生。
+</div>
+
+<nav class="chips">
+  <a href="#sec-headline">头条<b>3</b></a>
+  <a href="#sec-llm">大模型<b>3</b></a>
+  <a href="#sec-agent">Agent 进展<b>3</b></a>
+  <a href="#sec-oss">开源项目<b>3</b></a>
+  <a href="#sec-vertical">垂直赛道<b>8</b></a>
+  <a href="#sec-funding">公司融资<b>3</b></a>
+  <a href="#sec-papers">论文<b>6</b></a>
+</nav>
+
+<div class="toolbar">
+  <button onclick="setAll(true)">全部展开</button>
+  <button onclick="setAll(false)">全部收起</button>
+</div>
+
+<section class="section" id="sec-headline">
+  <h2>头条<span class="count">3 条</span></h2>
+
+  <details class="item" id="headline-1" open>
+    <summary><span class="num">1</span><span class="t">沃尔玛用 Agent Gateway 给 Meta Muse 开「有围栏的货架」，黑五首次让 AI 直接下单</span><span class="arrow">▸</span></summary>
+    <div class="body">沃尔玛本周允许 Meta 的 AI 助手 Muse 在其站点浏览、比价并完成黑五下单，但流量必须经过 10 月推出的 Walmart Agent Gateway——平台决定 Agent 能看到什么、能做什么、结算如何授权，Muse 只是在「平台定义的规则内」替用户采购。这标志着零售商从「被爬取」转向「主动授权的 Agent 入口」，竞争焦点从流量变成「谁来定义 Agent 可调用的商品与交易能力」。对电商产品与 Agent 设计而言，启示是：与其被动等外部 Agent 接入，不如先把商品、价格、库存、结算封装成带权限与审计的「Agent 接口层」，把入口变成可运营的分发资产。</div>
+    <div class="links"><a href="https://corporate.walmart.com/news/2026/11/black-friday-deals-with-meta-muse">Walmart 官方</a><a href="https://techcrunch.com/2026/11/24/walmart-teams-up-with-meta-to-bring-black-friday-deals-to-ai-agent-muse/">TechCrunch</a><a href="https://digiday.com/marketing/walmart-is-letting-metas-muse-shop-its-shelves-but-on-its-own-terms/">Digiday 解读</a></div>
+  </details>
+
+  <details class="item" id="headline-2" open>
+    <summary><span class="num">2</span><span class="t">Cognition 发布 SWE-2.1：纯 RL 在 Kimi K3 上训练，新增 10× 更快 Lightning 档</span><span class="arrow">▸</span></summary>
+    <div class="body">Cognition 于 11 月 24 日推出 SWE-2.1，延续前代「纯强化学习、无 SFT 冷启动」路线，直接在 Kimi K3 上训练，在多项编码基准上大幅超过 SWE-2，并新增主打 10 倍速的 Lightning 模式，Devin Pro/Max/Teams 两周内免费。它把「编码 Agent 的模型层」从依赖人类示范推向可规模化自博弈，速度档位则让「先便宜跑、再挑难题精修」的分层调度成为默认玩法。对构建 coding agent 的团队，这意味着评测与路由要同时覆盖「快档 sanity check + 强档终检」，单一大模型一把梭的性价比会持续走低。</div>
+    <div class="links"><a href="https://cognition.com/blog/swe-2-1">Cognition 官方</a><a href="https://magica.com/news/cognition-swe-2-1-lightning-coding-model">Magica 报道</a></div>
+  </details>
+
+  <details class="item" id="headline-3" open>
+    <summary><span class="num">3</span><span class="t">OpenAI 把 ChatGPT 与 Codex 并成「一个用量表」，12 月起 Plus/Pro/Business 共享额度</span><span class="arrow">▸</span></summary>
+    <div class="body">据 OpenAI 帮助中心，自 12 月起 Plus、Pro、Business 将用同一份用量额度同时覆盖 ChatGPT 对话与 Codex 编码，触及上限后两者一起受限。这等于把「聊天 + 编程 Agent」打包成单一订阅经济模型，用一体化计量降低多产品线补贴、同时把重度编码用户推向更高档位。对做 Agent 商业化的团队，这是一条重要信号：当模型厂商把「对话与 Agent 执行」合并计费，下游产品的成本结构与限流策略必须按「共享 credit」重新建模，不能再假设某一路调用是「免费附带」。</div>
+    <div class="links"><a href="https://help.openai.com/en/articles/20001625-understanding-chatgpt-and-codex-usage-limits">OpenAI 帮助中心</a><a href="https://cellcog.ai/blog/chatgpt-codex-shared-usage-limit/">CellCog 解读</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-llm">
+  <h2>大模型动态<span class="count">3 条</span></h2>
+
+  <details class="item" id="llm-1">
+    <summary><span class="num">1</span><span class="t">Sakana Namazu Small：30B 推理模型在 25 项基准均值上反超 120B</span><span class="arrow">▸</span></summary>
+    <div class="body">Sakana AI 发布 Namazu Small，以 NVIDIA Nemotron 3 Nano 为底座做继续预训练与后训练，做成一款 30B 级推理模型，官方称其在 25 个基准的平均分上超过了参数量 4 倍的 120B 模型。它延续了「小模型 + 高质量数据与后训练」的性价比路线，把「够用即可」的推理能力压到更低的部署成本。对 Agent 系统而言，这类强小模型最适合承担高频、结构化、可校验的子任务（意图解析、字段抽取、初筛），把昂贵大模型留给真正需要长程推理的环节。</div>
+    <div class="links"><a href="https://benchgen.com/models/sakana-ai/sakana-namazu/files">BenchGen 模型页</a><a href="https://www.getsnippets.ai/providers/sakana">Sakana 定价/规格</a></div>
+  </details>
+
+  <details class="item" id="llm-2">
+    <summary><span class="num">2</span><span class="t">Google DeepMind 上架 HFE「人类第一考」：544 题、pass^4 严判，前沿模型仅 85.6%</span><span class="arrow">▸</span></summary>
+    <div class="body">DeepMind 在 Kaggle 上线 Humanity's First Exam（HFE）：544 个文本与图像题，覆盖 20 项基础能力、编成 136 组四变体，要求同一能力连续四次都对（pass^4）才算稳定掌握，前沿模型平均仅约 85.6%，远低于人类的 96–98%。它把评测从「一次性答对」推进到「一致性/可靠性」，暴露模型在稍加扰动的同族题上会掉分。对 Agent 落地的启示很直接：demo 里答对不等于生产可用，必须以「多次一致通过率」而非「单次最高分」作为准入指标，并同步开放社区打榜（Kaggle 赛题至 12 月 15 日）。</div>
+    <div class="links"><a href="https://aiweekly.co/alerts/google-deepmind-launches-humanitys-first-exam-on-kaggle-544-prompt-test-of-llm">AI Weekly</a><a href="https://af.net/realtime/deepmind-humanitys-first-exam-cuts-frontier-ai-reliability-to-85-6/">af.net 解读</a></div>
+  </details>
+
+  <details class="item" id="llm-3">
+    <summary><span class="num">3</span><span class="t">腾讯混元开源 Hy-MT3 翻译模型：1.8B/7B/30B-A3B 三档，覆盖 102 种语言</span><span class="arrow">▸</span></summary>
+    <div class="body">腾讯混元发布第三代开源翻译模型 Hy-MT3，提供 1.8B、7B 与 30B-A3B（MoE）三档，覆盖 102 种语言，主打更准、更完整、更强指令遵循，并面向端侧场景优化。相比通用大模型「顺带翻译」，专用翻译基座在术语一致性、格式保留与长文稳定性上更可控，且能以小体积下沉到本地。对跨境业务，这意味着商品标题、详情、客服话术的多语种生成可以在「专用小模型兜底 + 通用大模型润色」的组合下兼顾成本、时延与合规（数据不出境）。</div>
+    <div class="links"><a href="https://huggingface.co/tencent/Hy-MT3-30B-A3B-FP8">Hugging Face</a><a href="https://arxiv.org/abs/2611.27673">arXiv 2611.27673</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-agent">
+  <h2>Agent 进展<span class="count">3 条</span></h2>
+
+  <details class="item" id="agent-1">
+    <summary><span class="num">1</span><span class="t">Anthropic 推出 Claude Ship：三个 Agent 分工「审、改、批」GitHub PR，低风险改动可无人过审上线</span><span class="arrow">▸</span></summary>
+    <div class="body">Claude Ship 在 Team/Enterprise 版上线，由三个 Agent 分别负责评审、修复与批准 GitHub Pull Request，目标是消化 AI 大规模生成代码带来的「PR 积压」——低风险改动可在无人工逐行阅读的情况下合入生产。它把编码 Agent 从「写代码」推进到「管代码流转」，实质是用 Agent 承担代码评审这一组织瓶颈。对工程团队的启示：真正稀缺的不再是生成代码，而是可信的「验收与放行」机制；需要分级风险策略、可追溯审计与可一键回滚，否则「无人过审」会成为事故放大器。</div>
+    <div class="links"><a href="https://techcrunch.com/2026/11/23/anthropic-launches-claude-ship-letting-ai-agents-review-fix-and-approve-code-changes/">TechCrunch</a><a href="https://thenewstack.io/claude-ship-automated-approvals/">The New Stack</a></div>
+  </details>
+
+  <details class="item" id="agent-2">
+    <summary><span class="num">2</span><span class="t">MCP 两周年大升级：Skills over MCP 公测、Tasks/Elicitation 转正，SDK 月下载破 7 亿</span><span class="arrow">▸</span></summary>
+    <div class="body">Anthropic 在 MCP 两周年宣布三项进展：Claude 与 Claude Code 公测「Skills over MCP」（工具可自带操作手册/剧本），Tasks 与 Elicitation 转为正式可用（支持后台长任务、执行前主动追问用户），并披露 MCP SDK 月下载已超 7 亿、生态服务器过万、协议已交由 Agentic AI Foundation 托管。这让 MCP 从「连工具的插头」升级为「能打包知识、跑长任务、在执行前确认的 Agent 应用平台」。对产品设计，意味着安全边界要落在「Elicitation 确认点 + Tasks 生命周期」上，把「何时向用户要授权、长任务如何中断恢复」做成协议级能力，而不是各自硬编码。</div>
+    <div class="links"><a href="https://thenewstack.io/mcp-skills-tasks-claude/">The New Stack</a><a href="https://mlq.ai/news/anthropic-says-mcp-sdks-top-700-million-monthly-downloads-as-background-tasks-reach-general-availability-in-claude/">MLQ 报道</a><a href="https://www.unite.ai/anthropic-brings-server-supplied-skills-and-background-tasks-to-claude/">Unite.AI</a></div>
+  </details>
+
+  <details class="item" id="agent-3">
+    <summary><span class="num">3</span><span class="t">AWS 新版 Bedrock AgentCore runtime：microVM 硬件隔离会话、冷启动 &lt;2 秒、按用量计费</span><span class="arrow">▸</span></summary>
+    <div class="body">AWS 介绍下一代 Amazon Bedrock AgentCore runtime：以硬件隔离的会话（microVM 级）承载每个 Agent 运行，启动稳定压到 2 秒内，延续 serverless 按用量计费，并统一把 traces / prompts / 日志汇到每 Agent 的 CloudWatch 日志组。它把「Agent 运行时要兼具隔离性、低冷启动和可观测」变成云厂商的标准化能力。对自建 Agent 平台的团队，这是明确的采购参照系：与其自研沙盒调度，不如优先复用「隔离会话 + 统一可观测 + 弹性计费」，把工程精力集中在业务工具与验证器上。</div>
+    <div class="links"><a href="https://insights.ehsynergy.com/post/agentcore-runtime-how-to-evaluate-ai-agent-isolation-latency-and-cost">EH Synergy 解读</a><a href="https://www.aiboss88.com/news/aws-agentcore-runtime-elastic-cold-start">AiBoss 报道</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-oss">
+  <h2>开源项目<span class="count">3 条</span></h2>
+
+  <details class="item" id="oss-1">
+    <summary><span class="num">1</span><span class="t">diagram-design：52 种「编辑级」图表 Skill，覆盖 Claude Code / Codex / Cursor / Qoder 等编码 Agent</span><span class="arrow">▸</span></summary>
+    <div class="body">cathrynlavery/diagram-design 提供 52 类图表类型的绘制 Skill，输出自包含 HTML + SVG、无阴影、明确反对「Mermaid 糊图」，并同时适配 Claude Code、Codex、GitHub Copilot、Cursor、Factory Droid、Qoder 等编码 Agent，单日新增约 1.1k star。它示范了「把设计品味封装成 Agent 可复用的 Skill」这一范式：不是让模型自由发挥，而是给它一套可执行的排版/图形规范。对做工具型 Agent 的团队，可借鉴「Skill = 领域约束 + 可验证产物」的思路，把品牌规范、图表样式、交付格式固化成可复用资产。</div>
+    <div class="links"><a href="https://github.com/cathrynlavery/diagram-design">GitHub</a></div>
+  </details>
+
+  <details class="item" id="oss-2">
+    <summary><span class="num">2</span><span class="t">last30days-skill：一个跨 Reddit/X/YouTube/HN/Polymarket 的「取证式」调研 Agent Skill</span><span class="arrow">▸</span></summary>
+    <div class="body">mvanhorn/last30days-skill 封装了一个调研 Skill：给定任意主题，自动在 Reddit、X、YouTube、Hacker News、Polymarket 与开放网页中检索，再综合成有出处的结论，单日约 945 star。它把「多源检索 + 交叉印证 + 带引用综述」做成可插拔能力，正好补上通用 Agent「只会单点搜索、不善溯源」的短板。对电商情报场景（竞品、趋势、政策、口碑），可复用其「先广撒网、再对齐时间窗、最后要求逐条引用」的流程骨架，降低幻觉与过时信息。</div>
+    <div class="links"><a href="https://github.com/mvanhorn/last30days-skill">GitHub</a></div>
+  </details>
+
+  <details class="item" id="oss-3">
+    <summary><span class="num">3</span><span class="t">firecrawl：给 Agent 的「知识基础设施」，一个 API 打通 550+ 数据源</span><span class="arrow">▸</span></summary>
+    <div class="body">firecrawl 定位「让 Agent 更聪明的知识基础设施」：搜索、抓取并通过一个 API 接入 550+ 数据提供方，单日新增约 1.1k star、总量已超 21 万星。它解决的是 Agent 落地最脏最累的一环——把网页变成结构干净、可批量、可回溯的输入，而不是让模型直接啃原始 HTML。对需要抓取供应商信息、商品详情、政策公告的电商 Agent，这类「抓取—清洗—结构化」底座能显著降低维护成本，也是把 RAG 从 demo 推向生产的关键拼图。</div>
+    <div class="links"><a href="https://github.com/firecrawl/firecrawl">GitHub</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-vertical">
+  <h2>垂直赛道<span class="count">8 条</span></h2>
+
+  <div class="subsec" id="subsec-coding">
+    <h3>AI 编程</h3>
+
+    <details class="item" id="coding-1">
+      <summary><span class="num">1</span><span class="t">iFood 用 REST 把编码 Agent 铺到 15,000 个仓库：2.5 万次运行、单次约 $0.04</span><span class="arrow">▸</span></summary>
+      <div class="body">OpenAI 客户案例披露，iFood 通过一套 REST 化的「远程 Agent 平台」，在 15,000+ 仓库上跑了 25,000+ 次编码 Agent 任务、累计消耗 270 亿 token，平均单次推理成本约 0.04 美元。关键不在模型多强，而在「把 Agent 变成可批量调用的基础设施」：统一入口、统一日志、按仓库编排，使迁移/清理这类重复工作能以近乎零边际成本扩散。对工程组织，这是把 coding agent 从「个人助手」升级为「平台能力」的样板；对做 B2B Agent 的团队，启示是先把「任务模板 + 成本核算 + 结果校验」标准化，规模才会真正起来。</div>
+      <div class="links"><a href="https://explainx.ai/blog/ifood-remote-agent-platform-15000-repos-openai-november-2026">ExplainX 案例解读</a><a href="https://grafy.ai/news/ifood-scales-coding-agents-across-15-000-repositories">Grafy 报道</a></div>
+    </details>
+
+    <details class="item" id="coding-2">
+      <summary><span class="num">2</span><span class="t">Cursor 发布插件规范与官方插件库：把编码 Agent 变成可扩展的「插件宿主」</span><span class="arrow">▸</span></summary>
+      <div class="body">cursor/plugins 仓库给出 Cursor 的插件规范与一批官方插件，单日约 416 star，意味着 Cursor 正从「编辑器 + 内置 Agent」走向「可被第三方扩展的 Agent 平台」。插件化把工具、上下文与工作流从模型里剥离出来，形成可治理、可分发的能力市场——这与 MCP/Skills 的路线同源。对产品团队，值得关注「谁能定义扩展标准，谁就掌握生态分发」；在自建 coding agent 时也应预留插件/Skill 接口，让领域能力（如特定框架脚手架、内部 API）以插件形式沉淀，而非反复提示工程。</div>
+      <div class="links"><a href="https://github.com/cursor/plugins">GitHub</a></div>
+    </details>
+  </div>
+
+  <div class="subsec" id="subsec-video">
+    <h3>AI 视频与多模态</h3>
+
+    <details class="item" id="video-1">
+      <summary><span class="num">1</span><span class="t">可灵 Kling Image 4.0：原生 8K 出图、单图可排 2000 字、70+ 字体与组图直出</span><span class="arrow">▸</span></summary>
+      <div class="body">可灵发布 Kling Image 4.0，主打原生 8K（7680×4320，非插值放大）输出，画面真实感、指令理解与一致性提升，单张图可承载约 2000 字文本、支持 70+ 字体与组图直出，已在可灵平台上线。对电商而言，这意味着「一张图搞定海报/详情页主图 + 文案排版 + 多尺寸组图」的可行性显著上升，创意生产进一步向「一次生成、直接投放」靠拢。产品侧应把「原生高分辨率 + 文字渲染 + 批量变体」纳入素材生产流水线，并把品牌字体/版式做成可复用约束，避免每次重生成。</div>
+      <div class="links"><a href="https://kling.ai/release-note/release-notes/Kling_Image_4">Kling 发布说明</a><a href="https://www.qbitai.com/2026/11/511092.html">量子位</a></div>
+    </details>
+
+    <details class="item" id="video-2">
+      <summary><span class="num">2</span><span class="t">NVIDIA 官方指南：Cosmos 3 Nano 借 CPU 卸载在 12GB 显卡上跑本地视频世界模型</span><span class="arrow">▸</span></summary>
+      <div class="body">NVIDIA 发布教程，借助 Hugging Face Diffusers 把大部分权重放在系统内存、按需流式加载，让 16B 级的 Cosmos 3 Nano 世界模型在仅 12GB 显存的消费级显卡上本地运行。它降低了「物理 AI / 交互式仿真」的门槛：世界模型不再只属于数据中心，而能在本地做交互式视频生成与仿真评估。对内容与商品演示场景，可探索「本地世界模型生成商品/场景动态演示」的低成本路径；对 Agent，则意味着仿真环境可下沉到边缘，便于闭环试错与快速验证。</div>
+      <div class="links"><a href="https://developer.nvidia.com/blog/how-to-run-nvidia-cosmos-3-on-local-ai-devices-using-hugging-face-diffusers/">NVIDIA 技术博客</a><a href="https://explainx.ai/blog/nvidia-cosmos-3-nano-local-12gb-cpu-offloading-november-2026">ExplainX 解读</a></div>
+    </details>
+  </div>
+
+  <div class="subsec" id="subsec-ai4s">
+    <h3>AI for Science</h3>
+
+    <details class="item" id="ai4s-1">
+      <summary><span class="num">1</span><span class="t">数学界震荡：Claude 参与产出黎曼猜想证明（17.5 万文件 Lean 档案），OpenAI 已放出 700+ 手稿</span><span class="arrow">▸</span></summary>
+      <div class="body">Anthropic 数学家 Levent Alpöge 于 11 月 20 日宣称借助 Claude 完成黎曼猜想证明，并放出约 17.5 万个文件的 Lean 形式化档案；同期 OpenAI 自 10 月起已批量释出 700 余篇数学手稿（含「准黎曼猜想」），学界被迫直面「证明可能是对的，但没人能读懂」的局面。这不是单点突破，而是 AI4S 从「辅助计算/猜想」跨入「自主形式化证明」的信号，验证与可读性反而成为新瓶颈。对做研究型 Agent 的团队，关键能力是「可执行验证（Lean/Coq）+ 分块解释 + 人类可审」，而非只追求最终答案。</div>
+      <div class="links"><a href="https://www.science.org/content/article/ai-may-have-solved-math-s-greatest-mystery-can-humans-understand-answer">Science 报道</a><a href="https://phys.org/news/2026-11-sacred-mathematics-riemann-hypothesis-ai.html">Phys.org</a></div>
+    </details>
+
+    <details class="item" id="ai4s-2">
+      <summary><span class="num">2</span><span class="t">两位业余天文学家借 OpenAI Astra 与 Codex，在 Kepler/TESS 公开数据中筛出 49+ 系外行星候选</span><span class="arrow">▸</span></summary>
+      <div class="body">OpenAI 介绍，两位业余天文爱好者分别用 Codex（编写分析管线）与 Astra（多模态推理）扫描 NASA Kepler 与 TESS 的公开光变数据，覆盖数百万颗恒星，筛出 49+ 个系外行星候选，并专门做了一轮宜居带定向搜索。价值在于「非专业研究者 + 通用模型 + 公开数据」也能做出接近专业的发现，说明 AI4S 的杠杆正从「顶尖实验室」扩展到「长尾研究者」。对 Agent 设计，这是「代码执行 + 多模态判读 + 人类复核」闭环的范例：模型负责海量筛查与可疑信号标注，人负责最终确认与领域判断。</div>
+      <div class="links"><a href="https://openai.com/index/searching-for-distant-planets-with-astra/">OpenAI 官方</a><a href="https://interestingengineering.com/ai-robotics/amateur-astronomers-openai-49-planet-candidates">Interesting Engineering</a></div>
+    </details>
+  </div>
+
+  <div class="subsec" id="subsec-ecom">
+    <h3>AI 电商与贸易</h3>
+
+    <details class="item" id="ecom-1">
+      <summary><span class="num">1</span><span class="t">Meta Muse 进入 Instagram 私信并向小商家开放，对话式购物从「搜索」转向「聊天」</span><span class="arrow">▸</span></summary>
+      <div class="body">Meta 把 AI 助手 Muse 放进 Instagram 私信，用户可在对话里直接询问帖子/商品信息，同时把 Muse 扩展到小商家并加入 Shopping 模式；第三方流量监测显示 Muse 已成为首个具备规模化「Agent 流量」特征的消费级助手。这意味着购物入口从「搜索框/商品页」迁移到「私信对话」，商家需要在会话场景里同时承接咨询、推荐与成交。对电商产品，启示是把「商品知识、库存、下单」做成会话内可调用能力，并针对私信场景优化多轮澄清与低摩擦结算，而不是把网页购物车照搬进聊天。</div>
+      <div class="links"><a href="https://gagadget.com/en/735629-metas-muse-ai-assistant-moves-into-instagram-dms/">Gagadget</a><a href="https://www.humansecurity.com/learn/blog/meta-muse-agentic-traffic/">Human Security 分析</a></div>
+    </details>
+
+    <details class="item" id="ecom-2">
+      <summary><span class="num">2</span><span class="t">Agent 电商进入「协议战」：ACP、UCP、AP2 三套标准并行，商家面临选边</span><span class="arrow">▸</span></summary>
+      <div class="body">随着 OpenAI/Stripe/Meta 主导的 ACP、Google 系 UCP 与支付向的 AP2 同时推进，Agent 电商的接口层出现「多协议并存」：商品 feed、下单、支付授权的标准各不相同，商家与平台需要在几套协议间做适配与取舍。这直接决定「谁的 Agent 能连到你的货架、以什么权限结算」，是比单点功能更底层的分发权之争。对跨境 B2B，应尽早把商品与交易能力抽象为「协议无关的内部 API」，再在外层做 ACP/UCP/AP2 的适配器，避免被单一生态锁死。</div>
+      <div class="links"><a href="https://veliu.com/en/blog/agentic-commerce-protocol-comparison">协议对比（ACP/UCP/AP2/MCP）</a><a href="https://agenticplug.ai/current-state-of-agentic-commerce">Agentic Commerce 追踪</a></div>
+    </details>
+  </div>
+</section>
+
+<section class="section" id="sec-funding">
+  <h2>公司与融资<span class="count">3 条</span></h2>
+
+  <details class="item" id="funding-1">
+    <summary><span class="num">1</span><span class="t">欧盟提议 500 亿欧元「主权科技股权基金」，主投 AI、量子与战略半导体</span><span class="arrow">▸</span></summary>
+    <div class="body">欧盟委员会 11 月 25 日提议设立约 500 亿欧元（约 547 亿美元）的主权科技股权基金，以公共+私人资本撬动 AI、量子计算与战略半导体，意在缩小与美中的前沿差距。这是欧洲从「监管先行」转向「资本下场」的标志性动作，也意味着本土 AI 公司多了一条「主权基金」融资通道。对出海企业，需关注其「欧洲优先/数据主权」倾向可能带来的准入与合规门槛，以及由此衍生的本地化合作机会。</div>
+    <div class="links"><a href="https://www.reuters.com/world/china/europe-plans-50-billion-sovereign-tech-equity-fund-boost-quantum-technology-2026-11-25/">Reuters</a><a href="https://www.dw.com/en/eu-plans-50-billion-sovereign-tech-equity-fund-to-boost-quantum-technology/a-80047569">DW</a><a href="https://www.euronews.com/2026/11/25/eu-unveils-50-billion-quantum-industry-investment-plans">Euronews</a></div>
+  </details>
+
+  <details class="item" id="funding-2">
+    <summary><span class="num">2</span><span class="t">Sierra 完成 17.5 亿美元 F 轮、估值 300 亿美元，半年翻倍，称 ARR 破 4 亿</span><span class="arrow">▸</span></summary>
+    <div class="body">企业客服 Agent 公司 Sierra 于 11 月 23 日宣布 17.5 亿美元 F 轮，估值升至 300 亿美元（较半年前翻倍），由 Greenoaks 与 Lightspeed 领投，官方称 ARR 已超 4 亿美元，并以 Agent OS 在多家 Fortune 50 客户落地。它验证了「垂直客服 Agent + 平台化（Agent OS）」的商业模型能跑出高增长，也把「Agent 作为企业软件新入口」的估值逻辑推到新高度。对做 B2B Agent 的团队，可对照其「效果计价（按解决率/工单）+ 平台化工具链」的组合，思考如何把单点能力沉淀为可复用的企业级 Agent 底座。</div>
+    <div class="links"><a href="https://nodalbrief.com/en/ai/sierra-series-f-doubles-valuation-30-billion/">Nodal Brief</a><a href="https://aispaces.net/blog/sierra-raises-dollar175b-at-dollar30b-valuation-as-enterprise-ai-agents-surge">AiSpaces</a></div>
+  </details>
+
+  <details class="item" id="funding-3">
+    <summary><span class="num">3</span><span class="t">Cognition 传以 750 亿美元估值再融资，拟募 20 亿美元以上，两月内估值再跳升</span><span class="arrow">▸</span></summary>
+    <div class="body">据 Bloomberg/Reuters，Cognition 正商谈以 750 亿美元估值融资，拟募资 20 亿美元以上，距其 9 月 480 亿美元估值仅两个月，2026 年内累计融资已超 30 亿美元，Devin 相关收入持续走高。结合今日 SWE-2.1 的发布，这说明资本市场正在为「纯 Agent 形态的软件工程公司」给出接近前沿模型实验室的估值。对行业，信号是「编码 Agent 的商业化跑通了」；对团队，也提醒估值与收入需匹配——这类高估值最终要靠「按结果交付、可规模化」的商业模式来兑现。</div>
+    <div class="links"><a href="https://www.reuters.com/technology/cognition-ai-talks-be-valued-75-billion-latest-funding-round-bloomberg-news-2026-11-20/">Reuters</a><a href="https://mlq.ai/news/cognition-is-in-talks-to-raise-at-a-75-billion-valuation-two-months-after-its-48-billion-round/">MLQ 报道</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-papers">
+  <h2>论文精选<span class="count">6 条</span></h2>
+
+  <div class="paper-recap">
+    <h3>本期论文总结 · 组会分享版</h3>
+
+    <h4>一、今日主线（为什么选这 6 篇）</h4>
+    <ol>
+      <li><strong>可靠性成了 Agent 的真正瓶颈。</strong>当模型分数开始饱和，<a href="#papers-3">RUIBench（#3）</a>、<a href="#papers-4">ShellBench（#4）</a> 与 <a href="#papers-6">CUA-SEE（#6）</a> 从三个角度证明：接口设计、评测口径与验证器质量，比「换个更强的模型」更能决定真实完成率——这正是电商 Agent 从 demo 到生产的分水岭。</li>
+      <li><strong>Agent 运行时与经济性正在被工程化。</strong><a href="#papers-2">TimeTravelContainer（#2）</a>让运行中的会话可「实时分叉」做反事实探索，<a href="#papers-5">Delegent（#5）</a>把小任务委派给 27B SLM 把编码成本砍 67%，两者一「拓宽试错」、一「压低成本」，共同把 Agent 从「一次性黑盒调用」变成可调度、可回滚的资源。</li>
+      <li><strong>AI 已跨入自主科学发现。</strong><a href="#papers-1">Nature 数学特稿（#1）</a>记录了这一周最具冲击力的事实：黎曼猜想的 Lean 证明与 700+ 数学手稿同时出现，学界被迫讨论「理解与验证」而非「能否做出来」——AI4S 的评价体系需要重写。</li>
+    </ol>
+
+    <h4>二、每篇一句话（按阅读优先级）</h4>
+    <ol>
+      <li><a href="#papers-4">ShellBench（arXiv 2611.32946）</a>：用 100 个真实日常任务×12 模型×5 套 harness，证明「harness 与模型同样重要」、顶尖模型仅 62.5%，且 51% 失败源于信息遗漏。<strong>精读</strong></li>
+      <li><a href="#papers-3">RUIBench（arXiv 2611.31115）</a>：把「机器人/电脑使用接口」拆成 12 种抽象做消融，同一模型换接口可从 45% 提到 81%，并量化「假完成率」。<strong>精读</strong></li>
+      <li><a href="#papers-6">CUA-SEE（arXiv 2611.30962）</a>：闭环评测环境让「任务与可执行验证器」共同进化，用 rollout 证据自适应测出 CUA 的能力边界（阿里团队）。<strong>选读</strong></li>
+      <li><a href="#papers-5">Delegent（arXiv 2611.33098）</a>：在 Claude Code 上把易子任务委派给 27B 小模型，编码成本降 67% 且不掉任务质量。<strong>选读</strong></li>
+      <li><a href="#papers-1">Nature 数学特稿（659, 878-880）</a>：以一线数学家访谈刻画「AI 自主证明」带来的理解/验证危机，AI4S 从业者建议精读其方法论讨论。<strong>选读</strong></li>
+      <li><a href="#papers-2">TimeTravelContainer（arXiv 2611.32255）</a>：无根、非特权的容器运行时，用写时复制对运行中工具会话做「实时分叉」，成本极低。<strong>泛读</strong></li>
+    </ol>
+
+    <h4>三、组会讨论题</h4>
+    <ul>
+      <li><strong>「完成」怎么定义？</strong>在 B2B 询盘→报价→下单链路里，哪些环节能像 CUA-SEE 那样写成「可执行验证器 + 可打分」，从而避免 ShellBench 式的「信息遗漏假完成」？</li>
+      <li><strong>接口即产品。</strong>若同一模型换接口能让任务成功率从 45% 跃到 81%，Accio 的供应商筛选/商品比对界面与工具抽象应如何重设计，才把「模型能力」真正兑现为「用户可感知的完成率」？</li>
+      <li><strong>成本结构怎么切？</strong>Delegent 的「SLM 委派」最适合落在翻译、字段抽取、格式校验等哪类子任务上？在跨境场景里，如何在不掉质量的前提下把昂贵大模型调用压到关键决策点？</li>
+    </ul>
+  </div>
+
+  <details class="item" id="papers-1">
+    <summary><span class="num">1</span><span class="t">Nature｜「数学的终结与开始」：AI 自主证明冲击波下，理解与验证成为新战场</span><span class="arrow">▸</span></summary>
+    <div class="body">Nature 新闻特稿（659 卷 878–880，11 月 24 日）梳理了这一周的数学地震：OpenAI 批量释出 700+ 手稿（含准黎曼猜想），Anthropic 的 Levent Alpöge 与 Claude 宣称完成黎曼猜想并放出 17.5 万文件的 Lean 档案，独立研究者亦有相关证明；文中引多位顶尖数学家讨论「证明对但无人能读」的困境，并给出调查数据（如 89% 博士生 vs 68% 资深学者对 AI 影响的判断差异）。它的价值不在某个定理，而在指出 AI4S 的新矛盾：机器能产出人类来不及验证的成果，学科需要重建「可读性 + 形式化验证 + 同行评审」的流程。对研究型 Agent，可读的中间步骤与可机器校验的证明工件，比一个漂亮结论更重要。</div>
+    <div class="links"><a href="https://www.nature.com/articles/d41586-026-03640-8">Nature 特稿</a><a href="https://www.science.org/content/article/ai-may-have-solved-math-s-greatest-mystery-can-humans-understand-answer">Science 同期报道</a></div>
+  </details>
+
+  <details class="item" id="papers-2">
+    <summary><span class="num">2</span><span class="t">arXiv｜TimeTravelContainer：让运行中的 Agent 会话可「实时分叉」的沙盒运行时</span><span class="arrow">▸</span></summary>
+    <div class="body">TimeTravelContainer（TTC）提出一种无根、非特权的容器运行时，基于写时复制（copy-on-write）对正在运行的工具会话做「实时分叉」，让 Agent 能从同一状态并行探索多条路径而几乎不增加启动与内存成本（配套的 BunshinFork 机制负责重建进程树、共享内存）。它把「反事实试错 / 树搜索 / 可回滚执行」从应用层逻辑下沉为运行时原语，尤其适合高风险的工具调用（如交易、批量操作）先分叉试算再择优落地。对 Agent 架构，启示是把「分支-评估-合并」做成基础设施，而不是在 prompt 里模拟。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2611.32255">arXiv 2611.32255</a></div>
+  </details>
+
+  <details class="item" id="papers-3">
+    <summary><span class="num">3</span><span class="t">arXiv｜RUIBench：换接口比换模型更有效，同一模型可从 45% 跃到 81%</span><span class="arrow">▸</span></summary>
+    <div class="body">RUIBench 提出 RUIKit，把「机器人/电脑使用接口」按 6 种动作抽象 × 2 种交互形式交叉成 12 种接口再加自由选择接口，系统做接口消融，结果显示仅仅更换接口形态就能把 Claude Code 的任务成功率从约 45% 拉到 81%，并揭示「假完成率」——Agent 自称完成但实际未达目标的比例。这说明 GUI/CUA 的瓶颈很大程度在「系统给 Agent 的抽象是否合理」，而非模型不够强。对电商自动化（后台操作、多平台铺货），应优先设计「少决策、强反馈」的工具接口，并显式度量假完成率，而不是一味换更大的模型。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2611.31115">arXiv 2611.31115</a><a href="https://github.com/showlab/RUIBench">代码（showlab/RUIBench）</a></div>
+  </details>
+
+  <details class="item" id="papers-4">
+    <summary><span class="num">4</span><span class="t">arXiv｜ShellBench：模型与 harness 谁更重要？顶尖 Agent 仅过 62.5% 日常任务</span><span class="arrow">▸</span></summary>
+    <div class="body">ShellBench 基于 OpenClaw 超 1000 万条匿名真实 Agent 交互构建 100 个「日常工作任务」，在 12 个模型 × 5 套 harness 上系统比较，结论是 harness 与模型同样决定成败：最强模型 GPT-6 Astra 仅完成 62.5%，且约 51% 的失败源于「信息遗漏」（尽管 87% 的数据其实已采集到）。它把「日常可用性」而非「基准刷分」作为评测目标，暴露了 Agent 在信息汇总、交付完整性上的系统性短板。对产品，这意味着评测必须「端到端 + 看交付物」，并把「该收集的信息是否收全、该说的有没有说」做成可自动检查的验收项。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2611.32946">arXiv 2611.32946</a><a href="https://openclaw.ai/blog/shellbench">OpenClaw 博客</a></div>
+  </details>
+
+  <details class="item" id="papers-5">
+    <summary><span class="num">5</span><span class="t">arXiv｜Delegent：把易子任务委派给 27B 小模型，Claude Code 编码成本降 67%</span><span class="arrow">▸</span></summary>
+    <div class="body">Delegent 提出一套多智能体 harness：让主 Agent 把容易的子任务动态委派给一个 27B 的小语言模型（SLM），在 Claude Code 上实现约 67% 的编码成本下降且不损失任务质量。其核心洞察是「大量 token 花在本可由小模型完成的简单步骤上」，通过显式路由把贵模型留给难步骤。这与今天的 Namazu/Delegent 等「小模型够用」趋势一致，为 Agent 的成本工程提供了可复用的「路由—委派—回退」骨架。对电商 Agent，可优先在翻译、抽取、规则校验等子步骤上试水委派，并保留质量回退阈值。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2611.33098">arXiv 2611.33098</a><a href="https://explainx.ai/blog/delegent-slm-subagents-claude-code-cost-november-2026">ExplainX 解读</a></div>
+  </details>
+
+  <details class="item" id="papers-6">
+    <summary><span class="num">6</span><span class="t">arXiv｜CUA-SEE：让「任务与验证器」共同进化的自演化 CUA 评测环境</span><span class="arrow">▸</span></summary>
+    <div class="body">CUA-SEE（阿里团队）构建闭环评测环境：从 Agent 的 rollout 证据出发，共同演化「任务」与「可执行验证器」，使评测能自适应地跟踪计算机使用 Agent 的能力边界与进展，并把「测得出」与「测得准」解耦。它针对的是静态基准的两大痛点——任务很快被刷穿、验证器跟不上真实场景——用「自演化」维持评测的区分度。对 Agent 平台，这提供了一个可持续的评测范式：评测集应随模型与业务一起生长，并优先使用可执行的验证器而非人工打分，才能长期反映真实完成率。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2611.30962">arXiv 2611.30962</a></div>
+  </details>
+</section>
+
+<a class="back" href="../index.html">← 返回日报归档</a>
+<div class="footer">由「新技术学习搭子」自动生成 · 内容采编自公开来源，观点仅供参考 · 2026-11-26</div>
+</div>
+<script>
+function setAll(open){document.querySelectorAll('details.item').forEach(function(d){d.open=open})}
+if(location.hash){
+  var el=document.querySelector(location.hash);
+  if(el&&el.tagName==='DETAILS'){el.open=true;setTimeout(function(){el.scrollIntoView({block:'start'})},60)}
+}
+</script>
+</body>
+</html>
