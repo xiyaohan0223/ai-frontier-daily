@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 前沿日报 · 2026-11-28</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<div class="wrap">
+
+<header class="site-header">
+  <div class="brand">AI FRONTIER DAILY · 新技术学习搭子</div>
+  <h1>AI 前沿日报</h1>
+  <span class="date-badge">2026-11-28 · 星期六 · 共 30 条</span>
+</header>
+
+<div class="overview">
+  <strong>今日总览：</strong>黑五给「AI 影响决策」与「Agent 真正完成交易」之间的落差做了次量化：Salesforce 预计 AI 与数字 Agent 将影响 Cyber Week 全球电商销售的 21%（约 758 亿美元），但 Adobe 口径下由 Agent 直接完成结账的金额仅约 4,700 万美元——差了三个数量级；与此同时，Sand.ai 以 480B、每秒 0.5 元的 MAGI-2 把顶级视频模型推向开放，TabbyML 的 20-Agent 工程团队则证明「验证与审查」比「生成」更决定产出价值。今天的主线很清楚：Agent 的护城河不在能不能生成，而在能不能验证、能不能对账、能不能算清成本。
+</div>
+
+<nav class="chips">
+  <a href="#sec-headline">头条<b>3</b></a>
+  <a href="#sec-llm">大模型<b>3</b></a>
+  <a href="#sec-agent">Agent 进展<b>4</b></a>
+  <a href="#sec-oss">开源项目<b>4</b></a>
+  <a href="#sec-vertical">垂直赛道<b>7</b></a>
+  <a href="#sec-funding">公司融资<b>3</b></a>
+  <a href="#sec-papers">论文<b>6</b></a>
+</nav>
+
+<div class="toolbar">
+  <button onclick="setAll(true)">全部展开</button>
+  <button onclick="setAll(false)">全部收起</button>
+</div>
+
+<section class="section" id="sec-headline">
+  <h2>头条<span class="count">3 条</span></h2>
+
+  <details class="item" id="headline-1" open>
+    <summary><span class="num">1</span><span class="t">黑五 AI 购物：AI 影响 21% 全球 Cyber Week 销售（$75.8B），但 Agent 直接结账仅约 $47M</span><span class="arrow">▸</span></summary>
+    <div class="body">Salesforce 预计 11/24–12/1 Cyber Week 期间，AI 与数字 Agent 将影响全球电商销售的 21%（约 758 亿美元）；Adobe 记录黑五美国线上消费约 118 亿美元、AI 引荐流量同比 +127%。但真正由 Agent 完成结账的金额仅约 4,700 万美元——「AI 影响决策」与「Agent 完成交易」之间差了三个数量级。对 Accio 这类采购/交易 Agent，瓶颈已不在推荐与比价，而在支付授权、身份核验、售后与失败恢复；谁先把「可验证的成交闭环」做扎实，谁才吃得到下一波。</div>
+    <div class="links"><a href="https://www.reuters.com/business/retail-consumer/black-friday-test-retailers-tight-budgets-meet-ai-savvy-shoppers-2026-11-27/">Reuters</a><a href="https://www.salesforce.com/news/stories/cyber-week-ai-sales-2026/">Salesforce</a><a href="https://www.rewarx.com/blogs/ai-agents-spent-47-million-black-friday">Rewarx 数据解读</a><a href="https://www.inc.com/scott-hutcheson/adobe-predicts-a-95-surge-in-ai-shopping-traffic-this-black-friday/91440392">Inc. / Adobe</a></div>
+  </details>
+
+  <details class="item" id="headline-2" open>
+    <summary><span class="num">2</span><span class="t">Sand.ai 开源 480B 视频模型 MAGI-2：30 秒一镜到底、1080p 每秒 0.5 元，登顶 Artificial Analysis 图生视频榜</span><span class="arrow">▸</span></summary>
+    <div class="body">11/26 发布，总参 480B（激活约 28B），单次可生成 30 秒 1080p/25fps，定价每秒 0.5 元（30 秒约 15 元）；在 Artificial Analysis Video Arena v2.1 图生视频榜登顶，四项平均 Elo 从 Preview 的 998.5 升至 1150.3，支持 2 万字符脚本、20 份多模态参考与毫秒级切镜（12 次指定切镜全中、平均偏差 0.028 秒）。预训练还涌现出自主规划（演示中闭卷解出 9×9 数独），并计划尽快开放权重。对内容与电商素材生产，「长时长、强可控、低单价」首次在开源模型上同框；但要留意其自述的「审美对齐税」——后训练提升电影感的同时会压制预训练的推理/泛化，产品侧应把「创作自由」与「指令遵循」分开评测。</div>
+    <div class="links"><a href="https://www.qbitai.com/2026/11/512916.html">量子位</a></div>
+  </details>
+
+  <details class="item" id="headline-3" open>
+    <summary><span class="num">3</span><span class="t">TabbyML 让 20 个 Agent 组队做系统工程：4 天 350 次实验，Quickwit 热查询降 31%、超越 ClickBench 公开 SOTA</span><span class="arrow">▸</span></summary>
+    <div class="body">20 个 Agent 分 Investigator / Lead / Verification 三角色，在真实开源搜索引擎 Quickwit 上自主找瓶颈、提假设、做实验、互审代码：约 350 次实验仅保留 6 项优化，亿级数据 40 条热查询总耗时 40.5s→27.9s（部分查询 −87%），ClickBench 热查询 geomean 403ms→304ms，比 Duckflight 公开成绩快 16%。最有价值的一幕是实验 E251：所有测试通过、提速 11%，但 Lead Agent 发现优化悄悄把 IP 比较从字符串改成了数值而否决。对 Agent 设计：把「生成」与「验证/审查」拆成不同角色与不同预算，并用「实验契约」约束正确性，比堆更强模型更能提升产出可信度。</div>
+    <div class="links"><a href="https://www.qbitai.com/2026/11/513163.html">量子位</a><a href="https://www.tabbyml.com/blog/beating-clickbench-sota-with-a-team-of-agentic-systems-engineers/">TabbyML 博客</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-llm">
+  <h2>大模型动态<span class="count">3 条</span></h2>
+
+  <details class="item" id="llm-1">
+    <summary><span class="num">1</span><span class="t">DeepSeek App 上线「聊天账单」、免费限额同日消失：按量计费前兆，V5 预期升温</span><span class="arrow">▸</span></summary>
+    <div class="body">11/27 网页与 App 回复下方新增账单：本轮消耗、缓存命中/未命中输入与输出 token 单价、金额、上下文占用进度圈；实测一句话 0.000426 元、1.3 万 token 约 0.0088 元，计价与 V4.1-Flash 空闲档一致（命中输入 0.02 元/M、未命中 1 元/M、输出 4 元/M，高峰翻倍）。账单已上线但聊天仍免费，同日免费限额消失。背景是 11/16 限额上热搜、单周调用量冲到 59.2 万亿 token 居 OpenRouter 首位。对 Agent 产品：token 级成本可视化正从「开发者控制台」走进「终端用户界面」，定价、配额与成本归因会成为 Agent 产品的标配 UI。</div>
+    <div class="links"><a href="https://www.qbitai.com/2026/11/513305.html">量子位</a></div>
+  </details>
+
+  <details class="item" id="llm-2">
+    <summary><span class="num">2</span><span class="t">知乎 × DeepSeek：回答可溯源引用知乎内容并跳转原文，走在线 API 按需检索而非打包语料</span><span class="arrow">▸</span></summary>
+    <div class="body">11/27 宣布可信内容合作：知乎通过数据开放平台向 DeepSeek 提供问答、文章、热榜与话题的检索能力，覆盖网页与移动端；被引用时展示来源标识、标题、摘要与创作者信息，并可跳转原文。工程上关键是以在线 API 按需检索替代离线打包卖断语料，便于权限与更新管理。对 Agent/搜索产品：内容溯源不只是合规，更是提升可信度与商业分成的机制设计；Accio 的供应商与商品信息同样需要「来源—版本—可回链」的证据层。</div>
+    <div class="links"><a href="https://finance.sina.cn/stock/jdts/2026-11-27/detail-inkaczqf1054745.d.html">新浪财经</a><a href="https://www.zhihu.com/question/2109594972236112069">知乎讨论</a></div>
+  </details>
+
+  <details class="item" id="llm-3">
+    <summary><span class="num">3</span><span class="t">Nature 分析：LLM 的「幻觉引用」等坏习惯约 16 个月后自然消退</span><span class="arrow">▸</span></summary>
+    <div class="body">Nature 新闻分析指出，对模型行为的长期追踪发现，不少不良行为（如编造参考文献、格式漂移等）在约 16 个月后显著减弱，可能与新一代模型训练、工具使用与评测迭代有关。这个「行为半衰期」提示：静态的红队结论会过期，安全与质量评测需要滚动复测。对产品侧，别把一次越狱/一次幻觉当成永久标签，应建立按模型版本与时间的回归监控。</div>
+    <div class="links"><a href="https://www.nature.com/articles/d41586-026-03753-1">Nature</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-agent">
+  <h2>Agent 进展<span class="count">4 条</span></h2>
+
+  <details class="item" id="agent-1">
+    <summary><span class="num">1</span><span class="t">蚂蚁灵波开源 LingBot-Map 2.0 与 LingBot-Navi：让机器人拥有可随时纠偏的「空间记忆」，跨任务复用、端侧可跑</span><span class="arrow">▸</span></summary>
+    <div class="body">11/27 发布。Map 2.0 是流式三维重建模型，把纠偏放进推理过程（几何上下文重塑 GCR），可在任意时点修正内部几何记忆：VBR 万帧长轨迹平均绝对轨迹误差从 13.57m 降到 6.63m，后续段 23.58→14.87m。Navi 在其上构建跨任务空间记忆导航，局部空间存为带视觉语言特征的显式点云，场景编码与任务查询解耦；GOAT-Bench 成功率 56.09%、SPL 38.04%，目标移位后允许复查成功率 15.33% vs 不复查 3.33%，Jetson Thor 上全局规划约 577ms、局部单步约 95ms。对 Agent 设计：记忆应是「可修正的内部状态」而非只改外部答案，数字 Agent 的长期记忆同样需要显式的纠错与回写机制。</div>
+    <div class="links"><a href="https://www.qbitai.com/2026/11/513227.html">量子位</a><a href="https://github.com/robbyant/lingbot-map-v2">GitHub</a></div>
+  </details>
+
+  <details class="item" id="agent-2">
+    <summary><span class="num">2</span><span class="t">Google Search 的 AI Mode 可接入 Drive 与 Wallet，个性化回答进入「个人上下文」阶段</span><span class="arrow">▸</span></summary>
+    <div class="body">11/23 起，AI Mode 可调用用户的 Drive 文件与 Wallet 票卡/支付信息来生成更个性化的回答。消费级搜索 Agent 开始持有「个人数据授权」，这既提升实用性，也把权限粒度、最小必要访问与可撤销性推到台前。对 Agent 产品：上下文接入应从「全量授权」转向「按任务的最小权限 + 可审计调用」；尤其交易类场景，读权与支付权必须分离。</div>
+    <div class="links"><a href="https://techcrunch.com/2026/11/23/google-searchs-ai-mode-can-now-tap-into-drive-and-wallet-for-more-personalized-responses/">TechCrunch</a></div>
+  </details>
+
+  <details class="item" id="agent-3">
+    <summary><span class="num">3</span><span class="t">Amazon 与 Meta 据报洽谈解除对 Muse Agent 的封锁：平台开始给 Agent 发「准入证」</span><span class="arrow">▸</span></summary>
+    <div class="body">TechCrunch 11/25 报道，Amazon 与 Meta 正谈判解除对 Meta 个人助理 Muse 的封锁（此前电商平台限制第三方 Agent 访问）。这与 Walmart 把黑五折扣接入 Muse 同周发生，指向一个新格局：平台不再简单封禁 Agent，而是以白名单、协议与结算规则来「发牌」。对 Accio：除了做好 Agent 能力，更要尽早参与平台级 Agent 接入标准与身份/结算协议，否则会被挡在货架之外。</div>
+    <div class="links"><a href="https://techcrunch.com/2026/11/25/amazon-and-meta-reportedly-in-talks-to-lift-blockade-on-ai-agent-muse/">TechCrunch</a></div>
+  </details>
+
+  <details class="item" id="agent-4">
+    <summary><span class="num">4</span><span class="t">YouRA 自主科研 Agent 在真实数据上找到 27/30 篇论文，超过 Sakana AI Scientist-V2 的 17/30</span><span class="arrow">▸</span></summary>
+    <div class="body">韩国 ETRI 与 UST 发布 YouRA，强调「证据账本」：记录假设、失败运行与证据，便于审计；真实数据 27/30，对比 Sakana 17/30。但报道也指出这并未证明其更抗幻觉，且代码禁止商用。对 Agent 设计：可审计的「研究轨迹」比单次结果更有价值；科研、尽调与选品类 Agent 应默认产出证据链而非只给结论，这样人才能复核与追责。</div>
+    <div class="links"><a href="https://www.techtimes.com/articles/331562/20261126/ai-research-agent-youra-beats-sakanas-ai-scientist-v2-real-data-hallucination-edge-unproven.htm">Tech Times</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-oss">
+  <h2>开源项目 · GitHub 今日热榜<span class="count">4 条</span></h2>
+
+  <details class="item" id="oss-1">
+    <summary><span class="num">1</span><span class="t">elementalsouls/Claude-BugHunter：给 Claude Code 的漏洞挖掘/红队技能包，今日 +1,608★</span><span class="arrow">▸</span></summary>
+    <div class="body">85 个技能、16 个 slash 命令、681 条已披露报告模式，覆盖 24 类核心漏洞与企业身份、基础设施攻击矩阵。安全能力正以「技能包」形态被 Agent 直接装载。对 Agent 平台：Skill 市场会成为能力分发的新入口，但也带来「攻防双用」的治理与准入问题——同一套技能既能做渗透测试，也能被滥用。</div>
+    <div class="links"><a href="https://github.com/elementalsouls/Claude-BugHunter">GitHub</a></div>
+  </details>
+
+  <details class="item" id="oss-2">
+    <summary><span class="num">2</span><span class="t">HKUDS/CLI-Anything：让所有软件「Agent 原生」，今日 +666★</span><span class="arrow">▸</span></summary>
+    <div class="body">把命令行工具包装成 Agent 可调用的统一接口（CLI-Hub），目标是降低工具接入成本。对 Agent 工程：工具层的标准化仍是「最脏最累但回报最高」的活；在 MCP 之外，「把 CLI 变成 Agent 接口」是一条更务实、覆盖面更广的第二条路。</div>
+    <div class="links"><a href="https://github.com/HKUDS/CLI-Anything">GitHub</a></div>
+  </details>
+
+  <details class="item" id="oss-3">
+    <summary><span class="num">3</span><span class="t">obra/superpowers：Agent 技能框架与软件开发方法论，今日 +922★</span><span class="arrow">▸</span></summary>
+    <div class="body">一套可复用的 Agentic Skills 框架与开发方法论。技能与流程正从「提示词集合」沉淀为可版本化、可测试的工程资产。对团队：把内部最佳实践做成 Skills 库，比每次重写 prompt 更可持续，也更容易做回归与审计。</div>
+    <div class="links"><a href="https://github.com/obra/superpowers">GitHub</a></div>
+  </details>
+
+  <details class="item" id="oss-4">
+    <summary><span class="num">4</span><span class="t">jingyaogong/minimind：2 小时从零训出 64M 大模型，今日 +660★</span><span class="arrow">▸</span></summary>
+    <div class="body">面向教学与快速实验的极小 LLM 训练项目。它的价值不在性能，而在把「预训练—SFT—推理」全流程压缩到可在一台机器上跑通，适合团队做架构/数据消融与新人培训。对 Agent 团队：需要快速验证「记忆、工具调用、路由」等结构假设时，小模型是低成本试验台。</div>
+    <div class="links"><a href="https://github.com/jingyaogong/minimind">GitHub</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-vertical">
+  <h2>垂直赛道<span class="count">7 条</span></h2>
+
+  <div class="subsec" id="subsec-coding">
+    <h3>AI 编程</h3>
+
+    <details class="item" id="coding-1">
+      <summary><span class="num">1</span><span class="t">Anthropic 上线 Claude Ship：让 AI Agent 审阅、修复并批准代码变更</span><span class="arrow">▸</span></summary>
+      <div class="body">11/23 推出，把代码评审、修复与批准纳入 Agent 流程，是「编码 Agent 从写代码走向管代码」的又一步。对研发流程：审批权下放给 Agent 的前提是可回滚、可审计与分级授权；否则会把「审查疲劳」变成「审查真空」——今天 TabbyML 的 E251 案例正说明，测试全绿不代表语义没变。</div>
+      <div class="links"><a href="https://techcrunch.com/2026/11/23/anthropic-launches-claude-ship-letting-ai-agents-review-fix-and-approve-code-changes/">TechCrunch</a></div>
+    </details>
+
+    <details class="item" id="coding-2">
+      <summary><span class="num">2</span><span class="t">Cursor 开源官方插件规范与插件仓库，今日 +243★</span><span class="arrow">▸</span></summary>
+      <div class="body">cursor/plugins 提供插件规范与官方插件，意味着 Cursor 正把 Agent IDE 做成可扩展平台。对工具选型：插件/技能生态将决定编码 Agent 的「最后一公里」能力覆盖，值得评估其与内部工具链、权限体系的兼容性，而不只看模型分数。</div>
+      <div class="links"><a href="https://github.com/cursor/plugins">GitHub</a></div>
+    </details>
+  </div>
+
+  <div class="subsec" id="subsec-video">
+    <h3>AI 视频与多模态</h3>
+
+    <details class="item" id="video-1">
+      <summary><span class="num">1</span><span class="t">腾讯混元 Hy3D 3.6：3D 生成从「能看」走向「能用」，上线腾讯云 Token Hub</span><span class="arrow">▸</span></summary>
+      <div class="body">11/27 发布，重点提升高模几何与 PBR 材质贴图，面向角色、生物、服装与复杂道具；数百位专业美术盲测显示几何与纹理质量显著优于同类；已接入 Miora、LAP、WorkRally 并开放 API，混元 3D 社区下载超 653 万。负责人称竞争重点正从「能看」转向「能用」，未来由语言模型理解调度、原生 3D 模型负责造型与材质。对电商：商品 3D 资产的「可用性」（拓扑/分件/UV/PBR）比炫技更重要，3D 资产会直接进入 listing 与详情页生产链路。</div>
+      <div class="links"><a href="https://www.qbitai.com/2026/11/513155.html">量子位</a><a href="https://3d.hunyuan.tencent.com/">混元 3D</a></div>
+    </details>
+
+    <details class="item" id="video-2">
+      <summary><span class="num">2</span><span class="t">商汤开源 SenseNova U1.6：照片级人像/海报生成，内置「生成—自检—修正」闭环</span><span class="arrow">▸</span></summary>
+      <div class="body">11/26 开源，主打速度、内容准确性与审美；支持长 prompt 的复杂构图与风格一致性，开启自修正后会对照原 prompt 检查错字/乱码并二次修正，UltraTextBench 密集信息图平均相对提升 7%，主观美感较 U1.5 提升 10%；已上线 ComfyUI 与小浣熊。对电商素材：海报与主图生成的「文字正确率」是能否上生产线的分水岭，自修正闭环比单纯提升画质更有商业价值。</div>
+      <div class="links"><a href="https://www.qbitai.com/2026/11/512748.html">量子位</a><a href="https://github.com/OpenSenseNova/SenseNova-U1">GitHub</a></div>
+    </details>
+  </div>
+
+  <div class="subsec" id="subsec-ai4s">
+    <h3>AI for Science</h3>
+
+    <details class="item" id="ai4s-1">
+      <summary><span class="num">1</span><span class="t">陶哲轩下场验证黎曼猜想，并警告「AI 批量生成证明就像发电厂排核废料」</span><span class="arrow">▸</span></summary>
+      <div class="body">11/27 报道：陶哲轩在哈佛活动上表示，AI 公司为测模型批量产出难以消化的证明，如同核废料——只能囤积、公开或付费处理，最好一开始就与数学家共同选题；他本人已在博客组织公开协作梳理黎曼证明，并判断其用到朗兰兹纲领与算术几何工具。他还建议学术招聘改为黑板答辩，因为 AI 能把论文写得「看起来很好」。对 AI4S 产品：产出「可读、可验证、可讨论」比产出「更多证明」更重要；科研 Agent 应内置可解释性与人类协作接口，而不是只追求通过率。</div>
+      <div class="links"><a href="https://www.qbitai.com/2026/11/513075.html">量子位</a></div>
+    </details>
+  </div>
+
+  <div class="subsec" id="subsec-ecom">
+    <h3>AI 电商与贸易</h3>
+
+    <details class="item" id="ecom-1">
+      <summary><span class="num">1</span><span class="t">钛动科技 × 腾讯云战略合作：用「专业营销大模型 + 多智能体」承接品牌出海增长</span><span class="arrow">▸</span></summary>
+      <div class="body">11/26 签约，围绕钛极专业大模型、算力与云基础设施、MaaS 及腾讯 WorkBuddy 智能体生态协同；Navos Pro 营销多智能体覆盖市场洞察、内容生成、投放与效果优化，业务覆盖 200 多个国家、连接约 700 万媒体平台与 1.5 亿达人。对跨境 Agent：增长类 Agent 的壁垒在「行业模型 + 媒体/达人供给 + 效果闭环」，而非通用对话能力；Accio 的买家侧数据与卖家经营链路同样可打包成可复制的增长智能体。</div>
+      <div class="links"><a href="https://www.qbitai.com/2026/11/513194.html">量子位</a></div>
+    </details>
+
+    <details class="item" id="ecom-2">
+      <summary><span class="num">2</span><span class="t">Walmart 把黑五折扣接入 Meta 的 Muse Agent：零售开始把「Agent 渠道」当正式货架</span><span class="arrow">▸</span></summary>
+      <div class="body">11/24 报道，Walmart 与 Meta 合作，把黑五优惠直接放进 Muse 个人助理，用户可在对话中浏览与购买。这与 Amazon/Meta 谈判解除封锁相呼应：Agent 正从「流量入口」变成「渠道」本身。对 Accio：B2B 侧同样会出现「买家 Agent 直接进卖家货架」的形态，商品结构化的完整度与 Agent 可读性（规格、MOQ、认证、交期）将直接决定曝光与成交。</div>
+      <div class="links"><a href="https://techcrunch.com/2026/11/24/walmart-teams-up-with-meta-to-bring-black-friday-deals-to-ai-agent-muse/">TechCrunch</a></div>
+    </details>
+  </div>
+</section>
+
+<section class="section" id="sec-funding">
+  <h2>公司与融资<span class="count">3 条</span></h2>
+
+  <details class="item" id="funding-1">
+    <summary><span class="num">1</span><span class="t">Anthropic 股价跌破 IPO 发行价：AI 一级市场狂欢与二级市场定价的第一次正面碰撞</span><span class="arrow">▸</span></summary>
+    <div class="body">Anthropic 11/18 以创纪录规模完成 IPO（募资约 813 亿美元），但 11/24 股价已跌破发行价，TechCrunch 称这对 AI 创业公司是「令人担忧的信号」。对行业：模型公司的估值开始接受公开市场检验，「收入质量、毛利、算力成本」会被更严苛地审视，融资叙事将从「能力领先」转向「单位经济模型」。</div>
+    <div class="links"><a href="https://techcrunch.com/2026/11/24/anthropic-shares-fall-below-ipo-price-a-worrying-sign-for-ai-startups/">TechCrunch</a><a href="https://ukrmedia.news/en/science-tech/anthropic-ipo-record-81-billion/">IPO 记录</a></div>
+  </details>
+
+  <details class="item" id="funding-2">
+    <summary><span class="num">2</span><span class="t">Nvidia 暂停对东南亚的芯片出货：出口管制与「黄仁勋风波」叠加</span><span class="arrow">▸</span></summary>
+    <div class="body">11/26 报道，Nvidia 暂停部分对东南亚的芯片出货；同期公司因 Megaspeed 事件与治理争议被 S&amp;P 考虑下调信用评级，黄仁勋经历「被免又复职」的风波。对 AI 供给：算力的地缘与治理风险正从「新闻」变成「交付不确定性」，Agent 产品的容量规划需要预留多区域、多供应商冗余，成本模型也要把断供概率算进去。</div>
+    <div class="links"><a href="https://techcrunch.com/2026/11/26/nvidia-hits-pause-on-chip-shipments-to-southeast-asia/">TechCrunch</a><a href="https://techcrunch.com/2026/11/25/sp-considers-nvidia-credit-downgrade-over-governance-and-key-man-risk/">S&amp;P 评级</a></div>
+  </details>
+
+  <details class="item" id="funding-3">
+    <summary><span class="num">3</span><span class="t">Supertake 融资 2,000 万美元：让 AI Agent 把市场预测变成股票组合</span><span class="arrow">▸</span></summary>
+    <div class="body">11/23 报道，Supertake 获 2,000 万美元融资，用 Agent 将用户的市场判断转化为可执行组合。金融 Agent 的「建议→执行」闭环正在获得资本支持。对产品：高风险执行类 Agent 的信任来自风控、限额与可回滚，而非预测准确率本身；这也是所有「代客操作」类 Agent 的通用设计原则。</div>
+    <div class="links"><a href="https://techcrunch.com/2026/11/23/supertake-raises-20m-to-let-ai-agents-turn-your-market-predictions-into-stock-portfolios/">TechCrunch</a></div>
+  </details>
+</section>
+
+<section class="section" id="sec-papers">
+  <h2>论文精选<span class="count">6 条</span></h2>
+
+  <div class="paper-recap">
+    <h3>本期论文总结 · 组会分享版</h3>
+
+    <h4>一、今日主线（为什么选这 6 篇）</h4>
+    <ol>
+      <li><strong>AI4S 进入「可信评测」阶段</strong>（<a href="#papers-1">#1</a>、<a href="#papers-2">#2</a>、<a href="#papers-3">#3</a>）：AFsample3 把蛋白结构预测推进到「构象集合」，REE 给自主科研 Agent 一个统一考场，时序知识图谱则揭示药靶评测里的答案泄漏。三篇合起来回答同一个问题：当 AI 产出「看起来像科研」的结果，如何证明它真的在预测，而不是在记忆或泄漏？前沿 Agent 已在多数题上超过专家解，评测本身成了新瓶颈。</li>
+      <li><strong>Agent 的「成本—可靠性」工程化</strong>（<a href="#papers-4">#4</a>、<a href="#papers-5">#5</a>）：SkillsBench 源码级审计说明技能增益很容易被噪声与评分依赖夸大，MeterRouter 则把预算变成多 Agent 路由的一等约束、同精度降本 82%。共同结论是：Agent 系统的边际收益取决于「验证」与「成本核算」，而非无限堆技能、堆模型。</li>
+      <li><strong>决策型 Agent：读得出，不等于推得对</strong>（<a href="#papers-6">#6</a>）：竞价实验显示小型推理模型的错误系统性偏向高价，截断推理与「推理块未闭合就取答案」是主要价值损失来源，而「轨迹自洽审计 + 计算器回退」能挽回大部分损失。这套思路可直接迁移到询盘、报价、竞价与投放出价。</li>
+    </ol>
+
+    <h4>二、每篇一句话（按阅读优先级）</h4>
+    <ol>
+      <li><a href="#papers-1">AFsample3（Nature Machine Intelligence）</a>：<strong>精读</strong>——蛋白功能取决于动态构象，这是把 AI4S 从「静态结构」推进到「构象集合」的代表作。</li>
+      <li><a href="#papers-2">REE（arXiv）</a>：<strong>精读</strong>——100 道真实开放题 + 12 小时迭代 + 统一专家基线，是自主科研 Agent 评测的样板。</li>
+      <li><a href="#papers-6">竞价推理（arXiv）</a>：<strong>精读</strong>——电商出价/报价场景可直接落地的失败模式与护栏设计。</li>
+      <li><a href="#papers-4">SkillsBench 审计（arXiv）</a>：<strong>选读</strong>——技能市场做 A/B 与显著性检验的方法论警示。</li>
+      <li><a href="#papers-3">药靶时序泄漏（NeurIPS 2026 Workshop）</a>：<strong>选读</strong>——任何用未来信息回测的垂直策略都会高估效果。</li>
+      <li><a href="#papers-5">MeterRouter（arXiv）</a>：<strong>泛读</strong>——多 Agent 成本路由的思路清楚，适合工程同学按需深挖。</li>
+    </ol>
+
+    <h4>三、组会讨论题</h4>
+    <ul>
+      <li>Accio 的询盘→报价→竞价链路，能否把「推理轨迹自洽性审计 + 计算器回退」做成默认护栏？当模型错误系统性偏向高价（<a href="#papers-6">#6</a>），如何量化它对毛利与成交率的真实影响？</li>
+      <li>REE 的「12 小时迭代改进 + 与专家解同尺度对比」（<a href="#papers-2">#2</a>）能否用于内部 Agent 评测，如选品、listing 优化、履约异常处理？我们的「专家基线」和评分函数从哪里来？</li>
+      <li>SkillsBench 审计（<a href="#papers-4">#4</a>）提醒技能增益可能被噪声与评分依赖夸大：上线 Agent Skills 时，如何设计留出集、A/B 与显著性检验，避免陷入「技能越多越好」的错觉？</li>
+    </ul>
+  </div>
+
+  <details class="item" id="papers-1">
+    <summary><span class="num">1</span><span class="t">Nature Machine Intelligence｜AFsample3：在 AlphaFold3 上做「随机 MSA 遮蔽 + 排序筛选」，生成并挑选多种蛋白构象态</span><span class="arrow">▸</span></summary>
+    <div class="body">11/26 发表于 Nature Machine Intelligence（vol 8, 1802–1811）。AFsample3 在 AF3 推理时随机遮蔽多序列比对（MSA）以产生构象多样性，再对候选态排序与选择，把「静态结构预测」推进到「构象集合」。蛋白功能取决于动态构象，药物设计、变构位点发现都需要多态采样；这项工作给 AI4S 提供了一个可复现的增强采样框架，值得做生物医药 Agent 的团队精读并按需复现。</div>
+    <div class="links"><a href="https://www.nature.com/subjects/machine-learning">Nature Machine Intelligence</a><a href="https://www.biorxiv.org/content/10.64898/2026.01.16.699904v1">bioRxiv 全文</a></div>
+  </details>
+
+  <details class="item" id="papers-2">
+    <summary><span class="num">2</span><span class="t">arXiv｜REE：给自主科研 Agent 的「科研入学考试」——100 道开放题、12 小时迭代，Claude Opus 5.5 与 GPT-6.1 Sol 在 86%/81% 题目上超过专家解</span><span class="arrow">▸</span></summary>
+    <div class="body">100 个跨 5 大领域、23 个学科的真实开放研究题，Agent 最多 12 小时改进起始解，按统一尺度对照专家解。结果：Claude Opus 5.5 在 86%、GPT-6.1 Sol 在 81% 的题目上超过专家，且平均 2 小时内完成超越；最佳方案多为对既有方法的裁剪与组合，而非全新洞见。对 Agent 评测：这是「过程 + 结果」统一评测的样板，也提醒我们「超过专家解」不等于「提出了新理论」——产品侧更该看方案的可迁移性与可审计性。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2611.34646">arXiv 2611.34646</a><a href="https://huggingface.co/datasets/Tokenwave-AI/REE">数据集</a></div>
+  </details>
+
+  <details class="item" id="papers-3">
+    <summary><span class="num">3</span><span class="t">arXiv｜「是预测还是已知？」时序知识图谱揭示 AI4S 评测泄漏：最新图谱让 6 个模型 5 个超基线，但路径里通常已含答案</span><span class="arrow">▸</span></summary>
+    <div class="body">把「靶点—疾病首次临床试验」建模为带日期事件，重建逐年知识图谱，测试 6 个开放模型。无检索时模型仅与「历史试验计数」基线相当；最新图谱让 5/6 模型显著超基线，但检索路径常包含决策后的「该靶点自身试验」——即答案泄漏。结论：特征与标签都必须按时间切分。对垂直 Agent：任何用「未来信息」回测的选品、选供应商或定价策略都会系统性高估效果，必须做严格的「时间旅行」回测。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2611.34247">arXiv 2611.34247</a></div>
+  </details>
+
+  <details class="item" id="papers-4">
+    <summary><span class="num">4</span><span class="t">arXiv｜SkillsBench 审计：技能「平均 +16.6pp」里有评分依赖与噪声，「按任务关停技能」在留出集上并不显著</span><span class="arrow">▸</span></summary>
+    <div class="body">源码级审计 7,554 次公开试验，形成 1,421 个配对单元；发现两处评分器依赖、一处定义缺口，三题平均提升 74.6pp、全集中均 18.7pp；四个任务用了占位技能目录，某执行框架还额外注入 48 个内置技能。多重检验校正后无任务级下降显著；「按无技能得分门控」在未参与拟合的留出集上也无显著提升。对 Agent 平台：技能市场的效果评估必须做留出集与显著性检验，别被「技能越多越好 / 某技能有害」的噪声结论带偏。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2611.33943">arXiv 2611.33943</a><a href="https://github.com/rrrrr4788/skillsbench-lift-reanalysis">审计代码</a></div>
+  </details>
+
+  <details class="item" id="papers-5">
+    <summary><span class="num">5</span><span class="t">arXiv｜MeterRouter：把「预算」作为多 Agent 路由的一等约束，同等精度下成本降 82%</span><span class="arrow">▸</span></summary>
+    <div class="body">多 Agent 的 token 开销由「招多少 Agent、各自角色与所用 LLM、通信拓扑」共同决定；MeterRouter 按每条查询的货币预算增量合成协作图，用模仿学习初始化、GRPO 微调（奖励正确、惩罚花费与超支）。在 5 个基准、三档 LLM 池上，达到最强 MAS 的精度同时成本低 82%，并可按预算调节花费。对产品：多 Agent 不该默认「全用大模型」，把预算与延迟作为路由约束，能直接把毛利做出来。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2611.34327">arXiv 2611.34327</a></div>
+  </details>
+
+  <details class="item" id="papers-6">
+    <summary><span class="num">6</span><span class="t">arXiv｜竞价里的「小推理模型」：错误系统性偏向高价，截断推理与未闭合推理块是主要价值损失来源</span><span class="arrow">▸</span></summary>
+    <div class="body">给 6 个 4B–14B 推理模型 eBay 成交价与 AuctionNet 的出价景观，用精确计算器作对照。两类模型侧失败：即便自己轨迹里已把最优选项排第一仍会跳过；错误偏向菜单最高价，且与采样无关。768 强制 token、按出价付费下，错误使买家损失计算器收益的 7–17%，算错很少。运营侧：token 上限截断推理（允许 4,096 内自停可挽回 91–100%）、在推理块未闭合时取答案（先闭合可把最弱模型从 42%→84%）；用「轨迹自洽审计 + 计算器回退」可把挽回率提到 84–100%。对电商 Agent：出价/报价/竞价类决策应「模型给理由、程序做核对」，并对推理截断与读出错位做硬校验。</div>
+    <div class="links"><a href="https://arxiv.org/abs/2611.34068">arXiv 2611.34068</a><a href="https://github.com/DataismLab/bid-reasoning">代码与数据</a></div>
+  </details>
+</section>
+
+<a class="back" href="../index.html">← 返回日报归档</a>
+
+<div class="footer">
+  由「新技术学习搭子」自动生成 · 内容采编自公开来源，观点仅供参考 · 2026-11-28
+</div>
+
+</div>
+
+<script>
+function setAll(open){document.querySelectorAll('details.item').forEach(function(d){d.open=open})}
+if(location.hash){
+  var el=document.querySelector(location.hash);
+  if(el&&el.tagName==='DETAILS'){el.open=true;setTimeout(function(){el.scrollIntoView({block:'start'})},60)}
+}
+</script>
+</body>
+</html>
